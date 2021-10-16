@@ -1,0 +1,112 @@
+@import '../../scss/config';
+.custom-table-custom-head-wrap {
+  overflow-x: auto;
+  display: grid;
+  align-content: start;
+  @include custom-scrollbar;
+}
+.custom-shared-table {
+  width: 100%;
+  display: grid;
+  align-content: start;
+  gap: 18px;
+  .custom-shared-table-row {
+    background-color: $main-bg-color;
+    border-radius: 15px;
+    padding: 22px;
+    color: $secondary-text-color;
+    display: flex;
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: space-between;
+    align-items: center;
+
+    .row-cell {
+      width: 132px;
+      display: grid;
+      justify-content: center;
+      &.row-index {
+        width: 82px;
+        span {
+          color: $main-app-color;
+          background-color: #fff;
+          font-size: 18px;
+          border-radius: 10px;
+          padding: 14px 10px;
+          min-width: 52px;
+          min-height: 60px;
+          display: grid;
+          place-items: center;
+          justify-content: center;
+        }
+      }
+      &.row-title {
+        display: grid;
+        .label-span {
+          color: $main-app-color;
+        }
+      }
+      &.row-text {
+        color: #8b8b8b;
+        text-align: center;
+      }
+      &.row-icon {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      &.row-link {
+        a {
+          background-color: transparent;
+          color: $main-app-color;
+          border: 1px solid #000;
+          padding: 8px 20px;
+          border-radius: 8px;
+          font-size: 14px;
+          transition: all 0.2s ease-out;
+          &:hover {
+            background-color: $main-app-color;
+            color: #fff;
+          }
+        }
+      }
+
+      &.row-actions {
+        min-width: 262px;
+        .action-btns-wrap {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+        .reports-btn,
+        .edit-btn {
+          background-color: #b5b5b5;
+          color: #222;
+          padding: 7px 14px;
+          border-radius: 10px;
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          cursor: pointer;
+          svg {
+            width: 16px;
+            height: 16px;
+          }
+        }
+        .delete-btn {
+          background-color: $main-app-color;
+          padding: 10px 7px;
+          border-radius: 12px;
+          display: grid;
+          place-items: center;
+          cursor: pointer;
+          svg {
+            width: 18px;
+            height: 14px;
+          }
+        }
+      }
+    }
+  }
+}

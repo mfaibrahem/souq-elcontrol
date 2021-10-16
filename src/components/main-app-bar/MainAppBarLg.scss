@@ -1,0 +1,118 @@
+@import '../../scss/config';
+
+.main-app-bar-lg {
+  position: relative;
+  z-index: $app-header-z-index;
+  .nav-content-wrapper {
+    display: grid;
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+    grid-gap: 32px;
+    align-items: center;
+
+    .main-app-bar-logo {
+      padding: 2px 0;
+      padding-top: 14px;
+      padding-top: 4px;
+      img {
+        height: 68px;
+        height: 102px;
+        transition: all 0.25s ease-out;
+      }
+    }
+
+    .nav-lang-wrapper {
+      display: grid;
+      grid-auto-flow: column;
+      grid-gap: 32px;
+      & > ul {
+        display: grid;
+        grid-auto-flow: column;
+        grid-gap: 32px;
+        font-weight: bold;
+        li {
+          a {
+            display: grid;
+            justify-items: center;
+            padding-bottom: 14px;
+            position: relative;
+            .active-img-wrap {
+              width: 44px;
+              height: 2px;
+              position: absolute;
+              bottom: 0;
+            }
+            &.active-link {
+              color: $main-app-color;
+              .active-img-wrap {
+                // background-image: url(../../assets/imgs/bgs/active-link-bg.png);
+                background-color: $main-app-color;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.light {
+    .nav-content-wrapper {
+      .nav-lang-wrapper {
+        & > ul {
+          li {
+            a {
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @include mainAppBarHeight;
+  transform: translateY(0);
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  transition: all 0.25s ease-out;
+  display: grid;
+  align-items: center;
+
+  &.exceeds0 {
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 12px 14px rgba(#000, 0.1);
+    background-color: #fff;
+    z-index: calc(#{$app-header-z-index} + 1);
+    // &.scroll-up {
+    // }
+    .nav-content-wrapper {
+      .main-app-bar-logo {
+        padding-top: 10px;
+        padding-top: 0px;
+        img {
+          height: 52px;
+          height: 78px;
+        }
+      }
+      .nav-lang-wrapper {
+        & > ul {
+          li {
+            a {
+              color: $main-text-color;
+            }
+          }
+        }
+      }
+    }
+    &.scroll-down {
+      transform: translateY(-100%);
+    }
+  }
+
+  display: none;
+  @include mediaLg {
+    display: grid;
+  }
+}

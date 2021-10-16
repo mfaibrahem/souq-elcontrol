@@ -1,0 +1,23 @@
+.editor-wrapper {
+  // margin-top: 14px;
+  .editor-title {
+    color: rgba(#fff, 0.7);
+    margin-bottom: 8px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .toolbarClassName {
+    direction: ltr;
+  }
+  .wrapperClassName {
+    margin-bottom: 12px;
+    background-color: #262f51;
+    border-radius: 5px;
+    .editorClassName {
+      padding: 0 18px;
+      min-height: 180px;
+    }
+  }
+}

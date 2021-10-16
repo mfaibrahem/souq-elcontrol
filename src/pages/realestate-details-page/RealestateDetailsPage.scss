@@ -1,0 +1,87 @@
+@import '../../scss/config';
+
+.realestate-details-page {
+  @include mediaLg {
+    margin-top: 52px;
+  }
+  background-color: #fff;
+  padding-bottom: 52px;
+
+  .real-estate-data {
+    display: grid;
+    gap: 12px;
+    @include mediaLg {
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    .details-address {
+      font-size: 20px;
+      svg {
+        color: $main-app-color;
+        font-size: 24px;
+        margin-left: 8px;
+      }
+      margin-top: 8px;
+      margin-bottom: 6px;
+    }
+    .title {
+      font-weight: bold;
+      color: $main-app-color;
+      font-size: 28px;
+    }
+    .description {
+      font-size: 18px;
+      line-height: 1.8;
+      text-align: justify;
+    }
+    .features-wrap {
+      margin-top: 22px;
+      font-size: 16px;
+      line-height: 1.8;
+      margin-bottom: 42px;
+      ul {
+        list-style-type: disc;
+        padding-right: 22px;
+        margin-top: 8px;
+      }
+      p {
+        margin-top: 12px;
+        font-size: 18px;
+      }
+    }
+    .extra-row {
+      margin-bottom: 8px;
+      display: flex;
+      gap: 22px;
+      align-items: center;
+      flex-wrap: wrap;
+      .bedrooms,
+      .restrooms {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 16px;
+      }
+      .rooms-title {
+        & > img {
+          width: 28px;
+          margin-left: 8px;
+        }
+      }
+      .rooms-value {
+        color: $main-app-color;
+        font-weight: bold;
+      }
+    }
+
+    .main-img-wrap {
+      img {
+        max-width: 100%;
+        border-radius: 18px;
+      }
+    }
+  }
+  .map-section-wrap {
+    margin-top: 22px;
+  }
+}

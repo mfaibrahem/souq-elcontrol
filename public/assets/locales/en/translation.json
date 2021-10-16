@@ -1,0 +1,214 @@
+{
+  "days": "number of days {{n_of_days}}",
+  "main_app_bar_links": {
+    "home": "Home",
+    "free_consultation": "طلب إستشارة مجانية",
+    "real_estate_investment": "إستثمار عقارى",
+    "clients_list": "قائمة عملائنا",
+    "contact": "Contact us",
+    "blogs": "مدونات",
+    "real_states": "عقارات",
+    "contracting": "مقاولات",
+    "decorations": "ديكور"
+  },
+  "hero_section": {
+    "main_title": {
+      "row_1": "User interface",
+      "row_2": "designs"
+    },
+    "sub_title": {
+      "row_1": "We create for you the brand identity that distinguishes you in your business, in a unique, distinctive and expressive way we create for you",
+      "row_2": "The business identity that distinguishes you in your business is a unique, distinctive and expressive form"
+    },
+    "hero_footer": {
+      "scroll_down": "Scroll down"
+    }
+  },
+  "services_section": {
+    "main_title": "Services",
+    "sub_title": {
+      "row_one": "We create for you the brand identity that distinguishes you in your work.",
+      "row_two": "We create for you the brand identity that distinguishes you in work in a unique, distinctive and powerful way"
+    }
+  },
+  "gallery_section": {
+    "main_title": "Our gallery",
+    "gallery_filter": {
+      "all": "View All",
+      "accounting_software": "Accounting software",
+      "designing_electronic_stores": "Designing electronic stores",
+      "digital_marketing": "Digital Marketing",
+      "website_design": "Website design",
+      "phone_apps": "Phone apps"
+    }
+  },
+  "create_project": {
+    "create_btn": "Create Project",
+    "view_more": "View More"
+  },
+  "work_section": {
+    "main_title": "كيف نعمل",
+    "steps": {
+      "one": {
+        "title": "لديك فكره",
+        "desc": "نحدد احتياجاتك من خلال تقديم اقتراح مبتكر مخصص ونعلمك عملية التطوير بأكملها"
+      },
+      "two": {
+        "title": "جمع المعلومات",
+        "desc": "نحدد هدفك نحلل المتطلبات ثم نقوم بجدوله مشروعك"
+      },
+      "three": {
+        "title": "عرض السعر",
+        "desc": "نقدم لك عرض سعر بناء علي متطلباتك"
+      },
+      "four": {
+        "title": "الاتفاق والتوقيع",
+        "desc": "نقوم بتجهيز عقد اتفاق بناء علي التزامات الطرفين  وذلك  لتوقيع الشركه والعميل عليه "
+      },
+      "five": {
+        "title": "التحليل والتنفيذ",
+        "desc": "نقوم بالبدء في تحليل الاعمال المطلوبه ودراستها  وتنفيذ العمل علي يد فريق محترف "
+      },
+      "six": {
+        "title": "التسليم",
+        "desc": "بعد الانتهاء يتم عرض نموذج المشروع للعميل لمراجعته  اولا حتي يتاكد من تلبيه جميع  متطلباته  "
+      },
+      "seven": {
+        "title": "خدمة ما بعد البيع",
+        "desc": "نوفر خدمه الدعم الفني لعملائنا مجانا مده سنه من تسليم  المشروع ونحرص دائما علي ارضاء عملائنا "
+      }
+    }
+  },
+  "testimonials_section": {
+    "main_title": "Work staff",
+    "sub_title": "An application through which you can sell or buy university books and you can calculate your GPA and you can publish your question / answer or summaries through the community of engineers."
+  },
+  "main_app_footer": {
+    "footer_title": "User interface design",
+    "footer_desc": "An application through which you can buy or sell university books and you can calculate your GPA and you can post your question / answer or summaries ",
+    "footer_links_title": "Links",
+    "footer_social_title": "Contacts"
+  },
+  "about_us": {
+    "title": {
+      "row_1": "About Us",
+      "row_2": "Brief about us"
+    }
+  },
+  "request_project_page": {
+    "main_title": "Request a project",
+    "request_project_form": {
+      "first_name": {
+        "label": "First Name",
+        "errors": {
+          "required": "Please enter the first name"
+        }
+      },
+      "last_name": {
+        "label": "Lanst Name",
+        "errors": {
+          "required": "Please enter the last name"
+        }
+      },
+      "project_details": {
+        "label": "Porject details",
+        "errors": {
+          "required": "Please enter the project details"
+        }
+      },
+      "phone_number": {
+        "label": "Phone number",
+        "errors": {
+          "required": "Please enter the phone number"
+        }
+      },
+      "email_address": {
+        "label": "Email address",
+        "errors": {
+          "required": "Please enter the email address",
+          "type_error": "Please enter a valid email address"
+        }
+      },
+      "send_btn": {
+        "title": "Send",
+        "loading": "Sending",
+        "title_message": "Done Successfully",
+        "title_message_error": "Error"
+      },
+      "project_category": {
+        "label": "Project Category",
+        "errors": {
+          "required": "Please Select Project Category"
+        }
+      }
+    }
+  },
+  "gallery_detailes": {
+    "download": "Download Applcation",
+    "Technologies_used": "Technologies Used",
+    "Watch_Appcations_On": "Watch Appcations On",
+    "Watch_Appcations": "Watch Appcations",
+    "Application_features": "Application features"
+  },
+  "contact_page": {
+    "main_title": "Contact us",
+    "contact_form": {
+      "name": {
+        "label": "Name",
+        "errors": {
+          "required": "Please enter your name"
+        }
+      },
+      "email_address": {
+        "label": "Email address",
+        "errors": {
+          "required": "Please enter the email address",
+          "type_error": "Please enter a valid email address"
+        }
+      },
+      "phone_number": {
+        "label": "Phone Number",
+        "errors": {
+          "required": "Please enter phone number"
+        }
+      },
+      "website": {
+        "label": "Website"
+      },
+      "msg_desc": {
+        "label": "Message",
+        "errors": {
+          "required": "Please enter the message"
+        }
+      },
+      "send_btn": {
+        "title": "Send message",
+        "loading": "Sending"
+      }
+    }
+  },
+  "answer_questions": {
+    "not_found_user": {
+      "err_title": "User not found!",
+      "err_msg": "Please enter a valid URL"
+    },
+    "errors": {
+      "textField": {
+        "required": "Please enter the required data"
+      },
+      "file": {
+        "required": "Please upload the required data"
+      },
+      "selectOption": {
+        "required": "Please select one option"
+      },
+      "radioBtn": {
+        "required": "Please select one choice"
+      },
+      "checkBoxs": {
+        "required": "Please select at least one choice"
+      }
+    },
+    "success": "You have successfully completed the survey"
+  }
+}

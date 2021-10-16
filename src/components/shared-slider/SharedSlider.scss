@@ -1,0 +1,16 @@
+@import '../../scss/config';
+
+.main-app-slick-slider {
+  margin-top: 32px;
+  .slide-wrap {
+    display: grid;
+    border-radius: 22px;
+    overflow: hidden;
+    .slide-img {
+      width: 100%;
+      @include heroHeight;
+      object-fit: cover;
+      border-radius: 22px !important;
+    }
+  }
+}

@@ -1,0 +1,155 @@
+@import '../../scss/config';
+
+.home-video-section {
+  padding-top: 22px;
+  padding-bottom: 22px;
+  @include mediaLg {
+    padding-top: 82px;
+    padding-bottom: 152px;
+  }
+  display: flex;
+  justify-content: center;
+  .section-wrapper {
+    display: grid;
+    justify-items: center;
+    position: relative;
+    @include mediaLg {
+      height: 522px;
+      width: 90%;
+      max-width: 1032px;
+    }
+    & > img {
+      width: 100%;
+      height: 522px;
+      object-fit: cover;
+      border-radius: 8px 8px 0 0;
+      @include mediaLg {
+        border-radius: 8px;
+      }
+    }
+    .video-play-icon {
+      position: absolute;
+      color: $main-app-color;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      cursor: pointer;
+      width: 68px;
+      height: 68px;
+      background-color: rgba(#000, 0.8);
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      animation: scaleMe 8s ease-out infinite;
+
+      svg {
+        font-size: 32px;
+        margin-left: 6px;
+        animation: blinkMe 1s ease-in-out infinite;
+
+        @keyframes blinkMe {
+          from {
+            transform: translateX(-1px);
+            opacity: 0;
+          }
+          50% {
+            opacity: 1;
+            // transform: translateX(0);
+          }
+          to {
+            transform: translateX(1px);
+            opacity: 0;
+          }
+        }
+      }
+      @keyframes scaleMe {
+        0% {
+          transform: translate(-50%, -50%) scale(1);
+        }
+        50% {
+          transform: translate(-50%, -50%) scale(1.1);
+        }
+        100% {
+          transform: translate(-50%, -50%) scale(1);
+        }
+      }
+      &::after {
+        pointer-events: none;
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        border: 1px dashed $main-app-color;
+        animation: rotateMe 12s linear infinite;
+        @keyframes rotateMe {
+          0% {
+            transform: rotate(0deg) scale(1);
+          }
+          50% {
+            transform: rotate(180deg) scale(1.2);
+          }
+          100% {
+            transform: rotate(360deg) scale(1);
+          }
+        }
+      }
+
+      &.modal-opened {
+        svg {
+          animation: none !important;
+        }
+        animation: none !important;
+
+        &::after {
+          animation: none !important;
+        }
+      }
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(#000, 0.3);
+      border-radius: 8px;
+    }
+
+    .text-box-wrap {
+      font-size: 18px;
+      line-height: 2;
+      z-index: 1;
+      display: grid;
+      gap: 12px;
+      background-color: #eee;
+      padding: 18px 22px;
+      @include mediaLg {
+        grid-template-columns: auto auto;
+        color: $main-app-color;
+        background-color: #fff;
+        border-top-left-radius: 142px;
+        position: absolute;
+        bottom: -92px;
+        right: -82px;
+        padding: 52px 42px;
+        padding-top: 32px;
+      }
+      p {
+        max-width: 322px;
+      }
+      img {
+        display: none;
+        @include mediaLg {
+          display: block;
+          width: 142px;
+        }
+      }
+    }
+  }
+}

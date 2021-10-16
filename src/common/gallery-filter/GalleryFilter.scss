@@ -1,0 +1,33 @@
+@import '../../scss/config';
+
+.gallery-filter-list {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  @include custom-scrollbar;
+  padding: 22px;
+  padding-top: 0;
+
+  @include mediaXlg {
+    justify-content: center;
+  }
+  .filter-btn {
+    padding: 8px 16px;
+    border-radius: 999px;
+    cursor: pointer;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    min-width: 182px;
+    white-space: nowrap;
+
+    span {
+      padding-bottom: 4px;
+    }
+    &.selected {
+      background-color: $secondary-app-color;
+      color: #fff;
+      box-shadow: 10px 10px 18px rgba(#000, 0.2);
+    }
+  }
+}

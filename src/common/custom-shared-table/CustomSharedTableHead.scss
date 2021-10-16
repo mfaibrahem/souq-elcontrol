@@ -1,0 +1,55 @@
+@import '../../scss/config';
+
+.custom-shared-table-head {
+  width: 100%;
+  background-color: $main-app-color;
+  border-radius: 15px;
+  padding: 12px 22px;
+  margin-top: 18px;
+  margin-bottom: 12px;
+  color: $secondary-text-color;
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: space-between;
+  align-items: center;
+
+  .row-cell {
+    width: 132px;
+    font-size: 16px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    &.row-text {
+      color: #8b8b8b;
+      text-align: center;
+    }
+    &.row-index {
+      width: 82px;
+      span {
+        color: $main-app-color;
+        background-color: #fff;
+        font-size: 18px;
+        border-radius: 10px;
+        padding: 14px 10px;
+        min-width: 52px;
+        min-height: 60px;
+        display: grid;
+        place-items: center;
+        justify-content: center;
+      }
+    }
+    &.row-actions {
+      min-width: 262px;
+    }
+  }
+  .row-icon {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    svg {
+      width: 14px;
+      height: 14px;
+    }
+  }
+}

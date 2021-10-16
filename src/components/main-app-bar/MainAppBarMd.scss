@@ -1,0 +1,101 @@
+@import '../../scss/config';
+
+.main-app-bar-md {
+  position: relative;
+  z-index: $app-header-z-index;
+  .nav-content-wrapper {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+    grid-gap: 32px;
+    align-items: center;
+
+    .main-app-bar-logo {
+      padding: 2px 0;
+      img {
+        height: 72px;
+      }
+    }
+
+    .nav-lang-wrapper {
+      display: grid;
+      grid-auto-flow: column;
+      grid-gap: 14px;
+      align-items: center;
+    }
+  }
+
+  &.light {
+    .nav-content-wrapper {
+      .nav-lang-wrapper {
+        & > ul {
+          li {
+            a {
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @include mainAppBarHeight;
+  transform: translateY(0);
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  transition: all 0.25s ease-out;
+  display: grid;
+  align-items: center;
+
+  &.exceeds0 {
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 12px 14px rgba(#000, 0.1);
+    background-color: #fff;
+    z-index: calc(#{$app-header-z-index} + 1);
+    // &.scroll-up {
+    // }
+    .nav-content-wrapper {
+      .main-app-bar-logo {
+        img {
+          height: 52px;
+        }
+      }
+    }
+    &.scroll-down {
+      transform: translateY(-100%);
+    }
+  }
+
+  @include mediaLg {
+    display: none;
+  }
+}
+
+.header-md-drawer {
+  .MuiBackdrop-root {
+    background-color: rgba(#000, 0.7);
+  }
+
+  ul {
+    .nav-link {
+      display: grid;
+      padding: 12px 18px;
+      font-size: 18px;
+      border-radius: 8px;
+      position: relative;
+      font-weight: bold;
+      &:hover {
+        color: $main-app-color;
+      }
+      &.active-link {
+        background-color: $main-app-color;
+        color: #fff;
+        &:hover {
+          color: #fff;
+        }
+      }
+    }
+  }
+}

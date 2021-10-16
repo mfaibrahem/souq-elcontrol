@@ -1,0 +1,124 @@
+@import '../../scss/config';
+
+.file-input-wrapper {
+  width: 90%;
+  width: 100%;
+  display: grid;
+  justify-self: center;
+  align-self: center;
+  & > div {
+    &.filled {
+      // pointer-events: none;
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+  .dropZone {
+    cursor: pointer;
+    background-color: #fff;
+    background-color: $main-bg-color;
+    border: 2px dashed #bbb;
+    border-radius: 4px;
+    display: grid;
+    gap: 12px;
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+    padding: 8px;
+    min-height: 142px;
+
+    .placeholderText {
+      display: grid;
+      justify-items: center;
+      i {
+        font-size: 24px;
+        color: #999;
+      }
+      p {
+        margin-top: 4px;
+        color: #888;
+        @include bodyFont-ar;
+      }
+    }
+
+    &.dragZone {
+      border-color: lighten($main-bg-color, 20%);
+      border-width: 3px;
+      background-color: #eee;
+    }
+
+    .add-more-li-btn {
+      display: grid;
+      place-items: center;
+      height: 120px;
+      width: 120px;
+      border: 2px dashed #bbb;
+      font-size: 32px;
+      color: #4d4d4d;
+      border-radius: 4px;
+    }
+
+    &.with-error {
+      border-color: red;
+    }
+  }
+
+  &.hideMe {
+    display: none;
+  }
+
+  .dropzone-default-imgs-ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    overflow: hidden;
+    border-radius: 8px;
+    .default-dropzone-img {
+      width: 122px;
+      height: 122px;
+      object-fit: cover;
+      object-position: center center;
+      border: 1px solid rgba(#000, 0.1);
+      border-radius: 8px;
+      padding: 1px;
+      cursor: default;
+      // cursor: pointer;
+    }
+  }
+
+  .dropzone-camera {
+    svg {
+      width: 42px;
+      height: 42px;
+    }
+  }
+
+  .img-delete-btn-warp {
+    position: relative;
+    .delete-img-btn {
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      background-color: $main-app-color;
+      padding: 10px 7px;
+      border-radius: 4px 4px 4px 0;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      svg {
+        width: 22px;
+        height: 18px;
+      }
+    }
+
+    img {
+    }
+  }
+
+  .file-input-label {
+    margin-bottom: 8px;
+    padding: 0 6px;
+    color: #555;
+  }
+}
