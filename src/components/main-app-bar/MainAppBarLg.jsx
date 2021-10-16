@@ -1,27 +1,20 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import React from 'react';
+import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link as RouterLink } from 'react-router-dom';
 import LanguageButton from '../../common/language-button/LanguageButton';
 import Logo from '../../common/logo/Logo';
 import mainAppBarLinks from './mainAppBarLinks';
 import './MainAppBarLg.scss';
-import routerLinks from '../app/routerLinks';
-import useCategories from '../../custom-hooks/useCategories';
 import slugify from 'slugify';
+import SearchIcon from '../../common/icons/SearchIcon';
+import routerLinks from '../app/routerLinks';
 
-const MainAppBarLg = ({ className }) => {
+const MainAppBarLg = ({ className, exceeds0 }) => {
   const { t } = useTranslation();
-  const history = useHistory();
   const { pathname } = useLocation();
-  const allCategories = useCategories();
 
-  useEffect(() => {
-    if (pathname === routerLinks.blogsPage() && allCategories?.length > 0) {
-      history.push(routerLinks.blogsPage(allCategories[0].id));
-    }
-  }, [pathname]);
   const renderNavLinks = () => {
     return (
       <ul>
@@ -42,38 +35,68 @@ const MainAppBarLg = ({ className }) => {
             </NavLink>
           </li>
         ))}
-        {allCategories?.length > 0 &&
-          allCategories.map(({ id, name }) => {
-            return (
-              <li key={id}>
-                <NavLink
-                  activeClassName={`active-link`}
-                  className={
-                    slugify(pathname).includes('blogs') && id === 6
-                      ? 'active-link'
-                      : ''
-                  }
-                  to={routerLinks.articlesPage(id)}
-                  exact
-                >
-                  {name}
-                  <div className="active-img-wrap"></div>
-                </NavLink>
-              </li>
-            );
-          })}
       </ul>
     );
   };
   return (
     <div className={className}>
       <div className="custom-container">
-        <div className="nav-content-wrapper">
-          <Logo className="main-app-bar-logo" />
-          <div className="nav-lang-wrapper">
-            {renderNavLinks()}
-            {/* <LanguageButton /> */}
-          </div>
+        <div
+          className={`nav-content-wrapper ${
+            pathname !== '/' ? 'not-home' : ''
+          }`}
+        >
+          <Logo
+            colored={exceeds0 || pathname !== '/'}
+            className="main-app-bar-logo"
+          />
+          {exceeds0 ? (
+            <div className="nav-lang-wrapper">
+              {renderNavLinks()}
+              <RouterLink
+                className="appbar-signin-link"
+                to={routerLinks?.signinPage}
+              >
+                {t('signinSignup.signin')}
+              </RouterLink>
+              <LanguageButton />
+            </div>
+          ) : pathname === '/' ? (
+            <div className="main-search-lang-wrap">
+              <form className="main-app-search-form">
+                <label>
+                  <div className="icon-wrap">
+                    <SearchIcon />
+                  </div>
+                  <input
+                    type="text"
+                    name="main_app_search"
+                    placeholder={t('main_app_search.placeholder')}
+                  />
+                </label>
+              </form>
+              <div className="signin-lang-wrap">
+                <RouterLink
+                  className="appbar-signin-link"
+                  to={routerLinks?.signinPage}
+                >
+                  {t('signinSignup.signin')}
+                </RouterLink>
+                <LanguageButton />
+              </div>
+            </div>
+          ) : (
+            <div className="nav-lang-wrapper">
+              {renderNavLinks()}
+              <RouterLink
+                className="appbar-signin-link"
+                to={routerLinks?.signinPage}
+              >
+                {t('signinSignup.signin')}
+              </RouterLink>
+              <LanguageButton />
+            </div>
+          )}
         </div>
       </div>
     </div>

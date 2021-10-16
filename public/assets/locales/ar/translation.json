@@ -2,14 +2,17 @@
   "days": "عدد الايام {{n_of_days}}",
   "main_app_bar_links": {
     "home": "الرئيسية",
-    "free_consultation": "طلب إستشارة مجانية",
-    "real_estate_investment": "إستثمار عقارى",
-    "clients_list": "قائمة عملائنا",
-    "contact": "اتصل بنا",
-    "blogs": "مدونات",
-    "real_states": "عقارات",
-    "contracting": "مقاولات",
-    "decorations": "ديكور"
+    "categories": "الأقســام",
+    "myOrders": "طلباتى",
+    "startSelling": "ابدأ البيع",
+    "aboutUs": "من نحن"
+  },
+  "main_app_search": {
+    "placeholder": "إبحث عن خدمتك..."
+  },
+  "signinSignup": {
+    "signin": "تسجيل الدخول",
+    "Signup": "حساب جديد"
   },
   "hero_section": {
     "main_title": {

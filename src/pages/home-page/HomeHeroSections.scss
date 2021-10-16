@@ -1,0 +1,35 @@
+@import '../../scss/config';
+
+.home-hero-section {
+  background-color: $main-app-color;
+  @include heroHeight;
+  padding-top: 8px;
+  ul {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    a {
+      color: #fff;
+      font-size: 18px;
+      font-weight: bold;
+      padding: 8px 12px;
+    }
+  }
+
+  position: relative;
+  .hero-bg {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    img {
+      max-height: 70vh;
+      max-width: 6vw;
+    }
+    &.left-bg {
+      left: 0;
+    }
+    &.right-bg {
+      right: 0;
+    }
+  }
+}

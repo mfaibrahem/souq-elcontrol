@@ -3,22 +3,96 @@
 .main-app-bar-lg {
   position: relative;
   z-index: $app-header-z-index;
+  background-color: $main-app-color;
+  &.not-home {
+    background-color: #fff;
+  }
   .nav-content-wrapper {
     display: grid;
-    display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: auto 1fr;
     justify-content: space-between;
-    grid-gap: 32px;
+    gap: 32px;
     align-items: center;
+    &.not-home {
+      grid-template-columns: auto auto;
+      .appbar-signin-link {
+        background-color: $main-app-color;
+        color: #fff;
+      }
 
+      .nav-lang-wrapper {
+        & > ul {
+          li {
+            a {
+              color: $main-text-color;
+            }
+          }
+        }
+      }
+    }
     .main-app-bar-logo {
       padding: 2px 0;
       padding-top: 14px;
       padding-top: 4px;
       img {
         height: 68px;
-        height: 102px;
+        height: 74px;
+        @include mediaXXlg {
+          height: 86px;
+        }
         transition: all 0.25s ease-out;
+      }
+    }
+
+    .appbar-signin-link {
+      background-color: #fff;
+      color: $main-app-color;
+      padding: 12px 28px;
+      border-radius: 12px;
+      width: fit-content;
+    }
+
+    .main-search-lang-wrap {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 42px;
+      .signin-lang-wrap {
+        justify-self: end;
+        display: grid;
+        grid-template-columns: auto auto;
+        gap: 32px;
+        align-items: center;
+      }
+    }
+    .main-app-search-form {
+      // max-width: 800px;
+      label {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        align-items: center;
+        background-color: rgba(#f2f2f2, 0.1);
+        padding: 4px 22px;
+        border-radius: 12px;
+        gap: 12px;
+      }
+      input {
+        background-color: transparent;
+        border: none !important;
+        outline: none !important;
+        color: #fff;
+        height: 48px;
+        @include mediaXXlg {
+          height: 58px;
+        }
+        &::placeholder {
+          color: #fff;
+        }
+      }
+      .icon-wrap {
+        pointer-events: none;
+        display: grid;
+        place-items: center;
       }
     }
 
@@ -32,11 +106,14 @@
         grid-gap: 32px;
         font-weight: bold;
         li {
+          display: grid;
+          align-items: center;
           a {
             display: grid;
             justify-items: center;
-            padding-bottom: 14px;
+            // padding-bottom: 14px;
             position: relative;
+            color: #fff;
             .active-img-wrap {
               width: 44px;
               height: 2px;
@@ -45,9 +122,11 @@
             }
             &.active-link {
               color: $main-app-color;
+              color: $secondary-app-color;
               .active-img-wrap {
                 // background-image: url(../../assets/imgs/bgs/active-link-bg.png);
                 background-color: $main-app-color;
+                background-color: $secondary-app-color;
               }
             }
           }
@@ -87,7 +166,14 @@
     z-index: calc(#{$app-header-z-index} + 1);
     // &.scroll-up {
     // }
+
     .nav-content-wrapper {
+      grid-template-columns: auto auto;
+      .appbar-signin-link {
+        background-color: $main-app-color;
+        color: #fff;
+      }
+
       .main-app-bar-logo {
         padding-top: 10px;
         padding-top: 0px;

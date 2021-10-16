@@ -1,4 +1,5 @@
-$main-app-color: #d1af6f;
+$main-app-color: #008bff;
+$secondary-app-color: #f9ec14;
 $main-text-color: #595f6f;
 $secondary-text-color: #8b8b8b;
 $main-bg-color: #f6f5f8;
@@ -29,18 +30,19 @@ $headerXXlg-height: 92px;
 }
 
 @mixin heroHeight {
-  max-height: calc(70vh - #{$headerMd-height} - 52px);
+  // max-height: calc(70vh - #{$headerMd-height} - 52px);
+  height: calc(100vh - #{$headerMd-height});
   @include mediaLg {
-    max-height: calc(80vh - #{$headerLg-height} - 52px);
+    height: calc(100vh - #{$headerLg-height});
   }
   @include mediaXlg {
-    max-height: calc(90vh - #{$headerXlg-height} - 52px);
+    height: calc(100vh - #{$headerXlg-height});
   }
   // @include mediaXlg {
-  //   max-height: calc(70vh - #{$headerXXlg-height} - 52px);
+  //   max-height: calc(70vh - #{$headerXXlg-height});
   // }
   @include mediaXXlg {
-    max-height: calc(90vh - #{$headerXXlg-height} - 52px);
+    height: calc(100vh - #{$headerXXlg-height});
   }
 }
 

@@ -1,4 +1,7 @@
+@import '../../scss/config';
+
 .home-page {
+  background-color: $main-app-color;
   .main-home-h1 {
     margin-bottom: 22px;
   }

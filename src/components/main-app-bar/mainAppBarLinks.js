@@ -8,22 +8,22 @@ const mainAppBarLinks = (t) => [
   },
   {
     id: 2,
-    name: t('main_app_bar_links.free_consultation'),
+    name: t('main_app_bar_links.categories'),
     link: routerLinks.freeConsultationPage
   },
   {
     id: 3,
-    name: t('main_app_bar_links.real_estate_investment'),
+    name: t('main_app_bar_links.myOrders'),
     link: routerLinks.realestateInvestementPage
   },
   {
     id: 5,
-    name: t('main_app_bar_links.contact'),
+    name: t('main_app_bar_links.startSelling'),
     link: routerLinks.contactPage
   },
   {
     id: 6,
-    name: t('main_app_bar_links.blogs'),
+    name: t('main_app_bar_links.aboutUs'),
     link: routerLinks.blogsPage()
   }
   // {
