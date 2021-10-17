@@ -1,9 +1,15 @@
+import servicesRouterLinks from './services-routes/servicesRouterLinks';
+
 const routerLinks = {
   ////////////////////////////
   homePage: '/',
   ///////////////////////////
   signinPage: '/signin',
   ////////////////////////////
+
+  ...servicesRouterLinks,
+  ////////////////////////////
+
   freeConsultationPage: '/free-consultation',
   ////////////////////////////
   realestateInvestementPage: '/real-estate-investment',

@@ -27,12 +27,8 @@
       "scroll_down": "انزل للاسفل"
     }
   },
-  "services_section": {
-    "main_title": "الخدمات",
-    "sub_title": {
-      "row_one": "نبتكر لك الهوية التجارية التي تميّزك في عملك",
-      "row_two": "نبتكر لك الهوية التجارية التي تميّزك في عمل بشكل فريد و مميز و معبر"
-    }
+  "home_services_section": {
+    "main_title": "ابحث عن خدمتك بسهولة"
   },
   "gallery_section": {
     "main_title": "معرض أعمالنا",

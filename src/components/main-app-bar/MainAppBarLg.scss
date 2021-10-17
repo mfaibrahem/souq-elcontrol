@@ -107,13 +107,16 @@
         font-weight: bold;
         li {
           display: grid;
-          align-items: center;
+          // align-items: center;
           a {
             display: grid;
             justify-items: center;
+            align-items: center;
+            grid-template-rows: 1fr auto;
             // padding-bottom: 14px;
             position: relative;
             color: #fff;
+
             .active-img-wrap {
               width: 44px;
               height: 2px;
@@ -179,7 +182,7 @@
         padding-top: 0px;
         img {
           height: 52px;
-          height: 78px;
+          // height: 78px;
         }
       }
       .nav-lang-wrapper {

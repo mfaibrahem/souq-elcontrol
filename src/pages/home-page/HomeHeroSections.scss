@@ -4,6 +4,8 @@
   background-color: $main-app-color;
   @include heroHeight;
   padding-top: 8px;
+  display: grid;
+  grid-template-rows: auto 1fr;
   ul {
     display: flex;
     justify-content: center;
@@ -30,6 +32,39 @@
     }
     &.right-bg {
       right: 0;
+    }
+  }
+
+  & > .custom-container {
+    display: grid;
+  }
+  .section-data {
+    margin-top: 32px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 32px;
+    .section-text-wrap {
+      padding: 0 42px;
+      color: #fff;
+      .main-title {
+        h1 {
+          color: #fff;
+          font-size: 52px;
+          font-weight: bold;
+        }
+        span {
+          color: $secondary-app-color;
+        }
+      }
+      .sub-title {
+        max-width: 472px;
+      }
+    }
+    .section-img-wrap {
+      img {
+        max-width: 100%;
+      }
     }
   }
 }

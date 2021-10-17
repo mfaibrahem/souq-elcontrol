@@ -30,7 +30,7 @@ const MainAppBarLg = ({ className, exceeds0 }) => {
               to={link}
               exact
             >
-              {name}
+              <span>{name}</span>
               <div className="active-img-wrap"></div>
             </NavLink>
           </li>

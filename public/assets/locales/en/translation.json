@@ -27,12 +27,8 @@
       "scroll_down": "Scroll down"
     }
   },
-  "services_section": {
-    "main_title": "Services",
-    "sub_title": {
-      "row_one": "We create for you the brand identity that distinguishes you in your work.",
-      "row_two": "We create for you the brand identity that distinguishes you in work in a unique, distinctive and powerful way"
-    }
+  "home_services_section": {
+    "main_title": "Find your service easily"
   },
   "gallery_section": {
     "main_title": "Our gallery",
