@@ -8,7 +8,7 @@ import categoriesArr from '../../categoriesArr';
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const CategoriesSection = () => {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
   const [isLoading, setIsLoading] = useState(false);
   const [fetchedData, setFetchedData] = useState([]);
 
@@ -59,10 +59,10 @@ const CategoriesSection = () => {
       );
     }
 
-    if (fetchedData?.length === 0) return <div>Empty arr</div>;
+    if (fetchedData?.length === 0) return 'No found categories';
     else if (fetchedData?.length > 0) {
       return (
-        <ul>
+        <ul className="categories-ul">
           {fetchedData.map((ele) => {
             return <CategoriesCard key={ele.id} {...ele} />;
           })}
@@ -71,7 +71,12 @@ const CategoriesSection = () => {
     }
   };
   return (
-    <section className="categories-section">{renderCategoriesUl()}</section>
+    <section className="categories-section">
+      <div className="custom-container">
+        <p className="main-title">{t('categories_section.main_title')}</p>
+        {renderCategoriesUl()}
+      </div>
+    </section>
   );
 };
 

@@ -1,6 +1,7 @@
 @import '../../scss/config';
 
 .home-hero-section {
+  overflow: hidden;
   background-color: $main-app-color;
   @include heroHeight;
   padding-top: 8px;
@@ -40,8 +41,10 @@
   }
   .section-data {
     margin-top: 32px;
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    @include mediaLg {
+      grid-template-columns: 1fr 1fr;
+    }
     align-items: center;
     gap: 32px;
     .section-text-wrap {
@@ -63,7 +66,7 @@
     }
     .section-img-wrap {
       img {
-        max-width: 100%;
+        width: 100%;
       }
     }
   }

@@ -5,6 +5,7 @@ const routerLinks = {
   homePage: '/',
   ///////////////////////////
   signinPage: '/signin',
+  signupPage: '/signup',
   ////////////////////////////
 
   ...servicesRouterLinks,

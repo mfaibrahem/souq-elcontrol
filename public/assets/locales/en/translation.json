@@ -27,60 +27,23 @@
       "scroll_down": "Scroll down"
     }
   },
-  "home_services_section": {
+  "categories_section": {
     "main_title": "Find your service easily"
   },
-  "gallery_section": {
-    "main_title": "Our gallery",
-    "gallery_filter": {
-      "all": "View All",
-      "accounting_software": "Accounting software",
-      "designing_electronic_stores": "Designing electronic stores",
-      "digital_marketing": "Digital Marketing",
-      "website_design": "Website design",
-      "phone_apps": "Phone apps"
+  "featured_section": {
+    "main_title": "Souq El-Control Features"
+  },
+  "how_it_works_section": {
+    "main_title": "How we work"
+  },
+  "questions_section": {
+    "main_title": "Frequentaly asked questions"
+  },
+  "contact_us_section": {
+    "main_title": "Contact Us",
+    "contact_form": {
+      "send_btn": "Send"
     }
-  },
-  "create_project": {
-    "create_btn": "Create Project",
-    "view_more": "View More"
-  },
-  "work_section": {
-    "main_title": "كيف نعمل",
-    "steps": {
-      "one": {
-        "title": "لديك فكره",
-        "desc": "نحدد احتياجاتك من خلال تقديم اقتراح مبتكر مخصص ونعلمك عملية التطوير بأكملها"
-      },
-      "two": {
-        "title": "جمع المعلومات",
-        "desc": "نحدد هدفك نحلل المتطلبات ثم نقوم بجدوله مشروعك"
-      },
-      "three": {
-        "title": "عرض السعر",
-        "desc": "نقدم لك عرض سعر بناء علي متطلباتك"
-      },
-      "four": {
-        "title": "الاتفاق والتوقيع",
-        "desc": "نقوم بتجهيز عقد اتفاق بناء علي التزامات الطرفين  وذلك  لتوقيع الشركه والعميل عليه "
-      },
-      "five": {
-        "title": "التحليل والتنفيذ",
-        "desc": "نقوم بالبدء في تحليل الاعمال المطلوبه ودراستها  وتنفيذ العمل علي يد فريق محترف "
-      },
-      "six": {
-        "title": "التسليم",
-        "desc": "بعد الانتهاء يتم عرض نموذج المشروع للعميل لمراجعته  اولا حتي يتاكد من تلبيه جميع  متطلباته  "
-      },
-      "seven": {
-        "title": "خدمة ما بعد البيع",
-        "desc": "نوفر خدمه الدعم الفني لعملائنا مجانا مده سنه من تسليم  المشروع ونحرص دائما علي ارضاء عملائنا "
-      }
-    }
-  },
-  "testimonials_section": {
-    "main_title": "Work staff",
-    "sub_title": "An application through which you can sell or buy university books and you can calculate your GPA and you can publish your question / answer or summaries through the community of engineers."
   },
   "main_app_footer": {
     "footer_title": "User interface design",

@@ -1,0 +1,38 @@
+@import '../../scss/config';
+
+.signin-form {
+  display: grid;
+  .form-body {
+    display: grid;
+  }
+  .custom-text-input {
+    label {
+      font-size: 22px;
+      color: rgba(#fff, 0.6);
+    }
+    .ant-input-affix-wrapper {
+      height: 56px;
+      background-color: #fff;
+      color: #262626;
+      border-radius: 4px;
+    }
+    input {
+      color: #262626;
+      &::placeholder {
+        color: #262626;
+      }
+    }
+  }
+
+  .forgot-link {
+    color: #1bee95;
+    justify-self: end;
+  }
+
+  .submit-btn {
+    text-transform: capitalize;
+    padding: 12px 42px;
+    margin-top: 32px;
+    justify-self: start;
+  }
+}

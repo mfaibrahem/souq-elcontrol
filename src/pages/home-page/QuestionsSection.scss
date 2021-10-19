@@ -1,0 +1,41 @@
+@import '../../scss/config';
+
+.questions-section {
+  background-color: #f9f8f8;
+  padding: 42px 0;
+  .main-title {
+    font-size: 42px;
+    font-weight: bold;
+    text-transform: capitalize;
+    text-align: center;
+    margin-bottom: 22px;
+  }
+
+  .section-content {
+    display: grid;
+    gap: 32px;
+    @include mediaLg {
+      align-items: center;
+      grid-template-columns: 1fr 1fr;
+    }
+    .section-img {
+      display: grid;
+      justify-items: center;
+      img {
+        max-width: 100%;
+      }
+    }
+  }
+  .panel-wrapper {
+    background-color: #fff;
+    margin-bottom: 22px;
+    padding: 22px;
+    border-radius: 18px !important;
+
+    .ant-collapse-header {
+      color: $main-app-color;
+      font-size: 20px;
+      font-weight: bold;
+    }
+  }
+}

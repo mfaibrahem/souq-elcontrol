@@ -1,0 +1,62 @@
+@import '../../scss/config';
+
+.how-it-works-section {
+  background-color: #f9f8f8;
+  padding: 42px 0;
+  .main-title {
+    font-size: 42px;
+    font-weight: bold;
+    text-transform: capitalize;
+    text-align: center;
+    margin-bottom: 22px;
+  }
+  .section-content {
+    min-height: 700px;
+    display: grid;
+    gap: 32px;
+    @include mediaLg {
+      align-items: center;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .how-it-works-ul {
+      display: grid;
+      gap: 32px;
+      & > li {
+        display: flex;
+        align-items: center;
+        gap: 32px;
+        .li-number {
+          background-color: #f2f2f2;
+          display: grid;
+          place-items: center;
+          width: 92px;
+          height: 92px;
+          font-size: 24px;
+          border-radius: 50%;
+        }
+        .li-title {
+          font-size: 22px;
+          margin-bottom: 8px;
+        }
+        .li-desc {
+          line-height: 1.8;
+          font-size: 18px;
+          max-width: 532px;
+        }
+      }
+    }
+
+    .section-img {
+      display: grid;
+      position: relative;
+      height: 100%;
+      img {
+        position: absolute;
+        right: 0;
+        top: 0;
+        max-height: 650px;
+      }
+    }
+  }
+}

@@ -188,6 +188,7 @@ html {
   .form-body {
     display: grid;
     grid-gap: 4px 32px;
+
     .before-after-wrap {
       display: grid;
       grid-template-columns: 1fr auto;
@@ -329,7 +330,7 @@ html {
     }
 
     .form-text-field {
-      background-color: $main-bg-color !important;
+      background-color: $main-bg-color;
       border: 0;
       height: 62px;
       border-radius: 12px;

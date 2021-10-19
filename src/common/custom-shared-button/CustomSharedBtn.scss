@@ -1,0 +1,30 @@
+@import '../../scss/config';
+
+.custom-shared-btn {
+  font-size: 22px !important;
+  transform: skew(-14deg) !important;
+  text-transform: uppercase !important;
+  padding: 12px 32px !important;
+  @include mediaLg {
+    padding: 14px 32px !important;
+  }
+  cursor: pointer;
+  border: 0 !important;
+  border-radius: 6px !important;
+  color: #fff;
+  height: auto !important;
+  outline: none;
+  background-color: $main-app-color;
+  display: grid;
+  place-items: center;
+  & > span,
+  .btn-content {
+    transform: skew(14deg);
+  }
+  transition: all 0.2s ease-out;
+  &:hover {
+    color: #fff;
+    background-color: darken($main-app-color, 10%);
+    box-shadow: 0 4px 6px rgba(#000, 0.2);
+  }
+}
