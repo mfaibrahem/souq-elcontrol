@@ -9,7 +9,7 @@ const mainAppBarLinks = (t) => [
   {
     id: 2,
     name: t('main_app_bar_links.categories'),
-    link: routerLinks.freeConsultationPage
+    link: routerLinks.categoriesRoute
   },
   {
     id: 3,

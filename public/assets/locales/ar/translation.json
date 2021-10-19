@@ -45,6 +45,10 @@
       "send_btn": "أرســـل"
     }
   },
+  "breadcrumb_section": {
+    "home": "الرئيسية",
+    "categories": "الأقســام"
+  },
   "main_app_footer": {
     "footer_title": "تصميم واجهات المستخدم",
     "footer_desc": "تطبيق تستطيع من خلاله بيع أو شراء الكتب الجامعية و يمكنك حساب المعدل التراكمي الخاص بك و يمكنك نشر سؤالك/إجابتك أو ملخصاتك ",
@@ -105,18 +109,12 @@
       }
     }
   },
-  "gallery_detailes": {
-    "download": "تحميل التطبيق",
-    "Technologies_used": "التقنيات المستخدمة",
-    "Watch_Appcations_On": "شاهد التطبيقات على",
-    "Watch_Appcations": "شاهد التطبيقات",
-    "Application_features": "مميزات التطبيق"
-  },
-  "contact_page": {
+
+  "contact_section": {
     "main_title": "اتصل بنا",
     "contact_form": {
       "name": {
-        "label": "الاســــم",
+        "label": "الإســـم بالكامل",
         "errors": {
           "required": "من فضلك ادخل الاســـم"
         }
@@ -127,15 +125,6 @@
           "required": "من فضلك ادخل البريد الالكترونى",
           "type_error": "من فضلك ادخل بريد الكترونى صحيح"
         }
-      },
-      "phone_number": {
-        "label": "رقم الهاتف",
-        "errors": {
-          "required": "من فضلك ادخل رقم الهاتف"
-        }
-      },
-      "website": {
-        "label": "الموقع الاكترونى"
       },
       "msg_desc": {
         "label": "الرســـالة",
@@ -148,29 +137,5 @@
         "loading": "جارى الارســال"
       }
     }
-  },
-  "answer_questions": {
-    "not_found_user": {
-      "err_title": "مستخدم غير موجود!",
-      "err_msg": "من فضلك ادخل لينك صحيح"
-    },
-    "errors": {
-      "textField": {
-        "required": "من فضلك ادخل البيانات المطلوبة"
-      },
-      "file": {
-        "required": "من فضلك ارفع البيانات المطلوبة"
-      },
-      "selectOption": {
-        "required": "من فضلك اختيار واحد على الاقل"
-      },
-      "radioBtn": {
-        "required": "من فضلك اختار واحد على الاقل"
-      },
-      "checkBoxs": {
-        "required": "من فضلك اختار واحد على الاقل"
-      }
-    },
-    "success": "لقد قمت بلمئ الاستبيان بنجاح"
   }
 }

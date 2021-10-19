@@ -1,0 +1,39 @@
+@import '../../scss/config';
+
+.breadcrumb-section {
+  margin-top: 32px;
+  .breadcrumb-content {
+    min-height: 182px;
+    background-size: cover;
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    .ant-breadcrumb {
+      position: relative;
+      z-index: 1;
+      span {
+        color: #fff;
+      }
+      .ant-breadcrumb-link a {
+        color: #fff;
+        &:hover {
+          color: #000;
+        }
+      }
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: $main-app-color;
+      opacity: 0.6;
+      background-blend-mode: multiply;
+    }
+  }
+}

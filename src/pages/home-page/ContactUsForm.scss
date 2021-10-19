@@ -1,6 +1,8 @@
 @import '../../scss/config';
 
-.signin-form {
+.contact-us-form {
+  background-color: #fff;
+  padding: 32px;
   display: grid;
   .form-body {
     display: grid;
@@ -31,8 +33,7 @@
 
   .submit-btn {
     text-transform: capitalize;
-    padding: 12px 42px;
-    margin-top: 32px;
-    justify-self: start;
+    margin-top: 4px;
+    justify-self: end;
   }
 }

@@ -330,7 +330,7 @@ html {
     }
 
     .form-text-field {
-      background-color: $main-bg-color;
+      background-color: $main-bg-color !important;
       border: 0;
       height: 62px;
       border-radius: 12px;
@@ -338,7 +338,7 @@ html {
       .ant-input-prefix {
         padding: 8px 10px;
         height: 42px;
-        background-color: #fff;
+        background-color: #fff !important;
         display: grid;
         place-items: center;
         border-radius: 8px;
@@ -350,7 +350,7 @@ html {
       }
     }
     .form-text-area {
-      background-color: $main-bg-color;
+      background-color: $main-bg-color !important;
       border: 0;
       border-radius: 12px;
       padding: 12px 14px;

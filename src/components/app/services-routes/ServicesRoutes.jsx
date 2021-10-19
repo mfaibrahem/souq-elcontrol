@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { Route } from 'react-router-dom';
 import UserContext from '../../../contexts/user-context/UserProvider';
 import CategoriesPage from '../../../pages/categories-page/CategoriesPage';
 import SubCategoriesPage from '../../../pages/sub-categories-page/SubCategoriesPage';
@@ -8,13 +9,9 @@ import routerLinks from '../routerLinks';
 const ServicesRoutes = () => {
   const { loggedIn } = useContext(UserContext);
   return [
-    protectMe(
-      routerLinks.categoriesRoute(),
-      <CategoriesPage />,
-      1,
-      routerLinks.signinPage,
-      loggedIn
-    ),
+    <Route exact path={routerLinks.categoriesRoute} key={1}>
+      <CategoriesPage />
+    </Route>,
     protectMe(
       routerLinks.singleCategoryRoute(),
       <SubCategoriesPage />,

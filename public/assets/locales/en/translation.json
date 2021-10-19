@@ -45,6 +45,10 @@
       "send_btn": "Send"
     }
   },
+  "breadcrumb_section": {
+    "home": "Home",
+    "categories": "Categories"
+  },
   "main_app_footer": {
     "footer_title": "User interface design",
     "footer_desc": "An application through which you can buy or sell university books and you can calculate your GPA and you can post your question / answer or summaries ",
@@ -105,18 +109,12 @@
       }
     }
   },
-  "gallery_detailes": {
-    "download": "Download Applcation",
-    "Technologies_used": "Technologies Used",
-    "Watch_Appcations_On": "Watch Appcations On",
-    "Watch_Appcations": "Watch Appcations",
-    "Application_features": "Application features"
-  },
-  "contact_page": {
+
+  "contact_section": {
     "main_title": "Contact us",
     "contact_form": {
       "name": {
-        "label": "Name",
+        "label": "Full Name",
         "errors": {
           "required": "Please enter your name"
         }
@@ -127,15 +125,6 @@
           "required": "Please enter the email address",
           "type_error": "Please enter a valid email address"
         }
-      },
-      "phone_number": {
-        "label": "Phone Number",
-        "errors": {
-          "required": "Please enter phone number"
-        }
-      },
-      "website": {
-        "label": "Website"
       },
       "msg_desc": {
         "label": "Message",
@@ -148,29 +137,5 @@
         "loading": "Sending"
       }
     }
-  },
-  "answer_questions": {
-    "not_found_user": {
-      "err_title": "User not found!",
-      "err_msg": "Please enter a valid URL"
-    },
-    "errors": {
-      "textField": {
-        "required": "Please enter the required data"
-      },
-      "file": {
-        "required": "Please upload the required data"
-      },
-      "selectOption": {
-        "required": "Please select one option"
-      },
-      "radioBtn": {
-        "required": "Please select one choice"
-      },
-      "checkBoxs": {
-        "required": "Please select at least one choice"
-      }
-    },
-    "success": "You have successfully completed the survey"
   }
 }
