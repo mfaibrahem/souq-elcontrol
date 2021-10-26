@@ -6,18 +6,16 @@ import './SubCategoriesCard.scss';
 
 const SubCategoriesCard = (props) => {
   const params = useParams();
-
+  console.log('params : ', params);
   return (
     <li className="sub-category-card">
       <RouterLink
-        to={routerLinks?.singleSubCategoryRoute(
-          params?.categoryId,
-          params?.subCategoryId
-        )}
+        className="card-content"
+        to={routerLinks?.singleSubCategoryRoute(params?.categoryId, props?.id)}
       >
         <CustomImage src={props?.image} />
+        {props?.name && <div className="card-name">{props?.name}</div>}
       </RouterLink>
-      {props?.name && <div className="card-name">{props?.name}</div>}
     </li>
   );
 };

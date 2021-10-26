@@ -1,20 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import kiaImg from '../../assets/imgs/services/kia.jpg';
-import hundaImg from '../../assets/imgs/services/hyundai.jpg';
-import mercImg from '../../assets/imgs/services/hyundai.jpg';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import checkRes from '../../utils/checkRes';
 import { Spin } from 'antd';
-import SubCategoriesCard from './SubCategoriesCard';
-import './SubCategoriesPage.scss';
+import { Link as RouterLink, useParams } from 'react-router-dom';
+import ImageGallery from 'react-image-gallery';
+import sImg from '../../assets/imgs/services/service-img.jpg';
+import CustomImage from '../../common/custom-image/CustomImage';
+import routerLinks from '../../components/app/routerLinks';
+import checkRes from '../../utils/checkRes';
+import images from './imagesArr';
+import './SubCategoryServiceDetailsPage.scss';
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-const SubCategoriesPage = () => {
+const SubCategoryServiceDetailsPage = () => {
+  const params = useParams();
   const { i18n, t } = useTranslation();
   const [isLoading, setIsLoading] = useState(false);
   const [fetchedData, setFetchedData] = useState([]);
-  useEffect(() => {
+
+  React.useEffect(() => {
     let isMounted = true;
     const fetchData = async () => {
       try {
@@ -24,18 +28,21 @@ const SubCategoriesPage = () => {
         setFetchedData([
           {
             id: 1,
-            image: kiaImg,
-            name: 'Kia'
+            image: sImg,
+            name: ' كنترول 8.9.MEDG17 Bايمو اوف كيا سبورتاح 2019',
+            price: 250
           },
           {
             id: 2,
-            image: hundaImg,
-            name: 'Hundai'
+            image: sImg,
+            name: ' كنترول 8.9.MEDG17 Bايمو اوف كيا سبورتاح 2019',
+            price: 250
           },
           {
             id: 3,
-            image: mercImg,
-            name: 'Mercedis'
+            image: sImg,
+            name: ' كنترول 8.9.MEDG17 Bايمو اوف كيا سبورتاح 2019',
+            price: 250
           }
         ]);
         if (isMounted) {
@@ -61,44 +68,33 @@ const SubCategoriesPage = () => {
     };
   }, [i18n.language]);
 
-  const renderSubCategoriesUl = () => {
-    if (isLoading) {
-      return (
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            minHeight: 332
-          }}
-        >
-          <Spin />
-        </div>
-      );
-    }
+  if (isLoading) {
+    return (
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          minHeight: 332
+        }}
+      >
+        <Spin />
+      </div>
+    );
+  }
 
-    if (fetchedData?.length === 0) return 'No found categories';
-    else if (fetchedData?.length > 0) {
-      return (
-        <ul className="sub-categories-ul">
-          {fetchedData.map((ele) => {
-            return <SubCategoriesCard key={ele.id} {...ele} />;
-          })}
-        </ul>
-      );
-    }
-  };
+  if (fetchedData?.length === 0) return 'No found categories';
 
   return (
     <div className="shared-custom-page sub-categories-page">
       <section className="sub-categories-section">
         <div className="custom-container">
           <p className="main-title">{t('categories_section.main_title')}</p>
-          {renderSubCategoriesUl()}
+          <ImageGallery items={images} />
         </div>
       </section>
     </div>
   );
 };
 
-export default SubCategoriesPage;
+export default SubCategoryServiceDetailsPage;

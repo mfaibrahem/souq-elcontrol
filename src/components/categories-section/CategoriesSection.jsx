@@ -3,8 +3,8 @@ import { Spin } from 'antd';
 import CategoriesCard from './CategoriesCard';
 import { useTranslation } from 'react-i18next';
 import checkRes from '../../utils/checkRes';
-import './CategoriesSection.scss';
 import categoriesArr from '../../categoriesArr';
+import './CategoriesSection.scss';
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const CategoriesSection = () => {

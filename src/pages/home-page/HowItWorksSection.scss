@@ -3,6 +3,7 @@
 .how-it-works-section {
   background-color: #f9f8f8;
   padding: 42px 0;
+  overflow-x: hidden;
   .main-title {
     font-size: 42px;
     font-weight: bold;
@@ -23,8 +24,8 @@
       display: grid;
       gap: 32px;
       & > li {
-        display: flex;
-        align-items: center;
+        display: grid;
+        grid-template-columns: auto 1fr;
         gap: 32px;
         .li-number {
           background-color: #f2f2f2;
