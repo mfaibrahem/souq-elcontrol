@@ -1,0 +1,44 @@
+@import '../../scss/config';
+
+.signin-form {
+  width: 100%;
+  min-width: 448px;
+  display: grid;
+  height: max-content;
+  background-color: #fff;
+  max-width: 532px;
+  border-radius: 10px;
+  align-self: center;
+  padding: 52px 0 !important;
+  align-self: center;
+  box-shadow: 0 24px 28px rgba(#000, 0.1);
+
+  .form-header {
+    margin-bottom: 12px;
+    .form-logo {
+      display: grid;
+      padding: 32px;
+      padding-bottom: 8px;
+      place-items: center;
+      img {
+        max-width: 100%;
+        height: 52px;
+      }
+    }
+    p {
+      text-align: center;
+      color: #888;
+      font-size: 20px;
+      margin-bottom: 22px;
+      max-width: 80%;
+      margin: auto;
+      margin-bottom: 18px;
+
+      &.main-title {
+        color: $main-app-color;
+        font-size: 28px;
+        margin-bottom: 6px;
+      }
+    }
+  }
+}

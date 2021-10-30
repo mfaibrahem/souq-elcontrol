@@ -7,6 +7,66 @@
     "startSelling": "ابدأ البيع",
     "aboutUs": "من نحن"
   },
+  "signup_form": {
+    "name": {
+      "label": "الإســـم بالكامل",
+      "errors": {
+        "required": "من فضلك ادخل الاســـم"
+      }
+    },
+    "phone": {
+      "label": "رقم الهاتف",
+      "errors": {
+        "required": "من فضلك ادخل رقم الهاتف",
+        "type_error": "لا يسمح الا بكتابة الارقام",
+        "min": "أقل حد {{min}} حروف"
+      }
+    },
+    "email": {
+      "label": "البريد الالكترونى",
+      "errors": {
+        "required": "من فضلك ادخل البريد الالكترونى",
+        "type_error": "من فضلك ادخل بريد الكترونى صحيح"
+      }
+    },
+    "password": {
+      "label": "كلمة المرور",
+      "errors": {
+        "required": "أدخل كلمة المرور",
+        "min": "كلمة المرور لا تقل عن {{min}}"
+      }
+    },
+    "password_confirmation": {
+      "label": "أعد كلمة المرور",
+      "errors": {
+        "required": "أعد كلمة المرور",
+        "type_error": "كلمة المرور غير مطابقة"
+      }
+    },
+    "remember_me": "تذكرنى",
+    "submit_btn": {
+      "label": "إنشاء الحساب",
+      "loading": "جارى العمـل.."
+    }
+  },
+  "signin_form": {
+    "login_key": {
+      "label": "رقم الهاتف أو البريد الاكترونى",
+      "errors": {
+        "required": "من فضلك ادخل رقم الهاتف او البريد الاكترونى"
+      }
+    },
+    "password": {
+      "label": "كلمة المرور",
+      "errors": {
+        "required": "أدخل كلمة المرور"
+      }
+    },
+    "submit_btn": {
+      "label": "تسجيل الدخول",
+      "loading": "جارى الدخول.."
+    }
+  },
   "main_app_search": {
     "placeholder": "إبحث عن خدمتك..."
   },
@@ -47,7 +107,9 @@
   },
   "breadcrumb_section": {
     "home": "الرئيسية",
-    "categories": "الأقســام"
+    "categories": "الأقســام",
+    "signup": "إنشاء حساب جديد",
+    "signin": "تسجيل الدخول"
   },
   "main_app_footer": {
     "footer_title": "تصميم واجهات المستخدم",

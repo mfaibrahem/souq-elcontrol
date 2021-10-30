@@ -6,6 +6,7 @@ const routerLinks = {
   ///////////////////////////
   signinPage: '/signin',
   signupPage: '/signup',
+  profilePage: '/profile',
   ////////////////////////////
 
   ...servicesRouterLinks,

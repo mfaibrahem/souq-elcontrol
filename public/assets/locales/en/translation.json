@@ -7,6 +7,66 @@
     "startSelling": "Start Selling",
     "aboutUs": "About Us"
   },
+  "signup_form": {
+    "name": {
+      "label": "Full name",
+      "errors": {
+        "required": "Enter your full name"
+      }
+    },
+    "phone": {
+      "label": "Phone number",
+      "errors": {
+        "required": "Enter your phone number",
+        "type_error": "Only numbers allowed",
+        "min": "Minimum {{min}} chars"
+      }
+    },
+    "email": {
+      "label": "Enter your email",
+      "errors": {
+        "required": "Enter your email",
+        "type_error": "Not valid email"
+      }
+    },
+    "password": {
+      "label": "Enter your password",
+      "errors": {
+        "required": "Enter your passowrd",
+        "min": "Password can not be less than {{min}} charactres"
+      }
+    },
+    "password_confirmation": {
+      "label": "Confirm Password",
+      "errors": {
+        "required": "Confirm your password",
+        "type_error": "Wrong passowrd"
+      }
+    },
+    "remember_me": "Remember me",
+    "submit_btn": {
+      "label": "Sign up",
+      "loading": "Signing up.."
+    }
+  },
+  "signin_form": {
+    "login_key": {
+      "label": "Phone number or Email",
+      "errors": {
+        "required": "Enter your phone number or your email"
+      }
+    },
+    "password": {
+      "label": "Password",
+      "errors": {
+        "required": "Enter your passowrd"
+      }
+    },
+    "submit_btn": {
+      "label": "Sign in",
+      "loading": "Logging in.."
+    }
+  },
   "main_app_search": {
     "placeholder": "Search for your service..."
   },
@@ -47,7 +107,9 @@
   },
   "breadcrumb_section": {
     "home": "Home",
-    "categories": "Categories"
+    "categories": "Categories",
+    "signup": "Register new account",
+    "signin": "Sign in"
   },
   "main_app_footer": {
     "footer_title": "User interface design",

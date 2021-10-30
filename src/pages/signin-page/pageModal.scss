@@ -1,0 +1,14 @@
+@import '../../scss/config';
+
+.forget-password-modal {
+  .ant-modal-header {
+    background-color: #f5f5f5;
+  }
+  .ant-modal-title {
+    font-size: 22px;
+  }
+  .ant-modal-content {
+    border-radius: 15px;
+    overflow: hidden;
+  }
+}

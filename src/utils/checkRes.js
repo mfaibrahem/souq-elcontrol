@@ -1,9 +1,5 @@
 const checkRes = (res) => {
-  return (
-    res?.status === 200 &&
-    res?.data?.success &&
-    res?.data?.response_code === 200
-  );
+  return res?.status === 200 && res?.data?.status === 1;
 };
 
 export default checkRes;
