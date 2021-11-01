@@ -15,8 +15,10 @@ import DocTitleScrollTop from '../../utils/DocTitleScrollTop';
 import '../../i18n';
 import UserContext from '../../contexts/user-context/UserProvider';
 import myInfoApi from '../../apis/auth/myInfoApi';
-import checkRes from '../../utils/checkRes';
+import checkRes, { customApiRequest } from '../../utils/checkRes';
 import routerLinks from './routerLinks';
+import getAllCategoriesApi from '../../apis/categories-apis/getAllCategoriesApis';
+import useCustomApiRequest from '../../custom-hooks/useCustomApiRequest';
 axios.defaults.baseURL = 'http://compound.emir.life/api';
 
 function App() {
@@ -34,33 +36,63 @@ function App() {
   }, []);
   DocTitleScrollTop('');
 
-  useEffect(() => {
-    if (user) {
-      let isMounted = true;
-      const fetchInfo = async () => {
-        try {
-          const res = await myInfoApi(user?.token, i18n.language);
-          if (isMounted) {
-            // is response is success
-            if (checkRes(res)) {
-            } else {
-              removeCurrentUser();
-              history.push(routerLinks.signinPage);
-            }
-          }
-        } catch (error) {
-          removeCurrentUser();
-          history.push(routerLinks.signinPage);
-        }
-      };
+  // useEffect(() => {
+  //   if (user) {
+  //     let isMounted = true;
+  //     const fetchInfo = async () => {
+  //       try {
+  //         const res = await myInfoApi(user?.token, i18n.language);
+  //         if (isMounted) {
+  //           // is response is success
+  //           if (checkRes(res)) {
+  //           } else {
+  //             removeCurrentUser();
+  //             history.push(routerLinks.signinPage);
+  //           }
+  //         }
+  //       } catch (error) {
+  //         removeCurrentUser();
+  //         history.push(routerLinks.signinPage);
+  //       }
+  //     };
 
-      fetchInfo();
+  //     fetchInfo();
 
-      return () => {
-        isMounted = false;
-      };
-    }
+  //     return () => {
+  //       isMounted = false;
+  //     };
+  //   }
+  // }, []);
+
+  const [loading, setLoading] = React.useState(false);
+  const customApiReuqest1 = useCustomApiRequest();
+  React.useEffect(() => {
+    setLoading(true);
+    const successCallback = (res) => {
+      setLoading(false);
+    };
+    const unAuthCallback = () => {
+      console.log('unathanticated');
+      setLoading(false);
+    };
+    const errorCallback = (err) => {
+      console.log('error : ', err);
+      setLoading(false);
+    };
+    customApiReuqest1(
+      getAllCategoriesApi(),
+      successCallback,
+      unAuthCallback,
+      errorCallback
+    );
+    // try {
+    //   let isMounted = true;
+
+    // } catch (error) {
+
+    // }
   }, []);
+  console.log('loading :', loading);
 
   return (
     <div className={`app app-${i18n.dir()}`}>

@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const getAllCategoriesApi = async () => {
   try {
-    const res = await axios.get(`/categories`, {
+    const res = await axios.get(`/Service/mainCat`, {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json'
