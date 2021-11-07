@@ -5,8 +5,8 @@ const successNotification = ({ title, message }) => {
     title,
     message,
     type: 'success',
-    insert: 'top',
-    container: 'top-right',
+    insert: 'bottom',
+    container: 'bottom-left',
     animationIn: ['animate__animated', 'animate__fadeIn'],
     animationOut: ['animate__animated', 'animate__fadeOut'],
     dismiss: {

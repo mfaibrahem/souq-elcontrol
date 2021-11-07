@@ -12,7 +12,7 @@ const signoutApi = async (token, langIsoCode) => {
     });
     return signoutRes;
   } catch (error) {
-    throw new Error(error);
+    throw error;
   }
 };
 

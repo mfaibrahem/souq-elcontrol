@@ -14,7 +14,7 @@ const getAllBlogsApi = async (id, filterValues, langIsoCode) => {
     });
     return res;
   } catch (error) {
-    throw new Error(error);
+    throw error;
   }
 };
 

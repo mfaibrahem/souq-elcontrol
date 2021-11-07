@@ -9,7 +9,7 @@ export const forgetPasswordApi1 = async (values) => {
     });
     return res;
   } catch (error) {
-    throw new Error(error);
+    throw error;
   }
 };
 
@@ -25,7 +25,7 @@ export const forgetPasswordApi2 = async (values) => {
     });
     return res;
   } catch (error) {
-    throw new Error(error);
+    throw error;
   }
 };
 
@@ -38,6 +38,6 @@ export const forgetPasswordApi3 = async (values) => {
     });
     return res;
   } catch (error) {
-    throw new Error(error);
+    throw error;
   }
 };

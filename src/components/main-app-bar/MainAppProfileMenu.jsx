@@ -1,5 +1,4 @@
-import React, { useContext, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useContext } from 'react';
 import { Dropdown, Menu, Button, Avatar } from 'antd';
 import { Link as RouterLink } from 'react-router-dom';
 import {
@@ -9,49 +8,15 @@ import {
 } from '@ant-design/icons';
 import routerLinks from '../app/routerLinks';
 import UserContext from '../../contexts/user-context/UserProvider';
-import successNotification from '../../utils/successNotification';
-import signoutApi from '../../apis/auth/signoutApi';
-import errorNotification from '../../utils/errorNotification';
-import checkRes from '../../utils/checkRes';
-import { useTranslation } from 'react-i18next';
+import useSignout from '../../custom-hooks/useSignout';
 
 const MainAppProfileMenu = () => {
-  const { user, removeCurrentUser } = useContext(UserContext);
-  const { t, i18n } = useTranslation();
-  const [loadingSignout, setLoadingSignout] = useState(false);
-  const history = useHistory();
-  const handleSignout = async () => {
-    console.log('user  : ', user);
-    try {
-      setLoadingSignout(true);
-      let res;
-      res = await signoutApi(user?.token, i18n.language);
-      if (checkRes(res)) {
-        setLoadingSignout(false);
-        removeCurrentUser();
-        history.push(routerLinks.signinPage);
+  const { user } = useContext(UserContext);
 
-        successNotification({
-          title: 'العملية تمت بنجاح',
-          message: 'تم تسجيل الخروج بنجاح'
-        });
-      } else {
-        setLoadingSignout(false);
-        errorNotification({
-          title: 'حدث خطأ اثناء تسجيل الخروج',
-          message: 'من فضلك حاول فى وقت لاحق'
-        });
-      }
-    } catch (error) {
-      setLoadingSignout(false);
-      errorNotification({
-        title: 'حدث خطأ اثناء تسجيل الخروج',
-        message: 'من فضلك حاول فى وقت لاحق'
-      });
-      console.log(error);
-    }
+  const { isLoadingSignout, signMeOut } = useSignout();
+  const handleSignout = () => {
+    signMeOut();
   };
-
   return (
     <div className="avatar-wrapper">
       <Dropdown
@@ -78,7 +43,7 @@ const MainAppProfileMenu = () => {
       >
         <Button className="profile-menu-btn" type="text">
           <Avatar size={40} icon={<UserOutlined />} src={user?.image} />
-          {loadingSignout ? <LoadingOutlined /> : null}
+          {isLoadingSignout ? <LoadingOutlined /> : null}
         </Button>
       </Dropdown>
     </div>

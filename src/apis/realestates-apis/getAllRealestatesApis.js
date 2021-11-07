@@ -18,7 +18,7 @@ const getAllRealestatesApi = async (filterValues, langIsoCode) => {
     });
     return res;
   } catch (error) {
-    throw new Error(error);
+    throw error;
   }
 };
 

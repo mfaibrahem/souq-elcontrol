@@ -5,8 +5,8 @@ const errorNotification = ({ title, message }) => {
     title,
     message,
     type: 'danger',
-    insert: 'top',
-    container: 'top-right',
+    insert: 'bottom',
+    container: 'bottom-left',
     animationIn: ['animate__animated', 'animate__fadeIn'],
     animationOut: ['animate__animated', 'animate__fadeOut'],
     dismiss: {

@@ -10,7 +10,7 @@ const signinApi = async (values, langIsoCode) => {
     });
     return signinRes;
   } catch (error) {
-    throw new Error(error);
+    throw error;
   }
 };
 

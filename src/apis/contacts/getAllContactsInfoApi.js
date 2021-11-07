@@ -11,7 +11,7 @@ const getAllContactsApi = async (langIsoCode) => {
     });
     return res;
   } catch (error) {
-    throw new Error(error);
+    throw error;
   }
 };
 

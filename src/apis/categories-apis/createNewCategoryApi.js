@@ -16,7 +16,7 @@ const ceateNewCategoryApi = async (token, values, edit = false) => {
 
     return res;
   } catch (error) {
-    throw new Error(error);
+    throw error;
   }
 };
 

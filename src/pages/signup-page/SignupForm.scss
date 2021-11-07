@@ -1,7 +1,6 @@
 @import '../../scss/config';
 
-.signup-form,
-.signin-form {
+.signup-form {
   width: 100%;
   min-width: 448px;
   display: grid;
@@ -40,6 +39,15 @@
         font-size: 28px;
         margin-bottom: 6px;
       }
+      &.sub-title {
+        margin-bottom: 4px;
+      }
+    }
+    a {
+      font-size: 18px;
+      font-weight: bold;
+      color: $main-app-color;
+      text-decoration: underline;
     }
   }
 
@@ -104,8 +112,8 @@
       height: 50px;
       border-radius: 8px;
       background-color: $main-app-color;
-      width: fit-content;
-      justify-self: end;
+      // width: fit-content;
+      // justify-self: end;
     }
   }
 }

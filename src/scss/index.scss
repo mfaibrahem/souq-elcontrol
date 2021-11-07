@@ -365,3 +365,39 @@ body {
   align-items: center;
   justify-content: space-between;
 }
+
+.notification__item--success {
+  background-color: lighten($main-app-color, 10%);
+  // border: 0;
+  border-left-width: 5px;
+  .notification__close {
+    background-color: #fff;
+    width: 22px;
+    height: 22px;
+
+    &::after {
+      color: $main-app-color;
+      font-size: 20px;
+      top: 43%;
+    }
+  }
+}
+.notification__item--danger {
+  background-color: lighten($main-app-color, 10%);
+  // border: 0;
+  border-left-width: 5px;
+  .notification__title {
+    color: #fff;
+  }
+  .notification__close {
+    background-color: #fff;
+    width: 22px;
+    height: 22px;
+
+    &::after {
+      color: #dc3545;
+      font-size: 20px;
+      top: 43%;
+    }
+  }
+}

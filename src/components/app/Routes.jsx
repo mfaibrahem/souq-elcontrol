@@ -1,5 +1,6 @@
 import React, { lazy, useContext } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
+import { ForgetPasswordProvider } from '../../contexts/forget-password-context/ForgetPasswordContext';
 import UserContext from '../../contexts/user-context/UserProvider';
 import ArticlesPage from '../../pages/articles-page/ArticlesPage';
 import BlogsPage from '../../pages/blogs-page/BlogsPage';
@@ -25,7 +26,13 @@ const Routes = () => {
         {!loggedIn ? <SignupPage /> : <Redirect to={routerLinks.notFound} />}
       </Route>
       <Route exact path={routerLinks.signinPage}>
-        {!loggedIn ? <SigninPage /> : <Redirect to={routerLinks.notFound} />}
+        {!loggedIn ? (
+          <ForgetPasswordProvider>
+            <SigninPage />
+          </ForgetPasswordProvider>
+        ) : (
+          <Redirect to={routerLinks.notFound} />
+        )}
       </Route>
 
       {ServicesRoutes()}

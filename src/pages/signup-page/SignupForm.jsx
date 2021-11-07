@@ -5,30 +5,24 @@ import * as Yup from 'yup';
 import AntdTextField from '../../common/antd-form-components/AntdTextField';
 import { Button, Form } from 'antd';
 import { useTranslation } from 'react-i18next';
-import UserContext from '../../contexts/user-context/UserProvider';
-import errorNotification from '../../utils/errorNotification';
 import ForgetPasswordContext from '../../contexts/forget-password-context/ForgetPasswordContext';
-import checkRes from '../../utils/checkRes';
-import successNotification from '../../utils/successNotification';
 import EyeOpenedIcon from '../../common/icons/EyeOpenedIcon';
 import EyeClosedIcon from '../../common/icons/EyeClosedIcon';
-import { useHistory } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 import {
   UserOutlined,
   LockOutlined,
   MailOutlined,
   PhoneOutlined
 } from '@ant-design/icons';
-import signupApi from '../../apis/auth/signupApi';
 import './SignupForm.scss';
 import AntdCheckbox from '../../common/antd-form-components/AntdCheckbox';
 import routerLinks from '../../components/app/routerLinks';
+import useSignupEmailPassword from '../../custom-hooks/useSignupEmailPassowrd';
 // import useFirebaseDeviceToken from '../../custom-hooks/useFirebaseDeviceToken';
 
 const SignupForm = () => {
-  const history = useHistory();
   const { i18n, t } = useTranslation();
-  const { setCurrentUser, setUserToState } = useContext(UserContext);
   const [passwrodVisible, setPasswordVisible] = React.useState(false);
   useContext(ForgetPasswordContext);
   const generalLabelStr = (v) => t(`signup_form.${v}.label`);
@@ -71,45 +65,11 @@ const SignupForm = () => {
       remember: true
     }
   });
-  console.log('watch :, ', watch());
-  const onSubmit = async (data) => {
-    try {
-      const res = await signupApi(
-        {
-          name: data?.name,
-          phone: data?.phone,
-          email: data?.email,
-          password: data?.password
-        },
-        i18n.language
-      );
-      console.log('res : ', res);
-      if (checkRes(res)) {
-        setCurrentUser(res.data.data);
-        successNotification({
-          title: 'العملية تمت بنجاح',
-          message: 'تم تسجيل الدخول بنجاح'
-        });
-        if (data.remember) {
-          setCurrentUser({
-            ...res?.data?.data,
-            information: null,
-            categories: null
-          });
-        } else {
-          setUserToState({ ...res?.data?.data });
-        }
-
-        history.push(routerLinks.homePage);
-      } else {
-        errorNotification({
-          title: 'حدث خطأ اثناء الدخول',
-          message: res?.data?.message || 'البيانات المدخلة غير صحيحة'
-        });
-      }
-    } catch (error) {
-      console.log(error);
-    }
+  // console.log('watch :, ', watch());
+  const { isLoadingSignup, signMeUpWithEmailPassword } =
+    useSignupEmailPassword();
+  const onSubmit = (data) => {
+    signMeUpWithEmailPassword(data);
   };
 
   const [form] = Form.useForm();
@@ -125,6 +85,19 @@ const SignupForm = () => {
           <p className="bold-font main-title">
             {t('breadcrumb_section.signup')}
           </p>
+          <div
+            style={{
+              textAlign: 'center',
+              display: 'flex',
+              gap: '4px',
+              justifyContent: 'center',
+              margin: '0 12px',
+              fontSize: 18
+            }}
+          >
+            <span>لديك حساب قم ب </span>{' '}
+            <RouterLink to={routerLinks?.signinPage}>تسجيل الدخول</RouterLink>
+          </div>
         </div>
 
         <div className="form-body">
@@ -229,7 +202,7 @@ const SignupForm = () => {
             htmlType="submit"
             type="primary"
             // icon={<LoginOutlined />}
-            loading={isSubmitting}
+            loading={isLoadingSignup}
           >
             {isSubmitting
               ? t('signup_form.submit_btn.loading')

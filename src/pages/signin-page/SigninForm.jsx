@@ -5,17 +5,16 @@ import * as Yup from 'yup';
 import AntdTextField from '../../common/antd-form-components/AntdTextField';
 import { Button, Form } from 'antd';
 import { useTranslation } from 'react-i18next';
-import UserContext from '../../contexts/user-context/UserProvider';
 import ForgetPasswordModal from './ForgetPasswordModal';
-import errorNotification from '../../utils/errorNotification';
 import ForgetPasswordContext from '../../contexts/forget-password-context/ForgetPasswordContext';
-import checkRes from '../../utils/checkRes';
-import successNotification from '../../utils/successNotification';
 import EyeOpenedIcon from '../../common/icons/EyeOpenedIcon';
 import EyeClosedIcon from '../../common/icons/EyeClosedIcon';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import './LoginForm.scss';
-import signinApi from '../../apis/auth/signinApi';
+import { Link as RouterLink } from 'react-router-dom';
+import useSigninEmailPassword from '../../custom-hooks/useSigninEmailPassword';
+import routerLinks from '../../components/app/routerLinks';
+import AntdCheckbox from '../../common/antd-form-components/AntdCheckbox';
+import './SigninForm.scss';
 // import useFirebaseDeviceToken from '../../custom-hooks/useFirebaseDeviceToken';
 
 const schema = Yup.object().shape({
@@ -26,8 +25,7 @@ const schema = Yup.object().shape({
 });
 
 const SigninForm = () => {
-  const { i18n, t } = useTranslation();
-  const { setCurrentUser, setUserToState } = useContext(UserContext);
+  const { t } = useTranslation();
   const [passwrodVisible, setPasswordVisible] = React.useState(false);
   const { forgetPasswordModalOpened, setForgetPasswordModalOpened } =
     useContext(ForgetPasswordContext);
@@ -46,45 +44,10 @@ const SigninForm = () => {
     }
   });
 
-  const onSubmit = async (data) => {
-    try {
-      const res = await signinApi(
-        {
-          ...data
-        },
-        i18n.language
-      );
-      if (res?.status === 200 && !res?.data?.success) {
-        errorNotification({
-          title: 'حدث خطأ اثناء الدخول',
-          message: res?.data?.message || 'البيانات المدخلة غير صحيحة'
-        });
-      } else if (checkRes(res)) {
-        if (res?.data?.data?.status === 1) {
-          setCurrentUser(res.data.data);
-          successNotification({
-            title: 'العملية تمت بنجاح',
-            message: 'تم تسجيل الدخول بنجاح'
-          });
-          if (data.remember) {
-            setCurrentUser({
-              ...res?.data?.data,
-              information: null,
-              categories: null
-            });
-          } else {
-            setUserToState({ ...res?.data?.data });
-          }
-        } else {
-          errorNotification({
-            title: 'حدث خطأ',
-            message: 'المستخدم غير مفعل'
-          });
-        }
-      }
-    } catch (error) {
-      console.log(error);
-    }
+  const { signMeInWithEmailPassword, isLoadingSignin } =
+    useSigninEmailPassword();
+  const onSubmit = (data) => {
+    signMeInWithEmailPassword(data);
   };
 
   const [form] = Form.useForm();
@@ -98,7 +61,20 @@ const SigninForm = () => {
       >
         <div className="form-header">
           <p className="bold-font main-title">تسجيل الدخول</p>
-          <p className="sub-title">سجل دخولك الان للوحة التحكم الخاصة بك</p>
+          {/* <p className="sub-title">سجل دخولك الان لاتمام طلباتك</p> */}
+          <div
+            style={{
+              textAlign: 'center',
+              display: 'flex',
+              gap: '4px',
+              justifyContent: 'center',
+              margin: '0 12px',
+              fontSize: 18
+            }}
+          >
+            <span>ليس لديك حساب قم بإنشاء </span>{' '}
+            <RouterLink to={routerLinks?.signupPage}>حساب جديد</RouterLink>
+          </div>
         </div>
 
         <div className="form-body">
@@ -143,13 +119,20 @@ const SigninForm = () => {
           >
             هل نسيت كلمة المرور؟
           </p>
+          <AntdCheckbox
+            name="remember"
+            control={control}
+            label={t('signup_form.remember_me')}
+            errorMsg={errors?.remember?.message}
+            validateStatus={errors?.remember ? 'error' : ''}
+          />
           {/* <AntdCheckbox name="remember" label="تذكرنى" control={control} /> */}
           <Button
             className="submit-btn"
             htmlType="submit"
             type="primary"
             // icon={<LoginOutlined />}
-            loading={isSubmitting}
+            loading={isLoadingSignin}
           >
             {isSubmitting
               ? t('signin_form.submit_btn.loading')
