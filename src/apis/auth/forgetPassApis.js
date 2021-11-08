@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-export const forgetPasswordApi1 = async (values) => {
+export const forgetPasswordEnterEmailApi = async (values) => {
   try {
-    const res = await axios.post('/enter-email-reset', values, {
+    const res = await axios.post('/Auth_general/forget_password', values, {
       headers: {
         lang: 'ar'
       }
@@ -13,13 +13,12 @@ export const forgetPasswordApi1 = async (values) => {
   }
 };
 
-export const forgetPasswordApi2 = async (values) => {
-  const url = `/find-token?token=${values.token ? values.token : ''}&email=${
-    values.email ? values.email : ''
-  }`;
+export const forgetPasswordEnterCodeApi = async (token, values) => {
+  const url = '/Auth_private/check_password_code';
   try {
-    const res = await axios.get(url, {
+    const res = await axios.post(url, values, {
       headers: {
+        Authorization: `Bearer ${token}`,
         lang: 'ar'
       }
     });
@@ -29,10 +28,26 @@ export const forgetPasswordApi2 = async (values) => {
   }
 };
 
-export const forgetPasswordApi3 = async (values) => {
+export const forgetPasswordResendCodeApi = async (token, values) => {
+  const url = '/Auth_private/resend_code';
   try {
-    const res = await axios.post('/reset-password', values, {
+    const res = await axios.post(url, values, {
       headers: {
+        Authorization: `Bearer ${token}`,
+        lang: 'ar'
+      }
+    });
+    return res;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const forgetPasswordResetPasswordApi = async (token, values) => {
+  try {
+    const res = await axios.post('/Auth_private/reset_password', values, {
+      headers: {
+        Authorization: `Bearer ${token}`,
         lang: 'ar'
       }
     });

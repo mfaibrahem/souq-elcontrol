@@ -1,18 +1,18 @@
 import React, { useContext } from 'react';
 import { Modal } from 'antd';
 import ForgetPasswordContext from '../../contexts/forget-password-context/ForgetPasswordContext';
-import ForgetPasswordForm1 from './ForgetPasswordForm1';
-import ForgetPasswordForm2 from './ForgetPasswordForm2';
-import ForgetPasswordForm3 from './ForgetPasswordForm3';
 import './pageModal.scss';
+import ForgetPasswordFormEnterEmail from './ForgetPasswordFormEnterEmail';
+import ForgetPasswordFormEnterCode from './ForgetPasswordFormEnterCode';
+import ForgetPasswordFormResetPassword from './ForgetPasswordFormResetPassword';
 
 const ForgetPasswordModal = () => {
   const {
     forgetPasswordModalOpened,
     setForgetPasswordModalOpened,
-    forgetPasswordForm1Appended,
-    forgetPasswordForm2Appended,
-    forgetPasswordForm3Appended
+    forgetPasswordFormEnterEmailAppended,
+    forgetPasswordFormEnterCodeAppended,
+    forgetPasswordFormResetPasswordAppended
   } = useContext(ForgetPasswordContext);
   return (
     <Modal
@@ -29,9 +29,11 @@ const ForgetPasswordModal = () => {
       }}
       footer={false}
     >
-      {forgetPasswordForm1Appended && <ForgetPasswordForm1 />}
-      {forgetPasswordForm2Appended && <ForgetPasswordForm2 />}
-      {forgetPasswordForm3Appended && <ForgetPasswordForm3 />}
+      {forgetPasswordFormEnterEmailAppended && <ForgetPasswordFormEnterEmail />}
+      {forgetPasswordFormEnterCodeAppended && <ForgetPasswordFormEnterCode />}
+      {forgetPasswordFormResetPasswordAppended && (
+        <ForgetPasswordFormResetPassword />
+      )}
     </Modal>
   );
 };

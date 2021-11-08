@@ -91,12 +91,12 @@
       }
       .eye-icon-btn {
         position: absolute;
-        bottom: 34px;
+        left: 14px;
+        top: 40%;
         cursor: pointer;
         padding: 4px;
         z-index: 1;
-        img,
-        svg {
+        img {
           height: 18px;
         }
       }

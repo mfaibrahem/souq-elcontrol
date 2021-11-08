@@ -10,17 +10,18 @@ import successNotification from '../../utils/successNotification';
 import AntdTextField from '../../common/antd-form-components/AntdTextField';
 import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
 import ForgetPasswordContext from '../../contexts/forget-password-context/ForgetPasswordContext';
-import { forgetPasswordApi3 } from '../../apis/auth/forgetPassApis';
+import { forgetPasswordResetPasswordApi } from '../../apis/auth/forgetPassApis';
+import useCustomApiRequest from '../../custom-hooks/useCustomApiRequest';
 
 const schema = Yup.object().shape({
   password: Yup.string().required('أدخل كلمة المرور الجديدة'),
-  password_confirmation: Yup.string()
+  password_confirm: Yup.string()
     .required('اعد كلمة المرور')
     .oneOf([Yup.ref('password')], 'كلمة المرور غير مطابقة')
 });
 
-const ForgetPasswordForm3 = () => {
-  const { setForgetPasswordModalOpened, userEmail, resetContext } = useContext(
+const ForgetPasswordFormResetPassword = () => {
+  const { setForgetPasswordModalOpened, user, resetContext } = useContext(
     ForgetPasswordContext
   );
   const {
@@ -33,9 +34,8 @@ const ForgetPasswordForm3 = () => {
     resolver: yupResolver(schema),
     mode: 'all',
     defaultValues: {
-      old_password: '',
       password: '',
-      password_confirmation: ''
+      password_confirm: ''
     }
   });
 
@@ -46,33 +46,40 @@ const ForgetPasswordForm3 = () => {
   }, []);
   const [passwrodVisible, setPasswordVisible] = useState(false);
 
-  const onSubmit = async (data) => {
-    try {
-      const res = await forgetPasswordApi3({
-        ...data,
-        email: userEmail
-      });
-      if (checkRes(res)) {
-        successNotification({
-          title: 'العملية تمت بنجاح',
-          message: 'تم تغيير كلمة المرور بنجاح'
-        });
-        setForgetPasswordModalOpened(false);
-        resetContext();
-        reset({
-          old_password: '',
-          password: '',
-          password_confirmation: ''
-        });
-      } else {
+  const [isLoading, setIsLoading] = useState(false);
+  const customApiRequest = useCustomApiRequest();
+  const onSubmit = (data) => {
+    setIsLoading(true);
+    customApiRequest(
+      forgetPasswordResetPasswordApi(user?.token, data),
+      (res) => {
+        setIsLoading(false);
+        if (checkRes(res)) {
+          successNotification({
+            title: 'العملية تمت بنجاح',
+            message: 'تم تغيير كلمة المرور بنجاح'
+          });
+          setForgetPasswordModalOpened(false);
+          resetContext();
+          reset({
+            password: '',
+            password_confirm: ''
+          });
+        } else {
+          errorNotification({
+            title: 'حدث خطأ اثناء العملية',
+            message: res?.data?.message || 'البيانات المدخلة غير صحيحة'
+          });
+        }
+      },
+      (error) => {
+        setIsLoading(false);
         errorNotification({
           title: 'حدث خطأ اثناء العملية',
-          message: res?.data?.message || 'البيانات المدخلة غير صحيحة'
+          message: error?.response?.data?.message || 'حاول فى وقت لاحق'
         });
       }
-    } catch (error) {
-      console.log(error);
-    }
+    );
   };
 
   const [form] = Form.useForm();
@@ -114,14 +121,14 @@ const ForgetPasswordForm3 = () => {
           <div className="text-field-wrap">
             <AntdTextField
               className="form-text-field"
-              name="password_confirmation"
+              name="password_confirm"
               type={passwrodVisible ? 'text' : 'password'}
               placeholder="أعد كلمة المرور الجديدة..."
-              errorMsg={errors?.password_confirmation?.message}
-              validateStatus={errors?.password_confirmation ? 'error' : ''}
+              errorMsg={errors?.password_confirm?.message}
+              validateStatus={errors?.password_confirm ? 'error' : ''}
               control={control}
             />
-            {watch('password_confirmation') && (
+            {watch('password_confirm') && (
               <div
                 className="eye-icon-btn"
                 onClick={() => {
@@ -139,7 +146,7 @@ const ForgetPasswordForm3 = () => {
           htmlType="submit"
           type="primary"
           // icon={<LoginOutlined />}
-          loading={isSubmitting}
+          loading={isLoading}
         >
           تعديل
         </Button>
@@ -148,4 +155,4 @@ const ForgetPasswordForm3 = () => {
   );
 };
 
-export default ForgetPasswordForm3;
+export default ForgetPasswordFormResetPassword;

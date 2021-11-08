@@ -6,11 +6,13 @@ import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { MailOutlined } from '@ant-design/icons';
 import { useForm } from 'react-hook-form';
-import { forgetPasswordApi1 } from '../../apis/auth/forgetPassApis';
+import { forgetPasswordEnterEmailApi } from '../../apis/auth/forgetPassApis';
 import checkRes from '../../utils/checkRes';
 import successNotification from '../../utils/successNotification';
 import errorNotification from '../../utils/errorNotification';
 import ForgetPasswordContext from '../../contexts/forget-password-context/ForgetPasswordContext';
+import useCustomApiRequest from '../../custom-hooks/useCustomApiRequest';
+import { useTranslation } from 'react-i18next';
 
 const schema = Yup.object().shape({
   email: Yup.string()
@@ -18,11 +20,12 @@ const schema = Yup.object().shape({
     .email('ادخل بريد الكترونى صحيح')
 });
 
-const ForgetPasswordForm1 = () => {
+const ForgetPasswordFormEnterEmail = () => {
+  const { t } = useTranslation();
   const {
-    setForgetPasswordForm1Appended,
-    setForgetPasswordForm2Appended,
-    setUserEmail
+    setForgetPasswordFormEnterEmailAppended,
+    setForgetPasswordFormEnterCodeAppended,
+    setUser
   } = useContext(ForgetPasswordContext);
   const {
     control,
@@ -43,26 +46,37 @@ const ForgetPasswordForm1 = () => {
       reset({ email: '' });
     };
   }, []);
-  const onSubmit = async (data) => {
-    try {
-      const res = await forgetPasswordApi1(data);
-      if (checkRes(res)) {
-        successNotification({
-          title: 'العملية تمت بنجاح',
-          message: res?.data?.message || 'تم ارسال ايميل بالكود'
-        });
-        setForgetPasswordForm1Appended(false);
-        setForgetPasswordForm2Appended(true);
-        setUserEmail(data?.email);
-      } else {
+  const [isLoading, setIsLoading] = React.useState(false);
+  const customApiRequest = useCustomApiRequest();
+  const onSubmit = (data) => {
+    setIsLoading(true);
+    customApiRequest(
+      forgetPasswordEnterEmailApi(data),
+      (res) => {
+        setIsLoading(false);
+        if (checkRes(res)) {
+          successNotification({
+            title: t('success_title'),
+            message: res?.data?.message || 'تم ارسال ايميل بالكود'
+          });
+          setForgetPasswordFormEnterEmailAppended(false);
+          setForgetPasswordFormEnterCodeAppended(true);
+          setUser(res?.data?.data);
+        } else {
+          errorNotification({
+            title: t('error_title'),
+            message: res?.data?.message || 'البيانات المدخلة غير صحيحة'
+          });
+        }
+      },
+      (error) => {
+        setIsLoading(false);
         errorNotification({
-          title: 'حدث خطأ',
-          message: res?.data?.message || 'البيانات المدخلة غير صحيحة'
+          title: t('error_title'),
+          message: error?.response?.data?.message || 'حاول فى وقت لاحق'
         });
       }
-    } catch (error) {
-      console.log(error);
-    }
+    );
   };
 
   const [form] = Form.useForm();
@@ -96,7 +110,7 @@ const ForgetPasswordForm1 = () => {
           htmlType="submit"
           type="primary"
           // icon={<LoginOutlined />}
-          loading={isSubmitting}
+          loading={isLoading}
         >
           أرســـل
         </Button>
@@ -105,4 +119,4 @@ const ForgetPasswordForm1 = () => {
   );
 };
 
-export default ForgetPasswordForm1;
+export default ForgetPasswordFormEnterEmail;

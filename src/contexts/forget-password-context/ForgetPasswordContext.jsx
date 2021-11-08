@@ -3,14 +3,14 @@ import { createContext, useState } from 'react';
 const INITIAL_VALUES = {
   forgetPasswordModalOpened: false,
   setForgetPasswordModalOpened: (v) => {},
-  forgetPasswordForm1Appended: true,
-  setForgetPasswordForm1Appended: (v) => {},
-  forgetPasswordForm2Appended: false,
-  setForgetPasswordForm2Appended: (v) => {},
-  forgetPasswordForm3Appended: false,
-  setForgetPasswordForm3Appended: (v) => {},
-  userEmail: '',
-  setUserEmail: (v) => {},
+  forgetPasswordFormEnterEmailAppended: true,
+  setForgetPasswordFormEnterEmailAppended: (v) => {},
+  forgetPasswordFormEnterCodeAppended: false,
+  setForgetPasswordFormEnterCodeAppended: (v) => {},
+  forgetPasswordFormResetPasswordAppended: false,
+  setForgetPasswordFormResetPasswordAppended: (v) => {},
+  user: null,
+  setUser: (v) => {},
   resetContext: () => {}
 };
 
@@ -20,32 +20,38 @@ export const ForgetPasswordProvider = ({ children }) => {
   const [forgetPasswordModalOpened, setForgetPasswordModalOpened] = useState(
     INITIAL_VALUES.forgetPasswordModalOpened
   );
-  const [forgetPasswordForm1Appended, setForgetPasswordForm1Appended] =
-    useState(INITIAL_VALUES.forgetPasswordForm1Appended);
-  const [forgetPasswordForm2Appended, setForgetPasswordForm2Appended] =
-    useState(INITIAL_VALUES.forgetPasswordForm2Appended);
-  const [forgetPasswordForm3Appended, setForgetPasswordForm3Appended] =
-    useState(INITIAL_VALUES.forgetPasswordForm3Appended);
-  const [userEmail, setUserEmail] = useState(INITIAL_VALUES.userEmail);
+  const [
+    forgetPasswordFormEnterEmailAppended,
+    setForgetPasswordFormEnterEmailAppended
+  ] = useState(INITIAL_VALUES.forgetPasswordFormEnterEmailAppended);
+  const [
+    forgetPasswordFormEnterCodeAppended,
+    setForgetPasswordFormEnterCodeAppended
+  ] = useState(INITIAL_VALUES.forgetPasswordFormEnterCodeAppended);
+  const [
+    forgetPasswordFormResetPasswordAppended,
+    setForgetPasswordFormResetPasswordAppended
+  ] = useState(INITIAL_VALUES.forgetPasswordFormResetPasswordAppended);
+  const [user, setUser] = useState(INITIAL_VALUES.user);
   const resetContext = () => {
-    setForgetPasswordForm1Appended(true);
-    setForgetPasswordForm2Appended(false);
-    setForgetPasswordForm3Appended(false);
-    setUserEmail('');
+    setForgetPasswordFormEnterEmailAppended(true);
+    setForgetPasswordFormEnterCodeAppended(false);
+    setForgetPasswordFormResetPasswordAppended(false);
+    setUser(null);
   };
   return (
     <ForgetPasswordContext.Provider
       value={{
         forgetPasswordModalOpened,
         setForgetPasswordModalOpened,
-        forgetPasswordForm1Appended,
-        setForgetPasswordForm1Appended,
-        forgetPasswordForm2Appended,
-        setForgetPasswordForm2Appended,
-        forgetPasswordForm3Appended,
-        setForgetPasswordForm3Appended,
-        userEmail,
-        setUserEmail,
+        forgetPasswordFormEnterEmailAppended,
+        setForgetPasswordFormEnterEmailAppended,
+        forgetPasswordFormEnterCodeAppended,
+        setForgetPasswordFormEnterCodeAppended,
+        forgetPasswordFormResetPasswordAppended,
+        setForgetPasswordFormResetPasswordAppended,
+        user,
+        setUser,
         resetContext
       }}
     >

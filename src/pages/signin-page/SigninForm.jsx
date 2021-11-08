@@ -18,9 +18,10 @@ import './SigninForm.scss';
 // import useFirebaseDeviceToken from '../../custom-hooks/useFirebaseDeviceToken';
 
 const schema = Yup.object().shape({
-  email: Yup.string()
-    .required('من فضلك ادخل البريد الاكترونى')
-    .email('ادخل بريد الكترونى صحيح'),
+  // loginKey: Yup.string()
+  //   .required('من فضلك ادخل البريد الاكترونى')
+  //   .email('ادخل بريد الكترونى صحيح'),
+  loginKey: Yup.string().required('Please enter phone or email'),
   password: Yup.string().required('من فضلك ادخل كلمة المرور')
 });
 
@@ -38,7 +39,7 @@ const SigninForm = () => {
     resolver: yupResolver(schema),
     mode: 'all',
     defaultValues: {
-      email: '',
+      loginKey: '',
       password: '',
       remember: true
     }
@@ -79,12 +80,12 @@ const SigninForm = () => {
 
         <div className="form-body">
           <AntdTextField
-            name="email"
+            name="loginKey"
             type="text"
-            placeholder={'البريد الالكترونى...'}
-            // label="الاســــم"
-            errorMsg={errors?.email?.message}
-            validateStatus={errors?.email ? 'error' : ''}
+            placeholder="Email or phone number"
+            label="Email or phone number"
+            errorMsg={errors?.loginKey?.message}
+            validateStatus={errors?.loginKey ? 'error' : ''}
             prefix={<UserOutlined />}
             control={control}
           />
@@ -94,7 +95,8 @@ const SigninForm = () => {
               className="form-text-field"
               name="password"
               type={passwrodVisible ? 'text' : 'password'}
-              placeholder="كلمة المرور..."
+              placeholder="Password"
+              label="Password"
               errorMsg={errors?.password?.message}
               prefix={<LockOutlined />}
               validateStatus={errors?.password ? 'error' : ''}

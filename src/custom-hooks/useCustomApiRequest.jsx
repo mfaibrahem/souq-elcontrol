@@ -36,7 +36,8 @@ const useCustomApiRequest = () => {
         }
         errorCallback(error);
 
-        console.log('err : ', error?.response);
+        console.log('err message : ', error?.message);
+        console.log('err response : ', error?.response);
         // console.log('err req : ', error?.request);
         // console.log('err config : ', error?.config);
       }

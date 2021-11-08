@@ -367,7 +367,7 @@ body {
 }
 
 .notification__item--success {
-  background-color: lighten($main-app-color, 10%);
+  background-color: lighten($main-app-color, 14%);
   // border: 0;
   border-left-width: 5px;
   .notification__close {
@@ -378,12 +378,13 @@ body {
     &::after {
       color: $main-app-color;
       font-size: 20px;
-      top: 43%;
+      top: 45%;
     }
   }
 }
 .notification__item--danger {
-  background-color: lighten($main-app-color, 10%);
+  background-color: lighten(rgb(185, 56, 56), 10%);
+  border-radius: 5px;
   // border: 0;
   border-left-width: 5px;
   .notification__title {
@@ -397,7 +398,7 @@ body {
     &::after {
       color: #dc3545;
       font-size: 20px;
-      top: 43%;
+      top: 45%;
     }
   }
 }
