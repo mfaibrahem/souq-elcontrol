@@ -8,11 +8,11 @@ import CustomImage from '../../common/custom-image/CustomImage';
 import routerLinks from '../../components/app/routerLinks';
 import checkRes from '../../utils/checkRes';
 import images from './imagesArr';
-import './SubCategoryServiceDetailsPage.scss';
+import './ServiceDetailsPage.scss';
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-const SubCategoryServiceDetailsPage = () => {
+const ServiceDetailsPage = () => {
   const params = useParams();
   const { i18n, t } = useTranslation();
   const [isLoading, setIsLoading] = useState(false);
@@ -97,4 +97,4 @@ const SubCategoryServiceDetailsPage = () => {
   );
 };
 
-export default SubCategoryServiceDetailsPage;
+export default ServiceDetailsPage;

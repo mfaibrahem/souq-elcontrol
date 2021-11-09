@@ -2,22 +2,28 @@ const servicesRouterLinks = {
   // all categories page that contains all categories
   categoriesRoute: '/categories',
   // single category page contains sub categories
-  singleCategoryRoute: (categoryId) => {
-    if (categoryId) return `/categories/${categoryId}`;
-    return '/categories/:categoryId';
+  subCategoriesRoute: (categoryId) => {
+    if (categoryId) return `/categories/${categoryId}/sub-categories`;
+    return '/categories/:categoryId/sub-categories';
   },
-  // single sub category page contains sub category services
-  singleSubCategoryRoute: (categoryId, subCategoryId) => {
+  // single sub category page contains cars page
+  carsRoute: (categoryId, subCategoryId) => {
     if (categoryId && subCategoryId)
-      return `/categories/${categoryId}/sub-categories/${subCategoryId}/services`;
-    return '/categories/:categoryId/sub-categories/:subCategoryId/services';
+      return `/categories/${categoryId}/sub-categories/${subCategoryId}/cars`;
+    return '/categories/:categoryId/sub-categories/:subCategoryId/cars';
   },
-  // single sub category service page that contains the sub category service details
-  singleSubCategoryServiceRoute: (categoryId, subCategoryId, serviceId) => {
+  // single sub category car page that contains the sub category car => services page
+  servicesRoute: (categoryId, subCategoryId, carId) => {
     if (categoryId && subCategoryId)
-      return `/categories/${categoryId}/sub-categories/${subCategoryId}/services/${serviceId}`;
+      return `/categories/${categoryId}/sub-categories/${subCategoryId}/cars/${carId}/services`;
 
-    return '/categories/:categoryId/sub-categories/:subCategoryId/services/:serviceId';
+    return '/categories/:categoryId/sub-categories/:subCategoryId/cars/:carId/services';
+  },
+  // service details page
+  serviceDetailsRoute: (categoryId, subCategoryId, carId, serviceId) => {
+    if (categoryId && subCategoryId)
+      return `/categories/${categoryId}/sub-categories/${subCategoryId}/cars/${carId}/services/${serviceId}/details`;
+    return '/categories/:categoryId/sub-categories/:subCategoryId/cars/:carId/services/:serviceId/details';
   },
   //
   settingsPosPage: '/settings/pos',

@@ -37,26 +37,26 @@ function App() {
 
   const customApiRequest = useCustomApiRequest();
 
-  useEffect(() => {
-    let isMounted = true;
-    if (user && isMounted) {
-      customApiRequest(
-        myInfoApi(user?.token, i18n.language),
-        (res) => {
-          if (checkRes) {
-            setCurrentUser(res?.data?.data);
-          } else {
-            removeCurrentUser();
-            history.push(routerLinks.signinPage);
-          }
-        },
-        (error) => {}
-      );
-    }
-    return () => {
-      isMounted = false;
-    };
-  }, []);
+  // useEffect(() => {
+  //   let isMounted = true;
+  //   if (user && isMounted) {
+  //     customApiRequest(
+  //       myInfoApi(user?.token, i18n.language),
+  //       (res) => {
+  //         if (checkRes) {
+  //           setCurrentUser(res?.data?.data);
+  //         } else {
+  //           removeCurrentUser();
+  //           history.push(routerLinks.signinPage);
+  //         }
+  //       },
+  //       (error) => {}
+  //     );
+  //   }
+  //   return () => {
+  //     isMounted = false;
+  //   };
+  // }, []);
 
   return (
     <div className={`app app-${i18n.dir()}`}>

@@ -1,14 +1,13 @@
 import axios from 'axios';
 
-const getHomepageWorksApi = async (langIsoCode) => {
+const getAllMainCatsApi = async (mainCatId, langIsoCode) => {
   try {
-    const url = '/works';
-
+    const url = '/Service/mainCat';
     const res = await axios.get(url, {
       headers: {
         Accept: 'application/json',
-        'Content-Type': 'application/json'
-        // lang: langIsoCode
+        'Content-Type': 'application/json',
+        lang: langIsoCode
       }
     });
 
@@ -18,4 +17,4 @@ const getHomepageWorksApi = async (langIsoCode) => {
   }
 };
 
-export default getHomepageWorksApi;
+export default getAllMainCatsApi;

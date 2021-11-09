@@ -7,34 +7,8 @@ import './QuestionsSection.scss';
 import CustomImage from '../../common/custom-image/CustomImage';
 
 const { Panel } = Collapse;
-const arr = [
-  {
-    id: 1,
-    question: 'لماذا نستخدم سوق الكنترول',
-    answer:
-      'هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى'
-  },
-  {
-    id: 2,
-    question: 'لماذا نستخدم سوق الكنترول',
-    answer:
-      'هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى'
-  },
-  {
-    id: 3,
-    question: 'لماذا نستخدم سوق الكنترول',
-    answer:
-      'هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى'
-  },
-  {
-    id: 4,
-    question: 'لماذا نستخدم سوق الكنترول',
-    answer:
-      'هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى'
-  }
-];
 
-const QuestionsSection = () => {
+const QuestionsSection = ({ questions }) => {
   const { t } = useTranslation();
   const renderArr = () => {
     return (
@@ -50,17 +24,18 @@ const QuestionsSection = () => {
           />
         )}
       >
-        {arr.map((ele, index) => {
-          return (
-            <Panel
-              header={ele.question}
-              key={index + 1}
-              className="panel-wrapper"
-            >
-              <p>{ele.answer}</p>
-            </Panel>
-          );
-        })}
+        {questions?.length > 0 &&
+          questions.map((ele, index) => {
+            return ele?.question && ele?.answer ? (
+              <Panel
+                header={ele.question}
+                key={index + 1}
+                className="panel-wrapper"
+              >
+                <p>{ele.answer}</p>
+              </Panel>
+            ) : null;
+          })}
       </Collapse>
     );
   };

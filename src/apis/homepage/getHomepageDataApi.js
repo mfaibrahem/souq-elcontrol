@@ -1,14 +1,13 @@
 import axios from 'axios';
 
-const getHomepageVideoApi = async (langIsoCode) => {
+const getHomepageDataApi = async (langIsoCode) => {
   try {
-    const url = '/main-videos';
-
+    const url = '/home';
     const res = await axios.get(url, {
       headers: {
         Accept: 'application/json',
-        'Content-Type': 'application/json'
-        // lang: langIsoCode
+        'Content-Type': 'application/json',
+        lang: langIsoCode
       }
     });
 
@@ -18,4 +17,4 @@ const getHomepageVideoApi = async (langIsoCode) => {
   }
 };
 
-export default getHomepageVideoApi;
+export default getHomepageDataApi;

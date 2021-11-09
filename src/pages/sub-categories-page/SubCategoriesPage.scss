@@ -8,29 +8,5 @@
       text-align: center;
       margin-bottom: 82px;
     }
-
-    .sub-categories-ul {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(182px, 232px));
-      // grid-template-columns: repeat(3, 1fr);
-      gap: 32px 22px;
-
-      .sub-category-card {
-        background-color: #fff;
-        padding: 10px 14px;
-        border-radius: 8px;
-        .card-content {
-          display: grid;
-          justify-items: center;
-          img {
-            width: 100%;
-          }
-          .card-name {
-            margin-top: 6px;
-            font-size: 18px;
-          }
-        }
-      }
-    }
   }
 }

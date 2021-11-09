@@ -1,10 +1,11 @@
 import { useContext } from 'react';
 import { Route } from 'react-router-dom';
 import UserContext from '../../../contexts/user-context/UserProvider';
+import CarsPage from '../../../pages/cars-page/CarsPage';
 import CategoriesPage from '../../../pages/categories-page/CategoriesPage';
 import SubCategoriesPage from '../../../pages/sub-categories-page/SubCategoriesPage';
-import SubCategoryServiceDetailsPage from '../../../pages/sub-category-service-details-page/SubCategoryServiceDetailsPage';
-import SubCategoryServicesPage from '../../../pages/sub-category-services-page/SubCategoryServicesPage';
+import ServiceDetailsPage from '../../../pages/service-details-page/ServiceDetailsPage';
+import ServicesPage from '../../../pages/services-page/ServicesPage';
 // import protectMe from '../../../utils/protectMe';
 import routerLinks from '../routerLinks';
 
@@ -14,19 +15,22 @@ const ServicesRoutes = () => {
     <Route exact path={routerLinks.categoriesRoute} key={1}>
       <CategoriesPage />
     </Route>,
-    <Route exact path={routerLinks.singleCategoryRoute()} key={2}>
+    <Route exact path={routerLinks.subCategoriesRoute()} key={2}>
       <SubCategoriesPage />
     </Route>,
-    <Route exact path={routerLinks.singleSubCategoryRoute()} key={3}>
-      <SubCategoryServicesPage />
+    <Route exact path={routerLinks.carsRoute()} key={3}>
+      <CarsPage />
     </Route>,
-    <Route exact path={routerLinks.singleSubCategoryServiceRoute()} key={4}>
-      <SubCategoryServiceDetailsPage />
+    <Route exact path={routerLinks.servicesRoute()} key={4}>
+      <ServicesPage />
+    </Route>,
+    <Route exact path={routerLinks.serviceDetailsRoute()} key={5}>
+      <ServiceDetailsPage />
     </Route>
 
     // protectMe(
-    //   routerLinks.singleSubCategoryServiceRoute(),
-    //   <SubCategoryServiceDetailsPage />,
+    //   routerLinks.serviceDetailsRoute(),
+    //   <ServiceDetailsPage />,
     //   4,
     //   routerLinks.signinPage,
     //   loggedIn

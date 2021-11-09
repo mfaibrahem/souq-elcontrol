@@ -2,16 +2,20 @@ import React from 'react';
 import { Link as RouterLink, useParams } from 'react-router-dom';
 import CustomImage from '../../common/custom-image/CustomImage';
 import routerLinks from '../../components/app/routerLinks';
-import './SubCategoriesCard.scss';
+import './CarCard.scss';
 
-const SubCategoriesCard = (props) => {
+const CarCard = (props) => {
   const params = useParams();
   console.log('params : ', params);
   return (
-    <li className="sub-category-card">
+    <li className="car-card">
       <RouterLink
         className="card-content"
-        to={routerLinks?.singleSubCategoryRoute(params?.categoryId, props?.id)}
+        to={routerLinks?.servicesRoute(
+          params.categoryId,
+          params?.subCategoryId,
+          props?.id
+        )}
       >
         <CustomImage src={props?.image} />
         {props?.name && <div className="card-name">{props?.name}</div>}
@@ -20,4 +24,4 @@ const SubCategoriesCard = (props) => {
   );
 };
 
-export default SubCategoriesCard;
+export default CarCard;

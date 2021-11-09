@@ -8,7 +8,7 @@ import routerLinks from '../../components/app/routerLinks';
 import checkRes from '../../utils/checkRes';
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-const SubCategoryServicesPage = () => {
+const ServicesPage = () => {
   const params = useParams();
   const { i18n, t } = useTranslation();
   const [isLoading, setIsLoading] = useState(false);
@@ -88,9 +88,10 @@ const SubCategoryServicesPage = () => {
             return (
               <li key={ele?.id}>
                 <RouterLink
-                  to={routerLinks?.singleSubCategoryServiceRoute(
+                  to={routerLinks?.serviceDetailsRoute(
                     params?.categoryId,
                     params?.subCategoryId,
+                    params?.carId,
                     ele.id
                   )}
                 >
@@ -124,4 +125,4 @@ const SubCategoryServicesPage = () => {
   );
 };
 
-export default SubCategoryServicesPage;
+export default ServicesPage;
