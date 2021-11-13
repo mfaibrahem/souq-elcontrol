@@ -1,6 +1,4 @@
-import { useContext } from 'react';
 import { Route } from 'react-router-dom';
-import UserContext from '../../../contexts/user-context/UserProvider';
 import CarsPage from '../../../pages/cars-page/CarsPage';
 import CategoriesPage from '../../../pages/categories-page/CategoriesPage';
 import SubCategoriesPage from '../../../pages/sub-categories-page/SubCategoriesPage';
@@ -8,6 +6,8 @@ import ServiceDetailsPage from '../../../pages/service-details-page/ServiceDetai
 import ServicesPage from '../../../pages/services-page/ServicesPage';
 // import protectMe from '../../../utils/protectMe';
 import routerLinks from '../routerLinks';
+import MakeOrderPage from '../../../pages/make-order-page/MakeOrderPage';
+import { OrdersProvider } from '../../../contexts/orders-context/OrdersContext';
 
 const ServicesRoutes = () => {
   // const { loggedIn } = useContext(UserContext);
@@ -26,6 +26,12 @@ const ServicesRoutes = () => {
     </Route>,
     <Route exact path={routerLinks.serviceDetailsRoute()} key={5}>
       <ServiceDetailsPage />
+    </Route>,
+
+    <Route exact path={routerLinks.serviceMakeOrderRoute()} key={6}>
+      <OrdersProvider>
+        <MakeOrderPage />
+      </OrdersProvider>
     </Route>
 
     // protectMe(

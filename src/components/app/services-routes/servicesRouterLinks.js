@@ -21,28 +21,16 @@ const servicesRouterLinks = {
   },
   // service details page
   serviceDetailsRoute: (categoryId, subCategoryId, carId, serviceId) => {
-    if (categoryId && subCategoryId)
+    if (categoryId && subCategoryId && carId && serviceId)
       return `/categories/${categoryId}/sub-categories/${subCategoryId}/cars/${carId}/services/${serviceId}/details`;
     return '/categories/:categoryId/sub-categories/:subCategoryId/cars/:carId/services/:serviceId/details';
   },
   //
-  settingsPosPage: '/settings/pos',
-  settingsMeasureUnitsPage: '/settings/measure-units',
-  settingsWarehousesPage: '/settings/warehouses',
-  settingsWarehousesDetailsPage: (id) => {
-    if (id) return `/settings/warehouses/${id}`;
-    return '/settings/warehouses/:id';
-  },
-  settingsCategoriesPage: '/settings/categories',
-  settingsSubCategoriesPage: (catId) => {
-    if (catId) {
-      return `/settings/categories/${catId}`;
-    }
-    return `/settings/categories/:catId`;
-  },
-  systemSettingsPage: '/settings/system-settings',
-  systemUsersPage: '/settings/system-users',
-  systemHelpPage: '/settings/help'
+  serviceMakeOrderRoute: (categoryId, subCategoryId, carId, serviceId) => {
+    if (categoryId && subCategoryId)
+      return `/categories/${categoryId}/sub-categories/${subCategoryId}/cars/${carId}/services/${serviceId}/make-order`;
+    return '/categories/:categoryId/sub-categories/:subCategoryId/cars/:carId/services/:serviceId/make-order';
+  }
 };
 
 export default servicesRouterLinks;

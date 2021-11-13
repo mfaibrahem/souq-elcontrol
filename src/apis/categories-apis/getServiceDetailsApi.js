@@ -1,8 +1,10 @@
 import axios from 'axios';
 
-const getAllMainCatsApi = async (langIsoCode) => {
+const getServiceDetailsApi = async (serviceId, langIsoCode) => {
   try {
-    const url = '/Service/mainCat';
+    const url = `/Service/singleService?service_id=${
+      serviceId ? serviceId : ''
+    }`;
     const res = await axios.get(url, {
       headers: {
         Accept: 'application/json',
@@ -17,4 +19,4 @@ const getAllMainCatsApi = async (langIsoCode) => {
   }
 };
 
-export default getAllMainCatsApi;
+export default getServiceDetailsApi;

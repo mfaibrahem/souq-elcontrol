@@ -108,6 +108,9 @@
   "breadcrumb_section": {
     "home": "الرئيسية",
     "categories": "الأقســام",
+    "cars": "إختار نوع السيارة",
+    "services": "الخدمـــات",
+    "makeOrder": "عمــل طلب",
     "signup": "إنشاء حساب جديد",
     "signin": "تسجيل الدخول"
   },

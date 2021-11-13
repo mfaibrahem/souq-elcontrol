@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { Empty, Spin } from 'antd';
 import { useParams } from 'react-router-dom';
 import parse from 'html-react-parser';
-import ImageGallery from 'react-image-gallery';
 import CustomImage from '../../common/custom-image/CustomImage';
 import routerLinks from '../../components/app/routerLinks';
 import CustomBreadcrubm from '../../common/bread-crumb/Breadcrubm';
@@ -11,38 +10,22 @@ import useServiceDetails from '../../custom-hooks/useServiceDetails';
 import infoImg from '../../assets/imgs/icons/info.png';
 import techSuppImg from '../../assets/imgs/icons/technical-support.png';
 import moneyImg from '../../assets/imgs/icons/money.png';
-import commentImg from '../../assets/imgs/icons/comment.png';
 import { Link as RouterLink } from 'react-router-dom';
-import './ServiceDetailsPage.scss';
+import './MakeOrderPage.scss';
+import MakeOrderForm from './MakeOrderForm';
 
 // const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-const ServiceDetailsPage = () => {
+const MakeOrderPage = () => {
   const params = useParams();
   const { t } = useTranslation();
   const { isLoadingServiceDetails, fetchedServiceDetails } =
     useServiceDetails();
 
-  const renderGalleryImages = () => {
-    fetchedServiceDetails.service.images.map((img) => {
-      return {
-        original: img?.image,
-        thumbnail: img?.image
-      };
-    });
-  };
-
   const renderStoreDetails = (obj) => {
     return (
       <div className="store-details-wrap">
-        {obj?.name && (
-          <div className="store-name">
-            <div className="icon-wrap">
-              <CustomImage src={techSuppImg} />
-            </div>
-            <p>{obj.name}</p>
-          </div>
-        )}
+        {obj?.name && <p className="store-name">{obj.name}</p>}
       </div>
     );
   };
@@ -52,12 +35,7 @@ const ServiceDetailsPage = () => {
       <div className="instructions-price-wrap">
         {obj?.instructions && (
           <div className="instructions-wrap">
-            <div className="wrap-title">
-              <div className="icon-wrap">
-                <CustomImage src={infoImg} />
-              </div>
-              <p>الإرشادات</p>
-            </div>
+            <p className="instructions-title">الإرشادات</p>
             <div className="instructions-details">
               {parse(obj.instructions)}
             </div>
@@ -66,12 +44,7 @@ const ServiceDetailsPage = () => {
 
         {obj.price && (
           <div className="price-wrap">
-            <div className="wrap-title">
-              <div className="icon-wrap">
-                <CustomImage src={moneyImg} />
-              </div>
-              <p>سعر الخدمة</p>
-            </div>
+            <p className="price-title">سعر الخدمة</p>
             <div className="price-itself">{obj.price} ريـــال</div>
           </div>
         )}
@@ -97,7 +70,7 @@ const ServiceDetailsPage = () => {
   if (!fetchedServiceDetails) return <Empty description="No service found" />;
 
   return (
-    <div className="shared-custom-page service-details-page">
+    <div className="shared-custom-page make-order-page">
       <CustomBreadcrubm
         arr={[
           {
@@ -134,50 +107,40 @@ const ServiceDetailsPage = () => {
           },
           {
             title: fetchedServiceDetails?.service?.name,
+            isLink: true,
+            to: routerLinks?.serviceDetailsRoute(
+              params?.categoryId,
+              params?.subCategoryId,
+              params?.carId,
+              params?.serviceId
+            )
+          },
+          {
+            title: t('breadcrumb_section.makeOrder'),
             isLink: false
           }
         ]}
       />
 
       <div className="custom-container">
-        <section className="service-details-section">
-          <div className="gallery-details-wrap">
-            <div className="gallery-wrap">
-              {fetchedServiceDetails?.service?.images?.length > 0 ? (
-                <ImageGallery
-                  items={
-                    fetchedServiceDetails?.service?.images?.length > 0
-                      ? renderGalleryImages()
-                      : []
-                  }
-                />
-              ) : (
-                <CustomImage
-                  className="service-details-fallback-img"
-                  src={fetchedServiceDetails?.service?.image}
-                />
-              )}
-            </div>
-            <div className="details-wrap">
+        <section className="make-order-section">
+          <div
+            className="brief-wrap"
+            style={{
+              backgroundImage: `url(${fetchedServiceDetails?.service?.image})`
+            }}
+          >
+            <div className="brief-overlay"></div>
+
+            <div className="brief-content">
               {fetchedServiceDetails?.service?.store &&
                 renderStoreDetails(fetchedServiceDetails.service.store)}
               {fetchedServiceDetails?.service &&
                 renderInstructions(fetchedServiceDetails.service)}
-
-              {fetchedServiceDetails?.service?.price && (
-                <RouterLink
-                  className="make-order-link"
-                  to={routerLinks?.serviceMakeOrderRoute(
-                    params?.categoryId,
-                    params?.subCategoryId,
-                    params?.carId,
-                    fetchedServiceDetails?.service?.id
-                  )}
-                >
-                  إدفـــع
-                </RouterLink>
-              )}
             </div>
+          </div>
+          <div className="make-order-form-wrap">
+            <MakeOrderForm />
           </div>
         </section>
       </div>
@@ -185,4 +148,4 @@ const ServiceDetailsPage = () => {
   );
 };
 
-export default ServiceDetailsPage;
+export default MakeOrderPage;

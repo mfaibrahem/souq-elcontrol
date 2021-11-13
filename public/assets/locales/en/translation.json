@@ -108,6 +108,9 @@
   "breadcrumb_section": {
     "home": "Home",
     "categories": "Categories",
+    "cars": "Choose Car Make",
+    "services": "Services",
+    "makeOrder": "Make Order",
     "signup": "Register new account",
     "signin": "Sign in"
   },

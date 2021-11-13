@@ -1,7 +1,8 @@
 @import '../../scss/config';
 
 .breadcrumb-section {
-  margin-top: 32px;
+  // margin-top: 32px;
+  padding-top: 32px;
   .breadcrumb-content {
     min-height: 182px;
     background-size: cover;
@@ -32,7 +33,7 @@
       width: 100%;
       height: 100%;
       background-color: $main-app-color;
-      opacity: 0.6;
+      opacity: 0.86;
       background-blend-mode: multiply;
     }
   }

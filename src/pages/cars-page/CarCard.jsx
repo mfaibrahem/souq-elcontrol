@@ -17,7 +17,9 @@ const CarCard = (props) => {
           props?.id
         )}
       >
-        <CustomImage src={props?.image} />
+        <div className="img-wrap">
+          <CustomImage src={props?.image} />
+        </div>
         {props?.name && <div className="card-name">{props?.name}</div>}
       </RouterLink>
     </li>

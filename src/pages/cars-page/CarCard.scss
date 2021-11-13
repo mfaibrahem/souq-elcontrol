@@ -1,3 +1,23 @@
 .car-card {
-  background-color: moccasin;
+  display: grid;
+
+  .card-content {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    .img-wrap {
+      padding: 18px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 0 12px rgba(#000, 0.1);
+    }
+  }
+
+  img {
+    max-width: 100%;
+  }
+  .card-name {
+    text-align: center;
+    margin-top: 8px;
+  }
 }

@@ -1,71 +1,26 @@
-import { Spin } from 'antd';
-import React, { useState } from 'react';
+import React from 'react';
+import { Empty, Spin, Pagination } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { Link as RouterLink, useParams } from 'react-router-dom';
-import sImg from '../../assets/imgs/services/service-img.jpg';
 import CustomImage from '../../common/custom-image/CustomImage';
 import routerLinks from '../../components/app/routerLinks';
-import checkRes from '../../utils/checkRes';
+import useServices from '../../custom-hooks/useServices';
+import CustomBreadcrubm from '../../common/bread-crumb/Breadcrubm';
+import { useHistory } from 'react-router-dom';
+import './ServicesPage.scss';
 
-const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const ServicesPage = () => {
   const params = useParams();
-  const { i18n, t } = useTranslation();
-  const [isLoading, setIsLoading] = useState(false);
-  const [fetchedData, setFetchedData] = useState([]);
-
-  React.useEffect(() => {
-    let isMounted = true;
-    const fetchData = async () => {
-      try {
-        setIsLoading(true);
-        let res;
-        await sleep(1000);
-        setFetchedData([
-          {
-            id: 1,
-            image: sImg,
-            name: ' كنترول 8.9.MEDG17 Bايمو اوف كيا سبورتاح 2019',
-            price: 250
-          },
-          {
-            id: 2,
-            image: sImg,
-            name: ' كنترول 8.9.MEDG17 Bايمو اوف كيا سبورتاح 2019',
-            price: 250
-          },
-          {
-            id: 3,
-            image: sImg,
-            name: ' كنترول 8.9.MEDG17 Bايمو اوف كيا سبورتاح 2019',
-            price: 250
-          }
-        ]);
-        if (isMounted) {
-          // is response is success
-          if (checkRes(res)) {
-            const data = res.data?.data;
-            if (data) setFetchedData(data);
-            setIsLoading(false);
-          } else {
-            setIsLoading(false);
-          }
-        }
-      } catch (error) {
-        setIsLoading(false);
-        console.log(error);
-      }
-    };
-
-    fetchData();
-
-    return () => {
-      isMounted = false;
-    };
-  }, [i18n.language]);
-
+  const history = useHistory();
+  const { t } = useTranslation();
+  const {
+    iseLoadingServices,
+    allFetchedServices,
+    setFetchServicesCount,
+    servicesPagination
+  } = useServices();
   const renderPageUl = () => {
-    if (isLoading) {
+    if (iseLoadingServices) {
       return (
         <div
           style={{
@@ -80,46 +35,104 @@ const ServicesPage = () => {
       );
     }
 
-    if (fetchedData?.length === 0) return 'No found categories';
-    else if (fetchedData?.length > 0) {
+    if (allFetchedServices?.services?.data?.length === 0)
+      return <Empty description="No Services found" />;
+    else if (allFetchedServices?.services?.data?.length > 0) {
       return (
-        <ul className="sub-category-services-ul">
-          {fetchedData.map((ele) => {
-            return (
-              <li key={ele?.id}>
-                <RouterLink
-                  to={routerLinks?.serviceDetailsRoute(
+        <>
+          <ul className="services-ul">
+            {allFetchedServices.services.data.map((ele) => {
+              return (
+                <li key={ele?.id}>
+                  <RouterLink
+                    to={routerLinks?.serviceDetailsRoute(
+                      params?.categoryId,
+                      params?.subCategoryId,
+                      params?.carId,
+                      ele.id
+                    )}
+                  >
+                    <div className="card-content">
+                      <div className="card-img">
+                        <CustomImage src={ele?.image} />
+                      </div>
+                      <div className="card-data">
+                        <div className="card-name">{ele?.name}</div>
+                        {ele?.price ? (
+                          <div className="card-price">
+                            <span>سعر الخدمة : </span>
+                            <span className="price-span">{ele?.price}</span>
+                            <span>ريـــال</span>
+                          </div>
+                        ) : null}
+                      </div>
+                    </div>
+                  </RouterLink>
+                </li>
+              );
+            })}
+          </ul>
+
+          {servicesPagination && (
+            <Pagination
+              defaultCurrent={1}
+              // current={ordersPagination.current_page}
+              pageSize={servicesPagination?.per_page}
+              total={servicesPagination?.total}
+              // itemRender={itemRender}
+              onChange={(page, pageSize) => {
+                setFetchServicesCount((prev) => prev + 1);
+                history.push(
+                  `${routerLinks.servicesRoute(
                     params?.categoryId,
                     params?.subCategoryId,
-                    params?.carId,
-                    ele.id
-                  )}
-                >
-                  <div className="card-content">
-                    <div className="card-img">
-                      <CustomImage src={ele?.image} />
-                    </div>
-                    <div className="card-data">
-                      <div className="card-name">{ele?.name}</div>
-                      <div className="card-price">{ele?.price}</div>
-                    </div>
-                  </div>
-                </RouterLink>
-              </li>
-            );
-          })}
-        </ul>
+                    params?.carId
+                  )}?page=${page}`
+                );
+              }}
+              hideOnSinglePage={true}
+            />
+          )}
+        </>
       );
     }
   };
 
   return (
-    <div className="shared-custom-page sub-categories-page">
-      <section className="sub-categories-section">
-        <div className="custom-container">
-          <p className="main-title">{t('categories_section.main_title')}</p>
-          {renderPageUl()}
-        </div>
+    <div className="shared-custom-page services-page">
+      <CustomBreadcrubm
+        arr={[
+          {
+            title: t('breadcrumb_section.home'),
+            isLink: true,
+            to: routerLinks.homePage
+          },
+          {
+            title: t('breadcrumb_section.categories'),
+            isLink: true,
+            to: routerLinks?.categoriesRoute
+          },
+          {
+            title: allFetchedServices?.mainCat?.name,
+            isLink: true,
+            to: routerLinks?.subCategoriesRoute(params?.categoryId)
+          },
+          {
+            title: allFetchedServices?.car?.name,
+            isLink: true,
+            to: routerLinks?.carsRoute(
+              params?.categoryId,
+              params?.subCategoryId
+            )
+          },
+          {
+            title: t('breadcrumb_section.services'),
+            isLink: false
+          }
+        ]}
+      />
+      <section className="cards-section">
+        <div className="custom-container">{renderPageUl()}</div>
       </section>
     </div>
   );

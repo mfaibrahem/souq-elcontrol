@@ -1,0 +1,75 @@
+@import '../../scss/config';
+
+.make-order-page {
+  .make-order-section {
+    margin-top: 42px;
+    display: grid;
+    grid-template-columns: 40% 1fr;
+    gap: 22px;
+
+    .brief-wrap {
+      background-size: 90%;
+      background-position: center center;
+      background-repeat: no-repeat;
+      position: relative;
+      padding: 28px 32px;
+      border-radius: 12px;
+      overflow: hidden;
+      min-height: 432px;
+      .brief-overlay {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(#f2f2f2, 0.7);
+      }
+      .brief-content {
+        z-index: 1;
+        position: relative;
+        .store-name {
+          color: $main-app-color;
+          font-size: 22px;
+          font-weight: bold;
+          text-transform: uppercase;
+        }
+
+        .price-wrap {
+          margin-top: 22px;
+          .price-title {
+            color: $main-app-color;
+            font-size: 18px;
+            font-weight: bold;
+          }
+          .price-itself {
+            font-size: 20px;
+            font-weight: bold;
+            color: #9a9a9a;
+            margin-right: 12px;
+          }
+        }
+      }
+    }
+    .make-order-form-wrap {
+      background-color: #fff;
+      padding: 18px 22px;
+      border-radius: 12px;
+    }
+  }
+
+  .instructions-details {
+    margin-top: 22px;
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 42px;
+    ul {
+      list-style-type: disc;
+      padding-right: 22px;
+      margin-top: 8px;
+    }
+    p {
+      margin-top: 12px;
+      font-size: 18px;
+    }
+  }
+}

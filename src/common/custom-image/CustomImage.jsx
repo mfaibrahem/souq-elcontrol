@@ -6,7 +6,12 @@ import './CustomImage.scss';
 
 const CustomImage = ({ className, src = '', alt = 'alt' }) => {
   const status = useValidateImageURL(src);
+  const [didMount, setDidMount] = React.useState(false);
 
+  React.useEffect(() => {
+    setDidMount(true);
+    return () => setDidMount(false);
+  }, []);
   const renderImg = () => {
     // if (status === 'progress') return <DefaultSvgIcon />;
     // if (status === 'invalid') return <DefaultSvgIcon />;
@@ -25,6 +30,10 @@ const CustomImage = ({ className, src = '', alt = 'alt' }) => {
     else if (status === 'valid') return <img src={src} alt={alt} />;
     return null;
   };
+
+  if (!didMount) {
+    return null;
+  }
 
   return renderImg();
 };
