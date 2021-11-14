@@ -10,16 +10,16 @@ import errorNotification from '../../utils/errorNotification';
 import checkRes from '../../utils/checkRes';
 import AntdTextField from '../../common/antd-form-components/AntdTextField';
 import CustomMap from '../../components/custom-map/CustomMap';
-import './MakeOrderForm.scss';
 import { useTranslation } from 'react-i18next';
 import makeOrderApi from '../../apis/orders-apis/makeOrderApi';
 import OrdersContext from '../../contexts/orders-context/OrdersContext';
-import makeOrderSchema from './makeOrderSchema';
 import { useParams } from 'react-router-dom';
 import useCustomApiRequest from '../../custom-hooks/useCustomApiRequest';
 import AntdRadioGroup from '../../common/antd-form-components/AntdRadioGroup';
+import './StartSellingForm.scss';
+import startSellingSchema from './startSellingSchema';
 
-const MakeOrderForm = () => {
+const StartSellingForm = () => {
   // const [urls, setUrls] = React.useState([]);
   const params = useParams();
   const { user } = useContext(UserContext);
@@ -35,7 +35,7 @@ const MakeOrderForm = () => {
     isSubmittingOrder,
     setFetchCount
   } = useContext(OrdersContext);
-  const schema = makeOrderSchema(t);
+  const schema = startSellingSchema(t);
   const {
     control,
     handleSubmit,
@@ -208,4 +208,4 @@ const MakeOrderForm = () => {
   );
 };
 
-export default MakeOrderForm;
+export default StartSellingForm;

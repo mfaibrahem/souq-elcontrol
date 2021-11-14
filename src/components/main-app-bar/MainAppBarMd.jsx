@@ -28,11 +28,7 @@ const MainAppBarMd = ({ className }) => {
           <li key={id} onClick={onClose}>
             <NavLink
               activeClassName="active-link"
-              className={`nav-link ${
-                slugify(pathname).includes('blogs') && id === 6
-                  ? 'active-link'
-                  : ''
-              }`}
+              className={`nav-link`}
               to={link}
               exact
             >

@@ -8,23 +8,11 @@ const routerLinks = {
   signupPage: '/signup',
   profilePage: '/profile',
   ////////////////////////////
-
   ...servicesRouterLinks,
   ////////////////////////////
-
-  freeConsultationPage: '/free-consultation',
-  ////////////////////////////
-  realestateInvestementPage: '/real-estate-investment',
-  realestateDetailsPage: (id) =>
-    id ? `/real-estate-investment/${id}` : '/real-estate-investment/:id',
-  ////////////////////////////
-  clientsListPage: '/our-clients-list',
+  startSellingRoute: '/start-selling',
   ////////////////////////////////
-  contactPage: '/contact-us',
-  ////////////////////////////
-  blogsPage: (id) => (id ? `/blogs/${id}` : '/blogs/:id'),
-  ////////////////////////////////
-  articlesPage: (id) => (id ? `/articles/${id}` : '/articles/:id'),
+  aboutUsRoute: '/about-us',
   ////////////////////////////////
   notFound: '/not-found'
   //////////////////////////////

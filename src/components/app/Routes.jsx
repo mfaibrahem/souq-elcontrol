@@ -2,9 +2,12 @@ import React, { lazy, useContext } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { ForgetPasswordProvider } from '../../contexts/forget-password-context/ForgetPasswordContext';
 import UserContext from '../../contexts/user-context/UserProvider';
+import AboutUsPage from '../../pages/aboutus-page/AboutUsPage';
 import NotFoundPage from '../../pages/not-found-page/NotFoundPage';
 import SigninPage from '../../pages/signin-page/SigninPage';
 import SignupPage from '../../pages/signup-page/SignupPage';
+import StartSellingForm from '../../pages/start-selling-page/StartSellingForm';
+import StartSellingPage from '../../pages/start-selling-page/StartSellingPage';
 import routerLinks from './routerLinks';
 import ServicesRoutes from './services-routes/ServicesRoutes';
 const HomePage = lazy(() => import('../../pages/home-page/HomePage'));
@@ -31,6 +34,13 @@ const Routes = () => {
       </Route>
 
       {ServicesRoutes()}
+
+      <Route exact path={routerLinks?.startSellingRoute}>
+        <StartSellingPage />
+      </Route>
+      <Route exact path={routerLinks?.aboutUsRoute}>
+        <AboutUsPage />
+      </Route>
 
       <Route path="*" component={NotFoundPage} />
     </Switch>

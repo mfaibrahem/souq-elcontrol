@@ -12,20 +12,16 @@ const mainAppBarLinks = (t) => [
     link: routerLinks.categoriesRoute
   },
   {
-    id: 3,
-    name: t('main_app_bar_links.myOrders'),
-    link: routerLinks.realestateInvestementPage
+    id: 4,
+    name: t('main_app_bar_links.startSelling'),
+    link: routerLinks.startSellingRoute
   },
   {
     id: 5,
-    name: t('main_app_bar_links.startSelling'),
-    link: routerLinks.contactPage
-  },
-  {
-    id: 6,
     name: t('main_app_bar_links.aboutUs'),
-    link: routerLinks.blogsPage()
+    link: routerLinks.aboutUsRoute
   }
+
   // {
   //   id: 7,
   //   name: t('main_app_bar_links.real_states'),

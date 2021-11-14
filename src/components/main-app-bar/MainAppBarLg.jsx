@@ -23,16 +23,7 @@ const MainAppBarLg = ({ className, exceeds0 }) => {
       <ul>
         {mainAppBarLinks(t).map(({ id, name, link }) => (
           <li key={id}>
-            <NavLink
-              activeClassName={`active-link`}
-              className={
-                slugify(pathname).includes('blogs') && id === 6
-                  ? 'active-link'
-                  : ''
-              }
-              to={link}
-              exact
-            >
+            <NavLink activeClassName={`active-link`} to={link} exact>
               <span>{name}</span>
               <div className="active-img-wrap"></div>
             </NavLink>
