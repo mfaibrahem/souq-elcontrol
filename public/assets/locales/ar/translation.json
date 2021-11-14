@@ -67,6 +67,37 @@
       "loading": "جارى الدخول.."
     }
   },
+  "make_order_form": {
+    "address": {
+      "label": "العنوان",
+      "errors": {
+        "required": "من فضلك أدخل العنوان"
+      }
+    },
+    "city": {
+      "label": "المدينة",
+      "errors": {
+        "required": "من فضلك أدخل المدينة"
+      }
+    },
+    "area": {
+      "label": "الحي",
+      "errors": {
+        "required": "من فضلك أدخل الحي"
+      }
+    },
+    "payment_method": {
+      "label": "طريقة الدفع",
+      "errors": {
+        "required": "من فضلك إختار طريقة الدفع"
+      }
+    },
+    "cash": "كـــاش",
+    "visa": "إلكترونى",
+    "submit_btn": {
+      "label": "تأكيد الطلب"
+    }
+  },
   "main_app_search": {
     "placeholder": "إبحث عن خدمتك..."
   },

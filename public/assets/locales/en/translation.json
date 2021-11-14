@@ -67,6 +67,37 @@
       "loading": "Logging in.."
     }
   },
+  "make_order_form": {
+    "address": {
+      "label": "Address",
+      "errors": {
+        "required": "Enter your phone number"
+      }
+    },
+    "city": {
+      "label": "City",
+      "errors": {
+        "required": "Please enter your city"
+      }
+    },
+    "area": {
+      "label": "Area",
+      "errors": {
+        "required": "Please enter your area"
+      }
+    },
+    "payment_method": {
+      "label": "Payment Method",
+      "errors": {
+        "required": "Enter the payment method"
+      }
+    },
+    "cash": "Cash",
+    "visa": "Visa",
+    "submit_btn": {
+      "label": "Confirm Order"
+    }
+  },
   "main_app_search": {
     "placeholder": "Search for your service..."
   },

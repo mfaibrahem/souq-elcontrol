@@ -1,34 +1,19 @@
 import * as Yup from 'yup';
 
-const schema = Yup.object().shape({
-  name: Yup.string().required('ادخل اسم المندوب'),
-  email: Yup.string()
-    .required('من فضلك ادخل البريد الاكترونى')
-    .email('ادخل بريد الكترونى صحيح'),
-  phone: Yup.string()
-    .required('ادخل رقم الهاتف')
-    .matches(/^[0-9]+$/, 'لا يسمح الا بكتابة الارقام')
-    .min(10, 'اقل حد 10 ارقام'),
-  password: Yup.string()
-    .min(6, 'كلمة المرور لا تقل عن 6 حروف')
-    .required('من فضلك ادخل كلمة المرور'),
-  confirm_password: Yup.string()
-    .required('اعد كلمة المرور')
-    .oneOf([Yup.ref('password')], 'كلمة المرور غير مطابقة'),
-  nationality: Yup.string().required('أدخل الجنسية'),
-  identity_number: Yup.string()
-    .required('أدخل رقم الهوية')
-    .matches(/^[0-9]+$/, 'لا يسمح الا بكتابة الارقام')
-    .min(10, 'كلمة المرور لا تقل عن 10 حروف'),
-  address: Yup.string().required('ادخل العنوان'),
-  driving_image: Yup.mixed().required('ادخل صورة القيادة'),
-  vehicle_images: Yup.mixed().required('أدخل صورة المركبة'),
-  vehicle_registration: Yup.mixed().required('أدخل صورة استمارة المركبة'),
-  vehicle_tablet_image: Yup.mixed().required('أدخل صورة لوحة المركبة')
-});
+const schema = (t) =>
+  Yup.object().shape({
+    address: Yup.string().required(
+      t('make_order_form.address.errors.required')
+    ),
+    city: Yup.string().required(t('make_order_form.city.errors.required')),
+    area: Yup.string().required(t('make_order_form.area.errors.required')),
+    paymentMethod: Yup.string().required(
+      t('make_order_form.payment_method.errors.required')
+    )
+  });
 
-const makeOrderSchema = () => {
-  return schema;
+const makeOrderSchema = (t) => {
+  return schema(t);
 };
 
 export default makeOrderSchema;

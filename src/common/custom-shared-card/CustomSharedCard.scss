@@ -2,7 +2,7 @@
 
 .main-app-custom-shared-card {
   background-color: lighten($main-app-color, 44%);
-  border: 1px solid lighten($main-app-color, 30%);
+  border: 1px dashed lighten($main-app-color, 30%);
   display: grid;
   height: calc(100% - 32px);
   border-radius: 8px;
@@ -18,7 +18,7 @@
       border-radius: 14px;
       object-fit: cover;
       object-position: center;
-      box-shadow: 0 12px 14px rgba(#000, 0.1);
+      box-shadow: 0 0 8px rgba(#000, 0.1);
       @include mediaXlg {
         height: 252px;
       }

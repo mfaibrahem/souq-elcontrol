@@ -23,7 +23,7 @@ const MakeOrderForm = () => {
   // const [urls, setUrls] = React.useState([]);
   const params = useParams();
   const { user } = useContext(UserContext);
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
   const [selectedLocation, setSelecectedLocation] = React.useState({
     lat: '',
     lng: ''
@@ -35,12 +35,12 @@ const MakeOrderForm = () => {
     isSubmittingOrder,
     setFetchCount
   } = useContext(OrdersContext);
-  const schema = makeOrderSchema();
+  const schema = makeOrderSchema(t);
   const {
     control,
     handleSubmit,
     watch,
-    formState: { errors, isSubmitting }
+    formState: { errors }
   } = useForm({
     resolver: yupResolver(schema),
     mode: 'all',
@@ -116,13 +116,13 @@ const MakeOrderForm = () => {
     >
       <div className="form-body">
         <div className="text-field-label-wrap">
-          <p className="label-p">Address</p>
+          <p className="label-p">{t('make_order_form.address.label')}</p>
           <div className="text-field-wrap">
             <AntdTextField
               className="form-text-field"
               name="address"
               type="text"
-              placeholder="Address..."
+              placeholder={t('make_order_form.address.label')}
               errorMsg={errors?.address?.message}
               validateStatus={errors?.address ? 'error' : ''}
               control={control}
@@ -130,13 +130,13 @@ const MakeOrderForm = () => {
           </div>
         </div>
         <div className="text-field-label-wrap">
-          <p className="label-p">City</p>
+          <p className="label-p">{t('make_order_form.city.label')}</p>
           <div className="text-field-wrap">
             <AntdTextField
               className="form-text-field"
               name="city"
               type="text"
-              placeholder="City ..."
+              placeholder={t('make_order_form.city.label')}
               errorMsg={errors?.city?.message}
               validateStatus={errors?.city ? 'error' : ''}
               control={control}
@@ -145,13 +145,13 @@ const MakeOrderForm = () => {
         </div>
 
         <div className="text-field-label-wrap">
-          <p className="label-p">Area</p>
+          <p className="label-p">{t('make_order_form.area.label')}</p>
           <div className="text-field-wrap">
             <AntdTextField
               className="form-text-field"
               name="area"
               type="text"
-              placeholder="Area..."
+              placeholder={t('make_order_form.area.label')}
               errorMsg={errors?.area?.message}
               validateStatus={errors?.area ? 'error' : ''}
               control={control}
@@ -163,16 +163,16 @@ const MakeOrderForm = () => {
           name="details_type"
           className="form-radio-group"
           control={control}
-          label="Payment Method"
+          label={t('make_order_form.payment_method.label')}
           validateStatus={errors?.details_type ? 'error' : ''}
           errorMsg={errors?.details_type?.message}
           radios={[
             {
-              title: 'Cash',
+              title: t('make_order_form.cash'),
               value: '1'
             },
             {
-              title: 'Visa',
+              title: t('make_order_form.visa'),
               value: '2'
             }
           ]}
@@ -198,9 +198,9 @@ const MakeOrderForm = () => {
           htmlType="submit"
           type="primary"
           // icon={<LoginOutlined />}
-          loading={isSubmitting}
+          loading={isSubmittingOrder}
         >
-          إضافة
+          {t('make_order_form.submit_btn.label')}
         </Button>
       </div>
     </Form>
