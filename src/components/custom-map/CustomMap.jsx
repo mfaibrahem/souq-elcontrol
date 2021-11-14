@@ -78,16 +78,12 @@ const CustomMap = (props) => {
 
   const { isLoaded, loadError } = useLoadScript({
     id: 'google-map-script',
-    // googleMapsApiKey: "AIzaSyDJUCAx7iYOa-BICreoXivNcuaNfbzlTW4",
-    // googleMapsApiKey: "AIzaSyBENexJcroAZUzqkP9rXiIE-2hiqa36wC0",
-    // googleMapsApiKey: process.env.REACT_APP_GOOGLE_KEY,
-    // googleMapsApiKey: 'AIzaSyA0nIvc0-ZiHFjyxMQwA_9kg4hw3JlSO54',
-    googleMapsApiKey: 'AIzaSyA0nIvc0-ZiHFjyxMQwA_9kg4hw3JlSO541',
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
     libraries,
     language: 'ar'
   });
   useEffect(() => {
-    Geocode.setApiKey('AIzaSyA0nIvc0-ZiHFjyxMQwA_9kg4hw3JlSO54');
+    Geocode.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY);
   }, []);
 
   const autoCompOnLoad = useCallback((autocomp) => {
