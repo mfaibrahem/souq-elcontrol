@@ -20,7 +20,7 @@ const useServiceDetails = () => {
     if (isMounted) {
       setIsLoadingServiceDetails(true);
       customApiRequest(
-        getServiceDetailsApi(params?.categoryId, i18n.language),
+        getServiceDetailsApi(params?.serviceId, i18n.language),
         (res) => {
           setIsLoadingServiceDetails(false);
           if (checkRes(res) && res?.data?.data) {

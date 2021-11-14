@@ -12,16 +12,26 @@
 
   .services-ul {
     display: grid;
+    gap: 22px;
     margin-bottom: 32px;
+    li {
+      background-color: #fff;
+      border: 1px solid rgba(#000, 0.06);
+      border-radius: 18px;
+      overflow: hidden;
+      transition: all 0.2s ease-out;
+      &:hover {
+        background-color: lighten($main-app-color, 46%);
+        box-shadow: 0 4px 12px rgba(#000, 0.1);
+      }
+    }
     li,
     a {
       display: grid;
       max-width: 1032px;
     }
     .card-content {
-      background-color: #fff;
       padding: 18px 22px;
-      border-radius: 18px;
       display: flex;
       flex-wrap: wrap;
       gap: 22px;

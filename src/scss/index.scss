@@ -402,3 +402,17 @@ body {
     }
   }
 }
+
+.image-gallery-left-nav .image-gallery-svg,
+.image-gallery-right-nav .image-gallery-svg {
+  height: 38px !important;
+}
+
+.image-gallery-fullscreen-button .image-gallery-svg,
+.image-gallery-play-button .image-gallery-svg {
+  height: 20px;
+}
+
+.image-gallery-content .image-gallery-slide .image-gallery-image {
+  min-height: 342px;
+}

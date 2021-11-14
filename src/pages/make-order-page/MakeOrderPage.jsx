@@ -4,13 +4,11 @@ import { Empty, Spin } from 'antd';
 import { useParams } from 'react-router-dom';
 import parse from 'html-react-parser';
 import CustomImage from '../../common/custom-image/CustomImage';
+import techSuppImg from '../../assets/imgs/icons/technical-support.png';
+
 import routerLinks from '../../components/app/routerLinks';
 import CustomBreadcrubm from '../../common/bread-crumb/Breadcrubm';
 import useServiceDetails from '../../custom-hooks/useServiceDetails';
-import infoImg from '../../assets/imgs/icons/info.png';
-import techSuppImg from '../../assets/imgs/icons/technical-support.png';
-import moneyImg from '../../assets/imgs/icons/money.png';
-import { Link as RouterLink } from 'react-router-dom';
 import './MakeOrderPage.scss';
 import MakeOrderForm from './MakeOrderForm';
 
@@ -124,19 +122,31 @@ const MakeOrderPage = () => {
 
       <div className="custom-container">
         <section className="make-order-section">
-          <div
-            className="brief-wrap"
-            style={{
-              backgroundImage: `url(${fetchedServiceDetails?.service?.image})`
-            }}
-          >
-            <div className="brief-overlay"></div>
+          <div className="brief-parent">
+            {fetchedServiceDetails?.service?.name && (
+              <div className="service-name">
+                <div className="icon-wrap">
+                  <CustomImage src={techSuppImg} />
+                </div>
+                <span className="name-span">
+                  {fetchedServiceDetails?.service?.name}
+                </span>
+              </div>
+            )}
+            <div
+              className="brief-wrap"
+              style={{
+                backgroundImage: `url(${fetchedServiceDetails?.service?.image})`
+              }}
+            >
+              <div className="brief-overlay"></div>
 
-            <div className="brief-content">
-              {fetchedServiceDetails?.service?.store &&
-                renderStoreDetails(fetchedServiceDetails.service.store)}
-              {fetchedServiceDetails?.service &&
-                renderInstructions(fetchedServiceDetails.service)}
+              <div className="brief-content">
+                {fetchedServiceDetails?.service?.store &&
+                  renderStoreDetails(fetchedServiceDetails.service.store)}
+                {fetchedServiceDetails?.service &&
+                  renderInstructions(fetchedServiceDetails.service)}
+              </div>
             </div>
           </div>
           <div className="make-order-form-wrap">

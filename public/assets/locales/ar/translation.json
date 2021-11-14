@@ -98,6 +98,67 @@
       "label": "تأكيد الطلب"
     }
   },
+  "start_selling_form": {
+    "name": {
+      "label": "الإســـم بالكامل",
+      "errors": {
+        "required": "من فضلك ادخل الاســـم"
+      }
+    },
+    "storeName": {
+      "label": "إســـم المتجر",
+      "errors": {
+        "required": "من فضلك ادخل إســم المتجر"
+      }
+    },
+    "phone": {
+      "label": "رقم الهاتف",
+      "errors": {
+        "required": "من فضلك ادخل رقم الهاتف",
+        "type_error": "لا يسمح الا بكتابة الارقام",
+        "min": "أقل حد {{min}} حروف"
+      }
+    },
+    "email": {
+      "label": "البريد الالكترونى",
+      "errors": {
+        "required": "من فضلك ادخل البريد الالكترونى",
+        "type_error": "من فضلك ادخل بريد الكترونى صحيح"
+      }
+    },
+    "password": {
+      "label": "كلمة المرور",
+      "errors": {
+        "required": "أدخل كلمة المرور",
+        "min": "كلمة المرور لا تقل عن {{min}}"
+      }
+    },
+    "password_confirmation": {
+      "label": "أعد كلمة المرور",
+      "errors": {
+        "required": "أعد كلمة المرور",
+        "type_error": "كلمة المرور غير مطابقة"
+      }
+    },
+    "country": {
+      "label": "إدخل الدولة"
+    },
+    "city": {
+      "label": "إدخل المدينة"
+    },
+    "area": {
+      "label": "إدخل الحي"
+    },
+    "address": {
+      "label": "العنوان",
+      "errors": {
+        "required": "من فضلك أدخل العنوان"
+      }
+    },
+    "submit_btn": {
+      "label": "حفــظ"
+    }
+  },
   "main_app_search": {
     "placeholder": "إبحث عن خدمتك..."
   },

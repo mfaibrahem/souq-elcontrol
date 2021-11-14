@@ -45,12 +45,18 @@ const StartSellingForm = () => {
     resolver: yupResolver(schema),
     mode: 'all',
     defaultValues: {
-      address: '',
+      name: '',
+      nameOfStore: '',
+      phone: '',
+      email: '',
+      password: '',
+      password_confirmation: '',
+      country: '',
       city: '',
       area: '',
+      address: '',
       lat: '',
-      lng: '',
-      paymentMethod: ''
+      lng: ''
     }
   });
 
@@ -60,20 +66,19 @@ const StartSellingForm = () => {
   const customApiRequest = useCustomApiRequest();
   const onSubmit = async (data) => {
     const formData = new FormData();
-    if (data.address) formData.append('address', data.address);
+    if (data.name) formData.append('name', data.name);
+    if (data.nameOfStore) formData.append('nameOfStore', data.nameOfStore);
+    if (data.phone) formData.append('phone', data.phone);
+    if (data.email) formData.append('email', data.email);
+    if (data.password) formData.append('password', data.password);
+    if (data.password_confirmation)
+      formData.append('password_confirmation', data.password_confirmation);
+    if (data.country) formData.append('country', data.country);
     if (data.city) formData.append('city', data.city);
     if (data.area) formData.append('area', data.area);
-    if (data.paymentMethod)
-      formData.append('paymentMethod', data.paymentMethod);
-    if (params?.serviceId) formData.append('service_id', params.serviceId);
-    formData.append(
-      'lat',
-      selectedLocation?.lat ? selectedLocation.lat : '23.8859'
-    );
-    formData.append(
-      'lng',
-      selectedLocation?.lng ? selectedLocation.lng : '45.0792'
-    );
+    if (data.address) formData.append('address', data.address);
+    formData.append('lat', selectedLocation?.lat ? selectedLocation.lat : '');
+    formData.append('lng', selectedLocation?.lng ? selectedLocation.lng : '');
 
     setIsSubmittingOrder(true);
     setIsLoadingOrders(true);
@@ -116,6 +121,20 @@ const StartSellingForm = () => {
       onFinish={handleSubmit(onSubmit)}
     >
       <div className="form-body">
+        <div className="text-field-label-wrap">
+          <p className="label-p">{t('make_order_form.address.label')}</p>
+          <div className="text-field-wrap">
+            <AntdTextField
+              className="form-text-field"
+              name="address"
+              type="text"
+              placeholder={t('make_order_form.address.label')}
+              errorMsg={errors?.address?.message}
+              validateStatus={errors?.address ? 'error' : ''}
+              control={control}
+            />
+          </div>
+        </div>
         <div className="text-field-label-wrap">
           <p className="label-p">{t('make_order_form.address.label')}</p>
           <div className="text-field-wrap">

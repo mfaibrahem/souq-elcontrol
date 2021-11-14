@@ -8,17 +8,18 @@ import CustomImage from '../../common/custom-image/CustomImage';
 import routerLinks from '../../components/app/routerLinks';
 import CustomBreadcrubm from '../../common/bread-crumb/Breadcrubm';
 import useServiceDetails from '../../custom-hooks/useServiceDetails';
+import infoImg from '../../assets/imgs/icons/info.png';
 import techSuppImg from '../../assets/imgs/icons/technical-support.png';
+import moneyImg from '../../assets/imgs/icons/money.png';
+import commentImg from '../../assets/imgs/icons/comment.png';
 import { Link as RouterLink } from 'react-router-dom';
-import { Descriptions, Tabs } from 'antd';
 import './ServiceDetailsPage.scss';
 
 // const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-const { TabPane } = Tabs;
 
 const ServiceDetailsPage = () => {
   const params = useParams();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const { isLoadingServiceDetails, fetchedServiceDetails } =
     useServiceDetails();
 
@@ -34,36 +35,14 @@ const ServiceDetailsPage = () => {
   const renderStoreDetails = (obj) => {
     return (
       <div className="store-details-wrap">
-        <Descriptions column={1} title={obj?.name ? obj.name : ''} bordered>
-          {obj?.address && (
-            <Descriptions.Item
-              label={i18n.language === 'ar' ? 'عنوان الورشـة : ' : 'Address : '}
-            >
-              {obj.address}
-            </Descriptions.Item>
-          )}
-          {obj?.country && (
-            <Descriptions.Item
-              label={i18n.language === 'ar' ? 'الدولـــة : ' : 'Country : '}
-            >
-              {obj.country}
-            </Descriptions.Item>
-          )}
-          {obj?.city && (
-            <Descriptions.Item
-              label={i18n.language === 'ar' ? 'المدينـــة : ' : 'City : '}
-            >
-              {obj.city}
-            </Descriptions.Item>
-          )}
-          {obj?.area && (
-            <Descriptions.Item
-              label={i18n.language === 'ar' ? 'المنطقــة : ' : 'Area : '}
-            >
-              {obj.area}
-            </Descriptions.Item>
-          )}
-        </Descriptions>
+        {obj?.name && (
+          <div className="store-name">
+            <div className="icon-wrap">
+              <CustomImage src={techSuppImg} />
+            </div>
+            <p>{obj.name}</p>
+          </div>
+        )}
       </div>
     );
   };
@@ -73,9 +52,27 @@ const ServiceDetailsPage = () => {
       <div className="instructions-price-wrap">
         {obj?.instructions && (
           <div className="instructions-wrap">
+            <div className="wrap-title">
+              <div className="icon-wrap">
+                <CustomImage src={infoImg} />
+              </div>
+              <p>الإرشادات</p>
+            </div>
             <div className="instructions-details">
               {parse(obj.instructions)}
             </div>
+          </div>
+        )}
+
+        {obj.price && (
+          <div className="price-wrap">
+            <div className="wrap-title">
+              <div className="icon-wrap">
+                <CustomImage src={moneyImg} />
+              </div>
+              <p>سعر الخدمة</p>
+            </div>
+            <div className="price-itself">{obj.price} ريـــال</div>
           </div>
         )}
       </div>
@@ -161,73 +158,25 @@ const ServiceDetailsPage = () => {
                 />
               )}
             </div>
-            <div className="details-parent-wrap">
-              {fetchedServiceDetails?.service?.name && (
-                <div className="service-name">
-                  <div className="icon-wrap">
-                    <CustomImage src={techSuppImg} />
-                  </div>
-                  <span className="name-span">
-                    {fetchedServiceDetails?.service?.name}
-                  </span>
-                </div>
+            <div className="details-wrap">
+              {fetchedServiceDetails?.service?.store &&
+                renderStoreDetails(fetchedServiceDetails.service.store)}
+              {fetchedServiceDetails?.service &&
+                renderInstructions(fetchedServiceDetails.service)}
+
+              {fetchedServiceDetails?.service?.price && (
+                <RouterLink
+                  className="make-order-link"
+                  to={routerLinks?.serviceMakeOrderRoute(
+                    params?.categoryId,
+                    params?.subCategoryId,
+                    params?.carId,
+                    fetchedServiceDetails?.service?.id
+                  )}
+                >
+                  إدفـــع
+                </RouterLink>
               )}
-
-              <Tabs defaultActiveKey="1">
-                <TabPane
-                  tab={i18n.language === 'ar' ? 'وصف الخدمة' : 'Description'}
-                  key="1"
-                >
-                  <div className="desc-tab-content">
-                    {fetchedServiceDetails?.service?.desc && (
-                      <div className="desc-details">
-                        {parse(fetchedServiceDetails.service.desc)}
-                      </div>
-                    )}
-
-                    {fetchedServiceDetails?.service?.price && (
-                      <div className="price-wrap">
-                        <div className="price-itself">
-                          {fetchedServiceDetails?.service?.price}{' '}
-                          {i18n.language === 'ar' ? 'ريـــال' : 'SAR'}
-                        </div>
-                      </div>
-                    )}
-
-                    {fetchedServiceDetails?.service?.price && (
-                      <RouterLink
-                        className="make-order-link"
-                        to={routerLinks?.serviceMakeOrderRoute(
-                          params?.categoryId,
-                          params?.subCategoryId,
-                          params?.carId,
-                          fetchedServiceDetails?.service?.id
-                        )}
-                      >
-                        {i18n.language === 'ar'
-                          ? 'احصل على الخدمة'
-                          : 'Get this service'}
-                      </RouterLink>
-                    )}
-                  </div>
-                </TabPane>
-
-                <TabPane
-                  tab={i18n.language === 'ar' ? 'الورشـــة' : 'Store'}
-                  key="2"
-                >
-                  {fetchedServiceDetails?.service?.store &&
-                    renderStoreDetails(fetchedServiceDetails.service.store)}
-                </TabPane>
-
-                <TabPane
-                  tab={i18n.language === 'ar' ? 'الإرشـــادات' : 'Instructions'}
-                  key="3"
-                >
-                  {fetchedServiceDetails?.service &&
-                    renderInstructions(fetchedServiceDetails.service)}
-                </TabPane>
-              </Tabs>
             </div>
           </div>
         </section>

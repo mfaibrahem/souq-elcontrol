@@ -78,12 +78,14 @@ const CustomMap = (props) => {
 
   const { isLoaded, loadError } = useLoadScript({
     id: 'google-map-script',
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
+    googleMapsApiKey: '',
+    // googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
     libraries,
     language: 'ar'
   });
   useEffect(() => {
-    Geocode.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY);
+    Geocode.setApiKey('');
+    // Geocode.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY);
   }, []);
 
   const autoCompOnLoad = useCallback((autocomp) => {

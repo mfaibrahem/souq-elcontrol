@@ -98,6 +98,67 @@
       "label": "Confirm Order"
     }
   },
+  "start_selling_form": {
+    "name": {
+      "label": "Full name",
+      "errors": {
+        "required": "Please enter your name"
+      }
+    },
+    "storeName": {
+      "label": "Store name",
+      "errors": {
+        "required": "Enter your store name"
+      }
+    },
+    "phone": {
+      "label": "Phone number",
+      "errors": {
+        "required": "Enter your phone number",
+        "type_error": "Only numbers allowed",
+        "min": "Minimum of {{min}} characters"
+      }
+    },
+    "email": {
+      "label": "Email address",
+      "errors": {
+        "required": "Enter your email address",
+        "type_error": "Wrong email address"
+      }
+    },
+    "password": {
+      "label": "Password",
+      "errors": {
+        "required": "Enter your password",
+        "min": "Password must be at least {{min}} characters"
+      }
+    },
+    "password_confirmation": {
+      "label": "Confirm your password",
+      "errors": {
+        "required": "Please enter your password confirmation",
+        "type_error": "Wrong Password"
+      }
+    },
+    "country": {
+      "label": "Country"
+    },
+    "city": {
+      "label": "City"
+    },
+    "area": {
+      "label": "Area"
+    },
+    "address": {
+      "label": "Address",
+      "errors": {
+        "required": "Enter you address"
+      }
+    },
+    "submit_btn": {
+      "label": "SUBMIT"
+    }
+  },
   "main_app_search": {
     "placeholder": "Search for your service..."
   },

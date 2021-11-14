@@ -7,8 +7,33 @@
     grid-template-columns: 40% 1fr;
     gap: 22px;
 
+    .service-name {
+      color: $main-app-color;
+      font-size: 26px;
+      margin-bottom: 8px;
+      font-weight: bold;
+      display: flex;
+      gap: 12px;
+
+      .icon-wrap {
+        // background-color: #f2f2f2;
+        padding: 8px;
+        border-radius: 5px;
+        color: $main-app-color;
+        font-weight: bold;
+        font-size: 26px;
+        text-transform: uppercase;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        img,
+        svg {
+          width: 32px !important;
+        }
+      }
+    }
     .brief-wrap {
-      background-size: 90%;
+      background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
       position: relative;
@@ -16,13 +41,14 @@
       border-radius: 12px;
       overflow: hidden;
       min-height: 432px;
+      align-self: start;
       .brief-overlay {
         position: absolute;
         top: 0;
         bottom: 0;
         left: 0;
         right: 0;
-        background-color: rgba(#f2f2f2, 0.7);
+        background-color: rgba(#f2f2f2, 0.9);
       }
       .brief-content {
         z-index: 1;
