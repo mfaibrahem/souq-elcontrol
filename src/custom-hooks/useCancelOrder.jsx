@@ -3,7 +3,6 @@ import { useState, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import cancelOrderApi from '../apis/orders-apis/cancelOrder';
 import UserContext from '../contexts/user-context/UserProvider';
-import checkRes from '../utils/checkRes';
 import useCustomApiRequest from './useCustomApiRequest';
 
 const useCancelOrder = (setFetchOrdersCount) => {
