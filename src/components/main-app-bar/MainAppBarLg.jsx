@@ -6,7 +6,6 @@ import { NavLink, Link as RouterLink } from 'react-router-dom';
 import LanguageButton from '../../common/language-button/LanguageButton';
 import Logo from '../../common/logo/Logo';
 import mainAppBarLinks from './mainAppBarLinks';
-import slugify from 'slugify';
 import SearchIcon from '../../common/icons/SearchIcon';
 import routerLinks from '../app/routerLinks';
 import UserContext from '../../contexts/user-context/UserProvider';
@@ -16,12 +15,12 @@ import './MainAppBarLg.scss';
 const MainAppBarLg = ({ className, exceeds0 }) => {
   const { t } = useTranslation();
   const { pathname } = useLocation();
-  const { loggedIn } = useContext(UserContext);
+  const { loggedIn, user } = useContext(UserContext);
 
   const renderNavLinks = () => {
     return (
       <ul>
-        {mainAppBarLinks(t).map(({ id, name, link }) => (
+        {mainAppBarLinks(t, user).map(({ id, name, link }) => (
           <li key={id}>
             <NavLink activeClassName={`active-link`} to={link} exact>
               <span>{name}</span>

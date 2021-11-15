@@ -1,6 +1,6 @@
 /* eslint-disable eqeqeq */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { Form, Button } from 'antd';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -12,7 +12,6 @@ import AntdTextField from '../../common/antd-form-components/AntdTextField';
 import CustomMap from '../../components/custom-map/CustomMap';
 import { useTranslation } from 'react-i18next';
 import makeOrderApi from '../../apis/orders-apis/makeOrderApi';
-import OrdersContext from '../../contexts/orders-context/OrdersContext';
 import { useParams } from 'react-router-dom';
 import useCustomApiRequest from '../../custom-hooks/useCustomApiRequest';
 import AntdRadioGroup from '../../common/antd-form-components/AntdRadioGroup';
@@ -21,6 +20,7 @@ import startSellingSchema from './startSellingSchema';
 
 const StartSellingForm = () => {
   // const [urls, setUrls] = React.useState([]);
+  const [isSubmittingForm, setIsSubmittingForm] = useState(false);
   const params = useParams();
   const { user } = useContext(UserContext);
   const { i18n, t } = useTranslation();
@@ -29,12 +29,7 @@ const StartSellingForm = () => {
     lng: ''
   });
   const [selectedAddress, setSelectedAddress] = React.useState('');
-  const {
-    setIsLoadingOrders,
-    setIsSubmittingOrder,
-    isSubmittingOrder,
-    setFetchCount
-  } = useContext(OrdersContext);
+
   const schema = startSellingSchema(t);
   const {
     control,
@@ -80,15 +75,12 @@ const StartSellingForm = () => {
     formData.append('lat', selectedLocation?.lat ? selectedLocation.lat : '');
     formData.append('lng', selectedLocation?.lng ? selectedLocation.lng : '');
 
-    setIsSubmittingOrder(true);
-    setIsLoadingOrders(true);
+    setIsSubmittingForm(true);
     customApiRequest(
       makeOrderApi(formData, user?.token, i18n.language),
       (res) => {
-        setIsLoadingOrders(false);
-        setIsLoadingOrders(false);
+        setIsSubmittingForm(false);
         if (checkRes(res)) {
-          setFetchCount((prev) => prev + 1);
           successNotification({
             title: 'Operation done successfully',
             message: 'Order placed successfully'
@@ -101,8 +93,7 @@ const StartSellingForm = () => {
         }
       },
       (error) => {
-        setIsLoadingOrders(false);
-        setIsLoadingOrders(false);
+        setIsSubmittingForm(false);
 
         errorNotification({
           title: 'Something went wrong',
@@ -218,7 +209,7 @@ const StartSellingForm = () => {
           htmlType="submit"
           type="primary"
           // icon={<LoginOutlined />}
-          loading={isSubmittingOrder}
+          loading={isSubmittingForm}
         >
           {t('make_order_form.submit_btn.label')}
         </Button>

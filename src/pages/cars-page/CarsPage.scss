@@ -12,6 +12,7 @@
     .cars-ul {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(182px, 232px));
+      justify-content: center;
       // grid-template-columns: repeat(3, 1fr);
       gap: 32px 22px;
 

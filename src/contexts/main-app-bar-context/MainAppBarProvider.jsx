@@ -1,6 +1,7 @@
-import React, { useState, useEffect, createContext } from 'react';
+import React, { useState, useContext, useEffect, createContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import mainAppBarLinks from '../../components/main-app-bar/mainAppBarLinks';
+import UserContext from '../user-context/UserProvider';
 
 const INITIAL_VALUES = {
   links: [],
@@ -14,13 +15,14 @@ const INITIAL_VALUES = {
 const MainAppBarContext = createContext(INITIAL_VALUES);
 
 export const MainAppBarProvider = ({ children }) => {
+  const { user } = useContext(UserContext);
   const [links, setLinks] = useState([]);
   const [selectedLink, setSelectedLink] = useState(INITIAL_VALUES.selectedLink);
   const [activeLink, setActiveLink] = useState(INITIAL_VALUES.activeLink);
   const { t } = useTranslation();
   useEffect(() => {
-    setLinks([...mainAppBarLinks(t)]);
-  }, [t]);
+    setLinks([...mainAppBarLinks(t, user)]);
+  }, [t, user]);
 
   return (
     <MainAppBarContext.Provider

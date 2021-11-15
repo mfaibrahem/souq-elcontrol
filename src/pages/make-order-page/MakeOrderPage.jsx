@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Empty, Spin } from 'antd';
+import { Empty, Spin, Tabs, Descriptions } from 'antd';
 import { useParams } from 'react-router-dom';
 import parse from 'html-react-parser';
 import CustomImage from '../../common/custom-image/CustomImage';
@@ -9,21 +9,51 @@ import techSuppImg from '../../assets/imgs/icons/technical-support.png';
 import routerLinks from '../../components/app/routerLinks';
 import CustomBreadcrubm from '../../common/bread-crumb/Breadcrubm';
 import useServiceDetails from '../../custom-hooks/useServiceDetails';
-import './MakeOrderPage.scss';
 import MakeOrderForm from './MakeOrderForm';
+import './MakeOrderPage.scss';
 
 // const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+const { TabPane } = Tabs;
 
 const MakeOrderPage = () => {
   const params = useParams();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { isLoadingServiceDetails, fetchedServiceDetails } =
     useServiceDetails();
 
   const renderStoreDetails = (obj) => {
     return (
       <div className="store-details-wrap">
-        {obj?.name && <p className="store-name">{obj.name}</p>}
+        <Descriptions column={1} title={obj?.name ? obj.name : ''} bordered>
+          {obj?.address && (
+            <Descriptions.Item
+              label={i18n.language === 'ar' ? 'عنوان الورشـة : ' : 'Address : '}
+            >
+              {obj.address}
+            </Descriptions.Item>
+          )}
+          {obj?.country && (
+            <Descriptions.Item
+              label={i18n.language === 'ar' ? 'الدولـــة : ' : 'Country : '}
+            >
+              {obj.country}
+            </Descriptions.Item>
+          )}
+          {obj?.city && (
+            <Descriptions.Item
+              label={i18n.language === 'ar' ? 'المدينـــة : ' : 'City : '}
+            >
+              {obj.city}
+            </Descriptions.Item>
+          )}
+          {obj?.area && (
+            <Descriptions.Item
+              label={i18n.language === 'ar' ? 'المنطقــة : ' : 'Area : '}
+            >
+              {obj.area}
+            </Descriptions.Item>
+          )}
+        </Descriptions>
       </div>
     );
   };
@@ -33,7 +63,6 @@ const MakeOrderPage = () => {
       <div className="instructions-price-wrap">
         {obj?.instructions && (
           <div className="instructions-wrap">
-            <p className="instructions-title">الإرشادات</p>
             <div className="instructions-details">
               {parse(obj.instructions)}
             </div>
@@ -142,10 +171,47 @@ const MakeOrderPage = () => {
               <div className="brief-overlay"></div>
 
               <div className="brief-content">
-                {fetchedServiceDetails?.service?.store &&
-                  renderStoreDetails(fetchedServiceDetails.service.store)}
-                {fetchedServiceDetails?.service &&
-                  renderInstructions(fetchedServiceDetails.service)}
+                <Tabs defaultActiveKey="1">
+                  <TabPane
+                    tab={i18n.language === 'ar' ? 'وصف الخدمة' : 'Description'}
+                    key="1"
+                  >
+                    <div className="desc-tab-content">
+                      {fetchedServiceDetails?.service?.desc && (
+                        <div className="desc-details">
+                          {parse(fetchedServiceDetails.service.desc)}
+                        </div>
+                      )}
+
+                      {fetchedServiceDetails?.service?.price && (
+                        <div className="price-wrap">
+                          <div className="price-itself">
+                            {fetchedServiceDetails?.service?.price}{' '}
+                            {i18n.language === 'ar' ? 'ريـــال' : 'SAR'}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </TabPane>
+
+                  <TabPane
+                    tab={i18n.language === 'ar' ? 'الورشـــة' : 'Store'}
+                    key="2"
+                  >
+                    {fetchedServiceDetails?.service?.store &&
+                      renderStoreDetails(fetchedServiceDetails.service.store)}
+                  </TabPane>
+
+                  <TabPane
+                    tab={
+                      i18n.language === 'ar' ? 'الإرشـــادات' : 'Instructions'
+                    }
+                    key="3"
+                  >
+                    {fetchedServiceDetails?.service &&
+                      renderInstructions(fetchedServiceDetails.service)}
+                  </TabPane>
+                </Tabs>
               </div>
             </div>
           </div>

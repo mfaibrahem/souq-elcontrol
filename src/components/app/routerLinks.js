@@ -8,6 +8,7 @@ const routerLinks = {
   signupPage: '/signup',
   profilePage: '/profile',
   ////////////////////////////
+  myOrdersRoute: '/my-orders',
   ...servicesRouterLinks,
   ////////////////////////////
   startSellingRoute: '/start-selling',

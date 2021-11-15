@@ -200,11 +200,18 @@
   "breadcrumb_section": {
     "home": "Home",
     "categories": "Categories",
+    "my_orders": "My Orders",
     "cars": "Choose Car Make",
     "services": "Services",
     "makeOrder": "Make Order",
     "signup": "Register new account",
     "signin": "Sign in"
+  },
+  "my_orders": {
+    "btns": {
+      "current": "Current Orders",
+      "prev": "Previous Orders"
+    }
   },
   "main_app_footer": {
     "footer_title": "User interface design",

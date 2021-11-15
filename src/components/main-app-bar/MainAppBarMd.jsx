@@ -1,19 +1,19 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Button, Drawer } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import LanguageButton from '../../common/language-button/LanguageButton';
 import Logo from '../../common/logo/Logo';
 import mainAppBarLinks from './mainAppBarLinks';
 import './MainAppBarMd.scss';
-import slugify from 'slugify';
+import UserContext from '../../contexts/user-context/UserProvider';
 
 const MainAppBarMd = ({ className }) => {
   const { t } = useTranslation();
-  const { pathname } = useLocation();
   const [visible, setVisible] = useState(false);
+  const { user } = useContext(UserContext);
   const showDrawer = () => {
     setVisible(true);
   };
@@ -24,7 +24,7 @@ const MainAppBarMd = ({ className }) => {
   const renderNavLinks = () => {
     return (
       <ul>
-        {mainAppBarLinks(t).map(({ id, name, link }) => (
+        {mainAppBarLinks(t, user).map(({ id, name, link }) => (
           <li key={id} onClick={onClose}>
             <NavLink
               activeClassName="active-link"

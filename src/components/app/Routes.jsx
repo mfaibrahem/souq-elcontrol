@@ -6,7 +6,6 @@ import AboutUsPage from '../../pages/aboutus-page/AboutUsPage';
 import NotFoundPage from '../../pages/not-found-page/NotFoundPage';
 import SigninPage from '../../pages/signin-page/SigninPage';
 import SignupPage from '../../pages/signup-page/SignupPage';
-import StartSellingForm from '../../pages/start-selling-page/StartSellingForm';
 import StartSellingPage from '../../pages/start-selling-page/StartSellingPage';
 import routerLinks from './routerLinks';
 import ServicesRoutes from './services-routes/ServicesRoutes';

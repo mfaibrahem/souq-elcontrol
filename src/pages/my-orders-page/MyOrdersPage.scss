@@ -1,0 +1,181 @@
+@import '../../scss/config';
+
+.my-orders-page {
+  .curr-prev-orders-btns-wrap {
+    display: flex;
+    justify-content: center;
+    gap: 1px;
+    border-radius: 14px;
+    width: max-content;
+    margin: auto;
+    margin-top: 22px;
+    margin-bottom: 32px;
+    background-color: rgba(#000, 0.1);
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(#000, 0.04);
+
+    .curr-orders-btn,
+    .prev-orders-btn {
+      padding: 14px 28px;
+      background-color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.2s ease-out;
+      &.selected {
+        background-color: $main-app-color !important;
+        color: #fff;
+      }
+      &:hover {
+        background-color: lighten($main-app-color, 38%);
+      }
+    }
+  }
+
+  .my-orders-wrap {
+    .my-orders-list {
+      display: grid;
+      background-color: #fff;
+    }
+  }
+
+  .ant-collapse
+    > .ant-collapse-item
+    > .ant-collapse-header
+    .ant-collapse-arrow {
+    position: absolute;
+    top: 50%;
+    left: 22px;
+    right: auto;
+    margin: 0;
+    transform: translateY(-50%);
+  }
+
+  .ant-collapse.ant-collapse-icon-position-right
+    > .ant-collapse-item
+    > .ant-collapse-header
+    .ant-collapse-arrow {
+    right: 22px !important;
+    left: auto !important;
+  }
+
+  .ant-collapse-item {
+    border: 0 !important;
+    background-color: #fff;
+    border-radius: 8px !important;
+    border: 1px solid rgba(#000, 0.04) !important;
+    padding: 12px 18px;
+  }
+
+  .list-header {
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    align-items: center;
+    .img-wrap {
+      img {
+        width: 162px;
+        border-radius: 8px;
+      }
+    }
+
+    .service-name {
+      color: $main-app-color;
+      font-weight: bold;
+      font-size: 16px;
+      margin: 0 32px;
+      text-decoration: underline;
+      text-align: center;
+    }
+    .service-price {
+      justify-self: end;
+      font-size: 16px;
+      color: #828282;
+      font-weight: bold;
+      &.rtl {
+        margin-left: 92px;
+        margin-right: 32px;
+      }
+      &.ltr {
+        margin-right: 92px;
+        margin-left: 32px;
+      }
+    }
+    .cancel-btn {
+      border: 0;
+      display: grid;
+      place-items: center;
+      background-color: #f7f8fa;
+      background-color: #ffd1e5;
+      cursor: pointer;
+      svg {
+        fill: #ff328b;
+      }
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      &.rtl {
+        margin-left: 92px;
+      }
+      &.ltr {
+        margin-right: 92px;
+      }
+    }
+  }
+  .collapse-icon-wrap {
+    display: inline-block;
+    background-color: #f7f8fa;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: grid !important;
+    place-items: center;
+    transition: 0.3s ease-out;
+    top: 28% !important;
+    transform: translateY(0) !important;
+    svg {
+      width: 22px;
+      height: 22px;
+      fill: #828282;
+    }
+    &.opened {
+      transform: translateY(0) rotate(180deg) !important;
+    }
+  }
+
+  .my-order-card {
+    border-top: 1px solid rgba(#000, 0.1);
+    padding-top: 12px;
+    .order-cats-wrap {
+      margin-top: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      a {
+        background-color: #eee;
+        color: #828282;
+        padding: 8px 12px;
+        border-radius: 99px;
+        font-size: 11px;
+        transition: all 0.2s ease-out;
+        &:hover {
+          color: $main-app-color;
+          background-color: lighten($main-app-color, 40%);
+        }
+      }
+    }
+    .address-payment-method-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .address-wrap,
+    .payment-method-wrap {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+  }
+}

@@ -21,11 +21,11 @@ import { MainAppBarProvider } from './contexts/main-app-bar-context/MainAppBarPr
 ReactDOM.render(
   <Suspense fallback={<Loading />}>
     <UserProvider>
-      <Router>
-        <MainAppBarProvider>
+      <MainAppBarProvider>
+        <Router>
           <App />
-        </MainAppBarProvider>
-      </Router>
+        </Router>
+      </MainAppBarProvider>
     </UserProvider>
   </Suspense>,
   document.getElementById('root')

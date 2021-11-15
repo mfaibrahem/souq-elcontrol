@@ -200,11 +200,18 @@
   "breadcrumb_section": {
     "home": "الرئيسية",
     "categories": "الأقســام",
+    "my_orders": "طـلباتــى",
     "cars": "إختار نوع السيارة",
     "services": "الخدمـــات",
     "makeOrder": "عمــل طلب",
     "signup": "إنشاء حساب جديد",
     "signin": "تسجيل الدخول"
+  },
+  "my_orders": {
+    "btns": {
+      "current": "الطلبات الجارية",
+      "prev": "الطلبات السابقة"
+    }
   },
   "main_app_footer": {
     "footer_title": "تصميم واجهات المستخدم",

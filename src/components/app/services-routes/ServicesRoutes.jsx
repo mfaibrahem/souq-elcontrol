@@ -7,9 +7,9 @@ import ServiceDetailsPage from '../../../pages/service-details-page/ServiceDetai
 import ServicesPage from '../../../pages/services-page/ServicesPage';
 import routerLinks from '../routerLinks';
 import MakeOrderPage from '../../../pages/make-order-page/MakeOrderPage';
-import { OrdersProvider } from '../../../contexts/orders-context/OrdersContext';
 import protectMe from '../../../utils/protectMe';
 import UserContext from '../../../contexts/user-context/UserProvider';
+import MyOrdersPage from '../../../pages/my-orders-page/MyOrdersPage';
 
 const ServicesRoutes = () => {
   const { loggedIn } = useContext(UserContext);
@@ -29,13 +29,17 @@ const ServicesRoutes = () => {
     <Route exact path={routerLinks.serviceDetailsRoute()} key={5}>
       <ServiceDetailsPage />
     </Route>,
-
     protectMe(
       routerLinks.serviceMakeOrderRoute(),
-      <OrdersProvider>
-        <MakeOrderPage />
-      </OrdersProvider>,
+      <MakeOrderPage />,
       6,
+      routerLinks?.signinPage,
+      loggedIn
+    ),
+    protectMe(
+      routerLinks.myOrdersRoute,
+      <MyOrdersPage />,
+      7,
       routerLinks?.signinPage,
       loggedIn
     )

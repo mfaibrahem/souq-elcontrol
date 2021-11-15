@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { NavLink, useLocation } from 'react-router-dom';
 import slugify from 'slugify';
@@ -7,14 +7,16 @@ import heroBg1 from '../../assets/imgs/hero-section/hero-left-bg.svg';
 import heroBg2 from '../../assets/imgs/hero-section/hero-right-bg.svg';
 import heroImg from '../../assets/imgs/hero-section/hero-img.png';
 import './HomeHeroSections.scss';
+import UserContext from '../../contexts/user-context/UserProvider';
 
 const HomeHeroSection = () => {
   const { pathname } = useLocation();
   const { t } = useTranslation();
+  const { user } = useContext(UserContext);
   const renderNavLinks = () => {
     return (
       <ul>
-        {mainAppBarLinks(t).map(({ id, name, link }) => (
+        {mainAppBarLinks(t, user).map(({ id, name, link }) => (
           <li key={id}>
             <NavLink
               activeClassName={`active-link`}
