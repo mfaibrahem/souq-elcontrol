@@ -13,14 +13,16 @@ import CustomMap from '../../components/custom-map/CustomMap';
 import { useTranslation } from 'react-i18next';
 import makeOrderApi from '../../apis/orders-apis/makeOrderApi';
 import makeOrderSchema from './makeOrderSchema';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import useCustomApiRequest from '../../custom-hooks/useCustomApiRequest';
 import AntdRadioGroup from '../../common/antd-form-components/AntdRadioGroup';
 import './MakeOrderForm.scss';
+import routerLinks from '../../components/app/routerLinks';
 
 const MakeOrderForm = () => {
   // const [urls, setUrls] = React.useState([]);
   const params = useParams();
+  const history = useHistory();
   const { user } = useContext(UserContext);
   const { i18n, t } = useTranslation();
   const [isSubmittingForm, setIsSubmittingForm] = useState(false);
@@ -88,6 +90,7 @@ const MakeOrderForm = () => {
             title: 'Operation done successfully',
             message: 'Order placed successfully'
           });
+          history.push(routerLinks?.myOrdersRoute);
         } else {
           errorNotification({
             title: 'Something went wrong',

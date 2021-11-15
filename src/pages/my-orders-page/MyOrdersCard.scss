@@ -1,0 +1,96 @@
+@import '../../scss/config';
+
+.my-order-card {
+  .instructions-details,
+  .desc-details {
+    margin-top: 4px;
+    margin-bottom: 14px;
+    font-size: 16px;
+    line-height: 1.8;
+    ul {
+      list-style-type: disc;
+      padding-right: 22px;
+      margin-top: 8px;
+    }
+    p {
+      margin-top: 12px;
+      font-size: 16px;
+    }
+  }
+  .store-instructions-wrap {
+    border-top: 1px dashed rgba(#000, 0.2);
+    padding-top: 22px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+
+    .store-details-wrap {
+      .ant-descriptions-header {
+        margin-bottom: 6px;
+      }
+      .ant-descriptions-title {
+        color: $main-app-color;
+        font-weight: bold;
+        font-size: 18px;
+        margin-bottom: 8px;
+      }
+      .ant-descriptions-view {
+        border-radius: 5px;
+      }
+      .ant-descriptions-item-content {
+        font-size: 18px;
+        color: #9a9a9a;
+        padding: 8px 14px;
+      }
+      .ant-descriptions-item-label {
+        font-weight: bold;
+        color: $main-app-color;
+        font-size: 16px;
+        padding: 8px 14px;
+      }
+    }
+    .instructions-wrap {
+      .instructions-title {
+        color: $main-app-color;
+        font-weight: bold;
+        font-size: 18px;
+      }
+    }
+  }
+
+  padding-top: 12px;
+  .order-cats-wrap {
+    border-top: 1px dashed rgba(#000, 0.2);
+    padding-top: 22px;
+    margin-top: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    a {
+      background-color: #eee;
+      color: #828282;
+      padding: 8px 12px;
+      border-radius: 99px;
+      font-size: 11px;
+      transition: all 0.2s ease-out;
+      &:hover {
+        color: $main-app-color;
+        background-color: lighten($main-app-color, 40%);
+      }
+    }
+  }
+  .address-payment-method-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .address-wrap,
+  .payment-method-wrap {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+}

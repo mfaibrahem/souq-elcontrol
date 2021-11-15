@@ -33,6 +33,8 @@
   }
 
   .my-orders-wrap {
+    max-width: 1092px;
+    margin: auto;
     .my-orders-list {
       display: grid;
       background-color: #fff;
@@ -60,14 +62,22 @@
   }
 
   .ant-collapse-item {
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+    display: grid;
+    align-items: center;
     border: 0 !important;
     background-color: #fff;
     border-radius: 8px !important;
     border: 1px solid rgba(#000, 0.04) !important;
-    padding: 12px 18px;
+    margin-bottom: 14px;
+    box-shadow: 0 0 4px rgba(#000, 0.04);
   }
 
   .list-header {
+    min-height: 112px;
+    padding: 12px 18px;
     display: grid;
     grid-template-columns: auto 1fr auto auto;
     align-items: center;
@@ -78,19 +88,26 @@
       }
     }
 
-    .service-name {
-      color: $main-app-color;
-      font-weight: bold;
-      font-size: 16px;
+    .name-address-wrap {
       margin: 0 32px;
-      text-decoration: underline;
-      text-align: center;
+      color: #9a9a9a;
+      .service-name {
+        font-weight: bold;
+        font-size: 20px;
+        // text-align: center;
+      }
+      .address-wrap {
+        display: flex;
+        // align-items: center;
+        gap: 6px;
+        margin-top: 4px;
+        font-size: 16px;
+        svg {
+          margin-top: 4px;
+        }
+      }
     }
-    .service-price {
-      justify-self: end;
-      font-size: 16px;
-      color: #828282;
-      font-weight: bold;
+    .price-method-wrap {
       &.rtl {
         margin-left: 92px;
         margin-right: 32px;
@@ -98,6 +115,18 @@
       &.ltr {
         margin-right: 92px;
         margin-left: 32px;
+      }
+      .service-price {
+        justify-self: end;
+        font-size: 16px;
+        color: #828282;
+        font-weight: bold;
+      }
+      .payment-method-wrap {
+        margin-top: 4px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
       }
     }
     .cancel-btn {
@@ -130,7 +159,7 @@
     display: grid !important;
     place-items: center;
     transition: 0.3s ease-out;
-    top: 28% !important;
+    top: 33% !important;
     transform: translateY(0) !important;
     svg {
       width: 22px;
@@ -142,40 +171,35 @@
     }
   }
 
-  .my-order-card {
-    border-top: 1px solid rgba(#000, 0.1);
-    padding-top: 12px;
-    .order-cats-wrap {
-      margin-top: 12px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      justify-content: center;
-      a {
-        background-color: #eee;
-        color: #828282;
-        padding: 8px 12px;
-        border-radius: 99px;
-        font-size: 11px;
-        transition: all 0.2s ease-out;
-        &:hover {
-          color: $main-app-color;
-          background-color: lighten($main-app-color, 40%);
-        }
-      }
+  .order-badge {
+    padding: 4px 12px;
+    position: absolute;
+    top: 0;
+    &.ltr {
+      left: auto;
+      right: 0;
+      border-bottom-left-radius: 10px;
     }
-    .address-payment-method-wrap {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      justify-content: space-between;
-      align-items: center;
+    &.rtl {
+      left: 0;
+      right: auto;
+      border-bottom-right-radius: 10px;
     }
-    .address-wrap,
-    .payment-method-wrap {
-      display: flex;
-      align-items: center;
-      gap: 6px;
+    &.new-order-badge {
+      background-color: rgb(255, 236, 200);
+      color: rgb(194, 128, 7);
+    }
+    &.in-progress-order-badge {
+      background-color: rgb(255, 236, 200);
+      color: rgb(194, 128, 7);
+    }
+    &.done-order-badge {
+      background-color: rgb(156, 235, 208);
+      color: rgb(12, 136, 95);
+    }
+    &.canceled-order-badge {
+      background-color: #f8c4cd;
+      color: #b83a4f;
     }
   }
 }

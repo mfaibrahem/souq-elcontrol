@@ -12,7 +12,7 @@ import './ServicesPage.scss';
 const ServicesPage = () => {
   const params = useParams();
   const history = useHistory();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const {
     iseLoadingServices,
     allFetchedServices,
@@ -60,9 +60,9 @@ const ServicesPage = () => {
                         <div className="card-name">{ele?.name}</div>
                         {ele?.price ? (
                           <div className="card-price">
-                            <span>سعر الخدمة : </span>
                             <span className="price-span">{ele?.price}</span>
-                            <span>ريـــال</span>
+                            <span>{i18n.language === 'ar' && 'ريــال'}</span>
+                            <span>{i18n.language === 'en' && 'SAR'}</span>
                           </div>
                         ) : null}
                       </div>

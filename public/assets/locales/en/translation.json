@@ -50,6 +50,10 @@
     }
   },
   "signin_form": {
+    "title": "Sign In",
+    "dont": "Don't have account. Make",
+    "new_account": "New Account",
+    "forget_pass": "Did you forget password ?",
     "login_key": {
       "label": "Phone number or Email",
       "errors": {

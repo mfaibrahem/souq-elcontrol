@@ -17,19 +17,22 @@ import AntdCheckbox from '../../common/antd-form-components/AntdCheckbox';
 import './SigninForm.scss';
 // import useFirebaseDeviceToken from '../../custom-hooks/useFirebaseDeviceToken';
 
-const schema = Yup.object().shape({
-  // loginKey: Yup.string()
-  //   .required('من فضلك ادخل البريد الاكترونى')
-  //   .email('ادخل بريد الكترونى صحيح'),
-  loginKey: Yup.string().required('Please enter phone or email'),
-  password: Yup.string().required('من فضلك ادخل كلمة المرور')
-});
-
 const SigninForm = () => {
   const { t } = useTranslation();
   const [passwrodVisible, setPasswordVisible] = React.useState(false);
   const { forgetPasswordModalOpened, setForgetPasswordModalOpened } =
     useContext(ForgetPasswordContext);
+  const schema = Yup.object().shape({
+    // loginKey: Yup.string()
+    //   .required('من فضلك ادخل البريد الاكترونى')
+    //   .email('ادخل بريد الكترونى صحيح'),
+    loginKey: Yup.string().required(
+      t('signin_form.login_form.login_key.errors.required')
+    ),
+    password: Yup.string().required(
+      t('signin_form.login_form.password.errors.required')
+    )
+  });
   const {
     control,
     handleSubmit,
@@ -61,7 +64,7 @@ const SigninForm = () => {
         onFinish={handleSubmit(onSubmit)}
       >
         <div className="form-header">
-          <p className="bold-font main-title">تسجيل الدخول</p>
+          <p className="bold-font main-title">{t('signin_form.title')}</p>
           {/* <p className="sub-title">سجل دخولك الان لاتمام طلباتك</p> */}
           <div
             style={{
@@ -73,8 +76,10 @@ const SigninForm = () => {
               fontSize: 18
             }}
           >
-            <span>ليس لديك حساب قم بإنشاء </span>{' '}
-            <RouterLink to={routerLinks?.signupPage}>حساب جديد</RouterLink>
+            <span>{t('signin_form.dont')}</span>{' '}
+            <RouterLink to={routerLinks?.signupPage}>
+              {t('signin_form.new_account')}
+            </RouterLink>
           </div>
         </div>
 
@@ -82,8 +87,8 @@ const SigninForm = () => {
           <AntdTextField
             name="loginKey"
             type="text"
-            placeholder="Email or phone number"
-            label="Email or phone number"
+            placeholder={t('signin_form.login_key.label')}
+            label={t('signin_form.login_key.label')}
             errorMsg={errors?.loginKey?.message}
             validateStatus={errors?.loginKey ? 'error' : ''}
             prefix={<UserOutlined />}
@@ -95,8 +100,8 @@ const SigninForm = () => {
               className="form-text-field"
               name="password"
               type={passwrodVisible ? 'text' : 'password'}
-              placeholder="Password"
-              label="Password"
+              placeholder={t('signin_form.password.label')}
+              label={t('signin_form.password.label')}
               errorMsg={errors?.password?.message}
               prefix={<LockOutlined />}
               validateStatus={errors?.password ? 'error' : ''}
@@ -119,7 +124,7 @@ const SigninForm = () => {
             style={{ cursor: 'pointer' }}
             onClick={() => setForgetPasswordModalOpened(true)}
           >
-            هل نسيت كلمة المرور؟
+            {t('signin_form.forget_pass')}
           </p>
           <AntdCheckbox
             name="remember"

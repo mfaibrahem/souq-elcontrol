@@ -11,12 +11,15 @@ const useCancelOrder = (setFetchOrdersCount) => {
   const [isCancellingOrder, setIsCancellingOrder] = useState(false);
   const customApiRequest = useCustomApiRequest();
 
-  const cancelMe = (values) => {
+  const cancelMe = (values, setVisible, setSelectedOrderId) => {
     setIsCancellingOrder(true);
+
     customApiRequest(
       cancelOrderApi(values, user?.token, i18n.language),
       (res) => {
         setIsCancellingOrder(false);
+        setVisible(false);
+        setSelectedOrderId('');
         if (res?.status === 200) {
           setFetchOrdersCount((prev) => prev + 1);
         }
@@ -29,6 +32,7 @@ const useCancelOrder = (setFetchOrdersCount) => {
 
   return {
     isCancellingOrder,
+    setIsCancellingOrder,
     cancelMe
   };
 };
