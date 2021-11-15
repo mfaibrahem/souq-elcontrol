@@ -1,0 +1,29 @@
+@import '../../scss/config';
+
+.start-selling-page {
+  padding-bottom: 42px;
+  .main-title {
+    font-size: 42px;
+    font-weight: bold;
+    text-transform: capitalize;
+    text-align: center;
+    color: $main-app-color;
+    margin: 22px 0;
+  }
+  .form-wrapper {
+    margin: auto;
+    margin-top: 18px;
+    background-color: #fff;
+    padding: 32px 42px;
+    border-radius: 18px;
+    max-width: 1032px;
+
+    .names-wrap,
+    .phone-email-wrap,
+    .passwords-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+  }
+}

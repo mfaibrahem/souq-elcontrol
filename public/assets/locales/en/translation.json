@@ -109,7 +109,7 @@
         "required": "Please enter your name"
       }
     },
-    "storeName": {
+    "nameOfStore": {
       "label": "Store name",
       "errors": {
         "required": "Enter your store name"
@@ -208,6 +208,7 @@
     "cars": "Choose Car Make",
     "services": "Services",
     "makeOrder": "Make Order",
+    "start_selling": "Create a seller account",
     "signup": "Register new account",
     "signin": "Sign in"
   },
