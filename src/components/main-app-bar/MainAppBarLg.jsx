@@ -11,6 +11,7 @@ import routerLinks from '../app/routerLinks';
 import UserContext from '../../contexts/user-context/UserProvider';
 import MainAppProfileMenu from './MainAppProfileMenu';
 import './MainAppBarLg.scss';
+import ChatIcon from '../../common/icons/ChatIcon';
 
 const MainAppBarLg = ({ className, exceeds0 }) => {
   const { t } = useTranslation();
@@ -54,7 +55,12 @@ const MainAppBarLg = ({ className, exceeds0 }) => {
                   {t('signinSignup.signin')}
                 </RouterLink>
               ) : (
-                <MainAppProfileMenu />
+                <>
+                  <MainAppProfileMenu />
+                  <button className="app-bar-messages-btn">
+                    <ChatIcon />
+                  </button>
+                </>
               )}
               <LanguageButton />
             </div>
@@ -81,8 +87,22 @@ const MainAppBarLg = ({ className, exceeds0 }) => {
                     {t('signinSignup.signin')}
                   </RouterLink>
                 ) : (
-                  <MainAppProfileMenu />
+                  <>
+                    <div
+                      style={{
+                        display: 'flex',
+                        gap: 8,
+                        alignItems: 'cener'
+                      }}
+                    >
+                      <MainAppProfileMenu />
+                      <button className="app-bar-messages-btn">
+                        <ChatIcon />
+                      </button>
+                    </div>
+                  </>
                 )}
+
                 <LanguageButton />
               </div>
             </div>
@@ -97,7 +117,12 @@ const MainAppBarLg = ({ className, exceeds0 }) => {
                   {t('signinSignup.signin')}
                 </RouterLink>
               ) : (
-                <MainAppProfileMenu />
+                <>
+                  <MainAppProfileMenu />
+                  <button className="app-bar-messages-btn">
+                    <ChatIcon />
+                  </button>
+                </>
               )}
               <LanguageButton />
             </div>
