@@ -18,7 +18,7 @@ import './SigninForm.scss';
 // import useFirebaseDeviceToken from '../../custom-hooks/useFirebaseDeviceToken';
 
 const SigninForm = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [passwrodVisible, setPasswordVisible] = React.useState(false);
   const { forgetPasswordModalOpened, setForgetPasswordModalOpened } =
     useContext(ForgetPasswordContext);
@@ -26,12 +26,8 @@ const SigninForm = () => {
     // loginKey: Yup.string()
     //   .required('من فضلك ادخل البريد الاكترونى')
     //   .email('ادخل بريد الكترونى صحيح'),
-    loginKey: Yup.string().required(
-      t('signin_form.login_form.login_key.errors.required')
-    ),
-    password: Yup.string().required(
-      t('signin_form.login_form.password.errors.required')
-    )
+    loginKey: Yup.string().required(t('signin_form.login_key.errors.required')),
+    password: Yup.string().required(t('signin_form.password.errors.required'))
   });
   const {
     control,
@@ -111,6 +107,10 @@ const SigninForm = () => {
             {watch('password') && (
               <div
                 className="eye-icon-btn"
+                style={{
+                  left: i18n.dir() === 'rtl' ? '14px' : 'auto',
+                  right: i18n.dir() === 'ltr' ? '14px' : 'auto'
+                }}
                 onClick={() => {
                   setPasswordVisible((prevState) => !prevState);
                 }}

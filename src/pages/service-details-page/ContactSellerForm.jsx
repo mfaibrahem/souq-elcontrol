@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-import AntdTextField from '../../common/antd-form-components/AntdTextField';
 import { Form } from 'antd';
 import CustomSharedBtn from '../../common/custom-shared-button/CustomSharedBtn';
 import checkRes from '../../utils/checkRes';
@@ -11,18 +10,16 @@ import errorNotification from '../../utils/errorNotification';
 import { useTranslation } from 'react-i18next';
 import AntdTextarea from '../../common/antd-form-components/AntdTextarea';
 import useCustomApiRequest from '../../custom-hooks/useCustomApiRequest';
-import './ContactUsForm.scss';
-import contactUsApi from '../../apis/contact-us/contactUsApi';
+import sendSellerMessage from '../../apis/seller-apis/sendSellerMessageApi';
+import UserContext from '../../contexts/user-context/UserProvider';
+import FileInput from '../../common/file-input/FileInput';
+import ContactSellerContext from '../../contexts/contact-seller-context/ContactSellerContext';
 
-const ContactUsForm = () => {
+const ContactSellerForm = ({ store }) => {
   const { t, i18n } = useTranslation();
+  const { user } = useContext(UserContext);
+  const { setModalOpened } = useContext(ContactSellerContext);
   const schema = Yup.object().shape({
-    name: Yup.string().required(
-      t('contact_section.contact_form.name.errors.required')
-    ),
-    email: Yup.string()
-      .required(t('contact_section.contact_form.email_address.errors.required'))
-      .email(t('contact_section.contact_form.email_address.errors.type_error')),
     message: Yup.string().required(
       t('contact_section.contact_form.msg_desc.errors.required')
     )
@@ -32,30 +29,39 @@ const ContactUsForm = () => {
   const {
     control,
     handleSubmit,
+    setValue,
+    watch,
+    register,
+    unregister,
     reset,
     formState: { errors }
   } = useForm({
     resolver: yupResolver(schema),
     mode: 'all',
     defaultValues: {
-      name: '',
-      email: '',
-      message: ''
+      message: '',
+      file: null
     }
   });
   const customApiRequest = useCustomApiRequest();
   const onSubmit = (data) => {
+    const formData = new FormData();
+
+    formData.append('message', data.message);
+    formData.append('store_id', store?.id);
+    if (data.file?.length > 0) {
+      formData.append('file', data.file[0]);
+    }
     setIsSubmittingForm(true);
     customApiRequest(
-      contactUsApi(data, i18n.language),
+      sendSellerMessage(formData, user?.token, i18n.language),
       (res) => {
         setIsSubmittingForm(false);
         if (checkRes(res)) {
           reset({
-            name: '',
-            email: '',
             message: ''
           });
+          setModalOpened(false);
           successNotification({
             title: 'Operation done successfully',
             message: res?.data?.message || 'تم إرسال الرسالة بنجاح'
@@ -80,46 +86,12 @@ const ContactUsForm = () => {
   const [form] = Form.useForm();
   return (
     <Form
-      className="contact-us-form custom-shared-form"
+      className="contact-seller-form custom-shared-form"
       form={form}
       layout="vertical"
       onFinish={handleSubmit(onSubmit)}
     >
       <div className="form-body">
-        <div className="text-field-label-wrap">
-          <p className="label-p">
-            {t('contact_section.contact_form.name.label')}
-          </p>
-          <div className="text-field-wrap">
-            <AntdTextField
-              className="form-text-field"
-              name="name"
-              type="text"
-              placeholder={t('contact_section.contact_form.name.label')}
-              errorMsg={errors?.name?.message}
-              validateStatus={errors?.name ? 'error' : ''}
-              control={control}
-            />
-          </div>
-        </div>
-        <div className="text-field-label-wrap">
-          <p className="label-p">
-            {t('contact_section.contact_form.email_address.label')}
-          </p>
-          <div className="text-field-wrap">
-            <AntdTextField
-              className="form-text-field"
-              name="email"
-              type="text"
-              placeholder={t(
-                'contact_section.contact_form.email_address.label'
-              )}
-              errorMsg={errors?.email?.message}
-              validateStatus={errors?.email ? 'error' : ''}
-              control={control}
-            />
-          </div>
-        </div>
         <div className="text-field-label-wrap">
           <p className="label-p">
             {t('contact_section.contact_form.msg_desc.label')}
@@ -138,6 +110,26 @@ const ContactUsForm = () => {
           </div>
         </div>
 
+        <FileInput
+          name="file"
+          // label="ارفع ملف الاسئلة المطلوبة"
+          label={null}
+          // accept="image/png, image/jpg, image/jpeg, image/gif, .pdf"
+          accept="image/*, application/*"
+          multiple={false}
+          setValue={setValue}
+          watch={watch}
+          register={register}
+          unregister={unregister}
+          // setUrls={setUrls}
+          dropzoneText="اسحب الملف وضعه هنا ..."
+          className="product-images-dropzone"
+          //  dropzoneUrls={
+          //    selectedCategory?.image ? [{ url: selectedCategory.image }] : []
+          //  }
+          canDelete={false}
+        />
+
         <CustomSharedBtn
           loading={isSubmittingForm}
           className="submit-btn"
@@ -151,4 +143,4 @@ const ContactUsForm = () => {
   );
 };
 
-export default ContactUsForm;
+export default ContactSellerForm;

@@ -78,7 +78,9 @@ const FileInput = (props) => {
       unregister(name);
     };
   }, [register, unregister, name]);
-
+  function isFileImage(file) {
+    return file && file['type'].split('/')[0] === 'image';
+  }
   const renderFiles = (fileArr) => {
     return (
       <ul className="dropzone-default-imgs-ul">
@@ -102,13 +104,25 @@ const FileInput = (props) => {
               >
                 <DeleteIcon />
               </div>
-              <img
-                onClick={(e) => e.stopPropagation()}
-                src={URL.createObjectURL(file)}
-                alt={file.name}
-                // style={{ width: '100px', height: '100px' }}
-                className="default-dropzone-img"
-              />
+              {isFileImage(file) ? (
+                <img
+                  onClick={(e) => e.stopPropagation()}
+                  src={URL.createObjectURL(file)}
+                  alt={file.name}
+                  // style={{ width: '100px', height: '100px' }}
+                  className="default-dropzone-img"
+                />
+              ) : (
+                <p
+                  style={{
+                    padding: '8px 12px',
+                    backgroundColor: '#eee',
+                    paddingLeft: '44px'
+                  }}
+                >
+                  {file['name']}
+                </p>
+              )}
             </div>
           );
         })}

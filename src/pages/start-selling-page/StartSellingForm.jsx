@@ -1,29 +1,25 @@
 /* eslint-disable eqeqeq */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Form, Button } from 'antd';
 import { yupResolver } from '@hookform/resolvers/yup';
-import UserContext from '../../contexts/user-context/UserProvider';
 import successNotification from '../../utils/successNotification';
 import errorNotification from '../../utils/errorNotification';
 import checkRes from '../../utils/checkRes';
 import AntdTextField from '../../common/antd-form-components/AntdTextField';
 import CustomMap from '../../components/custom-map/CustomMap';
 import { useTranslation } from 'react-i18next';
-import makeOrderApi from '../../apis/orders-apis/makeOrderApi';
-import { useParams } from 'react-router-dom';
 import useCustomApiRequest from '../../custom-hooks/useCustomApiRequest';
 import './StartSellingForm.scss';
 import startSellingSchema from './startSellingSchema';
 import EyeOpenedIcon from '../../common/icons/EyeOpenedIcon';
 import EyeClosedIcon from '../../common/icons/EyeClosedIcon';
+import createStoreApi from '../../apis/store-apis/createStoreApi';
 
 const StartSellingForm = () => {
   // const [urls, setUrls] = React.useState([]);
   const [isSubmittingForm, setIsSubmittingForm] = useState(false);
-  const params = useParams();
-  const { user } = useContext(UserContext);
   const { i18n, t } = useTranslation();
   const [selectedLocation, setSelecectedLocation] = React.useState({
     lat: '',
@@ -37,6 +33,7 @@ const StartSellingForm = () => {
     control,
     handleSubmit,
     watch,
+    reset,
     formState: { errors }
   } = useForm({
     resolver: yupResolver(schema),
@@ -79,10 +76,24 @@ const StartSellingForm = () => {
 
     setIsSubmittingForm(true);
     customApiRequest(
-      makeOrderApi(formData, user?.token, i18n.language),
+      createStoreApi(formData, i18n.language),
       (res) => {
         setIsSubmittingForm(false);
         if (checkRes(res)) {
+          reset({
+            name: '',
+            nameOfStore: '',
+            phone: '',
+            email: '',
+            password: '',
+            password_confirmation: '',
+            country: '',
+            city: '',
+            area: '',
+            address: '',
+            lat: '',
+            lng: ''
+          });
           successNotification({
             title: 'Operation done successfully',
             message: 'Order placed successfully'

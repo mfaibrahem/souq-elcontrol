@@ -2,6 +2,11 @@ import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app/App';
 import { BrowserRouter as Router } from 'react-router-dom';
+import Loading from './common/loading/Loading';
+import { ContactSellerProvider } from './contexts/contact-seller-context/ContactSellerContext';
+import { UserProvider } from './contexts/user-context/UserProvider';
+import { MainAppBarProvider } from './contexts/main-app-bar-context/MainAppBarProvider';
+//
 import 'react-circular-progressbar/dist/styles.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -14,17 +19,15 @@ import 'lightgallery.js/dist/css/lightgallery.css';
 import 'aos/dist/aos.css';
 import './scss/index.scss';
 
-import Loading from './common/loading/Loading';
-import { UserProvider } from './contexts/user-context/UserProvider';
-import { MainAppBarProvider } from './contexts/main-app-bar-context/MainAppBarProvider';
-
 ReactDOM.render(
   <Suspense fallback={<Loading />}>
     <UserProvider>
       <MainAppBarProvider>
-        <Router>
-          <App />
-        </Router>
+        <ContactSellerProvider>
+          <Router>
+            <App />
+          </Router>
+        </ContactSellerProvider>
       </MainAppBarProvider>
     </UserProvider>
   </Suspense>,

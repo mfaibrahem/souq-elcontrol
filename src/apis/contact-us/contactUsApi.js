@@ -1,18 +1,18 @@
 import axios from 'axios';
 
-const createStoreApi = async (values, langIsoCode) => {
+const contactUsApi = async (values, langIsoCode) => {
   try {
-    const res = await axios.post('/Store/createAccount', values, {
+    const signinRes = await axios.post('/contactUs', values, {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
         lang: langIsoCode
       }
     });
-    return res;
+    return signinRes;
   } catch (error) {
     throw error;
   }
 };
 
-export default createStoreApi;
+export default contactUsApi;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Empty, Spin } from 'antd';
 import { useParams } from 'react-router-dom';
@@ -11,6 +11,9 @@ import useServiceDetails from '../../custom-hooks/useServiceDetails';
 import techSuppImg from '../../assets/imgs/icons/technical-support.png';
 import { Link as RouterLink } from 'react-router-dom';
 import { Descriptions, Tabs } from 'antd';
+import ChatIcon from '../../common/icons/ChatIcon';
+import ContactSellerContext from '../../contexts/contact-seller-context/ContactSellerContext';
+import ContactSellerModal from './ContactSellerModal';
 import './ServiceDetailsPage.scss';
 
 // const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -21,6 +24,7 @@ const ServiceDetailsPage = () => {
   const { t, i18n } = useTranslation();
   const { isLoadingServiceDetails, fetchedServiceDetails } =
     useServiceDetails();
+  const { setModalOpened, modalOpened } = useContext(ContactSellerContext);
 
   const renderGalleryImages = () => {
     return fetchedServiceDetails.service.images.map((img) => {
@@ -194,21 +198,36 @@ const ServiceDetailsPage = () => {
                       </div>
                     )}
 
-                    {fetchedServiceDetails?.service?.price && (
-                      <RouterLink
-                        className="make-order-link"
-                        to={routerLinks?.serviceMakeOrderRoute(
-                          params?.categoryId,
-                          params?.subCategoryId,
-                          params?.carId,
-                          fetchedServiceDetails?.service?.id
-                        )}
+                    <div className="order-message-links-wrap">
+                      <button
+                        className="message-btn"
+                        onClick={() => setModalOpened(true)}
                       >
-                        {i18n.language === 'ar'
-                          ? 'احصل على الخدمة'
-                          : 'Get this service'}
-                      </RouterLink>
-                    )}
+                        <div className="icon-wrap">
+                          <ChatIcon />
+                        </div>
+                        <span className="btn-title">
+                          {i18n.language === 'ar' && 'تحدث إلى البائع'}
+                          {i18n.language === 'en' && 'Contact Store'}
+                        </span>
+                      </button>
+
+                      {fetchedServiceDetails?.service?.price && (
+                        <RouterLink
+                          className="make-order-link"
+                          to={routerLinks?.serviceMakeOrderRoute(
+                            params?.categoryId,
+                            params?.subCategoryId,
+                            params?.carId,
+                            fetchedServiceDetails?.service?.id
+                          )}
+                        >
+                          {i18n.language === 'ar'
+                            ? 'احصل على الخدمة'
+                            : 'Get this service'}
+                        </RouterLink>
+                      )}
+                    </div>
                   </div>
                 </TabPane>
 
@@ -232,6 +251,9 @@ const ServiceDetailsPage = () => {
           </div>
         </section>
       </div>
+      {modalOpened && (
+        <ContactSellerModal store={fetchedServiceDetails?.service?.store} />
+      )}
     </div>
   );
 };
