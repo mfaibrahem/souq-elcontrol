@@ -1,10 +1,11 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Empty, Spin, Tabs, Descriptions } from 'antd';
+import { Empty, Tabs, Descriptions } from 'antd';
 import { useParams } from 'react-router-dom';
 import parse from 'html-react-parser';
 import CustomImage from '../../common/custom-image/CustomImage';
 import techSuppImg from '../../assets/imgs/icons/technical-support.png';
+import { LoadingOutlined } from '@ant-design/icons';
 
 import routerLinks from '../../components/app/routerLinks';
 import CustomBreadcrubm from '../../common/bread-crumb/Breadcrubm';
@@ -89,7 +90,7 @@ const MakeOrderPage = () => {
           minHeight: 332
         }}
       >
-        <Spin />
+        <LoadingOutlined style={{ fontSize: 20 }} />
       </div>
     );
   }

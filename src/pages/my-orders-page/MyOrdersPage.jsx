@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import CustomBreadcrubm from '../../common/bread-crumb/Breadcrubm';
 import useMyOrders from '../../custom-hooks/useMyOrders';
 import routerLinks from '../../components/app/routerLinks';
-import { Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
 import MyOrdersList from './MyOrdersList';
 import './MyOrdersPage.scss';
 
@@ -33,7 +33,7 @@ const MyOrdersPage = () => {
             placeItems: 'center'
           }}
         >
-          <Spin />
+          <LoadingOutlined style={{ fontSize: 20 }} />
         </div>
       );
 

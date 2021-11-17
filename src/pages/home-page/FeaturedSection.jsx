@@ -1,6 +1,6 @@
-import { Spin } from 'antd';
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { LoadingOutlined } from '@ant-design/icons';
 import featuredImg from '../../assets/imgs/featured-img.png';
 import CustomImage from '../../common/custom-image/CustomImage';
 import checkRes from '../../utils/checkRes';
@@ -91,7 +91,7 @@ const FeaturedSection = () => {
             minHeight: 332
           }}
         >
-          <Spin />
+          <LoadingOutlined style={{ fontSize: 20 }} />
         </div>
       );
     }

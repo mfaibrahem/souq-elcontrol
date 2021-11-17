@@ -204,13 +204,15 @@
   "breadcrumb_section": {
     "home": "الرئيسية",
     "categories": "الأقســام",
+    "profile": "الملف الشخصى",
     "my_orders": "طـلباتــى",
     "cars": "إختار نوع السيارة",
     "services": "الخدمـــات",
     "makeOrder": "عمــل طلب",
     "start_selling": "إنشاء حساب تجارى",
     "signup": "إنشاء حساب جديد",
-    "signin": "تسجيل الدخول"
+    "signin": "تسجيل الدخول",
+    "about_us": "من نحن"
   },
   "my_orders": {
     "btns": {

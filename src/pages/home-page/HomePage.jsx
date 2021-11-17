@@ -9,7 +9,7 @@ import ContactUsSection from './ContactUsSection';
 import './HomePage.scss';
 import useCustomApiRequest from '../../custom-hooks/useCustomApiRequest';
 import getHomepageDataApi from '../../apis/homepage/getHomepageDataApi';
-import { Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
 import checkRes from '../../utils/checkRes';
 import { useTranslation } from 'react-i18next';
 
@@ -51,7 +51,7 @@ const HomePage = () => {
             placeItems: 'center'
           }}
         >
-          <Spin />
+          <LoadingOutlined style={{ fontSize: 20 }} />
         </div>
       );
     }

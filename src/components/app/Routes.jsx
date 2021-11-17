@@ -4,9 +4,11 @@ import { ForgetPasswordProvider } from '../../contexts/forget-password-context/F
 import UserContext from '../../contexts/user-context/UserProvider';
 import AboutUsPage from '../../pages/aboutus-page/AboutUsPage';
 import NotFoundPage from '../../pages/not-found-page/NotFoundPage';
+import ProfilePage from '../../pages/profile-page/ProfilePage';
 import SigninPage from '../../pages/signin-page/SigninPage';
 import SignupPage from '../../pages/signup-page/SignupPage';
 import StartSellingPage from '../../pages/start-selling-page/StartSellingPage';
+import protectMe from '../../utils/protectMe';
 import routerLinks from './routerLinks';
 import ServicesRoutes from './services-routes/ServicesRoutes';
 const HomePage = lazy(() => import('../../pages/home-page/HomePage'));
@@ -31,6 +33,14 @@ const Routes = () => {
           <Redirect to={routerLinks.notFound} />
         )}
       </Route>
+
+      {protectMe(
+        routerLinks.profilePage,
+        <ProfilePage />,
+        987989,
+        routerLinks?.signinPage,
+        loggedIn
+      )}
 
       {ServicesRoutes()}
 

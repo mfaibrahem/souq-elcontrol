@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Empty, Spin } from 'antd';
+import { Empty } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
 import { useParams } from 'react-router-dom';
 import parse from 'html-react-parser';
 import ImageGallery from 'react-image-gallery';
@@ -96,7 +97,7 @@ const ServiceDetailsPage = () => {
           minHeight: 332
         }}
       >
-        <Spin />
+        <LoadingOutlined style={{ fontSize: 20 }} />
       </div>
     );
   }

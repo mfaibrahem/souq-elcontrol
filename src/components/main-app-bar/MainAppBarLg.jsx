@@ -11,7 +11,7 @@ import routerLinks from '../app/routerLinks';
 import UserContext from '../../contexts/user-context/UserProvider';
 import MainAppProfileMenu from './MainAppProfileMenu';
 import './MainAppBarLg.scss';
-import ChatIcon from '../../common/icons/ChatIcon';
+import MainAppMessages from './MainAppMessages';
 
 const MainAppBarLg = ({ className, exceeds0 }) => {
   const { t } = useTranslation();
@@ -57,9 +57,7 @@ const MainAppBarLg = ({ className, exceeds0 }) => {
               ) : (
                 <>
                   <MainAppProfileMenu />
-                  <button className="app-bar-messages-btn">
-                    <ChatIcon />
-                  </button>
+                  <MainAppMessages />
                 </>
               )}
               <LanguageButton />
@@ -96,9 +94,7 @@ const MainAppBarLg = ({ className, exceeds0 }) => {
                       }}
                     >
                       <MainAppProfileMenu />
-                      <button className="app-bar-messages-btn">
-                        <ChatIcon />
-                      </button>
+                      <MainAppMessages />
                     </div>
                   </>
                 )}
@@ -119,9 +115,7 @@ const MainAppBarLg = ({ className, exceeds0 }) => {
               ) : (
                 <>
                   <MainAppProfileMenu />
-                  <button className="app-bar-messages-btn">
-                    <ChatIcon />
-                  </button>
+                  <MainAppMessages />
                 </>
               )}
               <LanguageButton />

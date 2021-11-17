@@ -1,0 +1,31 @@
+.profile-page {
+  .page-title {
+    h2 {
+      font-size: 42px;
+    }
+    p {
+      font-size: 18px;
+    }
+  }
+  .page-head-wrap {
+    display: grid;
+    grid-template-columns: 2.9fr 1fr;
+    grid-gap: 22px;
+    .search-accounts-wrap {
+      display: grid;
+      align-content: space-between;
+    }
+  }
+
+  .img-form-wrap {
+    margin-top: 32px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 52px;
+
+    & > img {
+      align-self: center;
+      // margin-top: 122px;
+    }
+  }
+}

@@ -1,7 +1,8 @@
 import React from 'react';
 import CategoriesCard from './CategoriesCard';
 import { useTranslation } from 'react-i18next';
-import { Empty, Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+import { Empty } from 'antd';
 import './CategoriesSection.scss';
 
 // const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -44,7 +45,7 @@ const CategoriesSection = ({
           placeItems: 'center'
         }}
       >
-        <Spin />
+        <LoadingOutlined style={{ fontSize: 20 }} />
       </div>
     );
   }

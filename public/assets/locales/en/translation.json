@@ -204,13 +204,15 @@
   "breadcrumb_section": {
     "home": "Home",
     "categories": "Categories",
+    "profile": "Profle",
     "my_orders": "My Orders",
     "cars": "Choose Car Make",
     "services": "Services",
     "makeOrder": "Make Order",
     "start_selling": "Create a seller account",
     "signup": "Register new account",
-    "signin": "Sign in"
+    "signin": "Sign in",
+    "about_us": "About us"
   },
   "my_orders": {
     "btns": {

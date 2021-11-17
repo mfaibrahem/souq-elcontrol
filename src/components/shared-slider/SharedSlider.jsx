@@ -45,7 +45,7 @@ const SharedSlider = ({ isLoading, slides }) => {
                 minHeight: 332
               }}
             >
-              <Spin />
+              <LoadingOutlined style={{ fontSize: 20 }} />
             </div>
           </div>
         </Slider>
