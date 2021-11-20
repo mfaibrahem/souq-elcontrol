@@ -14,7 +14,9 @@
 
   .img-data-wrap {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    @include mediaLg {
+      grid-template-columns: 1fr 1fr;
+    }
     gap: 32px;
     align-items: center;
 

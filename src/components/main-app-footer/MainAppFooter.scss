@@ -9,13 +9,23 @@
 
   .footer-content {
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    gap: 12px;
+    @include mediaLg {
+      grid-template-columns: auto 1fr auto;
+    }
     align-items: center;
+    .footer-logo {
+      img {
+        // max-width: 100%;
+        max-width: 182px;
+      }
+    }
   }
   .footer-social-links {
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
+    justify-content: center;
     a {
       display: grid;
       place-items: center;

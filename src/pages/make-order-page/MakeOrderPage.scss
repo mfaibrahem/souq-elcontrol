@@ -4,7 +4,9 @@
   .make-order-section {
     margin-top: 42px;
     display: grid;
-    grid-template-columns: 46% 1fr;
+    @include mediaLg {
+      grid-template-columns: 46% 1fr;
+    }
     gap: 22px;
 
     .service-name {

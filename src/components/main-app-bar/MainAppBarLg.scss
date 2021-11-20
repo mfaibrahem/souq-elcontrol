@@ -253,18 +253,24 @@
 .notifications-dropdown-ul {
   // background-color: $main-app-color !important;
   min-width: 232px;
-  max-width: 732px;
+  max-width: 322px;
+  overflow: auto;
+  @include mediaLg {
+    max-width: 732px;
+  }
   max-height: 60vh;
-  overflow: hidden;
-  overflow-y: auto;
+  // overflow: hidden;
+  // overflow-y: auto;
   @include custom-scrollbar;
   border-radius: 8px !important;
   padding: 12px 0;
   .notifications-menu-link {
-    display: grid;
     padding: 0;
-    background-color: transparent !important;
-    border: 1px solid rgba(#000, 0.05);
+    .ant-dropdown-menu-title-content {
+      border: 1px solid rgba(#000, 0.05);
+      display: grid;
+      background-color: transparent !important;
+    }
     .notification-content {
       display: grid;
       grid-auto-flow: column;
@@ -278,6 +284,7 @@
       .notification-data {
         display: grid;
         grid-template-columns: 1fr auto;
+        gap: 12px;
       }
       .notification-title {
         color: $main-app-color;

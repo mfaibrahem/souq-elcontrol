@@ -9,7 +9,7 @@ import useCustomApiRequest from '../../custom-hooks/useCustomApiRequest';
 import { useTranslation } from 'react-i18next';
 import ChatIcon from '../../common/icons/ChatIcon';
 import getAllSellerMessagesApi from '../../apis/seller-apis/getAllSellerMessagesApi';
-const MainAppMessages = () => {
+const MainAppMessages = ({ isAppbarMd = false }) => {
   const [settingsClicked, setSettingsClicked] = React.useState(false);
   const notificationsBodyRef = useRef(null);
 
@@ -139,9 +139,22 @@ const MainAppMessages = () => {
             settingsClicked ? 'clicked' : ''
           }`}
         >
-          <ChatIcon />
-          {allFetchedMessages?.length > 0 && (
-            <span className="active-notifications"></span>
+          {isAppbarMd ? (
+            <>
+              <ChatIcon />
+              {allFetchedMessages?.length > 0 && (
+                <span className="active-notifications"></span>
+              )}
+              {i18n.language === 'ar' && 'الرســائل '}
+              {i18n.language === 'en' && 'Messages '}
+            </>
+          ) : (
+            <>
+              <ChatIcon />
+              {allFetchedMessages?.length > 0 && (
+                <span className="active-notifications"></span>
+              )}
+            </>
           )}
         </div>
       </div>

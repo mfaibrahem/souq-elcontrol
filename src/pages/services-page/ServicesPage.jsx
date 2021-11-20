@@ -1,5 +1,5 @@
 import React from 'react';
-import { Empty, Spin, Pagination } from 'antd';
+import { Empty, Pagination } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { Link as RouterLink, useParams } from 'react-router-dom';
 import CustomImage from '../../common/custom-image/CustomImage';
@@ -7,6 +7,7 @@ import routerLinks from '../../components/app/routerLinks';
 import useServices from '../../custom-hooks/useServices';
 import CustomBreadcrubm from '../../common/bread-crumb/Breadcrubm';
 import { useHistory } from 'react-router-dom';
+import { LoadingOutlined } from '@ant-design/icons';
 import './ServicesPage.scss';
 
 const ServicesPage = () => {

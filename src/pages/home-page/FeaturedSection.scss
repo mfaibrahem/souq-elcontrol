@@ -5,7 +5,10 @@
   padding: 42px 0;
 
   .main-title {
-    font-size: 42px;
+    font-size: 22px;
+    @include mediaLg {
+      font-size: 42px;
+    }
     font-weight: bold;
     text-transform: capitalize;
     text-align: center;
@@ -14,7 +17,10 @@
 
   .featured-ul {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+
+    @include mediaLg {
+      grid-template-columns: repeat(3, 1fr);
+    }
     gap: 22px;
     .featured-li {
       display: grid;

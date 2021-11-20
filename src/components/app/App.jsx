@@ -44,7 +44,10 @@ function App() {
         myInfoApi(user?.token, i18n.language),
         (res) => {
           if (checkRes) {
-            setCurrentUser(res?.data?.data);
+            setCurrentUser({
+              ...res?.data?.data,
+              token: user?.token
+            });
           } else {
             removeCurrentUser();
             history.push(routerLinks.signinPage);

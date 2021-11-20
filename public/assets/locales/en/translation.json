@@ -7,6 +7,16 @@
     "startSelling": "Start Selling",
     "aboutUs": "About Us"
   },
+  "hero_section": {
+    "main_title": {
+      "souq": "Souq",
+      "control": "El-Control",
+      "h1": "Your New Destination"
+    },
+    "sub_title": {
+      "h1": "For all what your car needs"
+    }
+  },
   "signup_form": {
     "name": {
       "label": "Full name",
@@ -169,19 +179,6 @@
   "signinSignup": {
     "signin": "Sign in",
     "Signup": "Sign up"
-  },
-  "hero_section": {
-    "main_title": {
-      "row_1": "User interface",
-      "row_2": "designs"
-    },
-    "sub_title": {
-      "row_1": "We create for you the brand identity that distinguishes you in your business, in a unique, distinctive and expressive way we create for you",
-      "row_2": "The business identity that distinguishes you in your business is a unique, distinctive and expressive form"
-    },
-    "hero_footer": {
-      "scroll_down": "Scroll down"
-    }
   },
   "categories_section": {
     "main_title": "Find your service easily"

@@ -53,9 +53,12 @@ const MainAppBar = () => {
       />
 
       <MainAppBarMd
+        exceeds0={scrollY > 0}
         className={`main-app-bar main-app-bar-md ${
-          isLight ? 'light' : 'dark'
-        } ${scrollDir ? scrollDir : ''} ${scrollY > 0 ? 'exceeds0' : ''}`}
+          pathname !== '/' ? 'not-home' : ''
+        } ${isLight ? 'light' : 'dark'} ${scrollDir ? scrollDir : ''} ${
+          scrollY > 0 ? 'exceeds0' : ''
+        }`}
       />
     </>
   );

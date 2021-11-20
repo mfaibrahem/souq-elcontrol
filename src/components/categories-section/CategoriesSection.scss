@@ -1,17 +1,30 @@
+@import '../../scss/config';
+
 .categories-section {
   background-color: #f9f8f8;
   padding: 42px 0;
   .main-title {
-    font-size: 42px;
+    font-size: 22px;
+    @include mediaLg {
+      font-size: 42px;
+    }
     font-weight: bold;
     text-transform: capitalize;
     text-align: center;
   }
 
   .categories-ul {
-    margin-top: 82px;
+    margin-top: 48px;
+    @include mediaLg {
+      margin-top: 82px;
+    }
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    @include mediaMd {
+      grid-template-columns: 1fr 1fr;
+    }
+    @include mediaLg {
+      grid-template-columns: repeat(3, 1fr);
+    }
     gap: 32px 22px;
   }
 }

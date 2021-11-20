@@ -89,10 +89,10 @@ const SignupForm = () => {
             style={{
               textAlign: 'center',
               display: 'flex',
-              gap: '4px',
+              gap: '6px',
               justifyContent: 'center',
               margin: '0 12px',
-              fontSize: 18
+              alignItems: 'center'
             }}
           >
             <span>لديك حساب قم ب </span>{' '}

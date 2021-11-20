@@ -66,10 +66,10 @@ const SigninForm = () => {
             style={{
               textAlign: 'center',
               display: 'flex',
-              gap: '4px',
+              gap: '6px',
               justifyContent: 'center',
               margin: '0 12px',
-              fontSize: 18
+              alignItems: 'center'
             }}
           >
             <span>{t('signin_form.dont')}</span>{' '}

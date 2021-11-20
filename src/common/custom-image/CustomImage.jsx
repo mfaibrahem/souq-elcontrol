@@ -27,7 +27,12 @@ const CustomImage = ({ className, src = '', alt = 'alt' }) => {
           <Skeleton.Image />
         </div>
       );
-    else if (status === 'valid') return <img src={src} alt={alt} />;
+    else if (status === 'valid')
+      return (
+        <div className={`${className ? className : ''}`}>
+          <img src={src} alt={alt} />
+        </div>
+      );
     return null;
   };
 

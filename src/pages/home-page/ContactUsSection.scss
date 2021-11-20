@@ -1,3 +1,5 @@
+@import '../../scss/config';
+
 .contact-us-section {
   background-color: #f9f8f8;
   padding: 42px 0;
@@ -11,8 +13,10 @@
 
   .section-content {
     display: grid;
-    grid-template-columns: 1fr 1fr;
     gap: 32px;
+    @include mediaLg {
+      grid-template-columns: 1fr 1fr;
+    }
   }
 
   .contact-map-wrap {

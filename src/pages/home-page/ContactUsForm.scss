@@ -2,7 +2,10 @@
 
 .contact-us-form {
   background-color: #fff;
-  padding: 32px;
+  padding: 14px;
+  @include mediaLg {
+    padding: 32px;
+  }
   display: grid;
   .form-body {
     display: grid;

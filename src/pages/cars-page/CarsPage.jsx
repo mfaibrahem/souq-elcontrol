@@ -1,13 +1,14 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Empty, Spin } from 'antd';
-import './CarsPage.scss';
+import { Empty } from 'antd';
 import CarCard from './CarCard';
 import useCars from '../../custom-hooks/useCars';
 import CustomBreadcrubm from '../../common/bread-crumb/Breadcrubm';
 import routerLinks from '../../components/app/routerLinks';
 import useSubCats from '../../custom-hooks/useSubCats';
 import { useParams } from 'react-router-dom';
+import { LoadingOutlined } from '@ant-design/icons';
+import './CarsPage.scss';
 
 const CarsPage = () => {
   const { t } = useTranslation();

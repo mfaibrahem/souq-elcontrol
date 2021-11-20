@@ -79,7 +79,10 @@
     min-height: 112px;
     padding: 12px 18px;
     display: grid;
-    grid-template-columns: auto 1fr auto auto;
+    gap: 12px;
+    @include mediaLg {
+      grid-template-columns: auto 1fr auto auto;
+    }
     align-items: center;
     .img-wrap {
       img {
@@ -89,7 +92,9 @@
     }
 
     .name-address-wrap {
-      margin: 0 32px;
+      @include mediaLg {
+        margin: 0 32px;
+      }
       color: #9a9a9a;
       .service-name {
         font-weight: bold;
@@ -108,13 +113,15 @@
       }
     }
     .price-method-wrap {
-      &.rtl {
-        margin-left: 92px;
-        margin-right: 32px;
-      }
-      &.ltr {
-        margin-right: 92px;
-        margin-left: 32px;
+      @include mediaLg {
+        &.rtl {
+          margin-left: 92px;
+          margin-right: 32px;
+        }
+        &.ltr {
+          margin-right: 92px;
+          margin-left: 32px;
+        }
       }
       .service-price {
         justify-self: end;

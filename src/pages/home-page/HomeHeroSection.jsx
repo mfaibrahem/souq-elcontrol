@@ -50,15 +50,13 @@ const HomeHeroSection = () => {
         <div className="section-data">
           <div className="section-text-wrap">
             <div className="main-title">
-              <h1>أصلح سيارتك بسهولة</h1>
               <h1>
-                مع سوق <span>الكنترول</span>
+                {t('hero_section.main_title.souq')}{' '}
+                <span>{t('hero_section.main_title.control')}</span>
               </h1>
+              <h1>{t('hero_section.main_title.h1')}</h1>
             </div>
-            <p className="sub-title">
-              هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد
-              هذا النص من مولد النص العربى
-            </p>
+            <p className="sub-title">{t('hero_section.sub_title.h1')}</p>
           </div>
           <div className="section-img-wrap">
             <img src={heroImg} alt="hero" />

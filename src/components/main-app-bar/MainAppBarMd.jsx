@@ -3,22 +3,44 @@ import React, { useState, useContext } from 'react';
 import { Button, Drawer } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation, Link as RouterLink } from 'react-router-dom';
 import LanguageButton from '../../common/language-button/LanguageButton';
 import Logo from '../../common/logo/Logo';
 import mainAppBarLinks from './mainAppBarLinks';
 import './MainAppBarMd.scss';
 import UserContext from '../../contexts/user-context/UserProvider';
+import routerLinks from '../app/routerLinks';
+import MainAppMessages from './MainAppMessages';
+import useSignout from '../../custom-hooks/useSignout';
+import CustomImage from '../../common/custom-image/CustomImage';
 
-const MainAppBarMd = ({ className }) => {
-  const { t } = useTranslation();
+const MainAppBarMd = ({ className, exceeds0 }) => {
+  const { pathname } = useLocation();
+  const { t, i18n } = useTranslation();
   const [visible, setVisible] = useState(false);
-  const { user } = useContext(UserContext);
+  const { user, loggedIn } = useContext(UserContext);
+  const { signMeOut } = useSignout();
   const showDrawer = () => {
     setVisible(true);
   };
   const onClose = () => {
     setVisible(false);
+  };
+
+  const DrawerTitle = () => {
+    if (user?.name) {
+      return (
+        <RouterLink
+          onClick={() => setVisible(false)}
+          to={routerLinks?.profilePage}
+          className="username-img"
+        >
+          <CustomImage className="user-img" src={user?.image} />
+          <div className="username">{user?.name}</div>
+        </RouterLink>
+      );
+    }
+    return 'سوق الكنترول';
   };
 
   const renderNavLinks = () => {
@@ -57,11 +79,14 @@ const MainAppBarMd = ({ className }) => {
             <LanguageButton />
           </div>
 
-          <Logo className="main-app-bar-logo" />
+          <Logo
+            colored={exceeds0 || pathname !== '/'}
+            className="main-app-bar-logo"
+          />
         </div>
       </div>
       <Drawer
-        title="فرحة للتطوير العقارى"
+        title={<DrawerTitle />}
         placement="right"
         onClose={onClose}
         visible={visible}
@@ -72,6 +97,31 @@ const MainAppBarMd = ({ className }) => {
           {/* <Logo className="main-app-bar-logo" /> */}
           {renderNavLinks()}
         </div>
+
+        {!loggedIn ? (
+          <RouterLink
+            className="appbar-signin-link"
+            to={routerLinks?.signinPage}
+            onClick={() => setVisible(false)}
+          >
+            {t('signinSignup.signin')}
+          </RouterLink>
+        ) : (
+          <div className="signout-messages-wrap">
+            <button
+              onClick={() => {
+                signMeOut();
+                setVisible(false);
+              }}
+            >
+              {i18n.language === 'ar' && 'تسجيل الخروج'}
+              {i18n.language === 'en' && 'Signout'}
+            </button>
+            <div className="messages-wrap">
+              <MainAppMessages isAppbarMd />
+            </div>
+          </div>
+        )}
       </Drawer>
     </div>
   );

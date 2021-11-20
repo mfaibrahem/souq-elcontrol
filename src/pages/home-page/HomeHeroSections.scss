@@ -8,7 +8,10 @@
   display: grid;
   grid-template-rows: auto 1fr;
   ul {
-    display: flex;
+    display: none;
+    @include mediaMd {
+      display: flex;
+    }
     justify-content: center;
     gap: 18px;
     a {
@@ -50,23 +53,55 @@
     .section-text-wrap {
       padding: 0 42px;
       color: #fff;
+      text-align: center;
       .main-title {
         h1 {
           color: #fff;
-          font-size: 52px;
+          font-size: 32px;
+          @include mediaLg {
+            font-size: 42px;
+          }
+          @include mediaXlg {
+            font-size: 62px;
+          }
           font-weight: bold;
+          font-size: 36px;
+          &:first-of-type {
+            @include mediaXlg {
+              font-size: 92px;
+            }
+          }
         }
         span {
           color: $secondary-app-color;
         }
       }
       .sub-title {
-        max-width: 472px;
+        font-weight: bold;
+        font-size: 28px;
+        @include mediaLg {
+          font-size: 38px;
+        }
+        @include mediaXlg {
+          font-size: 58px;
+        }
       }
     }
     .section-img-wrap {
       img {
         width: 100%;
+        animation: bounceMe 10s linear infinite forwards;
+        @keyframes bounceMe {
+          0% {
+            transform: translateY(-8px) translateX(-8px) scale(1.03);
+          }
+          50% {
+            transform: translateY(8px) translateX(8px) scale(1);
+          }
+          100% {
+            transform: translateY(-8px) translateX(-8px) scale(1.03);
+          }
+        }
       }
     }
   }

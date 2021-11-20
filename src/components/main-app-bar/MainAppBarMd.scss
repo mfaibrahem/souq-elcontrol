@@ -1,8 +1,19 @@
 @import '../../scss/config';
 
 .main-app-bar-md {
+  background-color: $main-app-color;
   position: relative;
   z-index: $app-header-z-index;
+  &.not-home {
+    background-color: #fff;
+    .nav-content-wrapper {
+      .nav-lang-wrapper {
+        button {
+          color: #000;
+        }
+      }
+    }
+  }
   .nav-content-wrapper {
     display: grid;
     grid-template-columns: auto auto;
@@ -13,7 +24,7 @@
     .main-app-bar-logo {
       padding: 2px 0;
       img {
-        height: 72px;
+        height: 48px;
       }
     }
 
@@ -22,6 +33,16 @@
       grid-auto-flow: column;
       grid-gap: 14px;
       align-items: center;
+
+      button {
+        background-color: transparent;
+        border: 0;
+        color: #fff;
+        font-size: 18px;
+        padding: 2px 8px;
+        display: grid;
+        place-items: center;
+      }
     }
   }
 
@@ -57,9 +78,14 @@
     // &.scroll-up {
     // }
     .nav-content-wrapper {
+      .nav-lang-wrapper {
+        button {
+          color: #000;
+        }
+      }
       .main-app-bar-logo {
         img {
-          height: 52px;
+          height: 48px;
         }
       }
     }
@@ -95,6 +121,64 @@
         &:hover {
           color: #fff;
         }
+      }
+    }
+  }
+
+  .appbar-signin-link {
+    display: grid;
+    padding: 12px 18px;
+    font-size: 18px;
+    border-radius: 8px;
+    position: relative;
+    font-weight: bold;
+    &:hover {
+      color: $main-app-color;
+    }
+    &.active-link {
+      background-color: $main-app-color;
+      color: #fff;
+      &:hover {
+        color: #fff;
+      }
+    }
+  }
+  .username-img {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    .user-img {
+      img,
+      svg {
+        height: 38px;
+      }
+      .username {
+        color: $main-app-color;
+      }
+    }
+  }
+  .signout-messages-wrap {
+    button {
+      cursor: pointer;
+      background-color: #eee;
+      border: 0;
+      outline: 0;
+      padding: 8px 22px;
+      border-radius: 4px;
+    }
+    .messages-wrap {
+      margin-top: 12px;
+      background-color: #eee;
+      width: fit-content;
+      border-radius: 4px;
+      padding: 6px 22px;
+
+      .notification-btn-wrap {
+        cursor: pointer;
+        display: flex;
+        gap: 4px;
+        align-items: center;
       }
     }
   }

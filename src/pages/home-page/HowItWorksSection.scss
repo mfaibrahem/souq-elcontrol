@@ -2,10 +2,15 @@
 
 .how-it-works-section {
   background-color: #f9f8f8;
-  padding: 42px 0;
-  overflow-x: hidden;
+  @include mediaLg {
+    padding: 32px 0;
+  }
+  overflow: hidden;
   .main-title {
-    font-size: 42px;
+    font-size: 32px;
+    @include mediaLg {
+      font-size: 42px;
+    }
     font-weight: bold;
     text-transform: capitalize;
     text-align: center;
@@ -22,19 +27,27 @@
 
     .how-it-works-ul {
       display: grid;
-      gap: 32px;
+      gap: 14px;
       & > li {
         display: grid;
         grid-template-columns: auto 1fr;
-        gap: 32px;
+        gap: 12px;
+        @include mediaLg {
+          gap: 32px;
+        }
         .li-number {
           background-color: #f2f2f2;
           display: grid;
           place-items: center;
-          width: 92px;
-          height: 92px;
-          font-size: 24px;
           border-radius: 50%;
+          width: 32px;
+          height: 32px;
+          font-size: 18px;
+          @include mediaLg {
+            font-size: 24px;
+            width: 92px;
+            height: 92px;
+          }
         }
         .li-title {
           font-size: 22px;
@@ -43,7 +56,8 @@
         .li-desc {
           line-height: 1.8;
           font-size: 18px;
-          max-width: 532px;
+          max-width: 632px;
+          text-align: justify;
         }
       }
     }
@@ -52,9 +66,20 @@
       display: grid;
       position: relative;
       height: 100%;
+      &.rtl {
+        img {
+          right: 0;
+          left: auto;
+        }
+      }
+      &.ltr {
+        img {
+          left: 0;
+          right: auto;
+        }
+      }
       img {
         position: absolute;
-        right: 0;
         top: 0;
         max-height: 650px;
       }
