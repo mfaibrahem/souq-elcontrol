@@ -233,7 +233,11 @@ const ServiceDetailsPage = () => {
                 </TabPane>
 
                 <TabPane
-                  tab={i18n.language === 'ar' ? 'الورشـــة' : 'Store'}
+                  tab={
+                    i18n.language === 'ar'
+                      ? 'تواصل مع البائع'
+                      : 'Contact Seller'
+                  }
                   key="2"
                 >
                   {fetchedServiceDetails?.service?.store &&
