@@ -1,5 +1,5 @@
 import React from 'react';
-import breadcrumbBgImg from '../../assets/imgs/bgs/breadcrumb-bg.svg';
+import breadcrumbBgImg from '../../assets/imgs/bgs/breadcrumb-bg.png';
 import { Link as RouterLink } from 'react-router-dom';
 import { Breadcrumb } from 'antd';
 import './Breadcrumb.scss';
