@@ -54,21 +54,21 @@
       padding: 0 42px;
       color: #fff;
       text-align: center;
+
       .main-title {
         h1 {
           color: #fff;
-          font-size: 32px;
+          font-size: 26px;
+          font-weight: bold;
           @include mediaLg {
-            font-size: 42px;
+            font-size: 38px;
           }
           @include mediaXlg {
-            font-size: 62px;
+            font-size: 48px;
           }
-          font-weight: bold;
-          font-size: 36px;
           &:first-of-type {
-            @include mediaXlg {
-              font-size: 92px;
+            @include mediaXXlg {
+              font-size: 72px;
             }
           }
         }
@@ -78,18 +78,22 @@
       }
       .sub-title {
         font-weight: bold;
-        font-size: 28px;
+        font-size: 26px;
         @include mediaLg {
-          font-size: 38px;
+          font-size: 36px;
         }
         @include mediaXlg {
-          font-size: 58px;
+          font-size: 46px;
         }
       }
     }
     .section-img-wrap {
       img {
         width: 100%;
+        max-width: 472px;
+        @include mediaXXlg {
+          max-width: 900px;
+        }
         animation: bounceMe 10s linear infinite forwards;
         @keyframes bounceMe {
           0% {

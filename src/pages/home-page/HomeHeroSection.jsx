@@ -50,8 +50,20 @@ const HomeHeroSection = () => {
         <div className="section-data">
           <div className="section-text-wrap">
             <div className="main-title">
-              <h1>
-                {t('hero_section.main_title.souq')}{' '}
+              <h1
+                style={{
+                  textTransform: 'uppercase',
+                  fontWeight: 'bold'
+                }}
+              >
+                <span
+                  style={{
+                    color: '#faec0f'
+                  }}
+                >
+                  {t('hero_section.main_title.souq1')}
+                </span>
+                {t('hero_section.main_title.souq2')}{' '}
                 <span>{t('hero_section.main_title.control')}</span>
               </h1>
               <h1>{t('hero_section.main_title.h1')}</h1>

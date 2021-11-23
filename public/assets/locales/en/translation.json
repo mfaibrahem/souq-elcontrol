@@ -9,7 +9,8 @@
   },
   "hero_section": {
     "main_title": {
-      "souq": "Ecusouq",
+      "souq1": "Ecu",
+      "souq2": "souq",
       "control": "",
       "h1": "Your New Destination"
     },
