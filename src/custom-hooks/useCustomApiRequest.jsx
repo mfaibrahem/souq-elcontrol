@@ -25,7 +25,7 @@ const useCustomApiRequest = () => {
     try {
       await sleep(3000);
       const res = await req;
-      console.log('custom res : ', res);
+      // console.log('custom res : ', res);
       if (checkSuccessResponse(res)) {
         successCallback &&
           typeof successCallback === 'function' &&
@@ -39,8 +39,8 @@ const useCustomApiRequest = () => {
         }
         errorCallback(error);
 
-        console.log('err message : ', error?.message);
-        console.log('err response : ', error?.response);
+        // console.log('err message : ', error?.message);
+        // console.log('err response : ', error?.response);
         // console.log('err req : ', error?.request);
         // console.log('err config : ', error?.config);
       }
