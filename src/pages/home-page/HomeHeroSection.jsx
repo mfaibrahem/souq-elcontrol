@@ -11,7 +11,7 @@ import UserContext from '../../contexts/user-context/UserProvider';
 
 const HomeHeroSection = () => {
   const { pathname } = useLocation();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { user } = useContext(UserContext);
   const renderNavLinks = () => {
     return (
@@ -56,14 +56,12 @@ const HomeHeroSection = () => {
                   fontWeight: 'bold'
                 }}
               >
-                <span
-                  style={{
-                    color: '#faec0f'
-                  }}
-                >
+                <span className={i18n.language}>
                   {t('hero_section.main_title.souq1')}
                 </span>
-                {t('hero_section.main_title.souq2')}{' '}
+                <span className={i18n.language}>
+                  {t('hero_section.main_title.souq2')}{' '}
+                </span>
                 <span>{t('hero_section.main_title.control')}</span>
               </h1>
               <h1>{t('hero_section.main_title.h1')}</h1>

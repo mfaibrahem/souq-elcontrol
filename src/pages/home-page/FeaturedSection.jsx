@@ -55,7 +55,7 @@ const FeaturedSection = () => {
       try {
         setIsLoading(true);
         let res;
-        await sleep(1000);
+        await sleep(400);
         setFetchedData(featuredArr);
         if (isMounted) {
           // is response is success
@@ -69,7 +69,6 @@ const FeaturedSection = () => {
         }
       } catch (error) {
         setIsLoading(false);
-        console.log(error);
       }
     };
 

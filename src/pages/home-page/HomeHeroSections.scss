@@ -58,8 +58,8 @@
       .main-title {
         h1 {
           color: #fff;
-          font-size: 26px;
           font-weight: bold;
+          font-size: 26px;
           @include mediaLg {
             font-size: 38px;
           }
@@ -73,7 +73,27 @@
           }
         }
         span {
-          color: $secondary-app-color;
+          &.en {
+            font-family: 'ahronbd';
+            &:first-of-type {
+              color: $secondary-app-color;
+            }
+          }
+          &:nth-of-type(3) {
+            color: $secondary-app-color;
+          }
+          &:nth-of-type(2) {
+            font-size: 22px;
+            @include mediaLg {
+              font-size: 34px;
+            }
+            @include mediaXlg {
+              font-size: 44px;
+            }
+            @include mediaXXlg {
+              font-size: 52px;
+            }
+          }
         }
       }
       .sub-title {

@@ -42,6 +42,7 @@ const StartSellingForm = () => {
       name: '',
       nameOfStore: '',
       phone: '',
+      store_whatsapp: '',
       email: '',
       password: '',
       password_confirmation: '',
@@ -63,6 +64,8 @@ const StartSellingForm = () => {
     if (data.name) formData.append('name', data.name);
     if (data.nameOfStore) formData.append('nameOfStore', data.nameOfStore);
     if (data.phone) formData.append('phone', data.phone);
+    if (data.store_whatsapp)
+      formData.append('store_whatsapp', data.store_whatsapp);
     if (data.email) formData.append('email', data.email);
     if (data.password) formData.append('password', data.password);
     if (data.password_confirmation)
@@ -84,6 +87,7 @@ const StartSellingForm = () => {
             name: '',
             nameOfStore: '',
             phone: '',
+            store_whatsapp: '',
             email: '',
             password: '',
             password_confirmation: '',
@@ -168,6 +172,22 @@ const StartSellingForm = () => {
                 placeholder={t('start_selling_form.phone.label')}
                 errorMsg={errors?.phone?.message}
                 validateStatus={errors?.phone ? 'error' : ''}
+                control={control}
+              />
+            </div>
+          </div>
+          <div className="text-field-label-wrap">
+            <p className="label-p">
+              {t('start_selling_form.store_whatsapp.label')}
+            </p>
+            <div className="text-field-wrap">
+              <AntdTextField
+                className="form-text-field"
+                name="store_whatsapp"
+                type="text"
+                placeholder={t('start_selling_form.store_whatsapp.label')}
+                errorMsg={errors?.store_whatsapp?.message}
+                validateStatus={errors?.store_whatsapp ? 'error' : ''}
                 control={control}
               />
             </div>

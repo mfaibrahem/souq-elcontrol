@@ -238,4 +238,22 @@
     font-size: 22px;
     font-weight: bold;
   }
+
+  .whatsapp-link {
+    background-color: #15950b;
+    width: fit-content;
+    color: #fff;
+    display: flex;
+    gap: 8px;
+    border-radius: 200px;
+    align-items: center;
+    img {
+      height: 46px;
+      padding: 8px 8px 8px 4px;
+    }
+    span {
+      padding: 8px 22px;
+      padding-right: 0;
+    }
+  }
 }

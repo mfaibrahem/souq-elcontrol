@@ -6,7 +6,6 @@ import './CarCard.scss';
 
 const CarCard = (props) => {
   const params = useParams();
-  console.log('params : ', params);
   return (
     <li className="car-card">
       <RouterLink

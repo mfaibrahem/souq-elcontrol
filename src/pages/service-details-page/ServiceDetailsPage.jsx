@@ -13,6 +13,7 @@ import techSuppImg from '../../assets/imgs/icons/technical-support.png';
 import { Link as RouterLink } from 'react-router-dom';
 import { Descriptions, Tabs } from 'antd';
 import ChatIcon from '../../common/icons/ChatIcon';
+import whatsAppImg from '../../assets/imgs/contact/whatsapp-white.png';
 import ContactSellerContext from '../../contexts/contact-seller-context/ContactSellerContext';
 import ContactSellerModal from './ContactSellerModal';
 import './ServiceDetailsPage.scss';
@@ -66,6 +67,23 @@ const ServiceDetailsPage = () => {
               label={i18n.language === 'ar' ? 'المنطقــة : ' : 'Area : '}
             >
               {obj.area}
+            </Descriptions.Item>
+          )}
+          {obj?.store_whatsapp && (
+            <Descriptions.Item
+              label={
+                i18n.language === 'ar' ? 'رقم الواتس أب : ' : 'Whatsapp : '
+              }
+            >
+              <a
+                className="whatsapp-link"
+                href={`https://wa.me/${obj.store_whatsapp}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img src={whatsAppImg} alt="whats app" />
+                <span>{obj.store_whatsapp}</span>
+              </a>
             </Descriptions.Item>
           )}
         </Descriptions>

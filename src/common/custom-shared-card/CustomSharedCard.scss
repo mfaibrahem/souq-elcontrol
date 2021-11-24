@@ -24,6 +24,9 @@
       @include mediaXlg {
         height: 252px;
       }
+      @include mediaXXlg {
+        height: 294px;
+      }
     }
   }
   .card-data {

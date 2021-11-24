@@ -15,6 +15,18 @@ const schema = (t) =>
           min: 10
         })
       ),
+    store_whatsapp: Yup.string()
+      .required(t('start_selling_form.store_whatsapp.errors.required'))
+      .matches(
+        /^[0-9]+$/,
+        t('start_selling_form.store_whatsapp.errors.type_error')
+      )
+      .min(
+        10,
+        t('start_selling_form.store_whatsapp.errors.min', {
+          min: 10
+        })
+      ),
     email: Yup.string()
       .required(t('start_selling_form.email.errors.required'))
       .email(t('start_selling_form.email.errors.type_error')),

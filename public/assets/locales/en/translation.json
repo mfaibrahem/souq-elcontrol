@@ -134,6 +134,14 @@
         "min": "Minimum of {{min}} characters"
       }
     },
+    "store_whatsapp": {
+      "label": "Whatsapp Phone",
+      "errors": {
+        "required": "Please enter your whatsapp phone",
+        "type_error": "Only numbers allowed",
+        "min": "Minimum of {{min}} characters"
+      }
+    },
     "email": {
       "label": "Email address",
       "errors": {

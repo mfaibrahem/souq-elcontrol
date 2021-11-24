@@ -21,14 +21,20 @@
     border-radius: 18px;
     max-width: 1032px;
 
+    .phone-email-wrap {
+      display: grid;
+      gap: 14px;
+      @include mediaLg {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
     .names-wrap,
-    .phone-email-wrap,
     .passwords-wrap {
       display: grid;
+      gap: 22px;
       @include mediaLg {
         grid-template-columns: 1fr 1fr;
       }
-      gap: 22px;
     }
     .country-city-area-wrap {
       display: grid;
