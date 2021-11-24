@@ -15,15 +15,12 @@ const checkUnAuthenticated = (err) => {
   return err?.response?.status === 401;
 };
 
-const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
 const useCustomApiRequest = () => {
   const history = useHistory();
   const { removeCurrentUser } = useContext(UserContext);
 
   const customApiRequest = async (req, successCallback, errorCallback) => {
     try {
-      await sleep(3000);
       const res = await req;
       // console.log('custom res : ', res);
       if (checkSuccessResponse(res)) {
@@ -39,8 +36,7 @@ const useCustomApiRequest = () => {
         }
         errorCallback(error);
 
-        // console.log('err message : ', error?.message);
-        // console.log('err response : ', error?.response);
+        // console.log('err : ', error?.response);
         // console.log('err req : ', error?.request);
         // console.log('err config : ', error?.config);
       }
