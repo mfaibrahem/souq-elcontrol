@@ -28,7 +28,7 @@ const MakeOrderPage = () => {
         <Descriptions column={1} title={obj?.name ? obj.name : ''} bordered>
           {obj?.address && (
             <Descriptions.Item
-              label={i18n.language === 'ar' ? 'عنوان الورشـة : ' : 'Address : '}
+              label={i18n.language === 'ar' ? 'العنوان : ' : 'Address : '}
             >
               {obj.address}
             </Descriptions.Item>
