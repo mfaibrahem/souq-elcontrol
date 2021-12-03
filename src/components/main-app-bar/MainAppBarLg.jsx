@@ -124,6 +124,14 @@ const MainAppBarLg = ({ className, exceeds0 }) => {
                   <MainAppMessages />
                 </>
               )}
+              <a
+                className="dashboard-link"
+                href="http://compound.emir.life/store/login"
+                target="_blank"
+                rel="noreferrer"
+              >
+                {i18n.language === 'ar' ? 'لوحة التحكم' : 'Dashboard'}
+              </a>
               <LanguageButton />
             </div>
           ) : pathname === '/' ? (
@@ -176,7 +184,14 @@ const MainAppBarLg = ({ className, exceeds0 }) => {
                     </div>
                   </>
                 )}
-
+                <a
+                  className="dashboard-link"
+                  href="http://compound.emir.life/store/login"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {i18n.language === 'ar' ? 'لوحة التحكم' : 'Dashboard'}
+                </a>
                 <LanguageButton />
               </div>
             </div>
@@ -196,6 +211,14 @@ const MainAppBarLg = ({ className, exceeds0 }) => {
                   <MainAppMessages />
                 </>
               )}
+              <a
+                className="dashboard-link"
+                href="http://compound.emir.life/store/login"
+                target="_blank"
+                rel="noreferrer"
+              >
+                {i18n.language === 'ar' ? 'لوحة التحكم' : 'Dashboard'}
+              </a>
               <LanguageButton />
             </div>
           )}

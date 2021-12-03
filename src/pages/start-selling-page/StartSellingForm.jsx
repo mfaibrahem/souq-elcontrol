@@ -11,11 +11,13 @@ import AntdTextField from '../../common/antd-form-components/AntdTextField';
 import CustomMap from '../../components/custom-map/CustomMap';
 import { useTranslation } from 'react-i18next';
 import useCustomApiRequest from '../../custom-hooks/useCustomApiRequest';
-import './StartSellingForm.scss';
 import startSellingSchema from './startSellingSchema';
 import EyeOpenedIcon from '../../common/icons/EyeOpenedIcon';
 import EyeClosedIcon from '../../common/icons/EyeClosedIcon';
 import createStoreApi from '../../apis/store-apis/createStoreApi';
+import successOrderImg from '../../assets/imgs/icons/success-order.png';
+import './StartSellingForm.scss';
+import LoadingModal from '../../common/loading-modal/LoadingModal';
 
 const StartSellingForm = () => {
   // const [urls, setUrls] = React.useState([]);
@@ -58,6 +60,8 @@ const StartSellingForm = () => {
   // console.log('watch : ', watch());
   // console.log('errors : ', errors);
 
+  const [successOrder, setSuccessOrder] = useState(false);
+  const [orderRes, setOrderRes] = useState(null);
   const customApiRequest = useCustomApiRequest();
   const onSubmit = async (data) => {
     const formData = new FormData();
@@ -82,7 +86,7 @@ const StartSellingForm = () => {
       createStoreApi(formData, i18n.language),
       (res) => {
         setIsSubmittingForm(false);
-        if (checkRes(res)) {
+        if (checkRes(res) && res?.data?.data) {
           reset({
             name: '',
             nameOfStore: '',
@@ -98,6 +102,8 @@ const StartSellingForm = () => {
             lat: '',
             lng: ''
           });
+          setSuccessOrder(true);
+          setOrderRes(res.data.data);
           successNotification({
             title: 'Operation done successfully',
             message: 'Order placed successfully'
@@ -122,237 +128,276 @@ const StartSellingForm = () => {
 
   const [form] = Form.useForm();
   return (
-    <Form
-      className="start-selling-form custom-shared-form"
-      form={form}
-      layout="vertical"
-      onFinish={handleSubmit(onSubmit)}
-    >
-      <div className="form-body">
-        <div className="names-wrap">
-          <div className="text-field-label-wrap">
-            <p className="label-p">{t('start_selling_form.name.label')}</p>
-            <div className="text-field-wrap">
-              <AntdTextField
-                className="form-text-field"
-                name="name"
-                type="text"
-                placeholder={t('start_selling_form.name.label')}
-                errorMsg={errors?.name?.message}
-                validateStatus={errors?.name ? 'error' : ''}
-                control={control}
-              />
+    <>
+      <Form
+        className="start-selling-form custom-shared-form"
+        form={form}
+        layout="vertical"
+        onFinish={handleSubmit(onSubmit)}
+      >
+        <div className="form-body">
+          <div className="names-wrap">
+            <div className="text-field-label-wrap">
+              <p className="label-p">{t('start_selling_form.name.label')}</p>
+              <div className="text-field-wrap">
+                <AntdTextField
+                  className="form-text-field"
+                  name="name"
+                  type="text"
+                  placeholder={t('start_selling_form.name.label')}
+                  errorMsg={errors?.name?.message}
+                  validateStatus={errors?.name ? 'error' : ''}
+                  control={control}
+                />
+              </div>
+            </div>
+            <div className="text-field-label-wrap">
+              <p className="label-p">
+                {t('start_selling_form.nameOfStore.label')}
+              </p>
+              <div className="text-field-wrap">
+                <AntdTextField
+                  className="form-text-field"
+                  name="nameOfStore"
+                  type="text"
+                  placeholder={t('start_selling_form.nameOfStore.label')}
+                  errorMsg={errors?.nameOfStore?.message}
+                  validateStatus={errors?.nameOfStore ? 'error' : ''}
+                  control={control}
+                />
+              </div>
             </div>
           </div>
-          <div className="text-field-label-wrap">
-            <p className="label-p">
-              {t('start_selling_form.nameOfStore.label')}
-            </p>
-            <div className="text-field-wrap">
-              <AntdTextField
-                className="form-text-field"
-                name="nameOfStore"
-                type="text"
-                placeholder={t('start_selling_form.nameOfStore.label')}
-                errorMsg={errors?.nameOfStore?.message}
-                validateStatus={errors?.nameOfStore ? 'error' : ''}
-                control={control}
-              />
+          <div className="phone-email-wrap">
+            <div className="text-field-label-wrap">
+              <p className="label-p">{t('start_selling_form.phone.label')}</p>
+              <div className="text-field-wrap">
+                <AntdTextField
+                  className="form-text-field"
+                  name="phone"
+                  type="text"
+                  placeholder={t('start_selling_form.phone.label')}
+                  errorMsg={errors?.phone?.message}
+                  validateStatus={errors?.phone ? 'error' : ''}
+                  control={control}
+                />
+              </div>
+            </div>
+            <div className="text-field-label-wrap">
+              <p className="label-p">
+                {t('start_selling_form.store_whatsapp.label')}
+              </p>
+              <div className="text-field-wrap">
+                <AntdTextField
+                  className="form-text-field"
+                  name="store_whatsapp"
+                  type="text"
+                  placeholder={t('start_selling_form.store_whatsapp.label')}
+                  errorMsg={errors?.store_whatsapp?.message}
+                  validateStatus={errors?.store_whatsapp ? 'error' : ''}
+                  control={control}
+                />
+              </div>
+            </div>
+            <div className="text-field-label-wrap">
+              <p className="label-p">{t('start_selling_form.email.label')}</p>
+              <div className="text-field-wrap">
+                <AntdTextField
+                  className="form-text-field"
+                  name="email"
+                  type="text"
+                  placeholder={t('start_selling_form.email.label')}
+                  errorMsg={errors?.email?.message}
+                  validateStatus={errors?.email ? 'error' : ''}
+                  control={control}
+                />
+              </div>
             </div>
           </div>
-        </div>
-        <div className="phone-email-wrap">
-          <div className="text-field-label-wrap">
-            <p className="label-p">{t('start_selling_form.phone.label')}</p>
-            <div className="text-field-wrap">
-              <AntdTextField
-                className="form-text-field"
-                name="phone"
-                type="text"
-                placeholder={t('start_selling_form.phone.label')}
-                errorMsg={errors?.phone?.message}
-                validateStatus={errors?.phone ? 'error' : ''}
-                control={control}
-              />
-            </div>
-          </div>
-          <div className="text-field-label-wrap">
-            <p className="label-p">
-              {t('start_selling_form.store_whatsapp.label')}
-            </p>
-            <div className="text-field-wrap">
-              <AntdTextField
-                className="form-text-field"
-                name="store_whatsapp"
-                type="text"
-                placeholder={t('start_selling_form.store_whatsapp.label')}
-                errorMsg={errors?.store_whatsapp?.message}
-                validateStatus={errors?.store_whatsapp ? 'error' : ''}
-                control={control}
-              />
-            </div>
-          </div>
-          <div className="text-field-label-wrap">
-            <p className="label-p">{t('start_selling_form.email.label')}</p>
-            <div className="text-field-wrap">
-              <AntdTextField
-                className="form-text-field"
-                name="email"
-                type="text"
-                placeholder={t('start_selling_form.email.label')}
-                errorMsg={errors?.email?.message}
-                validateStatus={errors?.email ? 'error' : ''}
-                control={control}
-              />
-            </div>
-          </div>
-        </div>
 
-        <div className="passwords-wrap">
-          <div className="text-field-label-wrap">
-            <p className="label-p">{t('start_selling_form.password.label')}</p>
-            <div className="login-password-field-wrap text-field-wrap">
-              <AntdTextField
-                className="form-text-field"
-                name="password"
-                type={passwrodVisible ? 'text' : 'password'}
-                placeholder={t('start_selling_form.password.label')}
-                errorMsg={errors?.password?.message}
-                validateStatus={errors?.password ? 'error' : ''}
-                control={control}
-              />
+          <div className="passwords-wrap">
+            <div className="text-field-label-wrap">
+              <p className="label-p">
+                {t('start_selling_form.password.label')}
+              </p>
+              <div className="login-password-field-wrap text-field-wrap">
+                <AntdTextField
+                  className="form-text-field"
+                  name="password"
+                  type={passwrodVisible ? 'text' : 'password'}
+                  placeholder={t('start_selling_form.password.label')}
+                  errorMsg={errors?.password?.message}
+                  validateStatus={errors?.password ? 'error' : ''}
+                  control={control}
+                />
 
-              {watch('password') && (
-                <div
-                  className="eye-icon-btn"
-                  style={{
-                    left: i18n.dir() === 'rtl' ? '14px' : 'auto',
-                    right: i18n.dir() === 'ltr' ? '14px' : 'auto'
-                  }}
-                  onClick={() => {
-                    setPasswordVisible((prevState) => !prevState);
-                  }}
-                >
-                  {passwrodVisible ? <EyeOpenedIcon /> : <EyeClosedIcon />}
-                </div>
-              )}
-            </div>
-          </div>
-          <div className="text-field-label-wrap">
-            <p className="label-p">
-              {t('start_selling_form.password_confirmation.label')}
-            </p>
-            <div className="login-password-field-wrap text-field-wrap">
-              <AntdTextField
-                className="form-text-field"
-                name="password_confirmation"
-                type={passwrodVisible ? 'text' : 'password'}
-                placeholder={t(
-                  'start_selling_form.password_confirmation.label'
+                {watch('password') && (
+                  <div
+                    className="eye-icon-btn"
+                    style={{
+                      left: i18n.dir() === 'rtl' ? '14px' : 'auto',
+                      right: i18n.dir() === 'ltr' ? '14px' : 'auto'
+                    }}
+                    onClick={() => {
+                      setPasswordVisible((prevState) => !prevState);
+                    }}
+                  >
+                    {passwrodVisible ? <EyeOpenedIcon /> : <EyeClosedIcon />}
+                  </div>
                 )}
-                errorMsg={errors?.password_confirmation?.message}
-                validateStatus={errors?.password_confirmation ? 'error' : ''}
-                control={control}
-              />
-
-              {watch('password_confirmation') && (
-                <div
-                  className="eye-icon-btn"
-                  style={{
-                    left: i18n.dir() === 'rtl' ? '14px' : 'auto',
-                    right: i18n.dir() === 'ltr' ? '14px' : 'auto'
-                  }}
-                  onClick={() => {
-                    setPasswordVisible((prevState) => !prevState);
-                  }}
-                >
-                  {passwrodVisible ? <EyeOpenedIcon /> : <EyeClosedIcon />}
-                </div>
-              )}
+              </div>
             </div>
-          </div>
-        </div>
+            <div className="text-field-label-wrap">
+              <p className="label-p">
+                {t('start_selling_form.password_confirmation.label')}
+              </p>
+              <div className="login-password-field-wrap text-field-wrap">
+                <AntdTextField
+                  className="form-text-field"
+                  name="password_confirmation"
+                  type={passwrodVisible ? 'text' : 'password'}
+                  placeholder={t(
+                    'start_selling_form.password_confirmation.label'
+                  )}
+                  errorMsg={errors?.password_confirmation?.message}
+                  validateStatus={errors?.password_confirmation ? 'error' : ''}
+                  control={control}
+                />
 
-        <div className="text-field-label-wrap">
-          <p className="label-p">{t('start_selling_form.address.label')}</p>
-          <div className="text-field-wrap">
-            <AntdTextField
-              className="form-text-field"
-              name="address"
-              type="text"
-              placeholder={t('start_selling_form.address.label')}
-              errorMsg={errors?.address?.message}
-              validateStatus={errors?.address ? 'error' : ''}
-              control={control}
-            />
-          </div>
-        </div>
-        <div className="country-city-area-wrap">
-          <div className="text-field-label-wrap">
-            <p className="label-p">{t('start_selling_form.country.label')}</p>
-            <div className="text-field-wrap">
-              <AntdTextField
-                className="form-text-field"
-                name="country"
-                type="text"
-                placeholder={t('start_selling_form.country.label')}
-                errorMsg={errors?.country?.message}
-                validateStatus={errors?.country ? 'error' : ''}
-                control={control}
-              />
-            </div>
-          </div>
-          <div className="text-field-label-wrap">
-            <p className="label-p">{t('start_selling_form.city.label')}</p>
-            <div className="text-field-wrap">
-              <AntdTextField
-                className="form-text-field"
-                name="city"
-                type="text"
-                placeholder={t('start_selling_form.city.label')}
-                errorMsg={errors?.city?.message}
-                validateStatus={errors?.city ? 'error' : ''}
-                control={control}
-              />
+                {watch('password_confirmation') && (
+                  <div
+                    className="eye-icon-btn"
+                    style={{
+                      left: i18n.dir() === 'rtl' ? '14px' : 'auto',
+                      right: i18n.dir() === 'ltr' ? '14px' : 'auto'
+                    }}
+                    onClick={() => {
+                      setPasswordVisible((prevState) => !prevState);
+                    }}
+                  >
+                    {passwrodVisible ? <EyeOpenedIcon /> : <EyeClosedIcon />}
+                  </div>
+                )}
+              </div>
             </div>
           </div>
 
           <div className="text-field-label-wrap">
-            <p className="label-p">{t('start_selling_form.area.label')}</p>
+            <p className="label-p">{t('start_selling_form.address.label')}</p>
             <div className="text-field-wrap">
               <AntdTextField
                 className="form-text-field"
-                name="area"
+                name="address"
                 type="text"
-                placeholder={t('start_selling_form.area.label')}
-                errorMsg={errors?.area?.message}
-                validateStatus={errors?.area ? 'error' : ''}
+                placeholder={t('start_selling_form.address.label')}
+                errorMsg={errors?.address?.message}
+                validateStatus={errors?.address ? 'error' : ''}
                 control={control}
               />
             </div>
           </div>
+          <div className="country-city-area-wrap">
+            <div className="text-field-label-wrap">
+              <p className="label-p">{t('start_selling_form.country.label')}</p>
+              <div className="text-field-wrap">
+                <AntdTextField
+                  className="form-text-field"
+                  name="country"
+                  type="text"
+                  placeholder={t('start_selling_form.country.label')}
+                  errorMsg={errors?.country?.message}
+                  validateStatus={errors?.country ? 'error' : ''}
+                  control={control}
+                />
+              </div>
+            </div>
+            <div className="text-field-label-wrap">
+              <p className="label-p">{t('start_selling_form.city.label')}</p>
+              <div className="text-field-wrap">
+                <AntdTextField
+                  className="form-text-field"
+                  name="city"
+                  type="text"
+                  placeholder={t('start_selling_form.city.label')}
+                  errorMsg={errors?.city?.message}
+                  validateStatus={errors?.city ? 'error' : ''}
+                  control={control}
+                />
+              </div>
+            </div>
+
+            <div className="text-field-label-wrap">
+              <p className="label-p">{t('start_selling_form.area.label')}</p>
+              <div className="text-field-wrap">
+                <AntdTextField
+                  className="form-text-field"
+                  name="area"
+                  type="text"
+                  placeholder={t('start_selling_form.area.label')}
+                  errorMsg={errors?.area?.message}
+                  validateStatus={errors?.area ? 'error' : ''}
+                  control={control}
+                />
+              </div>
+            </div>
+          </div>
+
+          <CustomMap
+            width="100%"
+            height="400px"
+            selectedLocation={selectedLocation}
+            setSelecectedLocation={setSelecectedLocation}
+            selectedAddress={selectedAddress}
+            setSelectedAddress={setSelectedAddress}
+          />
+
+          <Button
+            className="submit-btn"
+            htmlType="submit"
+            type="primary"
+            // icon={<LoginOutlined />}
+            loading={isSubmittingForm}
+          >
+            {t('start_selling_form.submit_btn.label')}
+          </Button>
         </div>
+      </Form>
 
-        <CustomMap
-          width="100%"
-          height="400px"
-          selectedLocation={selectedLocation}
-          setSelecectedLocation={setSelecectedLocation}
-          selectedAddress={selectedAddress}
-          setSelectedAddress={setSelectedAddress}
-        />
+      {successOrder && (
+        <LoadingModal clsName="success-order-modal">
+          <div style={{ display: 'grid', placeItems: 'center' }}>
+            <img src={successOrderImg} alt="sucess order" />
+          </div>
+          <p>تم إنشاء حسابك بنجاح</p>
 
-        <Button
-          className="submit-btn"
-          htmlType="submit"
-          type="primary"
-          // icon={<LoginOutlined />}
-          loading={isSubmittingForm}
-        >
-          {t('start_selling_form.submit_btn.label')}
-        </Button>
-      </div>
-    </Form>
+          <div className="sucess-btns-wrap">
+            {orderRes?.dashboardLink && (
+              <a
+                className="link"
+                onClick={() => {
+                  setOrderRes(null);
+                  setSuccessOrder(true);
+                }}
+                href={orderRes.dashboardLink}
+                target="_blank"
+                rel="noreferrer"
+              >
+                لوحة التحكم
+              </a>
+            )}
+            <Button
+              className="link"
+              onClick={() => {
+                setOrderRes(null);
+                setSuccessOrder(true);
+              }}
+            >
+              متابعة
+            </Button>
+          </div>
+        </LoadingModal>
+      )}
+    </>
   );
 };
 

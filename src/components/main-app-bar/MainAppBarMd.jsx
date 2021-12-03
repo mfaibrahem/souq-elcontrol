@@ -40,7 +40,7 @@ const MainAppBarMd = ({ className, exceeds0 }) => {
         </RouterLink>
       );
     }
-    return 'سوق الكنترول';
+    return i18n.language === 'ar' ? 'سوق الكنترول' : 'ECU Souq';
   };
 
   const renderNavLinks = () => {
@@ -122,6 +122,14 @@ const MainAppBarMd = ({ className, exceeds0 }) => {
             </div>
           </div>
         )}
+        <a
+          className="appbar-signin-link"
+          href="http://compound.emir.life/store/login"
+          target="_blank"
+          rel="noreferrer"
+        >
+          {i18n.language === 'ar' ? 'لوحة التحكم' : 'Dashboard'}
+        </a>
       </Drawer>
     </div>
   );

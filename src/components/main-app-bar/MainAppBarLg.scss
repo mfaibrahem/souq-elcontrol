@@ -11,11 +11,12 @@
     display: grid;
     grid-template-columns: auto 1fr;
     justify-content: space-between;
-    gap: 32px;
+    gap: 18px;
     align-items: center;
     &.not-home {
       grid-template-columns: auto auto;
-      .appbar-signin-link {
+      .appbar-signin-link,
+      .dashboard-link {
         background-color: $main-app-color;
         color: #fff;
       }
@@ -46,7 +47,14 @@
     .appbar-signin-link {
       background-color: #fff;
       color: $main-app-color;
-      padding: 12px 28px;
+      padding: 12px 18px;
+      border-radius: 12px;
+      width: fit-content;
+    }
+    .dashboard-link {
+      padding: 12px 18px;
+      background-color: #fff;
+      color: $main-app-color;
       border-radius: 12px;
       width: fit-content;
     }
@@ -59,7 +67,7 @@
       .signin-lang-wrap {
         justify-self: end;
         display: grid;
-        grid-template-columns: auto auto;
+        grid-template-columns: auto auto auto;
         gap: 32px;
         align-items: center;
       }
@@ -98,7 +106,7 @@
     .nav-lang-wrapper {
       display: grid;
       grid-auto-flow: column;
-      grid-gap: 32px;
+      grid-gap: 18px;
       & > ul {
         display: grid;
         grid-auto-flow: column;
@@ -172,6 +180,10 @@
     .nav-content-wrapper {
       grid-template-columns: auto auto;
       .appbar-signin-link {
+        background-color: $main-app-color;
+        color: #fff;
+      }
+      .dashboard-link {
         background-color: $main-app-color;
         color: #fff;
       }
