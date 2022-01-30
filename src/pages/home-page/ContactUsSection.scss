@@ -14,8 +14,10 @@
   .section-content {
     display: grid;
     gap: 32px;
+    max-width: 632px;
+    margin: auto;
     @include mediaLg {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
     }
   }
 

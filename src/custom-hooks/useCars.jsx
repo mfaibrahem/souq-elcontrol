@@ -17,7 +17,7 @@ const useCars = () => {
     if (isMounted) {
       setIsLoadingCars(true);
       customApiRequest(
-        getAllCarsApi(i18n.language),
+        getAllCarsApi(null, i18n.language),
         (res) => {
           setIsLoadingCars(false);
           if (checkRes(res) && res?.data?.data) {
