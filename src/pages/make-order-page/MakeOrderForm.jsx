@@ -90,7 +90,11 @@ const MakeOrderForm = () => {
             title: 'Operation done successfully',
             message: 'Order placed successfully'
           });
-          history.push(routerLinks?.myOrdersRoute);
+          if (res?.data?.data?.paymentMethod == 2) {
+            window.location.href = `https://ecusouq.com/backend/api/Fawry/payFawry?order_id=${res.data.data.id}`;
+          } else {
+            history.push(routerLinks?.myOrdersRoute);
+          }
         } else {
           errorNotification({
             title: 'Something went wrong',
