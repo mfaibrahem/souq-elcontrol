@@ -6,12 +6,12 @@ import FeaturedSection from './FeaturedSection';
 import HowItWorksSection from './HowItWorksSection';
 import QuestionsSection from './QuestionsSection';
 import ContactUsSection from './ContactUsSection';
-import './HomePage.scss';
 import useCustomApiRequest from '../../custom-hooks/useCustomApiRequest';
 import getHomepageDataApi from '../../apis/homepage/getHomepageDataApi';
 import { LoadingOutlined } from '@ant-design/icons';
 import checkRes from '../../utils/checkRes';
 import { useTranslation } from 'react-i18next';
+import './HomePage.scss';
 
 const HomePage = () => {
   const { i18n } = useTranslation();
@@ -77,7 +77,7 @@ const HomePage = () => {
         isMainCat={true}
         isSubCat={false}
       />
-      <FeaturedSection />
+      <FeaturedSection fetchedData={homeData?.Features} />
       <HowItWorksSection
         isLoading={isLoadingHome}
         sectionData={homeData?.howWork}
