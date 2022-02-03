@@ -51,7 +51,7 @@ const HowItWorksSection = ({ sectionData, isLoading }) => {
 
         <div className="section-content">
           {renderArr()}
-          <div
+          {/* <div
             className={
               i18n.dir() === 'rtl' ? 'section-img rtl' : 'section-img ltr'
             }
@@ -63,7 +63,7 @@ const HowItWorksSection = ({ sectionData, isLoading }) => {
                   : howItWorksSectionImg1
               }
             />
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

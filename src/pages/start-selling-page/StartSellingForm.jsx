@@ -376,7 +376,7 @@ const StartSellingForm = () => {
                 className="link"
                 onClick={() => {
                   setOrderRes(null);
-                  setSuccessOrder(true);
+                  setSuccessOrder(false);
                 }}
                 href={orderRes.dashboardLink}
                 target="_blank"
@@ -389,7 +389,7 @@ const StartSellingForm = () => {
               className="link"
               onClick={() => {
                 setOrderRes(null);
-                setSuccessOrder(true);
+                setSuccessOrder(false);
               }}
             >
               متابعة

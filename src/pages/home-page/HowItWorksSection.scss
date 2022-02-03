@@ -20,14 +20,19 @@
     min-height: 700px;
     display: grid;
     gap: 32px;
-    @include mediaLg {
-      align-items: center;
-      grid-template-columns: 1fr 1fr;
-    }
+    // @include mediaLg {
+    //   align-items: center;
+    //   grid-template-columns: 1fr;
+    // }
 
     .how-it-works-ul {
       display: grid;
       gap: 14px;
+      max-width: 832px;
+      margin: auto;
+      @include mediaLg {
+        grid-template-columns: 1fr;
+      }
       & > li {
         display: grid;
         grid-template-columns: auto 1fr;
@@ -53,10 +58,13 @@
           font-size: 22px;
           margin-bottom: 8px;
         }
+        .li-text {
+          display: grid;
+        }
         .li-desc {
           line-height: 1.8;
           font-size: 18px;
-          max-width: 632px;
+          // max-width: 632px;
           text-align: justify;
         }
       }
