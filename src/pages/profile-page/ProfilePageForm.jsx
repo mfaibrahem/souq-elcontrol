@@ -130,7 +130,6 @@ const ProfilePageForm = () => {
         });
       }
     } catch (error) {
-      console.log('error');
       errorNotification({
         title: 'حدث خطأ',
         message: 'حاول فى وقت لاحق'

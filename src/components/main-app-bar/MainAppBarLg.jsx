@@ -126,7 +126,7 @@ const MainAppBarLg = ({ className, exceeds0 }) => {
               )}
               <a
                 className="dashboard-link"
-                href="http://compound.emir.life/store/login"
+                href="https://ecusouq.com/backend/store/login"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -186,7 +186,7 @@ const MainAppBarLg = ({ className, exceeds0 }) => {
                 )}
                 <a
                   className="dashboard-link"
-                  href="http://compound.emir.life/store/login"
+                  href="https://ecusouq.com/backend/store/login"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -213,7 +213,7 @@ const MainAppBarLg = ({ className, exceeds0 }) => {
               )}
               <a
                 className="dashboard-link"
-                href="http://compound.emir.life/store/login"
+                href="https://ecusouq.com/backend/store/login"
                 target="_blank"
                 rel="noreferrer"
               >

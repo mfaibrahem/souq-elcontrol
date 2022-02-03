@@ -124,7 +124,7 @@ const MainAppBarMd = ({ className, exceeds0 }) => {
         )}
         <a
           className="appbar-signin-link"
-          href="http://compound.emir.life/store/login"
+          href="https://ecusouq.com/backend/store/login"
           target="_blank"
           rel="noreferrer"
         >

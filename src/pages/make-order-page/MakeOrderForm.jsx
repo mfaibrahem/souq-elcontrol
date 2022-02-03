@@ -50,8 +50,8 @@ const MakeOrderForm = () => {
     }
   });
 
-  console.log('watch : ', watch());
-  console.log('errors : ', errors);
+  // console.log('watch : ', watch());
+  // console.log('errors : ', errors);
 
   const customApiRequest = useCustomApiRequest();
   const onSubmit = async (data) => {
