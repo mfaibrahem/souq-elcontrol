@@ -13,6 +13,7 @@ import routerLinks from '../app/routerLinks';
 import MainAppMessages from './MainAppMessages';
 import useSignout from '../../custom-hooks/useSignout';
 import CustomImage from '../../common/custom-image/CustomImage';
+import MainAppBarSearchBar from './MainAppBarSearchBar';
 
 const MainAppBarMd = ({ className, exceeds0 }) => {
   const { pathname } = useLocation();
@@ -78,6 +79,10 @@ const MainAppBarMd = ({ className, exceeds0 }) => {
             </Button>
             <LanguageButton />
           </div>
+
+          {!exceeds0 && pathname === routerLinks?.homePage && (
+            <MainAppBarSearchBar />
+          )}
 
           <Logo
             colored={exceeds0 || pathname !== '/'}

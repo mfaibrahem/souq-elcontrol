@@ -1,0 +1,48 @@
+@import '../../scss/config';
+
+.main-app-bar {
+  .main-search-lang-wrap {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 42px;
+    .signin-lang-wrap {
+      justify-self: end;
+      display: grid;
+      grid-template-columns: auto auto auto;
+      gap: 32px;
+      align-items: center;
+    }
+  }
+  .main-app-search-form {
+    // max-width: 800px;
+    label {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+      background-color: rgba(#f2f2f2, 0.1);
+      padding: 4px 22px;
+      border-radius: 12px;
+      gap: 12px;
+    }
+    input {
+      background-color: transparent;
+      border: none !important;
+      outline: none !important;
+      color: #fff;
+      height: 48px;
+      width: 100%;
+      @include mediaXXlg {
+        height: 58px;
+      }
+      &::placeholder {
+        color: #fff;
+      }
+    }
+    .icon-wrap {
+      pointer-events: none;
+      display: grid;
+      place-items: center;
+    }
+  }
+}
