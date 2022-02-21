@@ -1,18 +1,18 @@
 @import './config';
 
 html {
-  &[lang='ar'] {
-    .bold-font {
-      @include headingFont-ar;
-      color: $main-app-color;
-    }
-  }
-  &[lang='en'] {
-    .bold-font {
-      @include headingFont-ar;
-      color: $main-app-color;
-    }
-  }
+  // &[lang='ar'] {
+  //   .bold-font {
+  //     @include headingFont-ar;
+  //     color: $main-app-color;
+  //   }
+  // }
+  // &[lang='en'] {
+  //   .bold-font {
+  //     @include headingFont-ar;
+  //     color: $main-app-color;
+  //   }
+  // }
 }
 
 .custom-slick-slider {

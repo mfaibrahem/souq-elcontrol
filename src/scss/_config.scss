@@ -135,29 +135,30 @@ ul {
   font-style: normal;
 }
 @font-face {
-  font-family: 'ITC-Handel-Gothic-Arabic-Regular';
-  src: url(../assets/fonts/ITC-Handel-Gothic-Arabic-Regular.woff) format('woff');
+  font-family: 'NeoSansW23-Regular';
+  src: url(../assets/fonts/NeoSansW23-Regular.woff) format('woff');
   font-style: normal;
 }
-@font-face {
-  font-family: 'ITC-Handel-Gothic-Arabic-Bold';
-  src: url(../assets/fonts/ITC-Handel-Gothic-Arabic-Bold.woff) format('woff');
-  font-style: normal;
-}
+// @font-face {
+//   font-family: 'ITC-Handel-Gothic-Arabic-Bold';
+//   src: url(../assets/fonts/ITC-Handel-Gothic-Arabic-Bold.woff) format('woff');
+//   font-style: normal;
+// }
 
 @mixin bodyFont-ar {
-  font-family: 'ITC-Handel-Gothic-Arabic-Regular' !important;
+  font-family: 'NeoSansW23-Regular' !important;
 }
 
-@mixin headingFont-ar {
-  font-family: 'ITC-Handel-Gothic-Arabic-Bold';
-}
-@mixin headingFont-en {
-  font-family: 'ITC-Handel-Gothic-Arabic-Bold';
-}
-// @mixin bodyFont-en {
-// 	font-family: "AndikaNewBasic-Regular" !important;
+// @mixin headingFont-ar {
+//   font-family: 'ITC-Handel-Gothic-Arabic-Bold';
 // }
+// @mixin headingFont-en {
+//   font-family: 'ITC-Handel-Gothic-Arabic-Bold';
+// }
+@mixin bodyFont-en {
+  // font-family: 'AndikaNewBasic-Regular' !important;
+  font-family: 'ahronbd' !important;
+}
 
 // @mixin headingFont-ar {
 // 	font-family: "Janna-LT-Bold";
