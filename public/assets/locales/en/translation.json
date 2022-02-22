@@ -183,17 +183,17 @@
     }
   },
   "main_app_search": {
-    "placeholder": "Search for your service..."
+    "placeholder": "Search for your Order..."
   },
   "signinSignup": {
     "signin": "Sign in",
     "Signup": "Sign up"
   },
   "categories_section": {
-    "main_title": "Find your service easily"
+    "main_title": "Find your Order easily"
   },
   "featured_section": {
-    "main_title": "Souq El-Control Features"
+    "main_title": "ECUsouq Features"
   },
   "how_it_works_section": {
     "main_title": "About us"
