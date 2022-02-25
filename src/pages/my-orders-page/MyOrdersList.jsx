@@ -126,7 +126,7 @@ const MyOrdersList = ({ list, setFetchOrdersCount }) => {
         >
           <div className={`service-price`}>
             {obj?.totalPrice && obj.totalPrice}{' '}
-            {i18n.language === 'ar' ? 'ريـــال' : 'SAR'}
+            {i18n.language === 'ar' ? 'جنيه' : 'LE'}
           </div>
           {obj?.paymentMethod && (
             <div className="payment-method-wrap">

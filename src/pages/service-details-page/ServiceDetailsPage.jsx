@@ -212,7 +212,7 @@ const ServiceDetailsPage = () => {
                       <div className="price-wrap">
                         <div className="price-itself">
                           {fetchedServiceDetails?.service?.price}{' '}
-                          {i18n.language === 'ar' ? 'ريـــال' : 'SAR'}
+                          {i18n.language === 'ar' ? 'جنيه' : 'LE'}
                         </div>
                       </div>
                     )}

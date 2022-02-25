@@ -73,7 +73,7 @@ const MakeOrderPage = () => {
         {obj.price && (
           <div className="price-wrap">
             <p className="price-title">سعر الخدمة</p>
-            <div className="price-itself">{obj.price} ريـــال</div>
+            <div className="price-itself">{obj.price} جنيه</div>
           </div>
         )}
       </div>
@@ -188,7 +188,7 @@ const MakeOrderPage = () => {
                         <div className="price-wrap">
                           <div className="price-itself">
                             {fetchedServiceDetails?.service?.price}{' '}
-                            {i18n.language === 'ar' ? 'ريـــال' : 'SAR'}
+                            {i18n.language === 'ar' ? 'جنيه' : 'LE'}
                           </div>
                         </div>
                       )}

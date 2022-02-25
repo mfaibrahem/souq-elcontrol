@@ -43,9 +43,10 @@
     display: grid;
   }
   .section-data {
-    margin-top: 32px;
+    margin-top: 92px;
     display: grid;
     @include mediaLg {
+      margin-top: 32px;
       grid-template-columns: 1fr 1fr;
     }
     align-items: center;

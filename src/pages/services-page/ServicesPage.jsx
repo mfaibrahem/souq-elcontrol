@@ -62,8 +62,8 @@ const ServicesPage = () => {
                         {ele?.price ? (
                           <div className="card-price">
                             <span className="price-span">{ele?.price}</span>
-                            <span>{i18n.language === 'ar' && 'ريــال'}</span>
-                            <span>{i18n.language === 'en' && 'SAR'}</span>
+                            <span>{i18n.language === 'ar' && 'جنيه'}</span>
+                            <span>{i18n.language === 'en' && 'LE'}</span>
                           </div>
                         ) : null}
                       </div>

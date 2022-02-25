@@ -15,6 +15,7 @@
     }
   }
   .nav-content-wrapper {
+    position: relative;
     display: grid;
     // grid-template-columns: auto 1fr auto;
     grid-auto-flow: column;
@@ -43,6 +44,18 @@
         padding: 2px 8px;
         display: grid;
         place-items: center;
+      }
+    }
+
+    .main-app-search-form {
+      position: absolute;
+      top: 62px;
+      left: 6%;
+      right: 6%;
+
+      @include mediaMd {
+        position: relative;
+        top: 6px;
       }
     }
   }
