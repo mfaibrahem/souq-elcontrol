@@ -21,7 +21,7 @@ html {
   }
   &[lang='en'] {
     body {
-      @include bodyFont-ar;
+      @include bodyFont-en;
       // button {
       //   @include bodyFont-ar;
       // }

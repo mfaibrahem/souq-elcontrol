@@ -183,14 +183,14 @@
     }
   },
   "main_app_search": {
-    "placeholder": "إبحث عن خدمتك..."
+    "placeholder": "إبحث عن طلبك..."
   },
   "signinSignup": {
     "signin": "تسجيل الدخول",
     "Signup": "حساب جديد"
   },
   "categories_section": {
-    "main_title": "إبحث عن خدمتك بسهولة"
+    "main_title": "إبحث عن طلبك بسهولة"
   },
   "featured_section": {
     "main_title": "مميزات سوق الكنترول "

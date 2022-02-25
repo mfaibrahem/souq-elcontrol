@@ -69,7 +69,7 @@ const StartSellingForm = () => {
     if (data.nameOfStore) formData.append('nameOfStore', data.nameOfStore);
     if (data.phone) formData.append('phone', data.phone);
     if (data.store_whatsapp)
-      formData.append('store_whatsapp', data.store_whatsapp);
+      formData.append('store_whatsapp', `+2${data.store_whatsapp}`);
     if (data.email) formData.append('email', data.email);
     if (data.password) formData.append('password', data.password);
     if (data.password_confirmation)
