@@ -44,7 +44,11 @@ const MainAppBarSearchBar = () => {
   const renderServicesMenu = () => {
     if (query) {
       if (isSearching) {
-        return <Menu.Item>جــارى البحث ...</Menu.Item>;
+        return (
+          <Menu.Item key="searching_key">
+            {t('main_app_search.searching')}
+          </Menu.Item>
+        );
       }
       if (fetchedServices?.length > 0) {
         return fetchedServices.map((serv) => (
@@ -67,7 +71,11 @@ const MainAppBarSearchBar = () => {
       }
       return null;
     }
-    return <Menu.Item>إبحث عن خدمتــك ...</Menu.Item>;
+    return (
+      <Menu.Item key="placeholder_key">
+        {t('main_app_search.placeholder')}
+      </Menu.Item>
+    );
   };
 
   return (

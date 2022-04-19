@@ -183,7 +183,8 @@
     }
   },
   "main_app_search": {
-    "placeholder": "إبحث عن طلبك..."
+    "placeholder": "إبحث عن طلبك...",
+    "searching": "جارى البحث"
   },
   "signinSignup": {
     "signin": "تسجيل الدخول",

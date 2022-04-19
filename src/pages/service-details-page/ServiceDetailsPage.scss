@@ -249,11 +249,25 @@
     align-items: center;
     img {
       height: 46px;
-      padding: 8px 8px 8px 4px;
     }
     span {
       padding: 8px 22px;
-      padding-right: 0;
+    }
+    &.rtl {
+      span {
+        padding-right: 0;
+      }
+      img {
+        padding: 8px 8px 8px 4px;
+      }
+    }
+    &.ltr {
+      span {
+        padding-left: 0;
+      }
+      img {
+        padding: 8px 4px 8px 8px;
+      }
     }
   }
 }

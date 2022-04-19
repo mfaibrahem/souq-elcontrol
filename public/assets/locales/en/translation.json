@@ -183,7 +183,8 @@
     }
   },
   "main_app_search": {
-    "placeholder": "Search for your Order..."
+    "placeholder": "Search for your Order...",
+    "searching": "Searching..."
   },
   "signinSignup": {
     "signin": "Sign in",

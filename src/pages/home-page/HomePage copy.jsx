@@ -4,9 +4,11 @@ import HomeHeroSection from './HomeHeroSection';
 import CategoriesSection from '../../components/categories-section/CategoriesSection';
 import FeaturedSection from './FeaturedSection';
 import HowItWorksSection from './HowItWorksSection';
+import QuestionsSection from './QuestionsSection';
 import ContactUsSection from './ContactUsSection';
 import useCustomApiRequest from '../../custom-hooks/useCustomApiRequest';
 import getHomepageDataApi from '../../apis/homepage/getHomepageDataApi';
+import { LoadingOutlined } from '@ant-design/icons';
 import checkRes from '../../utils/checkRes';
 import { useTranslation } from 'react-i18next';
 import './HomePage.scss';
@@ -39,6 +41,30 @@ const HomePage = () => {
     };
   }, [i18n.language]);
 
+  const renderQuestionsSection = () => {
+    if (isLoadingHome) {
+      return (
+        <div
+          style={{
+            minHeight: 300,
+            display: 'grid',
+            placeItems: 'center'
+          }}
+        >
+          <LoadingOutlined style={{ fontSize: 20 }} />
+        </div>
+      );
+    }
+    if (
+      homeData?.question?.length > 0 &&
+      homeData.question[0]?.question &&
+      homeData.question[0]?.answer
+    ) {
+      return <QuestionsSection questions={homeData?.question} />;
+    }
+    return null;
+  };
+
   return (
     <div className="home-page shared-custom-page">
       <div className="home-page-main-content">
@@ -56,6 +82,7 @@ const HomePage = () => {
         isLoading={isLoadingHome}
         sectionData={homeData?.howWork}
       />
+      {renderQuestionsSection()}
       <ContactUsSection />
     </div>
   );

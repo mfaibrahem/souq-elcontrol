@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import CustomBreadcrubm from '../../common/bread-crumb/Breadcrubm';
 import routerLinks from '../../components/app/routerLinks';
@@ -14,6 +14,9 @@ import PhoneIcon from '../../common/icons/PhoneIcon';
 import EmailIcon from '../../common/icons/EmailIcon';
 import MapIcon from '../../common/icons/MapIcon';
 import './AboutUsPage.scss';
+import getHomepageDataApi from '../../apis/homepage/getHomepageDataApi';
+import FeaturedSection from '../home-page/FeaturedSection';
+import HowItWorksSection from '../home-page/HowItWorksSection';
 
 const AboutUsPage = () => {
   const { t, i18n } = useTranslation();
@@ -21,6 +24,30 @@ const AboutUsPage = () => {
   const [isLoading, setIsLoading] = React.useState(false);
   const [fetchedData, setFetchedData] = React.useState(null);
   const customApiRequest = useCustomApiRequest();
+  const [isLoadingHome, setIsLoadingHome] = React.useState(false);
+  const [homeData, setHomeData] = React.useState(null);
+  useEffect(() => {
+    let isMounted = true;
+    if (isMounted) {
+      setIsLoadingHome(true);
+      customApiRequest(
+        getHomepageDataApi(i18n.language),
+        (res) => {
+          setIsLoadingHome(false);
+          if (checkRes(res) && res?.data?.data) {
+            setHomeData(res.data.data);
+          } else {
+          }
+        },
+        (error) => {
+          setIsLoadingHome(false);
+        }
+      );
+    }
+    return () => {
+      isMounted = false;
+    };
+  }, [i18n.language]);
 
   React.useEffect(() => {
     let isMounted = true;
@@ -86,11 +113,15 @@ const AboutUsPage = () => {
                 data-aos="fade"
                 data-aos-duration="400"
               >
-                {fetchedData?.about && parse(fetchedData.about)}
+                {/* {fetchedData?.about && parse(fetchedData.about)} */}
+                <HowItWorksSection
+                  isLoading={isLoadingHome}
+                  sectionData={homeData?.howWork}
+                />
               </div>
-              <div className="img-wrap">
+              {/* <div className="img-wrap">
                 <CustomImage src={aboutImg} />
-              </div>
+              </div> */}
             </div>
 
             <div className="contact-boxs-wrap">

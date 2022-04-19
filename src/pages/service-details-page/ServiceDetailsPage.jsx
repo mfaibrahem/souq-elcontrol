@@ -76,7 +76,7 @@ const ServiceDetailsPage = () => {
               }
             >
               <a
-                className="whatsapp-link"
+                className={`whatsapp-link ${i18n.dir()}`}
                 href={`https://wa.me/${obj.store_whatsapp}`}
                 target="_blank"
                 rel="noreferrer"
@@ -241,9 +241,7 @@ const ServiceDetailsPage = () => {
                             fetchedServiceDetails?.service?.id
                           )}
                         >
-                          {i18n.language === 'ar'
-                            ? 'احصل على الخدمة'
-                            : 'Get this service'}
+                          {i18n.language === 'ar' ? 'اطلب الان' : 'Order Now'}
                         </RouterLink>
                       )}
                     </div>
