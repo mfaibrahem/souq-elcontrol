@@ -1,7 +1,7 @@
 /* eslint-disable eqeqeq */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { Form, Button } from 'antd';
 import { yupResolver } from '@hookform/resolvers/yup';
 import successNotification from '../../utils/successNotification';
@@ -17,6 +17,7 @@ import EyeClosedIcon from '../../common/icons/EyeClosedIcon';
 import createStoreApi from '../../apis/store-apis/createStoreApi';
 import successOrderImg from '../../assets/imgs/icons/success-order.png';
 import './StartSellingForm.scss';
+import PhoneInput from 'react-phone-number-input';
 import LoadingModal from '../../common/loading-modal/LoadingModal';
 
 const StartSellingForm = () => {
@@ -169,36 +170,72 @@ const StartSellingForm = () => {
             </div>
           </div>
           <div className="phone-email-wrap">
-            <div className="text-field-label-wrap">
-              <p className="label-p">{t('start_selling_form.phone.label')}</p>
-              <div className="text-field-wrap">
-                <AntdTextField
-                  className="form-text-field"
-                  name="phone"
-                  type="text"
-                  placeholder={t('start_selling_form.phone.label')}
-                  errorMsg={errors?.phone?.message}
-                  validateStatus={errors?.phone ? 'error' : ''}
-                  control={control}
-                />
-              </div>
+            <div
+              className="country-code-phone-wrap"
+              style={{
+                marginBottom: 28
+              }}
+            >
+              <p
+                style={{
+                  paddingBottom: 8
+                }}
+              >
+                {t('start_selling_form.phone.label')}
+              </p>
+              <Controller
+                name="phone"
+                control={control}
+                // render={({ field: { onChange, onBlur, value, name, ref } }) => {
+                render={({ field }) => {
+                  return (
+                    <PhoneInput
+                      {...field}
+                      placeholder={t('start_selling_form.phone.label')}
+                      // value={phoneValue}
+                      // onChange={setPhoneValue}
+                      defaultCountry="EG"
+                      className={`custom-phone-input ${i18n.dir()}`}
+                    />
+                  );
+                }}
+              />
+              <p className="error-p">{errors?.phone?.message}</p>
             </div>
-            <div className="text-field-label-wrap">
-              <p className="label-p">
+
+            <div
+              className="country-code-phone-wrap"
+              style={{
+                marginBottom: 28
+              }}
+            >
+              <p
+                style={{
+                  paddingBottom: 8
+                }}
+              >
                 {t('start_selling_form.store_whatsapp.label')}
               </p>
-              <div className="text-field-wrap">
-                <AntdTextField
-                  className="form-text-field"
-                  name="store_whatsapp"
-                  type="text"
-                  placeholder={t('start_selling_form.store_whatsapp.label')}
-                  errorMsg={errors?.store_whatsapp?.message}
-                  validateStatus={errors?.store_whatsapp ? 'error' : ''}
-                  control={control}
-                />
-              </div>
+              <Controller
+                name="store_whatsapp"
+                control={control}
+                // render={({ field: { onChange, onBlur, value, name, ref } }) => {
+                render={({ field }) => {
+                  return (
+                    <PhoneInput
+                      {...field}
+                      placeholder={t('start_selling_form.store_whatsapp.label')}
+                      // value={phoneValue}
+                      // onChange={setPhoneValue}
+                      defaultCountry="EG"
+                      className={`custom-phone-input ${i18n.dir()}`}
+                    />
+                  );
+                }}
+              />
+              <p className="error-p">{errors?.store_whatsapp?.message}</p>
             </div>
+
             <div className="text-field-label-wrap">
               <p className="label-p">{t('start_selling_form.email.label')}</p>
               <div className="text-field-wrap">

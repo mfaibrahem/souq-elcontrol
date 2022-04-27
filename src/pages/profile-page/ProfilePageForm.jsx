@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useContext } from 'react';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { Form, Button } from 'antd';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
@@ -15,12 +15,13 @@ import FileInput from '../../common/file-input/FileInput';
 import EyeOpenedIcon from '../../common/icons/EyeOpenedIcon';
 import EyeClosedIcon from '../../common/icons/EyeClosedIcon';
 import { useTranslation } from 'react-i18next';
+import PhoneInput from 'react-phone-number-input';
 
 const schema = Yup.object().shape({
   name: Yup.string().required('ادخل الاســـم'),
   phone: Yup.string()
     .required('ادخل رقم الهاتف')
-    .matches(/^[0-9]+$/, 'لا يسمح الا بكتابة الارقام')
+    // .matches(/^[0-9]+$/, 'لا يسمح الا بكتابة الارقام')
     .min(10, 'اقل حد 10 ارقام'),
   email: Yup.string()
     .required('ادخل البريد الاكترونى')
@@ -140,7 +141,7 @@ const ProfilePageForm = () => {
   const [form] = Form.useForm();
   return (
     <Form
-      className="custom-shared-form"
+      className="custom-shared-form profile-form"
       form={form}
       layout="vertical"
       onFinish={handleSubmit(onSubmit)}
@@ -160,7 +161,41 @@ const ProfilePageForm = () => {
             />
           </div>
         </div>
-        <div className="text-field-label-wrap">
+
+        <div
+          className="country-code-phone-wrap"
+          style={{
+            marginBottom: 28
+          }}
+        >
+          <p
+            style={{
+              paddingBottom: 8
+            }}
+          >
+            رقم الهاتف
+          </p>
+          <Controller
+            name="phone"
+            control={control}
+            // render={({ field: { onChange, onBlur, value, name, ref } }) => {
+            render={({ field }) => {
+              return (
+                <PhoneInput
+                  {...field}
+                  placeholder="رقم الهاتف"
+                  // value={phoneValue}
+                  // onChange={setPhoneValue}
+                  defaultCountry="EG"
+                  className={`custom-phone-input ${i18n.dir()}`}
+                />
+              );
+            }}
+          />
+          <p className="error-p">{errors?.phone?.message}</p>
+        </div>
+
+        {/* <div className="text-field-label-wrap">
           <p className="label-p">رقــم الهاتف</p>
           <div className="text-field-wrap">
             <AntdTextField
@@ -173,7 +208,7 @@ const ProfilePageForm = () => {
               control={control}
             />
           </div>
-        </div>
+        </div> */}
         <div className="text-field-label-wrap">
           <p className="label-p">البريد الاكترونى</p>
           <div className="text-field-wrap">

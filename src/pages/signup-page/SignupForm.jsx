@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import AntdTextField from '../../common/antd-form-components/AntdTextField';
@@ -9,11 +9,12 @@ import ForgetPasswordContext from '../../contexts/forget-password-context/Forget
 import EyeOpenedIcon from '../../common/icons/EyeOpenedIcon';
 import EyeClosedIcon from '../../common/icons/EyeClosedIcon';
 import { Link as RouterLink } from 'react-router-dom';
+import PhoneInput from 'react-phone-number-input';
 import {
   UserOutlined,
   LockOutlined,
-  MailOutlined,
-  PhoneOutlined
+  MailOutlined
+  // PhoneOutlined
 } from '@ant-design/icons';
 import './SignupForm.scss';
 import AntdCheckbox from '../../common/antd-form-components/AntdCheckbox';
@@ -36,7 +37,7 @@ const SignupForm = () => {
     name: Yup.string().required(generalrequiredErrStr('name')),
     phone: Yup.string()
       .required(generalrequiredErrStr('phone'))
-      .matches(/^[0-9]+$/, generalTypeErrorStr('phone'))
+      // .matches(/^[0-9]+$/, generalTypeErrorStr('phone'))
       .min(10, generalMinErrorStr('phone', 10)),
     email: Yup.string()
       .required(generalrequiredErrStr('email'))
@@ -76,7 +77,7 @@ const SignupForm = () => {
   return (
     <>
       <Form
-        className="signup-form"
+        className="signup-form custom-shared-form"
         form={form}
         layout="vertical"
         onFinish={handleSubmit(onSubmit)}
@@ -121,7 +122,7 @@ const SignupForm = () => {
             prefix={<MailOutlined />}
             control={control}
           />
-          <AntdTextField
+          {/* <AntdTextField
             name="phone"
             type="text"
             placeholder={generalLabelStr('phone')}
@@ -130,7 +131,40 @@ const SignupForm = () => {
             validateStatus={errors?.phone ? 'error' : ''}
             prefix={<PhoneOutlined />}
             control={control}
-          />
+          /> */}
+
+          <div
+            className="country-code-phone-wrap"
+            style={{
+              marginBottom: 28
+            }}
+          >
+            <p
+              style={{
+                paddingBottom: 8
+              }}
+            >
+              {generalLabelStr('phone')}
+            </p>
+            <Controller
+              name="phone"
+              control={control}
+              // render={({ field: { onChange, onBlur, value, name, ref } }) => {
+              render={({ field }) => {
+                return (
+                  <PhoneInput
+                    {...field}
+                    placeholder={generalLabelStr('phone')}
+                    // value={phoneValue}
+                    // onChange={setPhoneValue}
+                    defaultCountry="EG"
+                    className={`custom-phone-input ${i18n.dir()}`}
+                  />
+                );
+              }}
+            />
+            <p className="error-p">{errors?.phone?.message}</p>
+          </div>
 
           <div className="login-password-field-wrap">
             <AntdTextField

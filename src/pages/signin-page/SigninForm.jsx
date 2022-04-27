@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import AntdTextField from '../../common/antd-form-components/AntdTextField';
@@ -9,12 +9,13 @@ import ForgetPasswordModal from './ForgetPasswordModal';
 import ForgetPasswordContext from '../../contexts/forget-password-context/ForgetPasswordContext';
 import EyeOpenedIcon from '../../common/icons/EyeOpenedIcon';
 import EyeClosedIcon from '../../common/icons/EyeClosedIcon';
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import { LockOutlined } from '@ant-design/icons';
 import { Link as RouterLink } from 'react-router-dom';
 import useSigninEmailPassword from '../../custom-hooks/useSigninEmailPassword';
 import routerLinks from '../../components/app/routerLinks';
 import AntdCheckbox from '../../common/antd-form-components/AntdCheckbox';
 import './SigninForm.scss';
+import PhoneInput from 'react-phone-number-input';
 // import useFirebaseDeviceToken from '../../custom-hooks/useFirebaseDeviceToken';
 
 const SigninForm = () => {
@@ -54,7 +55,7 @@ const SigninForm = () => {
   return (
     <>
       <Form
-        className="signin-form"
+        className="signin-form custom-shared-form"
         form={form}
         layout="vertical"
         onFinish={handleSubmit(onSubmit)}
@@ -80,7 +81,8 @@ const SigninForm = () => {
         </div>
 
         <div className="form-body">
-          <AntdTextField
+          {/* <AntdTextField
+            className="form-text-field"
             name="loginKey"
             type="text"
             placeholder={t('signin_form.login_key.label')}
@@ -89,7 +91,40 @@ const SigninForm = () => {
             validateStatus={errors?.loginKey ? 'error' : ''}
             prefix={<UserOutlined />}
             control={control}
-          />
+          /> */}
+
+          <div
+            className="country-code-phone-wrap"
+            style={{
+              marginBottom: 28
+            }}
+          >
+            <p
+              style={{
+                paddingBottom: 8
+              }}
+            >
+              {t('signin_form.login_key.label')}
+            </p>
+            <Controller
+              name="loginKey"
+              control={control}
+              // render={({ field: { onChange, onBlur, value, name, ref } }) => {
+              render={({ field }) => {
+                return (
+                  <PhoneInput
+                    {...field}
+                    placeholder={t('signin_form.login_key.label')}
+                    // value={phoneValue}
+                    // onChange={setPhoneValue}
+                    defaultCountry="EG"
+                    className={`custom-phone-input ${i18n.dir()}`}
+                  />
+                );
+              }}
+            />
+            <p className="error-p">{errors?.loginKey?.message}</p>
+          </div>
 
           <div className="login-password-field-wrap">
             <AntdTextField

@@ -17,6 +17,7 @@ import 'antd/dist/antd.less';
 import 'react-big-calendar/lib/sass/styles.scss';
 import 'lightgallery.js/dist/css/lightgallery.css';
 import 'aos/dist/aos.css';
+import 'react-phone-number-input/style.css';
 import './scss/index.scss';
 
 ReactDOM.render(

@@ -12,7 +12,6 @@ import useServiceDetails from '../../custom-hooks/useServiceDetails';
 import techSuppImg from '../../assets/imgs/icons/technical-support.png';
 import { Link as RouterLink } from 'react-router-dom';
 import { Descriptions, Tabs } from 'antd';
-import ChatIcon from '../../common/icons/ChatIcon';
 import whatsAppImg from '../../assets/imgs/contact/whatsapp-white.png';
 import ContactSellerContext from '../../contexts/contact-seller-context/ContactSellerContext';
 import ContactSellerModal from './ContactSellerModal';
@@ -41,6 +40,13 @@ const ServiceDetailsPage = () => {
     return (
       <div className="store-details-wrap">
         <Descriptions column={1} title={obj?.name ? obj.name : ''} bordered>
+          {obj?.nameOfStore && (
+            <Descriptions.Item
+              label={i18n.language === 'ar' ? 'إسم المتجر : ' : 'Store : '}
+            >
+              {obj.nameOfStore}
+            </Descriptions.Item>
+          )}
           {obj?.address && (
             <Descriptions.Item
               label={i18n.language === 'ar' ? 'العنوان : ' : 'Address : '}
@@ -48,42 +54,13 @@ const ServiceDetailsPage = () => {
               {obj.address}
             </Descriptions.Item>
           )}
-          {obj?.country && (
-            <Descriptions.Item
-              label={i18n.language === 'ar' ? 'الدولـــة : ' : 'Country : '}
-            >
-              {obj.country}
-            </Descriptions.Item>
-          )}
-          {obj?.city && (
-            <Descriptions.Item
-              label={i18n.language === 'ar' ? 'المدينـــة : ' : 'City : '}
-            >
-              {obj.city}
-            </Descriptions.Item>
-          )}
-          {obj?.area && (
-            <Descriptions.Item
-              label={i18n.language === 'ar' ? 'المنطقــة : ' : 'Area : '}
-            >
-              {obj.area}
-            </Descriptions.Item>
-          )}
-          {obj?.store_whatsapp && (
+          {obj?.email && (
             <Descriptions.Item
               label={
-                i18n.language === 'ar' ? 'رقم الواتس أب : ' : 'Whatsapp : '
+                i18n.language === 'ar' ? 'البريد الاكترونى : ' : 'Email : '
               }
             >
-              <a
-                className={`whatsapp-link ${i18n.dir()}`}
-                href={`https://wa.me/${obj.store_whatsapp}`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <img src={whatsAppImg} alt="whats app" />
-                <span>{obj.store_whatsapp}</span>
-              </a>
+              {obj.email}
             </Descriptions.Item>
           )}
         </Descriptions>
@@ -218,7 +195,7 @@ const ServiceDetailsPage = () => {
                     )}
 
                     <div className="order-message-links-wrap">
-                      <button
+                      {/* <button
                         className="message-btn"
                         onClick={() => setModalOpened(true)}
                       >
@@ -229,7 +206,20 @@ const ServiceDetailsPage = () => {
                           {i18n.language === 'ar' && 'تحدث إلى البائع'}
                           {i18n.language === 'en' && 'Contact Store'}
                         </span>
-                      </button>
+                      </button> */}
+
+                      <a
+                        className={`whatsapp-link ${i18n.dir()}`}
+                        href={`https://wa.me/${fetchedServiceDetails.service.store.store_whatsapp}`}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <img src={whatsAppImg} alt="whats app" />
+                        <span>
+                          {i18n.language === 'ar' && 'تحدث إلى البائع'}
+                          {i18n.language === 'en' && 'Contact Store'}
+                        </span>
+                      </a>
 
                       {fetchedServiceDetails?.service?.price && (
                         <RouterLink

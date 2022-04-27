@@ -151,6 +151,7 @@
   }
 
   .order-message-links-wrap {
+    margin-top: 22px;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -183,10 +184,6 @@
       color: #fff;
       padding: 12px 32px;
       border-radius: 8px;
-      margin-top: 12px;
-      @include mediaLg {
-        margin-top: 42px;
-      }
       justify-self: end;
     }
   }
