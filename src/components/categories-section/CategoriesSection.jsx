@@ -8,6 +8,7 @@ import './CategoriesSection.scss';
 import routerLinks from '../app/routerLinks';
 import { useParams } from 'react-router-dom';
 import servicesRouterLinks from '../app/services-routes/servicesRouterLinks';
+import fixedMainCats from '../../fixedMainCats';
 
 // const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const CategoriesSection = ({
@@ -21,12 +22,12 @@ const CategoriesSection = ({
   const { t } = useTranslation();
   // const [fetchedData, setFetchedData] = useState([]);
   const getUrl = (card) => {
-    if (params?.categoryId == 58) {
+    if (params?.categoryId == fixedMainCats?.partsService) {
       // "قطع غيار جديد و استعمال الخارج"
       return routerLinks?.subCategoriesRoute(card?.id);
-    } else if (params?.categoryId == 16) {
+    } else if (params?.categoryId == fixedMainCats?.postService) {
       return servicesRouterLinks?.postsRoute(params?.categoryId, card?.id);
-    } else if (card?.id == 10) {
+    } else if (card?.id == fixedMainCats?.maintenanceService) {
       return servicesRouterLinks?.cities(card?.id);
     }
   };

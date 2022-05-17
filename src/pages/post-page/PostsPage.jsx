@@ -15,6 +15,8 @@ import servicesRouterLinks from '../../components/app/services-routes/servicesRo
 import PostsContext from '../../contexts/posts-context/PostsContext';
 import PostCard from './PostCard';
 import './PostsPage.scss';
+import PostModal from './PostModal';
+import UserContext from '../../contexts/user-context/UserProvider';
 
 const PostsPage = () => {
   const history = useHistory();
@@ -23,25 +25,29 @@ const PostsPage = () => {
   const values = queryString.parse(search);
   const params = useParams();
   const {
-    isLoadingBlogs,
-    setIsLoadingBlogs,
-    setAllFetchedBlogs,
-    fetchBlogsCount,
-    setFetchBlogsCount,
-    allFetchedBlogs,
-    blogsPagination,
-    setBlogsPagination,
-    blogsFilter
+    isLoadingPosts,
+    setIsLoadingPosts,
+    setAllFetchedPosts,
+    fetchPostsCount,
+    setFetchPostsCount,
+    allFetchedPosts,
+    postsPagination,
+    setPostsPagination,
+    postsFilter,
+    formModalOpened,
+    setSelectedPost,
+    setFormModalOpened,
+    selectedPost
   } = useContext(PostsContext);
   const customApiRequest = useCustomApiRequest();
-
+  const { user } = useContext(UserContext);
   useEffect(() => {
     let isMounted = true;
-    setIsLoadingBlogs(true);
+    setIsLoadingPosts(true);
     customApiRequest(
       getAllPostsApi(
         {
-          ...blogsFilter,
+          ...postsFilter,
           ...values,
           catId: params?.subCategoryId
         },
@@ -49,28 +55,28 @@ const PostsPage = () => {
       ),
       (res) => {
         if (isMounted) {
-          setIsLoadingBlogs(false);
+          setIsLoadingPosts(false);
           if (checkRes(res) && res.data?.data?.data) {
             const data = res.data.data.data;
-            setAllFetchedBlogs(data);
+            setAllFetchedPosts(data);
             if (res.data.data?.pagination) {
-              setBlogsPagination(res.data.data.pagination);
+              setPostsPagination(res.data.data.pagination);
             }
           }
         }
       },
       (error) => {
-        setIsLoadingBlogs(false);
+        setIsLoadingPosts(false);
       }
     );
 
     return () => {
       isMounted = false;
     };
-  }, [i18n.language, fetchBlogsCount, search]);
+  }, [i18n.language, fetchPostsCount, search]);
 
   const renderBlogs = () => {
-    if (isLoadingBlogs) {
+    if (isLoadingPosts) {
       return (
         <div
           className="custom-container"
@@ -83,12 +89,12 @@ const PostsPage = () => {
           <LoadingOutlined style={{ fontSize: 24 }} spin />
         </div>
       );
-    } else if (allFetchedBlogs?.length === 0)
+    } else if (allFetchedPosts?.length === 0)
       return <Empty description={false}>No Blogs Found!!!</Empty>;
-    else if (allFetchedBlogs?.length > 0) {
+    else if (allFetchedPosts?.length > 0) {
       return (
         <div className="blogs-list">
-          {allFetchedBlogs.map((blog) => (
+          {allFetchedPosts.map((blog) => (
             <PostCard key={blog?.id} card={blog} />
           ))}
         </div>
@@ -112,8 +118,19 @@ const PostsPage = () => {
             }
           ]}
         />
-        <div className="custom-container">
-          <h2 className="page-title">{t('blogsPage.title')}</h2>
+        <div className="custom-container page-title-btn">
+          <button
+            className="add-new-post-btn"
+            onClick={() => {
+              if (user) setFormModalOpened(true);
+              else {
+                history.push(routerLinks?.signinPage);
+              }
+            }}
+            type="button"
+          >
+            + {t('blogsPage.addNew')}
+          </button>
         </div>
       </div>
 
@@ -122,15 +139,15 @@ const PostsPage = () => {
           <div className="main-page-wrap">
             <div className="blogs-pagination-wrap">
               {renderBlogs()}
-              {blogsPagination?.total > 0 && (
+              {postsPagination?.total > 0 && (
                 <Pagination
                   defaultCurrent={1}
-                  current={blogsPagination.current_page}
-                  pageSize={blogsPagination.per_page}
-                  total={blogsPagination.total}
+                  current={postsPagination.current_page}
+                  pageSize={postsPagination.per_page}
+                  total={postsPagination.total}
                   // itemRender={itemRender}
                   onChange={(page, pageSize) => {
-                    setFetchBlogsCount((prev) => prev + 1);
+                    setFetchPostsCount((prev) => prev + 1);
                     history.push(
                       `${servicesRouterLinks?.blogsRoute}?page=${page}`
                     );
@@ -142,6 +159,15 @@ const PostsPage = () => {
           </div>
         </div>
       </div>
+      {formModalOpened && (
+        <PostModal
+          modalOpened={formModalOpened}
+          setModalOpened={setFormModalOpened}
+          selectedPost={selectedPost}
+          setSelectedPost={setSelectedPost}
+          setFetchCount={setFetchPostsCount}
+        />
+      )}
     </div>
   );
 };

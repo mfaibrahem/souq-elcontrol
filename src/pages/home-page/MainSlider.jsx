@@ -11,7 +11,7 @@ import CustomImage from '../../common/custom-image/CustomImage';
 
 const MenSlider = () => {
   // SlickSliderBtns('trendy-products-slider', false);
-  const { i18n, t } = useTranslation();
+  const { i18n } = useTranslation();
   const { isLoadingSlides, allFetchedSlides } = useSlider();
 
   function SamplePrevArrow(props) {
@@ -100,9 +100,9 @@ const MenSlider = () => {
 
   const renderSingleSlide = (item) => {
     return (
-      <div key={item.id}>
+      <div key={item?.id} className="slide-wrapper">
         <RouterLink
-          className="main-app-custom-shared-card"
+          className="slider-service-card"
           to={servicesRouterLinks?.serviceDetailsRoute(
             item?.mainCat?.id,
             item?.cat?.id,
@@ -110,13 +110,9 @@ const MenSlider = () => {
             item?.id
           )}
         >
-          <div className="test-one">
-            <div className="card-img">
-              <CustomImage src={item?.image} />
-            </div>
-            <div className="card-data">
-              <div className="card-name">{item?.name}</div>
-            </div>
+          <CustomImage className="service-img" src={item?.image} />
+          <div className="service-data">
+            <div className="card-name">{item?.name}</div>
           </div>
         </RouterLink>
       </div>

@@ -240,7 +240,35 @@
     }
   },
   "blogsPage": {
-    "title": "Posts"
+    "title": "Posts",
+    "addNew": "Add new ",
+    "edit": "Edit Post"
+  },
+  "postForm": {
+    "title": {
+      "label": "Post title",
+      "errors": {
+        "required": "Please enter your post title"
+      }
+    },
+    "content": {
+      "label": "Post content",
+      "errors": {
+        "required": "Please enter your post content"
+      }
+    },
+    "catId": {
+      "label": "Choose Post category",
+      "errors": {
+        "required": "Please select post category"
+      }
+    },
+    "image": {
+      "label": "Post Image",
+      "errors": {
+        "required": "Please select your post image"
+      }
+    }
   },
   "request_project_page": {
     "main_title": "Request a project",

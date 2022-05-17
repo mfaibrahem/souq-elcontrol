@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-const getAllCarsApi = async (mainCatId, langIsoCode) => {
+const getAllCarsApi = async (catId, langIsoCode) => {
   try {
-    const url = `/Service/cars`;
+    const url = `/Service/cars?cat_id=${catId || ''}`;
     const res = await axios.get(url, {
       headers: {
         Accept: 'application/json',

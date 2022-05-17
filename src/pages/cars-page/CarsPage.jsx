@@ -12,8 +12,8 @@ import './CarsPage.scss';
 
 const CarsPage = () => {
   const { t } = useTranslation();
-  const { isLoadingCars, allFetchedCars } = useCars();
   const params = useParams();
+  const { isLoadingCars, allFetchedCars } = useCars(params?.subCategoryId);
   const { allFetchedSubCats } = useSubCats();
   const renderCarsUl = () => {
     if (isLoadingCars) {

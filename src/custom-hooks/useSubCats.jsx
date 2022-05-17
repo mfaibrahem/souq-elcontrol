@@ -7,7 +7,7 @@ import getAllSubCatsApi from '../apis/categories-apis/getAllSubCatsApi';
 import checkRes from '../utils/checkRes';
 import useCustomApiRequest from './useCustomApiRequest';
 
-const useSubCats = () => {
+const useSubCats = (catId) => {
   const { i18n } = useTranslation();
   const { pathname } = useLocation();
   const params = useParams();
@@ -21,7 +21,7 @@ const useSubCats = () => {
     if (isMounted) {
       setIsLoadingSubCats(true);
       customApiRequest(
-        getAllSubCatsApi(params?.categoryId, i18n.language),
+        getAllSubCatsApi(params?.categoryId || catId, i18n.language),
         (res) => {
           setIsLoadingSubCats(false);
           if (checkRes(res) && res?.data?.data) {

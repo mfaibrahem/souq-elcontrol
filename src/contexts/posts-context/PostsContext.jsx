@@ -1,63 +1,76 @@
 import { useState, createContext } from 'react';
 
 const INITIAL_VALUES = {
-  isLoadingBlogs: false,
-  setIsLoadingBlogs: (v) => {},
-  fetchBlogsCount: 0,
-  setFetchBlogsCount: (v) => {},
-  allFetchedBlogs: null,
-  setAllFetchedBlogs: (v) => {},
+  isLoadingPosts: false,
+  setIsLoadingPosts: (v) => {},
+  fetchPostsCount: 0,
+  setFetchPostsCount: (v) => {},
+  allFetchedPosts: null,
+  setAllFetchedPosts: (v) => {},
+  formModalOpened: false,
+  setFormModalOpened: (v) => {},
+  selectedPost: null,
+  setSelectedPost: (v) => {},
   //
-  blogsPagination: {
+  postsPagination: {
     current_page: 1,
     per_page: 0,
     total: 0
   },
-  setBlogsPagination: (v) => {},
+  setPostsPagination: (v) => {},
   // filter
-  blogsFilter: {
+  postsFilter: {
     page: 1,
     catId: '',
     searchText: ''
   },
-  setBlogsFilter: (v) => {}
+  setPostsFilter: (v) => {}
 };
 
 const PostsContext = createContext(INITIAL_VALUES);
 
 export const PostsProvider = ({ children }) => {
-  const [isLoadingBlogs, setIsLoadingBlogs] = useState(
-    INITIAL_VALUES.isLoadingBlogs
+  const [isLoadingPosts, setIsLoadingPosts] = useState(
+    INITIAL_VALUES.isLoadingPosts
   );
 
-  const [fetchBlogsCount, setFetchBlogsCount] = useState(
-    INITIAL_VALUES.fetchBlogsCount
+  const [fetchPostsCount, setFetchPostsCount] = useState(
+    INITIAL_VALUES.fetchPostsCount
   );
-  const [allFetchedBlogs, setAllFetchedBlogs] = useState(
-    INITIAL_VALUES.allFetchedBlogs
+  const [allFetchedPosts, setAllFetchedPosts] = useState(
+    INITIAL_VALUES.allFetchedPosts
   );
-
-  const [blogsPagination, setBlogsPagination] = useState(
-    INITIAL_VALUES.blogsPagination
+  const [formModalOpened, setFormModalOpened] = useState(
+    INITIAL_VALUES?.formModalOpened
+  );
+  const [selectedPost, setSelectedPost] = useState(
+    INITIAL_VALUES?.selectedPost
+  );
+  const [postsPagination, setPostsPagination] = useState(
+    INITIAL_VALUES.postsPagination
   );
 
   //
-  const [blogsFilter, setBlogsFilter] = useState(INITIAL_VALUES.blogsFilter);
+  const [postsFilter, setPostsFilter] = useState(INITIAL_VALUES.postsFilter);
 
   return (
     <PostsContext.Provider
       value={{
-        isLoadingBlogs,
-        setIsLoadingBlogs,
-        fetchBlogsCount,
-        setFetchBlogsCount,
-        allFetchedBlogs,
-        setAllFetchedBlogs,
+        isLoadingPosts,
+        setIsLoadingPosts,
+        fetchPostsCount,
+        setFetchPostsCount,
+        allFetchedPosts,
+        setAllFetchedPosts,
+        formModalOpened,
+        setFormModalOpened,
+        selectedPost,
+        setSelectedPost,
         //
-        blogsPagination,
-        setBlogsPagination,
-        blogsFilter,
-        setBlogsFilter
+        postsPagination,
+        setPostsPagination,
+        postsFilter,
+        setPostsFilter
       }}
     >
       {children}

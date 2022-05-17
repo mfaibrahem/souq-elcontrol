@@ -240,7 +240,35 @@
     }
   },
   "blogsPage": {
-    "title": "المنشورات"
+    "title": "المنشورات",
+    "addNew": "إضافة منشور جديد",
+    "edit": "تعديل المنشور"
+  },
+  "postForm": {
+    "title": {
+      "label": "عنوان المنشور",
+      "errors": {
+        "required": "من فضلك ادخل عنوان المنشور"
+      }
+    },
+    "content": {
+      "label": "محتوى المنشور",
+      "errors": {
+        "required": "من فضلك ادخل محتوى المنشور"
+      }
+    },
+    "catId": {
+      "label": "إختار القســـم",
+      "errors": {
+        "required": "من فضلك اختار القسم"
+      }
+    },
+    "image": {
+      "label": "صورة المنشور",
+      "errors": {
+        "required": "من فضلك ادخل صورة المنشور"
+      }
+    }
   },
   "request_project_page": {
     "main_title": "طلب مشروع",

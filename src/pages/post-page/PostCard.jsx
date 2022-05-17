@@ -8,7 +8,7 @@ const PostCard = ({ card, className }) => {
   const params = useParams();
   return (
     <div className={`blog-card ${className || ''}`}>
-      <CustomImage className="blog-img" />
+      <CustomImage src={card?.image} className="blog-img" />
       <div className="blog-data">
         <div className="blog-cat">{card?.cat?.name}</div>
         <RouterLink
