@@ -239,6 +239,9 @@
       "row_2": "نبذة مختصرة عنا"
     }
   },
+  "blogsPage": {
+    "title": "المنشورات"
+  },
   "request_project_page": {
     "main_title": "طلب مشروع",
     "request_project_form": {

@@ -1,9 +1,13 @@
+/* eslint-disable eqeqeq */
 import React from 'react';
 import CategoriesCard from './CategoriesCard';
 import { useTranslation } from 'react-i18next';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Empty } from 'antd';
 import './CategoriesSection.scss';
+import routerLinks from '../app/routerLinks';
+import { useParams } from 'react-router-dom';
+import servicesRouterLinks from '../app/services-routes/servicesRouterLinks';
 
 // const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const CategoriesSection = ({
@@ -13,9 +17,19 @@ const CategoriesSection = ({
   isMainCat = true,
   isSubCat = false
 }) => {
+  const params = useParams();
   const { t } = useTranslation();
   // const [fetchedData, setFetchedData] = useState([]);
-
+  const getUrl = (card) => {
+    if (params?.categoryId == 58) {
+      // "قطع غيار جديد و استعمال الخارج"
+      return routerLinks?.subCategoriesRoute(card?.id);
+    } else if (params?.categoryId == 16) {
+      return servicesRouterLinks?.postsRoute(params?.categoryId, card?.id);
+    } else if (card?.id == 10) {
+      return servicesRouterLinks?.cities(card?.id);
+    }
+  };
   const renderCategoriesUl = () => {
     if (cats?.length === 0) return <Empty description="No categories found" />;
     else if (cats?.length > 0) {
@@ -28,6 +42,7 @@ const CategoriesSection = ({
                 isSubCat={isSubCat}
                 key={ele.id}
                 {...ele}
+                url={getUrl(ele) || ''}
               />
             );
           })}

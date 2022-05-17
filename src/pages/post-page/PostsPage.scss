@@ -1,0 +1,90 @@
+@import '../../scss/config';
+
+.blogs-page {
+  .breadcrumb-title {
+    margin-bottom: 32px;
+  }
+  .page-title {
+    margin-top: 12px;
+    color: $main-app-color;
+  }
+
+  .blogs-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(238px, 1fr));
+    gap: 32px;
+  }
+
+  .main-page-wrap {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 32px;
+  }
+
+  .side-wrap {
+    min-width: 232px;
+    max-width: 292px;
+
+    .main-app-search-form {
+      // max-width: 800px;
+      margin-bottom: 32px;
+      label {
+        display: flex;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        align-items: center;
+        background-color: transparent;
+        padding: 4px 22px;
+        border-radius: 4px;
+        gap: 12px;
+        border: 1px solid #999;
+      }
+      input {
+        background-color: transparent;
+        border: none !important;
+        outline: none !important;
+        color: $main-text-color;
+        height: 42px;
+        width: 100%;
+
+        &::placeholder {
+          color: $main-text-color;
+        }
+      }
+      .icon-wrap {
+        pointer-events: none;
+        display: grid;
+        place-items: center;
+      }
+    }
+
+    .cats-wrap-title {
+      h3 {
+        color: #371056;
+        font-size: 24px;
+        margin-bottom: 18px;
+      }
+      .cats-wrap {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .cat-link {
+        display: flex;
+        gap: 4px;
+        align-items: center;
+        padding: 8px 28px;
+        border: 0;
+        outline: 0;
+        background-color: #fff;
+        border-radius: 4px;
+        color: #6d6d6d;
+        cursor: pointer;
+        &.selected {
+          background-color: $secondary-app-color;
+          color: #fff;
+        }
+      }
+    }
+  }
+}

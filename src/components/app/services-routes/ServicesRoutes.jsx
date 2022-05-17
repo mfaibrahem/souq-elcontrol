@@ -10,6 +10,11 @@ import MakeOrderPage from '../../../pages/make-order-page/MakeOrderPage';
 import protectMe from '../../../utils/protectMe';
 import UserContext from '../../../contexts/user-context/UserProvider';
 import MyOrdersPage from '../../../pages/my-orders-page/MyOrdersPage';
+import PostsPage from '../../../pages/post-page/PostsPage';
+import SinglePostPage from '../../../pages/post-page/SinglePostPage';
+import { PostsProvider } from '../../../contexts/posts-context/PostsContext';
+import { SinglePostProvider } from '../../../contexts/single-post-context/SinglePostContext';
+import CitiesPage from '../../../pages/cities-page/CitiesPage';
 
 const ServicesRoutes = () => {
   const { loggedIn } = useContext(UserContext);
@@ -19,6 +24,19 @@ const ServicesRoutes = () => {
     </Route>,
     <Route exact path={routerLinks.subCategoriesRoute()} key={2}>
       <SubCategoriesPage />
+    </Route>,
+    <Route exact path={routerLinks.postsRoute()} key="posts_route_key">
+      <PostsProvider>
+        <PostsPage />
+      </PostsProvider>
+    </Route>,
+    <Route exact path={routerLinks.singlePost()} key="single_post_route_key">
+      <SinglePostProvider>
+        <SinglePostPage />
+      </SinglePostProvider>
+    </Route>,
+    <Route exact path={routerLinks.cities()} key="cities_route_key">
+      <CitiesPage />
     </Route>,
     <Route exact path={routerLinks.carsRoute()} key={3}>
       <CarsPage />

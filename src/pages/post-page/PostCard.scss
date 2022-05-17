@@ -1,0 +1,50 @@
+@import '../../scss/config';
+
+.blog-card {
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+
+  .blog-img {
+    min-height: 222px;
+    @include mediaXXlg {
+      min-height: 272px;
+    }
+    img,
+    svg {
+      object-fit: cover;
+      object-position: center;
+      border-radius: 8px;
+      width: 100%;
+      max-height: 222px;
+      @include mediaXXlg {
+        max-height: 272px;
+      }
+    }
+  }
+
+  .blog-data {
+    padding: 8px 18px;
+    .blog-cat {
+      font-size: 14px;
+      color: $secondary-app-color;
+    }
+    .blog-title {
+      color: #4b0121;
+      font-size: 22px;
+    }
+    .card-desc {
+      color: #c4c4c4;
+      line-height: 1.8;
+    }
+
+    .more-count {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: $secondary-app-color;
+      margin-top: 12px;
+      margin-bottom: 18px;
+    }
+  }
+}

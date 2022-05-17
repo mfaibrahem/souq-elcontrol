@@ -10,6 +10,7 @@ import getHomepageDataApi from '../../apis/homepage/getHomepageDataApi';
 import checkRes from '../../utils/checkRes';
 import { useTranslation } from 'react-i18next';
 import './HomePage.scss';
+import MenSlider from './MainSlider';
 
 const HomePage = () => {
   const { i18n } = useTranslation();
@@ -44,6 +45,8 @@ const HomePage = () => {
       <div className="home-page-main-content">
         <HomeHeroSection />
       </div>
+
+      <MenSlider />
 
       <CategoriesSection
         isLoading={isLoadingHome}

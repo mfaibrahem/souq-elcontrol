@@ -2,12 +2,14 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import getAllSubCatsApi from '../apis/categories-apis/getAllSubCatsApi';
 import checkRes from '../utils/checkRes';
 import useCustomApiRequest from './useCustomApiRequest';
 
 const useSubCats = () => {
   const { i18n } = useTranslation();
+  const { pathname } = useLocation();
   const params = useParams();
   const [isLoadingSubCats, setIsLoadingSubCats] = useState(false);
   const [fetchSubCatsCount, setFetchSubCatsCount] = useState(0);
@@ -35,7 +37,7 @@ const useSubCats = () => {
     return () => {
       isMounted = false;
     };
-  }, [i18n.language, fetchSubCatsCount]);
+  }, [i18n.language, fetchSubCatsCount, pathname]);
 
   return {
     isLoadingSubCats,

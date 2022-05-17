@@ -239,6 +239,9 @@
       "row_2": "Brief about us"
     }
   },
+  "blogsPage": {
+    "title": "Posts"
+  },
   "request_project_page": {
     "main_title": "Request a project",
     "request_project_form": {

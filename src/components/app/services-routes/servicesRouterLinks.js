@@ -6,6 +6,23 @@ const servicesRouterLinks = {
     if (categoryId) return `/categories/${categoryId}/sub-categories`;
     return '/categories/:categoryId/sub-categories';
   },
+  // posts route
+  postsRoute: (categoryId, subCategoryId) => {
+    if (categoryId && subCategoryId)
+      return `/categories/${categoryId}/sub-categories/${subCategoryId}/posts`;
+    return '/categories/:categoryId/sub-categories/:subCategoryId/posts';
+  },
+  singlePost: (categoryId, subCategoryId, postId) => {
+    if (categoryId && subCategoryId && postId) {
+      return `/categories/${categoryId}/sub-categories/${subCategoryId}/posts/${postId}`;
+    }
+    return '/categories/:categoryId/sub-categories/:subCategoryId/posts/:postId';
+  },
+  // cities route
+  cities: (categoryId) => {
+    if (categoryId) return `/categories/${categoryId}/cities`;
+    return '/categories/:categoryId/cities';
+  },
   // single sub category page contains cars page
   carsRoute: (categoryId, subCategoryId) => {
     if (categoryId && subCategoryId)

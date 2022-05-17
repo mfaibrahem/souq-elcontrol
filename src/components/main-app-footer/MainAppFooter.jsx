@@ -48,7 +48,7 @@ const MainAppFooter = () => {
       <div className="custom-container">
         <div className="footer-content">
           <Logo className="footer-logo" />
-          <p>جميع الحقوق محفوظة © 2021 سوق الكنترول</p>
+          <p>جميع الحقوق محفوظة © 2022 سوق الكنترول</p>
           <ul className="footer-social-links">
             {fetchedData?.facebook && (
               <li>

@@ -1,12 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useLocation } from 'react-router-dom';
 import getAllMainCatsApi from '../apis/categories-apis/getAllMainCatsApi';
 import checkRes from '../utils/checkRes';
 import useCustomApiRequest from './useCustomApiRequest';
 
 const useMainCats = () => {
   const { i18n } = useTranslation();
+  const { pathname } = useLocation();
   const [isLoadingMainCats, setIsLoadingMainCats] = useState(false);
   const [fetchMainCatsCount, setFetchMainCatsCount] = useState(0);
   const [allFetchedMainCats, setAllFetchedMainCats] = useState([]);
@@ -33,7 +35,7 @@ const useMainCats = () => {
     return () => {
       isMounted = false;
     };
-  }, [i18n.language, fetchMainCatsCount]);
+  }, [i18n.language, fetchMainCatsCount, pathname]);
 
   return {
     isLoadingMainCats,
