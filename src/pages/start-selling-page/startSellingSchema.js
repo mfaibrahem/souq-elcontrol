@@ -8,7 +8,7 @@ const schema = (t) =>
     ),
     phone: Yup.string()
       .required(t('start_selling_form.phone.errors.required'))
-      .matches(/^[0-9]+$/, t('start_selling_form.phone.errors.type_error'))
+      // .matches(/^[0-9]+$/, t('start_selling_form.phone.errors.type_error'))
       .min(
         10,
         t('start_selling_form.phone.errors.min', {
@@ -17,10 +17,10 @@ const schema = (t) =>
       ),
     store_whatsapp: Yup.string()
       .required(t('start_selling_form.store_whatsapp.errors.required'))
-      .matches(
-        /^[0-9]+$/,
-        t('start_selling_form.store_whatsapp.errors.type_error')
-      )
+      // .matches(
+      //   /^[0-9]+$/,
+      //   t('start_selling_form.store_whatsapp.errors.type_error')
+      // )
       .min(
         10,
         t('start_selling_form.store_whatsapp.errors.min', {

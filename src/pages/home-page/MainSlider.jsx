@@ -65,8 +65,8 @@ const MenSlider = () => {
     rtl: false,
     infinite: false,
     speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 4,
+    slidesToShow: 5,
+    slidesToScroll: 5,
     initialSlide: 0,
     prevArrow: <SamplePrevArrow />,
     nextArrow: <SampleNextArrow />,
@@ -144,14 +144,16 @@ const MenSlider = () => {
       );
     if (allFetchedSlides?.length > 0)
       return (
-        <Slider
-          rtl={i18n.dir() === 'rtl' ? true : false}
-          className={`${i18n.dir()} custom-slick-slider main-slider`}
-          {...sliderSettings}
-        >
-          {allFetchedSlides?.length > 0 &&
-            allFetchedSlides.map((item) => renderSingleSlide(item))}
-        </Slider>
+        <div className="custom-container">
+          <Slider
+            rtl={i18n.dir() === 'rtl' ? true : false}
+            className={`${i18n.dir()} custom-slick-slider main-slider`}
+            {...sliderSettings}
+          >
+            {allFetchedSlides?.length > 0 &&
+              allFetchedSlides.map((item) => renderSingleSlide(item))}
+          </Slider>
+        </div>
       );
     return null;
   };

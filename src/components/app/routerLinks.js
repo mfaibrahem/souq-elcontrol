@@ -13,6 +13,8 @@ const routerLinks = {
   ////////////////////////////
   startSellingRoute: '/start-selling',
   ////////////////////////////////
+  serviceCenterSignupRoute: '/service-cener-signup',
+  ////////////////////////////////
   aboutUsRoute: '/about-us',
   ////////////////////////////////
   notFound: '/not-found'

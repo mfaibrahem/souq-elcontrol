@@ -24,6 +24,11 @@ const mainAppBarLinks = (t, user) => {
         link: routerLinks.startSellingRoute
       },
       {
+        id: 12344,
+        name: t('main_app_bar_links.serviceCenterSignup'),
+        link: routerLinks.serviceCenterSignupRoute
+      },
+      {
         id: 5,
         name: t('main_app_bar_links.aboutUs'),
         link: routerLinks.aboutUsRoute
@@ -45,6 +50,11 @@ const mainAppBarLinks = (t, user) => {
       id: 4,
       name: t('main_app_bar_links.startSelling'),
       link: routerLinks.startSellingRoute
+    },
+    {
+      id: 12344,
+      name: t('main_app_bar_links.serviceCenterSignup'),
+      link: routerLinks.serviceCenterSignupRoute
     },
     {
       id: 5,

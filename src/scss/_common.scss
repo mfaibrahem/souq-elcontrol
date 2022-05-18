@@ -30,12 +30,13 @@ html {
     border-radius: 50%;
     outline: none;
     background: transparent;
-    background-color: #fff;
-    display: grid;
+    border: 1px solid rgba(#000, 0.1);
+    display: grid !important;
     place-items: center;
     z-index: 1;
     &::before {
       content: '';
+      display: none;
     }
     .btn-content {
       position: relative;

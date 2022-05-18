@@ -5,6 +5,7 @@
     "categories": "Categories",
     "myOrders": "My Orders",
     "startSelling": "Start Selling",
+    "serviceCenterSignup": "Service Center Signup",
     "aboutUs": "About Us"
   },
   "hero_section": {
@@ -182,6 +183,119 @@
       "label": "Register"
     }
   },
+  "service_center_form": {
+    "name": {
+      "label": "Service Center Name",
+      "errors": {
+        "required": "Please enter center name"
+      }
+    },
+    "phone": {
+      "label": "Service Center Phone",
+      "errors": {
+        "required": "Please enter phone",
+        "type_error": "Only numbers allowed",
+        "min": "Minimum of {{min}} characters"
+      }
+    },
+    "store_whatsapp": {
+      "label": "Service center whatsapp number",
+      "errors": {
+        "required": "Please enter whatsapp number",
+        "type_error": "Only numbers allowed",
+        "min": "Minimum of {{min}} characters"
+      }
+    },
+    "email": {
+      "label": "Email address",
+      "errors": {
+        "required": "Enter your email address",
+        "type_error": "Wrong email address"
+      }
+    },
+    "password": {
+      "label": "Password",
+      "errors": {
+        "required": "Enter your password",
+        "min": "Password must be at least {{min}} characters"
+      }
+    },
+    "password_confirmation": {
+      "label": "Confirm your password",
+      "errors": {
+        "required": "Please enter your password confirmation",
+        "type_error": "Wrong Password"
+      }
+    },
+    "city": {
+      "label": "City",
+      "errors": {
+        "required": "Please Select city"
+      }
+    },
+    "address": {
+      "label": "Address",
+      "errors": {
+        "required": "Enter you address"
+      }
+    },
+    "services": {
+      "label": "Service Cener Services",
+      "errors": {
+        "required": "Please enter your services"
+      }
+    },
+    "managerName": {
+      "label": "Manager name",
+      "errors": {
+        "required": "Please enter manager name"
+      }
+    },
+    "managerPhone": {
+      "label": "Manager phone number",
+      "errors": {
+        "required": "Please enter phone",
+        "type_error": "Only numbers allowed",
+        "min": "Minimum of {{min}} characters"
+      }
+    },
+    "managerWhatsapp": {
+      "label": "Manager whatsapp number",
+      "errors": {
+        "required": "Please enter whatsapp number",
+        "type_error": "Only numbers allowed",
+        "min": "Minimum of {{min}} characters"
+      }
+    },
+    "emergencyStatus": {
+      "label": "Is service center supports emergency phone calls ?",
+      "errors": {
+        "required": "Please select emergency status"
+      }
+    },
+    "workTimes": {
+      "label": "Work Times",
+      "errors": {
+        "required": "Pleae enter work times"
+      }
+    },
+    "day": {
+      "label": "Select day",
+      "errors": {
+        "required": "Please select the day",
+        "notTheSame": "Please select another day"
+      }
+    },
+    "time": {
+      "label": "Enter your working hours",
+      "errors": {
+        "required": "Please enter your working hours"
+      }
+    },
+    "submit_btn": {
+      "label": "Register"
+    }
+  },
   "main_app_search": {
     "placeholder": "Search for your Order...",
     "searching": "Searching..."
@@ -214,9 +328,11 @@
     "profile": "Profle",
     "my_orders": "My Orders",
     "cars": "Choose Car Make",
+    "cities": "Select City",
     "services": "Services",
     "makeOrder": "Make Order",
     "start_selling": "Create a seller account",
+    "servicesCenter": "Register as a service center",
     "signup": "Register new account",
     "signin": "Sign in",
     "about_us": "About us"
@@ -346,6 +462,19 @@
         "loading": "Sending"
       }
     }
+  },
+  "emergencyTypes": {
+    "yes": "Yes",
+    "no": "No"
+  },
+  "week": {
+    "friday": "Friday",
+    "saturday": "Saturday",
+    "sunday": "Sunday",
+    "monday": "Monday",
+    "tusday": "Tusday",
+    "wednesday": "Wednesday",
+    "thursday": "Thursday"
   },
   "success_title": "Operation done successfully",
   "error_title": "Something went wrong"

@@ -1,0 +1,47 @@
+@import '../../scss/config';
+
+.service-center-form {
+  .address-city-wrapper,
+  .manager-phones-wrapper,
+  .worktime-field-wrapper {
+    display: grid;
+    @include mediaLg {
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+  }
+
+  .radios-wrap {
+    margin-bottom: 32px;
+    .labels-wrap {
+      svg {
+        fill: #fff !important;
+        width: 30px;
+        height: 30px;
+      }
+      label {
+        &.selected {
+          svg {
+            fill: $main-app-color !important;
+          }
+        }
+      }
+    }
+  }
+
+  .work-time-fields-wrapper {
+    background-color: #eee;
+    padding: 12px 18px;
+    border-radius: 12px;
+    margin-bottom: 22px;
+  }
+
+  &.custom-shared-form {
+    .form-body {
+      .custom-select-wrap3,
+      .form-text-field3 {
+        background-color: #fff !important;
+      }
+    }
+  }
+}

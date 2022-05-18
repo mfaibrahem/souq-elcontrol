@@ -3,8 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { Empty } from 'antd';
 import CustomBreadcrubm from '../../common/bread-crumb/Breadcrubm';
 import routerLinks from '../../components/app/routerLinks';
-import useSubCats from '../../custom-hooks/useSubCats';
-import { useParams } from 'react-router-dom';
 import { LoadingOutlined } from '@ant-design/icons';
 import './CitiesPage.scss';
 import useCities from '../../custom-hooks/useCities';
@@ -13,9 +11,7 @@ import CityCard from './CityCard';
 const CitiesPage = () => {
   const { t } = useTranslation();
   const { isLoadingCities, allFetchedCities } = useCities();
-  const params = useParams();
-  const { allFetchedSubCats } = useSubCats();
-  const renderCarsUl = () => {
+  const renderCitiesUl = () => {
     if (isLoadingCities) {
       return (
         <div
@@ -59,18 +55,13 @@ const CitiesPage = () => {
             to: routerLinks.categoriesRoute
           },
           {
-            title: allFetchedSubCats?.title,
-            isLink: true,
-            to: routerLinks.subCategoriesRoute(params?.categoryId)
-          },
-          {
-            title: t('breadcrumb_section.cars'),
+            title: t('breadcrumb_section.cities'),
             isLink: false
           }
         ]}
       />
       <section className="cars-section">
-        <div className="custom-container">{renderCarsUl()}</div>
+        <div className="custom-container">{renderCitiesUl()}</div>
       </section>
     </div>
   );

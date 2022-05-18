@@ -5,6 +5,7 @@
     "categories": "الأقســام",
     "myOrders": "طلباتى",
     "startSelling": "ابدأ البيع",
+    "serviceCenterSignup": "سجل كمركز خدمة",
     "aboutUs": "من نحن"
   },
   "hero_section": {
@@ -182,6 +183,119 @@
       "label": "تسجيل"
     }
   },
+  "service_center_form": {
+    "name": {
+      "label": "إسم المركز",
+      "errors": {
+        "required": "من فضلك ادخل الاســـم"
+      }
+    },
+    "phone": {
+      "label": "رقم هاتف المركز",
+      "errors": {
+        "required": "من فضلك ادخل رقم الهاتف",
+        "type_error": "لا يسمح الا بكتابة الارقام",
+        "min": "أقل حد {{min}} حروف"
+      }
+    },
+    "store_whatsapp": {
+      "label": "رقم واتس اب المركز",
+      "errors": {
+        "required": "من فضلك ادخل رقم الواتس أب",
+        "type_error": "لا يسمح الا بكتابة الارقام",
+        "min": "أقل حد {{min}} حروف"
+      }
+    },
+    "email": {
+      "label": "البريد الالكترونى",
+      "errors": {
+        "required": "من فضلك ادخل البريد الالكترونى",
+        "type_error": "من فضلك ادخل بريد الكترونى صحيح"
+      }
+    },
+    "password": {
+      "label": "كلمة المرور",
+      "errors": {
+        "required": "أدخل كلمة المرور",
+        "min": "كلمة المرور لا تقل عن {{min}}"
+      }
+    },
+    "password_confirmation": {
+      "label": "أعد كلمة المرور",
+      "errors": {
+        "required": "أعد كلمة المرور",
+        "type_error": "كلمة المرور غير مطابقة"
+      }
+    },
+    "city": {
+      "label": "إدخل المدينة",
+      "errors": {
+        "required": "اختار المدينة"
+      }
+    },
+    "address": {
+      "label": "العنوان",
+      "errors": {
+        "required": "من فضلك أدخل العنوان"
+      }
+    },
+    "services": {
+      "label": "خدمات المركز",
+      "errors": {
+        "required": "من فضلك أدخل خدمات المركز"
+      }
+    },
+    "managerName": {
+      "label": "إسم المدير",
+      "errors": {
+        "required": "من فضلك ادخل الاســـم"
+      }
+    },
+    "managerPhone": {
+      "label": "رقم هاتف المدير",
+      "errors": {
+        "required": "من فضلك ادخل رقم الهاتف",
+        "type_error": "لا يسمح الا بكتابة الارقام",
+        "min": "أقل حد {{min}} حروف"
+      }
+    },
+    "managerWhatsapp": {
+      "label": "رقم واتس اب المدير",
+      "errors": {
+        "required": "من فضلك ادخل رقم الواتس أب",
+        "type_error": "لا يسمح الا بكتابة الارقام",
+        "min": "أقل حد {{min}} حروف"
+      }
+    },
+    "emergencyStatus": {
+      "label": "هل المركز يدعم مكالمات الطوارئ ؟",
+      "errors": {
+        "required": "من فضلك اختار حالة الطوارئ"
+      }
+    },
+    "workTimes": {
+      "label": "أدخل اوقات العمل",
+      "errors": {
+        "required": "من فضلك ادخل اوقات العمل"
+      }
+    },
+    "day": {
+      "label": "إختار اليوم",
+      "errors": {
+        "required": "من فضلك اختار اليوم",
+        "notTheSame": "من فضلك اختار يوم أخر"
+      }
+    },
+    "time": {
+      "label": "ادخل مواعيد العمل",
+      "errors": {
+        "required": "من فضلك ادخل مواعيد العمل"
+      }
+    },
+    "submit_btn": {
+      "label": "تسجيل"
+    }
+  },
   "main_app_search": {
     "placeholder": "إبحث عن طلبك...",
     "searching": "جارى البحث"
@@ -214,9 +328,11 @@
     "profile": "الملف الشخصى",
     "my_orders": "طـلباتــى",
     "cars": "إختار نوع السيارة",
+    "cities": "إختار المدينة",
     "services": "الخدمـــات",
     "makeOrder": "عمــل طلب",
     "start_selling": "إنشاء حساب تجارى",
+    "servicesCenter": "إنشاء حساب كمركز صيانة",
     "signup": "إنشاء حساب جديد",
     "signin": "تسجيل الدخول",
     "about_us": "من نحن"
@@ -346,6 +462,19 @@
         "loading": "جارى الارســال"
       }
     }
+  },
+  "emergencyTypes": {
+    "yes": "نعم",
+    "no": "لا"
+  },
+  "week": {
+    "friday": "الجمعة",
+    "saturday": "السبت",
+    "sunday": "الأحد",
+    "monday": "الإثنين",
+    "tusday": "الثلاثاء",
+    "wednesday": "الأربعاء",
+    "thursday": "الخميس"
   },
   "success_title": "العملية تمت بنجاح",
   "error_title": "حدث خطأ"

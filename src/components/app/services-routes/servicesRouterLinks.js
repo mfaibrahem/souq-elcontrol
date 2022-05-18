@@ -23,6 +23,17 @@ const servicesRouterLinks = {
     if (categoryId) return `/categories/${categoryId}/cities`;
     return '/categories/:categoryId/cities';
   },
+  serviceCentersRoute: (categoryId, cityId) => {
+    if (categoryId && cityId) {
+      return `/categories/${categoryId}/cities/${cityId}/service-centers`;
+    }
+    return `/categories/:categoryId/cities/:cityId/service-centers`;
+  },
+  singleServiceCenter: (categoryId, cityId, centerId) => {
+    if (categoryId && cityId && centerId)
+      return `/categories/${categoryId}/cities/${cityId}/service-centers/${centerId}`;
+    return `/categories/:categoryId/cities/:cityId/service-centers/:centerId`;
+  },
   // single sub category page contains cars page
   carsRoute: (categoryId, subCategoryId) => {
     if (categoryId && subCategoryId)

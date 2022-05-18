@@ -10,7 +10,7 @@ const CityCard = (props) => {
     <li className="car-card">
       <RouterLink
         className="card-content"
-        to={routerLinks?.subCategoriesRoute(props?.id)}
+        to={routerLinks?.serviceCentersRoute(params?.categoryId, props?.id)}
       >
         <div className="img-wrap">
           <CustomImage src={props?.image} />

@@ -15,6 +15,8 @@ import SinglePostPage from '../../../pages/post-page/SinglePostPage';
 import { PostsProvider } from '../../../contexts/posts-context/PostsContext';
 import { SinglePostProvider } from '../../../contexts/single-post-context/SinglePostContext';
 import CitiesPage from '../../../pages/cities-page/CitiesPage';
+import ServiceCentersPage from '../../../pages/service-centers-page/ServiceCentersPage';
+import ServiceCenterDetailsPage from '../../../pages/service-center-details-page/ServiceCenterDetailsPage';
 
 const ServicesRoutes = () => {
   const { loggedIn } = useContext(UserContext);
@@ -37,6 +39,20 @@ const ServicesRoutes = () => {
     </Route>,
     <Route exact path={routerLinks.cities()} key="cities_route_key">
       <CitiesPage />
+    </Route>,
+    <Route
+      exact
+      path={routerLinks.serviceCentersRoute()}
+      key="service_centers_route_key"
+    >
+      <ServiceCentersPage />
+    </Route>,
+    <Route
+      exact
+      path={routerLinks.singleServiceCenter()}
+      key="single_service_center_route_key"
+    >
+      <ServiceCenterDetailsPage />
     </Route>,
     <Route exact path={routerLinks.carsRoute()} key={3}>
       <CarsPage />

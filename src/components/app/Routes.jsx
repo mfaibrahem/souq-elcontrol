@@ -5,6 +5,7 @@ import UserContext from '../../contexts/user-context/UserProvider';
 import AboutUsPage from '../../pages/aboutus-page/AboutUsPage';
 import NotFoundPage from '../../pages/not-found-page/NotFoundPage';
 import ProfilePage from '../../pages/profile-page/ProfilePage';
+import ServiceCenterSignupPage from '../../pages/service-center-signup-page/ServiceCenterSignupPage';
 import SigninPage from '../../pages/signin-page/SigninPage';
 import SignupPage from '../../pages/signup-page/SignupPage';
 import StartSellingPage from '../../pages/start-selling-page/StartSellingPage';
@@ -46,6 +47,9 @@ const Routes = () => {
 
       <Route exact path={routerLinks?.startSellingRoute}>
         <StartSellingPage />
+      </Route>
+      <Route exact path={routerLinks?.serviceCenterSignupRoute}>
+        <ServiceCenterSignupPage />
       </Route>
       <Route exact path={routerLinks?.aboutUsRoute}>
         <AboutUsPage />
