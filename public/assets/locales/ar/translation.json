@@ -463,6 +463,36 @@
       }
     }
   },
+  "reportServiceForm": {
+    "report": {
+      "label": "الشكوى",
+      "errors": {
+        "required": "من فضلك ادخل الشكوى"
+      }
+    },
+    "send_btn": {
+      "title": "أرسل الشكوى",
+      "loading": "جارى الارسال"
+    }
+  },
+  "rateStoreForm": {
+    "rate": {
+      "label": "",
+      "errors": {
+        "required": "من فضلك ادخل التقييم"
+      }
+    },
+    "comment": {
+      "label": "تعليق عن التقييم",
+      "errors": {
+        "required": "من فضلك ادخل التعليق"
+      }
+    },
+    "send_btn": {
+      "title": "أرسل التقييم",
+      "loading": "جارى الارسال"
+    }
+  },
   "emergencyTypes": {
     "yes": "نعم",
     "no": "لا"

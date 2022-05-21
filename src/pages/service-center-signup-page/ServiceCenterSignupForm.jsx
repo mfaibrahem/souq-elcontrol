@@ -57,9 +57,9 @@ const ServiceCenterSignupForm = () => {
       store_whatsapp: '',
       email: '',
       services: '',
-      managerName: '',
-      managerPhone: '',
-      managerWhatsapp: '',
+      mangerName: '',
+      mangerPhone: '',
+      mangerWhatsapp: '',
       emergencyStatus: '',
       workTimes: [
         {
@@ -106,20 +106,27 @@ const ServiceCenterSignupForm = () => {
     if (data.address) formData.append('address', data.address);
     formData.append('lat', selectedLocation?.lat ? selectedLocation.lat : '');
     formData.append('lng', selectedLocation?.lng ? selectedLocation.lng : '');
-    if (data.managerName) formData.append('managerName', data.managerName);
-    if (data.managerPhone) formData.append('managerPhone', data.managerPhone);
+    if (data.mangerName) formData.append('mangerName', data.mangerName);
+    if (data.mangerPhone) formData.append('mangerPhone', data.mangerPhone);
     if (data.managerWhatsapp)
       formData.append('managerWhatsapp', `${data.managerWhatsapp}`);
     if (data.services) formData.append('services', data.services);
     if (data.emergencyStatus)
       formData.append('emergencyStatus', data.emergencyStatus);
     if (data.workTimes?.length > 0) {
-      const mappedArr = data.workTimes.map(
-        (item) => `${item?.day} ${item?.time}`
-      );
+      const mappedArr = data.workTimes.map((item) => {
+        let dayString = weekDaysArr(t)?.find(
+          (obj) => obj?.id == item?.day
+        )?.name;
+
+        return `${dayString} ${item?.time}`;
+      });
       for (let i of mappedArr) {
         formData.append('workTimes[]', i);
       }
+    }
+    for (var pair of formData.entries()) {
+      console.log(pair[0] + ', ' + pair[1]);
     }
     setIsSubmittingForm(true);
     customApiRequest(
@@ -138,9 +145,9 @@ const ServiceCenterSignupForm = () => {
             address: '',
             lat: '',
             lng: '',
-            managerName: '',
-            managerPhone: '',
-            managerWhatsapp: '',
+            mangerName: '',
+            mangerPhone: '',
+            mangerWhatsapp: '',
             workTimes: [],
             emergencyStatus: '',
             services: ''
@@ -394,11 +401,11 @@ const ServiceCenterSignupForm = () => {
               <div className="text-field-wrap">
                 <AntdTextField
                   className="form-text-field"
-                  name="managerName"
+                  name="mangerName"
                   type="text"
                   placeholder={sharedLabelTrans('managerName')}
-                  errorMsg={errors?.managerName?.message}
-                  validateStatus={errors?.managerName ? 'error' : ''}
+                  errorMsg={errors?.mangerName?.message}
+                  validateStatus={errors?.mangerName ? 'error' : ''}
                   control={control}
                 />
               </div>
@@ -418,7 +425,7 @@ const ServiceCenterSignupForm = () => {
                   {sharedLabelTrans('phone')}
                 </p>
                 <Controller
-                  name="managerPhone"
+                  name="mangerPhone"
                   control={control}
                   // render={({ field: { onChange, onBlur, value, name, ref } }) => {
                   render={({ field }) => {
@@ -434,7 +441,7 @@ const ServiceCenterSignupForm = () => {
                     );
                   }}
                 />
-                <p className="error-p">{errors?.managerPhone?.message}</p>
+                <p className="error-p">{errors?.mangerPhone?.message}</p>
               </div>
 
               <div
@@ -451,7 +458,7 @@ const ServiceCenterSignupForm = () => {
                   {sharedLabelTrans('managerWhatsapp')}
                 </p>
                 <Controller
-                  name="managerWhatsapp"
+                  name="mangerWhatsapp"
                   control={control}
                   // render={({ field: { onChange, onBlur, value, name, ref } }) => {
                   render={({ field }) => {
@@ -467,7 +474,7 @@ const ServiceCenterSignupForm = () => {
                     );
                   }}
                 />
-                <p className="error-p">{errors?.managerWhatsapp?.message}</p>
+                <p className="error-p">{errors?.mangerWhatsapp?.message}</p>
               </div>
             </div>
           </div>
@@ -623,7 +630,7 @@ const ServiceCenterSignupForm = () => {
                         </div>
                       </div>
 
-                      {workTimeFields?.length >= 1 && (
+                      {workTimeFields?.length > 1 && (
                         <Tooltip title="حذف">
                           <Button
                             className="delete-field-btn"

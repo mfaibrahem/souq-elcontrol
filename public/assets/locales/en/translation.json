@@ -463,6 +463,36 @@
       }
     }
   },
+  "reportServiceForm": {
+    "report": {
+      "label": "Report",
+      "errors": {
+        "required": "Please type your report"
+      }
+    },
+    "send_btn": {
+      "title": "Send report",
+      "loading": "Sending"
+    }
+  },
+  "rateStoreForm": {
+    "rate": {
+      "label": "",
+      "errors": {
+        "required": "Please enter your rate first"
+      }
+    },
+    "comment": {
+      "label": "Comment on your rate",
+      "errors": {
+        "required": "Please enter your comment"
+      }
+    },
+    "send_btn": {
+      "title": "Submit your rate",
+      "loading": "Sending..."
+    }
+  },
   "emergencyTypes": {
     "yes": "Yes",
     "no": "No"

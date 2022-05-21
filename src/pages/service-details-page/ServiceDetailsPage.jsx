@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Empty } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
@@ -16,16 +16,35 @@ import whatsAppImg from '../../assets/imgs/contact/whatsapp-white.png';
 import ContactSellerContext from '../../contexts/contact-seller-context/ContactSellerContext';
 import ContactSellerModal from './ContactSellerModal';
 import './ServiceDetailsPage.scss';
+import ReportServiceModal from './ReportServiceModal';
+import UserContext from '../../contexts/user-context/UserProvider';
+import { useHistory } from 'react-router-dom';
+import telegramImg from '../../assets/imgs/icons/share-icons/telegram.svg';
+import twitterImg from '../../assets/imgs/icons/share-icons/twitter.svg';
+import whatsappImg from '../../assets/imgs/icons/share-icons/whatsapp.svg';
+import StoreRateModal from './StoreRateModal';
+import fbImg from '../../assets/imgs/icons/share-icons/fb.svg';
+import {
+  FacebookShareButton,
+  TelegramShareButton,
+  TwitterShareButton,
+  WhatsappShareButton
+} from 'react-share';
+import servicesRouterLinks from '../../components/app/services-routes/servicesRouterLinks';
 
 // const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const { TabPane } = Tabs;
 
 const ServiceDetailsPage = () => {
   const params = useParams();
+  const history = useHistory();
   const { t, i18n } = useTranslation();
+  const { user } = useContext(UserContext);
   const { isLoadingServiceDetails, fetchedServiceDetails } =
     useServiceDetails();
-  const { setModalOpened, modalOpened } = useContext(ContactSellerContext);
+  const { modalOpened } = useContext(ContactSellerContext);
+  const [reportModalOpened, setReportModalOpened] = useState(false);
+  const [rateModalOpened, setRateModalOpened] = useState(false);
 
   const renderGalleryImages = () => {
     return fetchedServiceDetails.service.images.map((img) => {
@@ -63,6 +82,18 @@ const ServiceDetailsPage = () => {
               {obj.email}
             </Descriptions.Item>
           )}
+          <Descriptions.Item
+            label={
+              i18n.language === 'ar' ? 'تقييم البائع : ' : 'Rate seller : '
+            }
+          >
+            <button
+              onClick={() => setRateModalOpened(true)}
+              className="rate-modal-btn"
+            >
+              {i18n.language === 'ar' ? 'تقييم البائع' : 'Rate seller'}
+            </button>
+          </Descriptions.Item>
         </Descriptions>
       </div>
     );
@@ -258,12 +289,81 @@ const ServiceDetailsPage = () => {
                     renderInstructions(fetchedServiceDetails.service)}
                 </TabPane>
               </Tabs>
+              <div className="share-report-service-btns">
+                <button
+                  className="report-service-btn"
+                  onClick={() => {
+                    if (user) {
+                      setReportModalOpened(true);
+                    } else {
+                      history.push(routerLinks?.signinPage);
+                    }
+                  }}
+                >
+                  {i18n.language === 'ar'
+                    ? 'الابلاغ عن شكوى'
+                    : 'Report Service'}
+                </button>
+
+                <div className="links-wrap">
+                  <FacebookShareButton
+                    url={`${
+                      process.env.REACT_APP_WEBSITE_URL
+                    }${servicesRouterLinks?.serviceDetailsRoute(
+                      fetchedServiceDetails?.service?.id
+                    )}`}
+                  >
+                    <img src={fbImg} alt="fb" />
+                  </FacebookShareButton>
+                  <WhatsappShareButton
+                    url={`${
+                      process.env.REACT_APP_WEBSITE_URL
+                    }${servicesRouterLinks?.serviceDetailsRoute(
+                      fetchedServiceDetails?.service?.id
+                    )}`}
+                  >
+                    <img src={whatsappImg} alt="whatsapp" />
+                  </WhatsappShareButton>
+                  <TwitterShareButton
+                    url={`${
+                      process.env.REACT_APP_WEBSITE_URL
+                    }${servicesRouterLinks?.serviceDetailsRoute(
+                      fetchedServiceDetails?.service?.id
+                    )}`}
+                  >
+                    <img src={twitterImg} alt="twitter" />
+                  </TwitterShareButton>
+                  <TelegramShareButton
+                    url={`${
+                      process.env.REACT_APP_WEBSITE_URL
+                    }${servicesRouterLinks?.serviceDetailsRoute(
+                      fetchedServiceDetails?.service?.id
+                    )}`}
+                  >
+                    <img src={telegramImg} alt="telegram" />
+                  </TelegramShareButton>
+                </div>
+              </div>
             </div>
           </div>
         </section>
       </div>
       {modalOpened && (
         <ContactSellerModal store={fetchedServiceDetails?.service?.store} />
+      )}
+      {reportModalOpened && (
+        <ReportServiceModal
+          modalOpened={reportModalOpened}
+          setModalOpened={setReportModalOpened}
+          serviceId={fetchedServiceDetails?.service?.id}
+        />
+      )}
+      {rateModalOpened && (
+        <StoreRateModal
+          modalOpened={rateModalOpened}
+          setModalOpened={setRateModalOpened}
+          storeId={fetchedServiceDetails?.service?.store?.id}
+        />
       )}
     </div>
   );
