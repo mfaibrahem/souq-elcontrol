@@ -5,12 +5,14 @@ import { LoadingOutlined } from '@ant-design/icons';
 import useSlider from '../../custom-hooks/useSlider';
 import Slider from 'react-slick';
 import { Link as RouterLink } from 'react-router-dom';
-import './MainSlider.scss';
+import './FeaturedProductsSlider.scss';
 import servicesRouterLinks from '../../components/app/services-routes/servicesRouterLinks';
 import CustomImage from '../../common/custom-image/CustomImage';
+import { useEffect, useState } from 'react';
 
-const MainSlider = () => {
+const FeaturedProductsSlider = () => {
   // SlickSliderBtns('trendy-products-slider', false);
+  const { t } = useTranslation();
   const { i18n } = useTranslation();
   const { isLoadingSlides, allFetchedSlides } = useSlider();
 
@@ -57,64 +59,52 @@ const MainSlider = () => {
     );
   }
 
+  const [sliderDir, setSliderDir] = useState(i18n.dir());
+
+  useEffect(() => {
+    setSliderDir(i18n.dir());
+  }, [i18n.language]);
+
   const sliderSettings = {
     fade: false,
     dots: false,
     arrows: true,
     // rtl: sliderDir === 'rtl' ? true : false,
     rtl: false,
-    infinite: false,
+    currentSlide: 0,
+    infinite: true,
     speed: 500,
-    slidesToShow: 5,
-    slidesToScroll: 5,
+    slidesToShow: 1,
+    slidesToScroll: 1,
     initialSlide: 0,
     prevArrow: <SamplePrevArrow />,
-    nextArrow: <SampleNextArrow />,
-    responsive: [
-      {
-        breakpoint: 1366,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 4,
-          initialSlide: 0
-        }
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 0
-        }
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          initialSlide: 0
-        }
-      }
-    ]
+    nextArrow: <SampleNextArrow />
   };
 
   const renderSingleSlide = (item) => {
     return (
       <div key={item?.id} className="slide-wrapper">
-        <RouterLink
-          className="slider-service-card"
-          to={servicesRouterLinks?.serviceDetailsRoute(
-            item?.mainCat?.id,
-            item?.cat?.id,
-            item?.car?.id,
-            item?.id
-          )}
-        >
-          <CustomImage className="service-img" src={item?.image} />
-          <div className="service-data">
+        <div className="featured-product-card">
+          <CustomImage className="product-img" src={item?.image} />
+          <div className="product-data">
             <div className="card-name">{item?.name}</div>
+            <div className="cat-sub-cat">
+              <p className="cat-p">{item?.mainCat?.name} / </p>
+              <p className="sub-cat-p">{item?.cat?.name}</p>
+            </div>
+            <RouterLink
+              className="product-link"
+              to={servicesRouterLinks?.serviceDetailsRoute(
+                item?.mainCat?.id,
+                item?.cat?.id,
+                item?.car?.id,
+                item?.id
+              )}
+            >
+              {t('hero_section.detailsTitle')}
+            </RouterLink>
           </div>
-        </RouterLink>
+        </div>
       </div>
     );
   };
@@ -123,7 +113,6 @@ const MainSlider = () => {
     if (isLoadingSlides)
       return (
         <Slider
-          rtl={i18n.dir() === 'rtl' ? true : false}
           className={`${i18n.dir()} custom-slick-slider`}
           {...sliderSettings}
           // nextArrow={<SampleNextArrow />}
@@ -146,8 +135,7 @@ const MainSlider = () => {
       return (
         <div className="custom-container">
           <Slider
-            rtl={i18n.dir() === 'rtl' ? true : false}
-            className={`${i18n.dir()} custom-slick-slider main-slider`}
+            className={`${i18n.dir()} custom-slick-slider featured-slider`}
             {...sliderSettings}
           >
             {allFetchedSlides?.length > 0 &&
@@ -158,7 +146,11 @@ const MainSlider = () => {
     return null;
   };
 
-  return <div className="main-slider-wrapper">{renderSlides()}</div>;
+  return (
+    <div className={`featured-slider-wrapper ${i18n.dir()}`}>
+      {renderSlides()}
+    </div>
+  );
 };
 
-export default MainSlider;
+export default FeaturedProductsSlider;
