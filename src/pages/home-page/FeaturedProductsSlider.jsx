@@ -67,13 +67,16 @@ const FeaturedProductsSlider = () => {
 
   const sliderSettings = {
     fade: false,
-    dots: false,
     arrows: true,
-    // rtl: sliderDir === 'rtl' ? true : false,
     rtl: false,
+    // rtl: sliderDir === 'rtl' ? true : false,
+    lazyLoad: true,
     currentSlide: 0,
     infinite: true,
-    speed: 500,
+    autoplay: true,
+    pauseOnHover: true,
+    speed: 2000,
+    autoplaySpeed: 2000,
     slidesToShow: 1,
     slidesToScroll: 1,
     initialSlide: 0,
@@ -133,7 +136,7 @@ const FeaturedProductsSlider = () => {
       );
     if (allFetchedSlides?.length > 0)
       return (
-        <div className="custom-container">
+        <div dir="rtl" className="custom-container">
           <Slider
             className={`${i18n.dir()} custom-slick-slider featured-slider`}
             {...sliderSettings}
