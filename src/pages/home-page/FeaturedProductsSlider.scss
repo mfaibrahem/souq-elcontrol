@@ -4,57 +4,50 @@
   background-color: #fff;
   padding: 62px 0;
 
+  .slick-list {
+    z-index: 0;
+  }
+
+  .slick-slider {
+    &.rtl {
+    }
+  }
+  .slick-arrow {
+    .slick-prev {
+    }
+  }
+
   .slick-slide {
     position: relative;
     background-color: #f8f8f8;
-    &:nth-of-type(2n + 1) {
+    &:nth-of-type(6n + 1) {
       &::after {
         background-image: url('../../assets/imgs/icons/patterns/pattern-1.svg');
       }
     }
-    &:nth-of-type(2n + 3) {
+    &:nth-of-type(6n + 2) {
       &::after {
         background-image: url('../../assets/imgs/icons/patterns/pattern-2.svg');
       }
     }
-    &:nth-of-type(3n + 2) {
+    &:nth-of-type(6n + 3) {
       &::after {
         background-image: url('../../assets/imgs/icons/patterns/pattern-3.svg');
       }
     }
-    &:nth-of-type(4n + 5) {
+    &:nth-of-type(6n + 4) {
       &::after {
         background-image: url('../../assets/imgs/icons/patterns/pattern-4.svg');
       }
     }
-    &:nth-of-type(1) {
+    &:nth-of-type(6n + 5) {
       &::after {
-        background-image: url('../../assets/imgs/icons/patterns/pattern-1.svg');
+        background-image: url('../../assets/imgs/icons/patterns/pattern-5.svg');
       }
     }
-    &:nth-of-type(2) {
+    &:nth-of-type(6n + 6) {
       &::after {
-        background-image: url('../../assets/imgs/icons/patterns/pattern-2.svg');
-      }
-    }
-    &:nth-of-type(3) {
-      &::after {
-        background-image: url('../../assets/imgs/icons/patterns/pattern-3.svg');
-      }
-    }
-    &:nth-of-type(4) {
-      &::after {
-        background-image: url('../../assets/imgs/icons/patterns/pattern-4.svg');
-      }
-    }
-    &:nth-of-type(5) {
-      &::after {
-        background-image: url('../../assets/imgs/icons/patterns/pattern-1.svg');
-      }
-    }
-    &:nth-of-type(6) {
-      &::after {
-        background-image: url('../../assets/imgs/icons/patterns/pattern-2.svg');
+        background-image: url('../../assets/imgs/icons/patterns/pattern-6.svg');
       }
     }
     &::after {
@@ -65,7 +58,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      opacity: 0.3;
+      opacity: 0.1;
     }
   }
   &.rtl {
@@ -86,9 +79,12 @@
     margin: 0 12px;
     overflow: hidden;
     transition: all 0.2s ease-out;
-    padding: 22px 32px;
     display: grid;
-    grid-template-columns: auto 1fr;
+    padding: 14px 0;
+    @include mediaLg {
+      padding: 22px 32px;
+      grid-template-columns: auto 1fr;
+    }
     .card-name {
       color: $main-app-color;
       text-align: center;
@@ -99,8 +95,14 @@
     .product-img {
       img,
       svg {
-        width: 500px;
-        height: 332px;
+        width: 100%;
+        height: auto;
+        max-height: 232px !important;
+        @include mediaLg {
+          width: 500px;
+          height: 332px;
+          max-height: 332px !important;
+        }
         object-fit: cover;
         object-position: center center;
         border-radius: 4px;
@@ -109,18 +111,24 @@
     }
 
     .product-data {
+      padding: 22px;
       display: grid;
       place-content: center;
       place-items: center;
-
+      text-align: center;
       .cat-sub-cat {
         display: flex;
+        justify-content: center;
         flex-wrap: wrap;
         gap: 4px;
-        margin-bottom: 22px;
       }
 
+      .price-p {
+        font-size: 20px;
+        margin-top: 2px;
+      }
       .product-link {
+        margin-top: 22px;
         background-color: $main-app-color;
         color: #fff;
         padding: 8px 28px 10px 28px;

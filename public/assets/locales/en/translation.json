@@ -507,6 +507,9 @@
     "wednesday": "Wednesday",
     "thursday": "Thursday"
   },
+  "currency": {
+    "eg": "LE"
+  },
   "success_title": "Operation done successfully",
   "error_title": "Something went wrong"
 }

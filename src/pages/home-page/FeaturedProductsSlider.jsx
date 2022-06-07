@@ -67,16 +67,17 @@ const FeaturedProductsSlider = () => {
 
   const sliderSettings = {
     fade: false,
-    arrows: true,
-    rtl: false,
+    arrows: false,
+    dots: true,
+    rtl: true,
     // rtl: sliderDir === 'rtl' ? true : false,
     lazyLoad: true,
     currentSlide: 0,
     infinite: true,
     autoplay: true,
     pauseOnHover: true,
-    speed: 2000,
-    autoplaySpeed: 2000,
+    speed: 3000,
+    autoplaySpeed: 3000,
     slidesToShow: 1,
     slidesToScroll: 1,
     initialSlide: 0,
@@ -95,6 +96,11 @@ const FeaturedProductsSlider = () => {
               <p className="cat-p">{item?.mainCat?.name} / </p>
               <p className="sub-cat-p">{item?.cat?.name}</p>
             </div>
+            {item?.price && (
+              <p className="price-p">
+                {item.price} {t('currency.eg')}
+              </p>
+            )}
             <RouterLink
               className="product-link"
               to={servicesRouterLinks?.serviceDetailsRoute(

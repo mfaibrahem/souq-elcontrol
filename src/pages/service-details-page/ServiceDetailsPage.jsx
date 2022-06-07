@@ -306,6 +306,9 @@ const ServiceDetailsPage = () => {
                 </button>
 
                 <div className="links-wrap">
+                  <span>
+                    {i18n.language === 'ar' ? 'شارك الخدمة' : 'Share service'}
+                  </span>
                   <FacebookShareButton
                     url={`${
                       process.env.REACT_APP_WEBSITE_URL

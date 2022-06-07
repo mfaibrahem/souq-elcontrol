@@ -507,6 +507,9 @@
     "wednesday": "الأربعاء",
     "thursday": "الخميس"
   },
+  "currency": {
+    "eg": "جنيه"
+  },
   "success_title": "العملية تمت بنجاح",
   "error_title": "حدث خطأ"
 }
