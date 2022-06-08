@@ -20,36 +20,67 @@
   .slick-slide {
     position: relative;
     background-color: #f8f8f8;
-    &:nth-of-type(6n + 1) {
+    &:nth-of-type(1) {
       &::after {
         background-image: url('../../assets/imgs/icons/patterns/pattern-1.svg');
       }
     }
-    &:nth-of-type(6n + 2) {
+    &:nth-of-type(2) {
       &::after {
         background-image: url('../../assets/imgs/icons/patterns/pattern-2.svg');
       }
     }
-    &:nth-of-type(6n + 3) {
+    &:nth-of-type(3) {
       &::after {
         background-image: url('../../assets/imgs/icons/patterns/pattern-3.svg');
       }
     }
-    &:nth-of-type(6n + 4) {
+    &:nth-of-type(4) {
       &::after {
         background-image: url('../../assets/imgs/icons/patterns/pattern-4.svg');
       }
     }
-    &:nth-of-type(6n + 5) {
+    &:nth-of-type(5) {
       &::after {
         background-image: url('../../assets/imgs/icons/patterns/pattern-5.svg');
       }
     }
-    &:nth-of-type(6n + 6) {
+    &:nth-of-type(6) {
       &::after {
         background-image: url('../../assets/imgs/icons/patterns/pattern-6.svg');
       }
     }
+    &:nth-of-type(7) {
+      &::after {
+        background-image: url('../../assets/imgs/icons/patterns/pattern-1.svg');
+      }
+    }
+    &:nth-of-type(8) {
+      &::after {
+        background-image: url('../../assets/imgs/icons/patterns/pattern-2.svg');
+      }
+    }
+    &:nth-of-type(9) {
+      &::after {
+        background-image: url('../../assets/imgs/icons/patterns/pattern-3.svg');
+      }
+    }
+    &:nth-of-type(10) {
+      &::after {
+        background-image: url('../../assets/imgs/icons/patterns/pattern-4.svg');
+      }
+    }
+    &:nth-of-type(11) {
+      &::after {
+        background-image: url('../../assets/imgs/icons/patterns/pattern-5.svg');
+      }
+    }
+    &:nth-of-type(12) {
+      &::after {
+        background-image: url('../../assets/imgs/icons/patterns/pattern-6.svg');
+      }
+    }
+
     &::after {
       background-color: #f8f8f8;
       position: absolute;

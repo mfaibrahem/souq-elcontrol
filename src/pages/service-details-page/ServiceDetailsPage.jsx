@@ -82,18 +82,20 @@ const ServiceDetailsPage = () => {
               {obj.email}
             </Descriptions.Item>
           )}
-          <Descriptions.Item
-            label={
-              i18n.language === 'ar' ? 'تقييم البائع : ' : 'Rate seller : '
-            }
-          >
-            <button
-              onClick={() => setRateModalOpened(true)}
-              className="rate-modal-btn"
+          {user && obj?.isOrdered && (
+            <Descriptions.Item
+              label={
+                i18n.language === 'ar' ? 'تقييم البائع : ' : 'Rate seller : '
+              }
             >
-              {i18n.language === 'ar' ? 'تقييم البائع' : 'Rate seller'}
-            </button>
-          </Descriptions.Item>
+              <button
+                onClick={() => setRateModalOpened(true)}
+                className="rate-modal-btn"
+              >
+                {i18n.language === 'ar' ? 'تقييم البائع' : 'Rate seller'}
+              </button>
+            </Descriptions.Item>
+          )}
         </Descriptions>
       </div>
     );
