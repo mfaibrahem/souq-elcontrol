@@ -218,14 +218,28 @@ const ServiceDetailsPage = () => {
                       </div>
                     )}
 
-                    {fetchedServiceDetails?.service?.price && (
-                      <div className="price-wrap">
-                        <div className="price-itself">
-                          {fetchedServiceDetails?.service?.price}{' '}
-                          {i18n.language === 'ar' ? 'جنيه' : 'LE'}
+                    <div className="price-q-wrapper">
+                      {fetchedServiceDetails?.service?.price && (
+                        <div className="price-wrap">
+                          <div className="price-itself">
+                            {fetchedServiceDetails?.service?.price}{' '}
+                            {i18n.language === 'ar' ? 'جنيه' : 'LE'}
+                          </div>
                         </div>
+                      )}
+
+                      <div className="quantity-wrap">
+                        <span>
+                          {i18n.language === 'ar'
+                            ? 'الكمية المتبقية'
+                            : 'Lefted Quantity'}
+                        </span>
+                        <span>
+                          {' '}
+                          ( {fetchedServiceDetails?.service?.quantity} )
+                        </span>
                       </div>
-                    )}
+                    </div>
 
                     <div className="order-message-links-wrap">
                       {/* <button
@@ -315,7 +329,10 @@ const ServiceDetailsPage = () => {
                     url={`${
                       process.env.REACT_APP_WEBSITE_URL
                     }${servicesRouterLinks?.serviceDetailsRoute(
-                      fetchedServiceDetails?.service?.id
+                      params?.categoryId,
+                      params?.subCategoryId,
+                      params?.carId,
+                      params?.serviceId
                     )}`}
                   >
                     <img src={fbImg} alt="fb" />
@@ -324,7 +341,10 @@ const ServiceDetailsPage = () => {
                     url={`${
                       process.env.REACT_APP_WEBSITE_URL
                     }${servicesRouterLinks?.serviceDetailsRoute(
-                      fetchedServiceDetails?.service?.id
+                      params?.categoryId,
+                      params?.subCategoryId,
+                      params?.carId,
+                      params?.serviceId
                     )}`}
                   >
                     <img src={whatsappImg} alt="whatsapp" />
@@ -333,7 +353,10 @@ const ServiceDetailsPage = () => {
                     url={`${
                       process.env.REACT_APP_WEBSITE_URL
                     }${servicesRouterLinks?.serviceDetailsRoute(
-                      fetchedServiceDetails?.service?.id
+                      params?.categoryId,
+                      params?.subCategoryId,
+                      params?.carId,
+                      params?.serviceId
                     )}`}
                   >
                     <img src={twitterImg} alt="twitter" />
@@ -342,7 +365,10 @@ const ServiceDetailsPage = () => {
                     url={`${
                       process.env.REACT_APP_WEBSITE_URL
                     }${servicesRouterLinks?.serviceDetailsRoute(
-                      fetchedServiceDetails?.service?.id
+                      params?.categoryId,
+                      params?.subCategoryId,
+                      params?.carId,
+                      params?.serviceId
                     )}`}
                   >
                     <img src={telegramImg} alt="telegram" />

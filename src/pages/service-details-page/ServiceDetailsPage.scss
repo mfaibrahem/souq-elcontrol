@@ -110,6 +110,7 @@
         }
       }
     }
+
     .price-wrap {
       .wrap-title {
         display: flex;
@@ -305,5 +306,20 @@
     color: #fff;
     cursor: pointer;
     margin: 8px 0;
+  }
+
+  .price-q-wrapper {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 22px;
+    align-items: center;
+
+    .quantity-wrap {
+      color: $main-app-color;
+      background-color: #eee;
+      padding: 10px 22px;
+      border-radius: 4px;
+    }
   }
 }
