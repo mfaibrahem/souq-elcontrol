@@ -67,7 +67,7 @@ const FeaturedProductsSlider = () => {
 
   const sliderSettings = {
     fade: false,
-    arrows: false,
+    arrows: true,
     dots: true,
     rtl: true,
     // rtl: sliderDir === 'rtl' ? true : false,
@@ -76,7 +76,7 @@ const FeaturedProductsSlider = () => {
     infinite: true,
     autoplay: true,
     pauseOnHover: true,
-    speed: 3000,
+    speed: 3400,
     autoplaySpeed: 3000,
     slidesToShow: 1,
     slidesToScroll: 1,

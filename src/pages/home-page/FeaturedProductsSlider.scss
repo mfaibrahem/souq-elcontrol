@@ -4,17 +4,15 @@
   background-color: #fff;
   padding: 62px 0;
 
-  .slick-list {
-    z-index: 0;
+  .featured-slider {
+    padding: 0 14px;
+    @include mediaLg {
+      padding: 0 42px;
+    }
   }
 
-  .slick-slider {
-    &.rtl {
-    }
-  }
-  .slick-arrow {
-    .slick-prev {
-    }
+  .slick-list {
+    z-index: 0;
   }
 
   .slick-slide {
@@ -120,7 +118,10 @@
       color: $main-app-color;
       text-align: center;
       margin: 10px 8px;
-      font-size: 32px;
+      font-size: 20px;
+      @include mediaLg {
+        font-size: 32px;
+      }
     }
 
     .product-img {
@@ -128,7 +129,7 @@
       svg {
         width: 100%;
         height: auto;
-        max-height: 232px !important;
+        max-height: 122px !important;
         @include mediaLg {
           width: 500px;
           height: 332px;
@@ -142,7 +143,9 @@
     }
 
     .product-data {
-      padding: 22px;
+      @include mediaLg {
+        padding: 22px;
+      }
       display: grid;
       place-content: center;
       place-items: center;
@@ -159,7 +162,10 @@
         margin-top: 2px;
       }
       .product-link {
-        margin-top: 22px;
+        margin-top: 12px;
+        @include mediaLg {
+          margin-top: 22px;
+        }
         background-color: $main-app-color;
         color: #fff;
         padding: 8px 28px 10px 28px;

@@ -115,7 +115,7 @@
         @include mediaXXlg {
           max-width: 900px;
         }
-        animation: bounceMe 10s linear infinite forwards;
+        animation: bounceMe 8s linear infinite forwards;
         @keyframes bounceMe {
           0% {
             transform: translateY(-8px) translateX(-8px) scale(1.03);
