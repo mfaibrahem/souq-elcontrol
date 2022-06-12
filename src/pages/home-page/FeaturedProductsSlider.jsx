@@ -86,38 +86,48 @@ const FeaturedProductsSlider = () => {
   };
 
   const renderSingleSlide = (item) => {
+    const renderBG = (url) => {
+      if (
+        url == process.env.REACT_APP_WEBSITE_URL + '/backend/images/1.png' ||
+        !url
+      )
+        return '';
+      else return url;
+    };
+
     return (
-      <div
-        key={item?.id}
-        className="slide-wrapper"
-        style={{
-          backgroundImage: item?.bg || ''
-        }}
-      >
-        <div className="featured-product-card">
-          <CustomImage className="product-img" src={item?.image} />
-          <div className="product-data">
-            <div className="card-name">{item?.name}</div>
-            <div className="cat-sub-cat">
-              <p className="cat-p">{item?.mainCat?.name} / </p>
-              <p className="sub-cat-p">{item?.cat?.name}</p>
-            </div>
-            {item?.price && (
-              <p className="price-p">
-                {item.price} {t('currency.eg')}
-              </p>
-            )}
-            <RouterLink
-              className="product-link"
-              to={servicesRouterLinks?.serviceDetailsRoute(
-                item?.mainCat?.id,
-                item?.cat?.id,
-                item?.car?.id,
-                item?.id
+      <div key={item?.id}>
+        <div
+          className="slide-wrapper"
+          style={{
+            backgroundImage: `url(${renderBG(item?.backGroundImage)})`
+          }}
+        >
+          <div className="featured-product-card">
+            <CustomImage className="product-img" src={item?.image} />
+            <div className="product-data">
+              <div className="card-name">{item?.name}</div>
+              <div className="cat-sub-cat">
+                <p className="cat-p">{item?.mainCat?.name} / </p>
+                <p className="sub-cat-p">{item?.cat?.name}</p>
+              </div>
+              {item?.price && (
+                <p className="price-p">
+                  {item.price} {t('currency.eg')}
+                </p>
               )}
-            >
-              {t('hero_section.detailsTitle')}
-            </RouterLink>
+              <RouterLink
+                className="product-link"
+                to={servicesRouterLinks?.serviceDetailsRoute(
+                  item?.mainCat?.id,
+                  item?.cat?.id,
+                  item?.car?.id,
+                  item?.id
+                )}
+              >
+                {t('hero_section.detailsTitle')}
+              </RouterLink>
+            </div>
           </div>
         </div>
       </div>
