@@ -9,7 +9,6 @@ import './FeaturedProductsSlider.scss';
 import servicesRouterLinks from '../../components/app/services-routes/servicesRouterLinks';
 import CustomImage from '../../common/custom-image/CustomImage';
 import { useEffect, useState } from 'react';
-import bg1 from '../../assets/imgs/icons/patterns/pattern-1.svg';
 
 const FeaturedProductsSlider = () => {
   // SlickSliderBtns('trendy-products-slider', false);
