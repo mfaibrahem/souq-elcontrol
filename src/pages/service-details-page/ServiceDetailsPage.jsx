@@ -309,7 +309,7 @@ const ServiceDetailsPage = () => {
 
                 <div className="links-wrap">
                   <span>
-                    {i18n.language === 'ar' ? 'شارك الخدمة' : 'Share service'}
+                    {i18n.language === 'ar' ? 'شارك المنتج' : 'Share Product'}
                   </span>
                   <FacebookShareButton
                     url={`${

@@ -9,6 +9,7 @@ import './FeaturedProductsSlider.scss';
 import servicesRouterLinks from '../../components/app/services-routes/servicesRouterLinks';
 import CustomImage from '../../common/custom-image/CustomImage';
 import { useEffect, useState } from 'react';
+import bg1 from '../../assets/imgs/icons/patterns/pattern-1.svg';
 
 const FeaturedProductsSlider = () => {
   // SlickSliderBtns('trendy-products-slider', false);
@@ -87,7 +88,13 @@ const FeaturedProductsSlider = () => {
 
   const renderSingleSlide = (item) => {
     return (
-      <div key={item?.id} className="slide-wrapper">
+      <div
+        key={item?.id}
+        className="slide-wrapper"
+        style={{
+          backgroundImage: item?.bg || ''
+        }}
+      >
         <div className="featured-product-card">
           <CustomImage className="product-img" src={item?.image} />
           <div className="product-data">
