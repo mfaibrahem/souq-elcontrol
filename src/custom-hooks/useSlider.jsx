@@ -22,8 +22,22 @@ const useSlider = () => {
         getSlidesApi(i18n.language),
         (res) => {
           setIsLoadingSlides(false);
-          if (checkRes(res) && res?.data?.data) {
-            setAllFetchedSlides(res.data.data);
+          if (
+            checkRes(res) &&
+            res?.data?.data?.services?.length > 0 &&
+            res?.data?.data?.backgrounds?.length >= 0
+          ) {
+            const dataArr = res.data.data.services;
+            const bgArr = res?.data?.data.backgrounds;
+
+            setAllFetchedSlides(
+              dataArr.map((item, index) => {
+                return {
+                  ...item,
+                  backGroundImage: bgArr[index]?.image
+                };
+              })
+            );
           }
         },
         (error) => {

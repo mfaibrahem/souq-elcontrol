@@ -15,7 +15,7 @@ const FeaturedProductsSlider = () => {
   const { t } = useTranslation();
   const { i18n } = useTranslation();
   const { isLoadingSlides, allFetchedSlides } = useSlider();
-
+  console.log(allFetchedSlides);
   function SamplePrevArrow(props) {
     const { className, style, onClick } = props;
     return (
