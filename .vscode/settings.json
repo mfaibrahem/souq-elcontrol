@@ -1,1 +1,15 @@
-{}
+{
+  "workbench.colorCustomizations": {
+    "editor.selectionBackground": "#96b8f823",
+    "activityBar.border": "#00000000",
+    "editorBracketMatch.border": "#eaf1d83a",
+    "editorCursor.foreground": "#d553ec",
+    "editorCursor.background": "#ffffff",
+    "editorWhitespace.foreground": "#c8e44e60",
+    "editorIndentGuide.background": "#ffffff0a",
+    "editorIndentGuide.activeBackground": "#72dbdf48",
+    "menu.selectionBackground": "#038effd5",
+    "menu.border": "#ffffa188",
+    "editorSuggestWidget.selectedBackground": "#72dbdf48"
+  }
+}
