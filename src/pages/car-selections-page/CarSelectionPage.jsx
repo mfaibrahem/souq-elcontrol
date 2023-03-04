@@ -1,25 +1,22 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Empty } from 'antd';
-import CarCard from './CarCard';
 import useCars from '../../custom-hooks/useCars';
 import CustomBreadcrubm from '../../common/bread-crumb/Breadcrubm';
 import routerLinks from '../../components/app/routerLinks';
 import useSubCats from '../../custom-hooks/useSubCats';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { LoadingOutlined } from '@ant-design/icons';
-import './CarsPage.scss';
+import './CarSelectionPage.scss';
+import useCarSelection from '../../custom-hooks/useCarSelection';
 
-const CarsPage = () => {
+const CarSelectionPage = () => {
   const { t } = useTranslation();
   const params = useParams();
-  const { isLoadingCars, allFetchedCars } = useCars(
-    params?.subCategoryId,
-    params?.carSelectionId
-  );
+  const { isLoadingCarSelection, allFetchedSelection } = useCarSelection();
   const { allFetchedSubCats } = useSubCats();
-  const renderCarsUl = () => {
-    if (isLoadingCars) {
+  const renderCards = () => {
+    if (isLoadingCarSelection) {
       return (
         <div
           style={{
@@ -34,13 +31,24 @@ const CarsPage = () => {
       );
     }
 
-    if (allFetchedCars?.length === 0)
-      return <Empty description="No cars found" />;
-    else if (allFetchedCars?.length > 0) {
+    if (allFetchedSelection?.length === 0)
+      return <Empty description="No selection found" />;
+    else if (allFetchedSelection?.length > 0) {
       return (
-        <ul className="cars-ul">
-          {allFetchedCars.map((ele) => {
-            return <CarCard key={ele.id} {...ele} />;
+        <ul className="cars-selections-ul">
+          {allFetchedSelection.map((ele) => {
+            return (
+              <Link
+                className="car-selection-box"
+                to={routerLinks?.carsRoute(
+                  params.categoryId,
+                  params.subCategoryId,
+                  ele?.id
+                )}
+              >
+                {ele.name}
+              </Link>
+            );
           })}
         </ul>
       );
@@ -67,16 +75,16 @@ const CarsPage = () => {
             to: routerLinks.subCategoriesRoute(params?.categoryId)
           },
           {
-            title: t('breadcrumb_section.cars'),
+            title: t('breadcrumb_section.carSelection'),
             isLink: false
           }
         ]}
       />
       <section className="cars-section">
-        <div className="custom-container">{renderCarsUl()}</div>
+        <div className="custom-container">{renderCards()}</div>
       </section>
     </div>
   );
 };
 
-export default CarsPage;
+export default CarSelectionPage;

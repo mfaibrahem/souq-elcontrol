@@ -44,7 +44,6 @@
     "react-hook-form": "^7.7.0",
     "react-i18next": "^11.10.0",
     "react-image-gallery": "^1.2.7",
-    "react-lightgallery": "^0.9.0",
     "react-notifications-component": "^3.1.0",
     "react-onclickoutside": "^6.11.2",
     "react-phone-number-input": "^3.1.50",
@@ -88,6 +87,6 @@
   },
   "devDependencies": {
     "craco-less": "^1.17.1",
-    "node-sass": "^6.0.1"
+    "sass": "^1.58.3"
   }
 }

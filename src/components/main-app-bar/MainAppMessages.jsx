@@ -1,16 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useRef, useContext } from 'react';
-import { Menu, Dropdown } from 'antd';
 import { CloudDownloadOutlined, LoadingOutlined } from '@ant-design/icons';
-import UserContext from '../../contexts/user-context/UserProvider';
-import checkRes from '../../utils/checkRes';
-import ContactSellerContext from '../../contexts/contact-seller-context/ContactSellerContext';
-import useCustomApiRequest from '../../custom-hooks/useCustomApiRequest';
+import { Dropdown, Menu } from 'antd';
+import React, { useContext, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import ChatIcon from '../../common/icons/ChatIcon';
 import getAllSellerMessagesApi from '../../apis/seller-apis/getAllSellerMessagesApi';
+import ChatIcon from '../../common/icons/ChatIcon';
+import ContactSellerContext from '../../contexts/contact-seller-context/ContactSellerContext';
+import UserContext from '../../contexts/user-context/UserProvider';
+import useCustomApiRequest from '../../custom-hooks/useCustomApiRequest';
+import checkRes from '../../utils/checkRes';
 const MainAppMessages = ({ isAppbarMd = false }) => {
-  const [settingsClicked, setSettingsClicked] = React.useState(false);
+  const [settingsClicked] = React.useState(false);
   const notificationsBodyRef = useRef(null);
 
   const { user } = useContext(UserContext);
@@ -49,20 +49,25 @@ const MainAppMessages = ({ isAppbarMd = false }) => {
 
   const renderNotificationsMenue = () => {
     if (isLoading) {
-      return (
-        <Menu.Item className="notifications-menu-link" key={1}>
-          <div
-            className="notification-content"
-            style={{ display: 'flex', justifyContent: 'center' }}
-          >
-            <LoadingOutlined style={{ fontSize: 20 }} />
-          </div>
-        </Menu.Item>
-      );
+      return [
+        {
+          key: 1,
+          label: (
+            <div
+              className="notification-content"
+              style={{ display: 'flex', justifyContent: 'center' }}
+            >
+              <LoadingOutlined style={{ fontSize: 20 }} />
+            </div>
+          )
+        }
+      ];
     }
     if (allFetchedMessages?.length > 0) {
-      return allFetchedMessages.map((obj) => (
-        <Menu.Item className="notifications-menu-link" key={obj?.id}>
+      return allFetchedMessages.map((obj) => ({
+        key: obj?.id,
+        className: 'notifications-menu-link',
+        label: (
           <div className="notification-content">
             {obj?.store?.name ? (
               <p
@@ -96,33 +101,35 @@ const MainAppMessages = ({ isAppbarMd = false }) => {
               )}
             </div>
           </div>
-        </Menu.Item>
-      ));
+        )
+      }));
     }
     if (
       !isLoading &&
       (!allFetchedMessages || allFetchedMessages?.length === 0)
     ) {
-      return (
-        <Menu.Item className="notifications-menu-link" key={1}>
-          <div className="notification-content">
-            {i18n.language === 'ar' && 'لا توجد رسائل'}
-            {i18n.language === 'en' && 'No messages'}
-          </div>
-        </Menu.Item>
-      );
+      return [
+        {
+          key: 19,
+          className: 'notifications-menu-link',
+          label: (
+            <div className="notification-content">
+              {i18n.language === 'ar' && 'لا توجد رسائل'}
+              {i18n.language === 'en' && 'No messages'}
+            </div>
+          )
+        }
+      ];
     }
     return <Menu.Item className="notifications-menu-link" key={1}></Menu.Item>;
   };
 
-  const menu = (
-    <Menu className="notifications-dropdown-ul" ref={notificationsBodyRef}>
-      {renderNotificationsMenue()}
-    </Menu>
-  );
   return (
     <Dropdown
-      overlay={menu}
+      className="notifications-dropdown-ul"
+      menu={{
+        items: renderNotificationsMenue()
+      }}
       trigger={['click']}
       arrow
       placement="bottomLeft"

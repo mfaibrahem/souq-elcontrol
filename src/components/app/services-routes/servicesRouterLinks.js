@@ -34,11 +34,17 @@ const servicesRouterLinks = {
       return `/categories/${categoryId}/cities/${cityId}/service-centers/${centerId}`;
     return `/categories/:categoryId/cities/:cityId/service-centers/:centerId`;
   },
-  // single sub category page contains cars page
-  carsRoute: (categoryId, subCategoryId) => {
+  //////////////////////
+  carSelectionRoute: (categoryId, subCategoryId) => {
     if (categoryId && subCategoryId)
-      return `/categories/${categoryId}/sub-categories/${subCategoryId}/cars`;
-    return '/categories/:categoryId/sub-categories/:subCategoryId/cars';
+      return `/categories/${categoryId}/sub-categories/${subCategoryId}/car-selection`;
+    return '/categories/:categoryId/sub-categories/:subCategoryId/car-selection';
+  },
+  // single sub category page contains cars page
+  carsRoute: (categoryId, subCategoryId, carSelectionId) => {
+    if (categoryId && subCategoryId && carSelectionId)
+      return `/categories/${categoryId}/sub-categories/${subCategoryId}/selection/${carSelectionId}/cars`;
+    return '/categories/:categoryId/sub-categories/:subCategoryId/selection/:carSelectionId/cars';
   },
   // single sub category car page that contains the sub category car => services page
   servicesRoute: (categoryId, subCategoryId, carId) => {

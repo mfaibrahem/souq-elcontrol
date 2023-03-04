@@ -94,7 +94,7 @@ const MainAppBarMd = ({ className, exceeds0 }) => {
         title={<DrawerTitle />}
         placement="right"
         onClose={onClose}
-        visible={visible}
+        open={visible}
         className="header-md-drawer"
         // anchor="right"
       >

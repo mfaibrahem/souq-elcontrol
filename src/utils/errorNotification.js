@@ -1,7 +1,7 @@
-import { store } from 'react-notifications-component';
+import { Store } from 'react-notifications-component';
 
 const errorNotification = ({ title, message }) => {
-  return store.addNotification({
+  return Store.addNotification({
     title,
     message,
     type: 'danger',

@@ -5,7 +5,7 @@ import getAllCarsApi from '../apis/categories-apis/getAllCarsApi';
 import checkRes from '../utils/checkRes';
 import useCustomApiRequest from './useCustomApiRequest';
 
-const useCars = (catId) => {
+const useCars = (catId, carSelectionId) => {
   const { i18n } = useTranslation();
   const [isLoadingCars, setIsLoadingCars] = useState(false);
   const [fetchCarsCount, setFetchCarsCount] = useState(0);
@@ -17,7 +17,7 @@ const useCars = (catId) => {
     if (isMounted) {
       setIsLoadingCars(true);
       customApiRequest(
-        getAllCarsApi(catId, i18n.language),
+        getAllCarsApi(catId, carSelectionId, i18n.language),
         (res) => {
           setIsLoadingCars(false);
           if (checkRes(res) && res?.data?.data) {

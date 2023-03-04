@@ -1,14 +1,14 @@
 /* eslint-disable eqeqeq */
-import React from 'react';
-import CategoriesCard from './CategoriesCard';
-import { useTranslation } from 'react-i18next';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Empty } from 'antd';
-import './CategoriesSection.scss';
-import routerLinks from '../app/routerLinks';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
-import servicesRouterLinks from '../app/services-routes/servicesRouterLinks';
 import fixedMainCats from '../../fixedMainCats';
+import routerLinks from '../app/routerLinks';
+import servicesRouterLinks from '../app/services-routes/servicesRouterLinks';
+import CategoriesCard from './CategoriesCard';
+import './CategoriesSection.scss';
 
 // const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const CategoriesSection = ({
@@ -31,6 +31,7 @@ const CategoriesSection = ({
       return servicesRouterLinks?.cities(card?.id);
     }
   };
+
   const renderCategoriesUl = () => {
     if (cats?.length === 0) return <Empty description="No categories found" />;
     else if (cats?.length > 0) {

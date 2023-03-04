@@ -17,6 +17,7 @@ import { SinglePostProvider } from '../../../contexts/single-post-context/Single
 import CitiesPage from '../../../pages/cities-page/CitiesPage';
 import ServiceCentersPage from '../../../pages/service-centers-page/ServiceCentersPage';
 import ServiceCenterDetailsPage from '../../../pages/service-center-details-page/ServiceCenterDetailsPage';
+import CarSelectionPage from '../../../pages/car-selections-page/CarSelectionPage';
 
 const ServicesRoutes = () => {
   const { loggedIn } = useContext(UserContext);
@@ -53,6 +54,9 @@ const ServicesRoutes = () => {
       key="single_service_center_route_key"
     >
       <ServiceCenterDetailsPage />
+    </Route>,
+    <Route exact path={routerLinks.carSelectionRoute()} key="car_selection_key">
+      <CarSelectionPage />
     </Route>,
     <Route exact path={routerLinks.carsRoute()} key={3}>
       <CarsPage />

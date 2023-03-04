@@ -10,7 +10,7 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { ConfigProvider } from 'antd';
 import NotFoundPage from '../../pages/not-found-page/NotFoundPage';
-import ReactNotification from 'react-notifications-component';
+import { ReactNotifications } from 'react-notifications-component';
 import DocTitleScrollTop from '../../utils/DocTitleScrollTop';
 import '../../i18n';
 import UserContext from '../../contexts/user-context/UserProvider';
@@ -67,7 +67,7 @@ function App() {
     <div className={`app app-${i18n.dir()}`}>
       <Suspense fallback={<Loading />}>
         <ConfigProvider direction={i18n.dir()}>
-          <ReactNotification className={i18n.dir()} />
+          <ReactNotifications className={i18n.dir()} />
           <Switch>
             <AppLayout>
               <Routes />

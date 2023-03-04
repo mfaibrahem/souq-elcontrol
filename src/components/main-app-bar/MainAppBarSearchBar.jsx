@@ -44,15 +44,17 @@ const MainAppBarSearchBar = () => {
   const renderServicesMenu = () => {
     if (query) {
       if (isSearching) {
-        return (
-          <Menu.Item key="searching_key">
-            {t('main_app_search.searching')}
-          </Menu.Item>
-        );
+        return [
+          {
+            key: 'searching_key',
+            label: t('main_app_search.searching')
+          }
+        ];
       }
       if (fetchedServices?.length > 0) {
-        return fetchedServices.map((serv) => (
-          <Menu.Item key={serv?.id}>
+        return fetchedServices.map((serv) => ({
+          key: serv?.id,
+          label: (
             <RouterLink
               to={routerLinks.serviceDetailsRoute(
                 serv?.mainCat?.id,
@@ -63,13 +65,18 @@ const MainAppBarSearchBar = () => {
             >
               {serv?.name}
             </RouterLink>
-          </Menu.Item>
-        ));
+          )
+        }));
       }
       if (fetchedServices?.length === 0) {
-        return <Menu.Item>No Data found !!!</Menu.Item>;
+        return [
+          {
+            key: 'no-data-found',
+            label: 'No Data found !!!'
+          }
+        ];
       }
-      return null;
+      return [];
     }
     return (
       <Menu.Item key="placeholder_key">
@@ -80,11 +87,13 @@ const MainAppBarSearchBar = () => {
 
   return (
     <Dropdown
+      menu={{
+        items: renderServicesMenu()
+      }}
       arrow
       trigger={['click']}
       // disabled={loadingSignout}
-      overlay={<Menu>{renderServicesMenu()}</Menu>}
-      onVisibleChange={(visible) => {
+      onOpenChange={(visible) => {
         if ((!visible && !query) || !query) {
           setFetchedServices([]);
         }

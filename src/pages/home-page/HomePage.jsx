@@ -11,6 +11,7 @@ import checkRes from '../../utils/checkRes';
 import { useTranslation } from 'react-i18next';
 import './HomePage.scss';
 import FeaturedProductsSlider from './FeaturedProductsSlider';
+import HomeSlider from './HomeSlider';
 
 const HomePage = () => {
   const { i18n } = useTranslation();
@@ -45,6 +46,8 @@ const HomePage = () => {
       <div className="home-page-main-content">
         <HomeHeroSection />
       </div>
+
+      <HomeSlider />
 
       <FeaturedProductsSlider />
 

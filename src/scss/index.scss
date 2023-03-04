@@ -366,7 +366,7 @@ body {
   justify-content: space-between;
 }
 
-.notification__item--success {
+.rnc__notification__item--success {
   background-color: lighten($main-app-color, 14%);
   // border: 0;
   border-left-width: 5px;
@@ -382,7 +382,7 @@ body {
     }
   }
 }
-.notification__item--danger {
+.rnc__notification__item--danger {
   background-color: lighten(rgb(185, 56, 56), 10%);
   border-radius: 5px;
   // border: 0;
@@ -390,16 +390,15 @@ body {
   .notification__title {
     color: #fff;
   }
-  .notification__close {
-    background-color: #fff;
-    width: 22px;
-    height: 22px;
-
-    &::after {
-      color: #dc3545;
-      font-size: 20px;
-      top: 45%;
-    }
+}
+.rnc__notification-close-mark {
+  width: 22px;
+  height: 22px;
+  right: auto;
+  left: 12px;
+  &::after {
+    font-size: 20px;
+    top: 45%;
   }
 }
 

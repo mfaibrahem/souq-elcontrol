@@ -13,7 +13,7 @@ import fixedMainCats from '../../fixedMainCats';
 
 const ServiceCentersPage = () => {
   const history = useHistory();
-  const { i18n, t } = useTranslation();
+  const { t } = useTranslation();
   const {
     iseLoadingCenters,
     allFetchedCenters,

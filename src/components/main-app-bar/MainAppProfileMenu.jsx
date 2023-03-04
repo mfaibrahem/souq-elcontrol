@@ -9,10 +9,11 @@ import {
 import routerLinks from '../app/routerLinks';
 import UserContext from '../../contexts/user-context/UserProvider';
 import useSignout from '../../custom-hooks/useSignout';
+import { useTranslation } from 'react-i18next';
 
 const MainAppProfileMenu = () => {
   const { user } = useContext(UserContext);
-
+  const { i18n } = useTranslation();
   const { isLoadingSignout, signMeOut } = useSignout();
   const handleSignout = () => {
     signMeOut();
@@ -23,23 +24,25 @@ const MainAppProfileMenu = () => {
         arrow
         trigger={['click']}
         // disabled={loadingSignout}
-        overlay={
-          <Menu>
-            <Menu.Item key="1" icon={<UserOutlined />}>
-              <RouterLink to={routerLinks.profilePage}>
-                الملــف الشخصى
-              </RouterLink>
-            </Menu.Item>
-
-            <Menu.Item
-              key="3"
-              icon={<LogoutOutlined />}
-              onClick={handleSignout}
-            >
-              تسجيل الخروج
-            </Menu.Item>
-          </Menu>
-        }
+        menu={{
+          items: [
+            {
+              key: 1,
+              icon: <UserOutlined />,
+              label: (
+                <RouterLink to={routerLinks.profilePage}>
+                  {i18n?.language === 'ar' ? 'الملف الشخصي' : 'profile'}
+                </RouterLink>
+              )
+            },
+            {
+              key: 2,
+              icon: <LogoutOutlined />,
+              onClick: handleSignout,
+              label: i18n.language === 'ar' ? 'تسجيل الخروج' : 'Signout'
+            }
+          ]
+        }}
       >
         <Button className="profile-menu-btn" type="text">
           <Avatar size={40} icon={<UserOutlined />} src={user?.image} />

@@ -65,7 +65,7 @@
     @include mediaLg {
       padding: 22px 42px;
     }
-    .ant-form-item {
+    .ant-form-item-row {
       display: grid;
       input {
         max-width: 100%;
@@ -123,8 +123,9 @@
       height: 50px;
       border-radius: 8px;
       background-color: $main-app-color;
-      // width: fit-content;
-      // justify-self: end;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 }

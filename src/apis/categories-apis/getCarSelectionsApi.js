@@ -1,10 +1,8 @@
 import axios from 'axios';
 
-const getAllCarsApi = async (catId, carSelectionId, langIsoCode) => {
+const getAllCarSelectionApi = async (langIsoCode) => {
   try {
-    const url = `/Service/cars?cat_id=${catId || ''}&carSection_id=${
-      carSelectionId || ''
-    }`;
+    const url = '/Service/CarSections';
     const res = await axios.get(url, {
       headers: {
         Accept: 'application/json',
@@ -19,4 +17,4 @@ const getAllCarsApi = async (catId, carSelectionId, langIsoCode) => {
   }
 };
 
-export default getAllCarsApi;
+export default getAllCarSelectionApi;
