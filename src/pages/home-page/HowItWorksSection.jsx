@@ -1,14 +1,11 @@
+import { LoadingOutlined } from '@ant-design/icons';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { LoadingOutlined } from '@ant-design/icons';
-import howItWorksSectionImg from '../../assets/imgs/how-it-works-img.png';
-import howItWorksSectionImg1 from '../../assets/imgs/how-it-works-img1.png';
-import CustomImage from '../../common/custom-image/CustomImage';
 
 import './HowItWorksSection.scss';
 
 const HowItWorksSection = ({ sectionData, isLoading }) => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const renderArr = () => {
     if (isLoading) {
       return (

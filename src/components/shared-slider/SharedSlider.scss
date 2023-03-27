@@ -20,7 +20,7 @@
 
   &.main-app-slick-slider {
     margin-top: 0;
-    height: 100vh;
+    height: 40vh;
     .slide-wrap {
       border-radius: 0;
 
@@ -83,7 +83,7 @@
       }
 
       .slide-img {
-        height: 100vh;
+        height: 40vh;
         border-radius: 0 !important;
       }
 
@@ -184,70 +184,6 @@
       }
     }
 
-    .slick-prev,
-    .slick-next {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      display: block;
-      font-size: 16px;
-      width: 52px;
-      height: 52px;
-      cursor: pointer;
-      // border: 1px solid $main-app-color;
-      // border-radius: 50%;
-      outline: none;
-      background: transparent;
-      background-color: #ffffffa5;
-      display: grid;
-      place-items: center;
-      z-index: 1;
-      border-radius: 2px;
-      &::before {
-        content: '';
-      }
-      .btn-content {
-        position: relative;
-        display: flex;
-        place-content: center;
-        align-items: center;
-        svg {
-          width: 32px;
-          height: 32px;
-          fill: $main-app-color;
-        }
-      }
-      @include mediaXlg {
-        width: 52px;
-        height: 52px;
-        .btn-content {
-          svg {
-            width: 42px;
-            height: 42px;
-          }
-        }
-      }
-    }
-    .slick-prev {
-      left: -18px;
-      left: 18px;
-      right: auto;
-      @include mediaXlg {
-        left: -26px;
-        left: 26px;
-      }
-    }
-    .slick-next {
-      // left: calc(12px + 52px);
-      right: -18px;
-      right: 18px;
-      left: auto;
-      @include mediaXlg {
-        right: -26px;
-        right: 26px;
-      }
-    }
-
     .slick-dots {
       bottom: 38px;
       li {
@@ -281,6 +217,81 @@
               border-color: $main-app-color;
             }
           }
+        }
+      }
+    }
+
+    .slick-prev,
+    .slick-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      display: block;
+      font-size: 16px;
+      width: 62px;
+      height: 62px;
+      cursor: pointer;
+      // border: 1px solid $main-app-color;
+      border-radius: 50%;
+      outline: none;
+      background: transparent;
+      border: 0;
+      background-color: rgba(#f8f8f8, 0.6);
+      display: grid !important;
+      place-items: center;
+      z-index: 1;
+      &::before {
+        content: '';
+        display: none;
+      }
+      .btn-content {
+        position: relative;
+        display: flex;
+        place-content: center;
+        align-items: center;
+        svg {
+          width: 11px;
+          height: 11px;
+        }
+      }
+      @include mediaXlg {
+        width: 52px;
+        height: 52px;
+        .btn-content {
+          svg {
+            width: 12px;
+            height: 12px;
+          }
+        }
+      }
+    }
+
+    .slick-prev {
+      left: 18px;
+      right: auto;
+      @include mediaXlg {
+        left: 26px;
+      }
+      &.rtl {
+        right: 18px;
+        left: auto;
+        @include mediaXlg {
+          right: 26px;
+        }
+      }
+    }
+    .slick-next {
+      // left: calc(12px + 52px);
+      right: 18px;
+      left: auto;
+      @include mediaXlg {
+        right: 26px;
+      }
+      &.rtl {
+        left: 18px;
+        right: auto;
+        @include mediaXlg {
+          left: 26px;
         }
       }
     }

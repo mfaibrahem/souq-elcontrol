@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
@@ -10,6 +10,7 @@ import EyeOpenedIcon from '../../common/icons/EyeOpenedIcon';
 import EyeClosedIcon from '../../common/icons/EyeClosedIcon';
 import { Link as RouterLink } from 'react-router-dom';
 import PhoneInput from 'react-phone-number-input';
+import TermsModal from '../../common/terms-modal/TermsModal';
 import {
   UserOutlined,
   LockOutlined,
@@ -20,31 +21,36 @@ import './SignupForm.scss';
 import AntdCheckbox from '../../common/antd-form-components/AntdCheckbox';
 import routerLinks from '../../components/app/routerLinks';
 import useSignupEmailPassword from '../../custom-hooks/useSignupEmailPassowrd';
+import GeneralSettingsContext from '../../contexts/general-settings-context/GeneralSettingsContext';
 // import useFirebaseDeviceToken from '../../custom-hooks/useFirebaseDeviceToken';
 
 const SignupForm = () => {
   const { i18n, t } = useTranslation();
+  const { fetchedGeneralSettings, isLoadingGeneralSettings } = useContext(
+    GeneralSettingsContext
+  );
+  const [termsModalOpened, setTermsModalOpened] = useState(false);
   const [passwrodVisible, setPasswordVisible] = React.useState(false);
   useContext(ForgetPasswordContext);
   const generalLabelStr = (v) => t(`signup_form.${v}.label`);
-  const generalrequiredErrStr = (v) => t(`signup_form.${v}.errors.required`);
+  const generalRequiredErrStr = (v) => t(`signup_form.${v}.errors.required`);
   const generalTypeErrorStr = (v) => t(`signup_form.${v}.errors.type_error`);
   const generalMinErrorStr = (v, min) =>
     t(`signup_form.${v}.errors.min`, {
       min
     });
   const schema = Yup.object().shape({
-    name: Yup.string().required(generalrequiredErrStr('name')),
+    name: Yup.string().required(generalRequiredErrStr('name')),
     phone: Yup.string()
-      .required(generalrequiredErrStr('phone'))
+      .required(generalRequiredErrStr('phone'))
       // .matches(/^[0-9]+$/, generalTypeErrorStr('phone'))
       .min(10, generalMinErrorStr('phone', 10)),
     email: Yup.string()
-      .required(generalrequiredErrStr('email'))
+      .required(generalRequiredErrStr('email'))
       .email(generalTypeErrorStr('email')),
-    password: Yup.string().required(generalrequiredErrStr('password')),
+    password: Yup.string().required(generalRequiredErrStr('password')),
     password_confirmation: Yup.string()
-      .required(generalrequiredErrStr('password_confirmation'))
+      .required(generalRequiredErrStr('password_confirmation'))
       .oneOf(
         [Yup.ref('password')],
         generalTypeErrorStr('password_confirmation')
@@ -223,6 +229,26 @@ const SignupForm = () => {
             )}
           </div>
 
+          <div className="terms-checkbox-wrap">
+            <AntdCheckbox
+              name="terms"
+              control={control}
+              label={t('signup_form.accept')}
+              errorMsg={errors?.remember?.message}
+              validateStatus={errors?.remember ? 'error' : ''}
+            />
+
+            <button
+              className="terms-btn"
+              onClick={(e) => {
+                setTermsModalOpened(true);
+                e.preventDefault();
+              }}
+            >
+              {t('signup_form.terms')}
+            </button>
+          </div>
+
           <AntdCheckbox
             name="remember"
             control={control}
@@ -244,6 +270,16 @@ const SignupForm = () => {
           </Button>
         </div>
       </Form>
+
+      {
+        <TermsModal
+          modalOpened={termsModalOpened}
+          setModalOpened={setTermsModalOpened}
+          isLoadingData={isLoadingGeneralSettings}
+          modalData={fetchedGeneralSettings?.termsUser}
+          modalTitle={t('signup_form.termsTitle')}
+        />
+      }
     </>
   );
 };

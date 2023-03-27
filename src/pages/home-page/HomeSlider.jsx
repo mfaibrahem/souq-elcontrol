@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { FilterOutlined } from '@ant-design/icons';
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
@@ -8,45 +7,7 @@ import routerLinks from '../../components/app/routerLinks';
 import SharedSlider from '../../components/shared-slider/SharedSlider';
 import useCustomApiRequest from '../../custom-hooks/useCustomApiRequest';
 import checkRes from '../../utils/checkRes';
-
 import './HomeSlider.scss';
-
-function SamplePrevArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div className={className} style={{ ...style }} onClick={onClick}>
-      <div className="btn-content">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          width="24"
-          height="24"
-        >
-          <path fill="none" d="M0 0h24v24H0z" />
-          <path d="M11.828 12l2.829 2.828-1.414 1.415L9 12l4.243-4.243 1.414 1.415L11.828 12z" />
-        </svg>
-      </div>
-    </div>
-  );
-}
-function SampleNextArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div className={className} style={{ ...style }} onClick={onClick}>
-      <div className="btn-content">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          width="24"
-          height="24"
-        >
-          <path fill="none" d="M0 0h24v24H0z" />
-          <path d="M12.172 12L9.343 9.172l1.414-1.415L15 12l-4.243 4.243-1.414-1.415z" />
-        </svg>
-      </div>
-    </div>
-  );
-}
 
 const HomeSlider = () => {
   const sliderRef = useRef();
@@ -55,6 +16,61 @@ const HomeSlider = () => {
   useEffect(() => {
     setSliderDir(i18n.dir());
   }, [i18n.dir()]);
+
+  function SamplePrevArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={`${className} ${i18n.dir()}`}
+        style={{ ...style }}
+        onClick={onClick}
+      >
+        <div className="btn-content">
+          <svg
+            width="221"
+            height="403"
+            viewBox="0 0 221 403"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="sc-dkSuNL iqgPbK"
+          >
+            <path
+              d="M216 383.885C221.5 389.385 218.5 395.885 216 398.385C213.5 400.885 206.5 404.385 200.5 398.385L0.99997 216.385L200.5 4.38534C205.5 -0.614703 212 0.385379 216 4.38535C220 8.38531 221.5 17.3853 216 22.8853L29 216.385L216 383.885Z"
+              fill="black"
+              stroke="none"
+            ></path>
+          </svg>
+        </div>
+      </div>
+    );
+  }
+  function SampleNextArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={`${className} ${i18n.dir()}`}
+        style={{ ...style }}
+        onClick={onClick}
+      >
+        <div className="btn-content">
+          <svg
+            width="220"
+            height="403"
+            viewBox="0 0 220 403"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="sc-fxvKuh gVIWpX"
+          >
+            <path
+              d="M4.08419 18.813C-1.41579 13.313 1.58419 6.81288 4.08419 4.31288C6.58419 1.81289 13.5842 -1.68707 19.5842 4.31291L219.084 186.313L19.5842 398.313C14.5842 403.313 8.08416 402.313 4.08419 398.313C0.0842264 394.313 -1.41584 385.313 4.08419 379.813L191.084 186.313L4.08419 18.813Z"
+              fill="black"
+              stroke="black"
+            ></path>
+          </svg>
+        </div>
+      </div>
+    );
+  }
 
   const sliderSettings = {
     fade: false,
@@ -66,8 +82,8 @@ const HomeSlider = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     initialSlide: 0,
-    prevArrow: <SamplePrevArrow />,
-    nextArrow: <SampleNextArrow />
+    prevArrow: i18n.dir() === 'rtl' ? <SampleNextArrow /> : <SamplePrevArrow />,
+    nextArrow: i18n.dir() === 'rtl' ? <SamplePrevArrow /> : <SampleNextArrow />
   };
 
   const [isLoading, setIsLoading] = useState(false);
@@ -145,7 +161,7 @@ const HomeSlider = () => {
 
   if (fetchedSlides?.backgrounds?.length > 0) {
     return (
-      <div className="home-main-section" ref={sliderRef}>
+      <div dir="rtl" className="home-main-section" ref={sliderRef}>
         <SharedSlider
           className="custom-slick-slider main-app-slick-slider"
           slides={

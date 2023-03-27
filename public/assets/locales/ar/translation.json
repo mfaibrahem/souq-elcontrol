@@ -56,6 +56,10 @@
         "type_error": "كلمة المرور غير مطابقة"
       }
     },
+    "accept": "الموافقة على",
+    "terms": "الشروط والاحكام",
+    "termsTitle": "شروط واحكام المستخدم",
+    "termsTitleStore": "شروط واحكام التاجر",
     "remember_me": "تذكرنى",
     "submit_btn": {
       "label": "إنشاء الحساب",
@@ -182,7 +186,10 @@
     },
     "submit_btn": {
       "label": "تسجيل"
-    }
+    },
+    "continue": "متابعه",
+    "dashboard": "لوحه التحكم",
+    "successAccount": "تم انشاء حسابك بنجاح"
   },
   "service_center_form": {
     "name": {

@@ -14,11 +14,16 @@
 
   .img-data-wrap {
     display: grid;
-    @include mediaLg {
-      // grid-template-columns: 1fr 1fr;
-    }
     gap: 32px;
     align-items: center;
+    @include mediaLg {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .text-wrap {
+      line-height: 1.8;
+      font-size: 18px;
+    }
 
     .img-wrap {
       img {

@@ -18,18 +18,21 @@ import 'react-big-calendar/lib/sass/styles.scss';
 import 'aos/dist/aos.css';
 import 'react-phone-number-input/style.css';
 import './scss/index.scss';
+import { GeneralSettingsProvider } from './contexts/general-settings-context/GeneralSettingsContext';
 
 ReactDOM.render(
   <Suspense fallback={<Loading />}>
-    <UserProvider>
-      <MainAppBarProvider>
-        <ContactSellerProvider>
-          <Router>
-            <App />
-          </Router>
-        </ContactSellerProvider>
-      </MainAppBarProvider>
-    </UserProvider>
+    <GeneralSettingsProvider>
+      <UserProvider>
+        <MainAppBarProvider>
+          <ContactSellerProvider>
+            <Router>
+              <App />
+            </Router>
+          </ContactSellerProvider>
+        </MainAppBarProvider>
+      </UserProvider>
+    </GeneralSettingsProvider>
   </Suspense>,
   document.getElementById('root')
 );

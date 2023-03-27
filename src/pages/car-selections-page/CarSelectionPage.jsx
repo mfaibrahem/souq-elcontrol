@@ -9,6 +9,7 @@ import { Link, useParams } from 'react-router-dom';
 import { LoadingOutlined } from '@ant-design/icons';
 import './CarSelectionPage.scss';
 import useCarSelection from '../../custom-hooks/useCarSelection';
+import CustomImage from '../../common/custom-image/CustomImage';
 
 const CarSelectionPage = () => {
   const { t } = useTranslation();
@@ -46,6 +47,7 @@ const CarSelectionPage = () => {
                   ele?.id
                 )}
               >
+                <CustomImage className="card-img" src={ele?.image} />
                 {ele.name}
               </Link>
             );

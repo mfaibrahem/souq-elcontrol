@@ -1,0 +1,15 @@
+@import '../../scss/config';
+
+.signup-terms-modal {
+  .ant-modal-body {
+    max-height: calc(100vh - 200px);
+    line-height: 2;
+    padding: 0 14px !important;
+    margin: 14px 2px;
+    @include custom-scrollbar;
+    overflow-y: auto;
+    @include mediaLg {
+      padding: 24px;
+    }
+  }
+}

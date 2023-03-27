@@ -56,6 +56,10 @@
         "type_error": "Wrong passowrd"
       }
     },
+    "accept": "Accept",
+    "termsTitle": "User terms and conditions",
+    "termsTitleStore": "Store terms and conditions",
+    "terms": "terms and conditions",
     "remember_me": "Remember me",
     "submit_btn": {
       "label": "Sign up",
@@ -182,7 +186,10 @@
     },
     "submit_btn": {
       "label": "Register"
-    }
+    },
+    "continue": "Continue",
+    "dashboard": "Dashboard",
+    "successAccount": "Your account created successfully"
   },
   "service_center_form": {
     "name": {

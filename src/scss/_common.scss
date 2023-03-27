@@ -65,6 +65,13 @@ html {
     @include mediaXlg {
       left: -26px;
     }
+    &.rtl {
+      right: -18px;
+      left: auto;
+      @include mediaXlg {
+        right: -26px;
+      }
+    }
   }
   .slick-next {
     // left: calc(12px + 52px);
@@ -72,6 +79,13 @@ html {
     left: auto;
     @include mediaXlg {
       right: -26px;
+    }
+    &.rtl {
+      left: -18px;
+      right: auto;
+      @include mediaXlg {
+        left: -26px;
+      }
     }
   }
 

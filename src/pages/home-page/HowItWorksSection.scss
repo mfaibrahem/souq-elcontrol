@@ -2,8 +2,9 @@
 
 .how-it-works-section {
   background-color: #f9f8f8;
+  padding: 32px 0;
   @include mediaLg {
-    padding: 32px 0;
+    padding: 52px 0;
   }
   overflow: hidden;
   .main-title {
@@ -17,7 +18,8 @@
     margin-bottom: 22px;
   }
   .section-content {
-    min-height: 700px;
+    // min-height: 400px;
+    padding: 22px 0;
     display: grid;
     gap: 32px;
     // @include mediaLg {

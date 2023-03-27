@@ -19,7 +19,11 @@ const FeaturedProductsSlider = () => {
   function SamplePrevArrow(props) {
     const { className, style, onClick } = props;
     return (
-      <div className={className} style={{ ...style }} onClick={onClick}>
+      <div
+        className={`${className} ${i18n.dir()}`}
+        style={{ ...style }}
+        onClick={onClick}
+      >
         <div className="btn-content">
           <svg
             width="15"
@@ -40,7 +44,11 @@ const FeaturedProductsSlider = () => {
   function SampleNextArrow(props) {
     const { className, style, onClick } = props;
     return (
-      <div className={className} style={{ ...style }} onClick={onClick}>
+      <div
+        className={`${className} ${i18n.dir()}`}
+        style={{ ...style }}
+        onClick={onClick}
+      >
         <div className="btn-content">
           <svg
             width="15"
@@ -67,8 +75,8 @@ const FeaturedProductsSlider = () => {
 
   const sliderSettings = {
     fade: false,
-    arrows: false,
-    dots: true,
+    arrows: true,
+    dots: false,
     rtl: true,
     // rtl: sliderDir === 'rtl' ? true : false,
     lazyLoad: true,
@@ -76,13 +84,13 @@ const FeaturedProductsSlider = () => {
     infinite: true,
     autoplay: true,
     pauseOnHover: true,
-    speed: 3000,
+    speed: 800,
     autoplaySpeed: 3000,
     slidesToShow: 1,
     slidesToScroll: 1,
     initialSlide: 0,
-    prevArrow: <SamplePrevArrow />,
-    nextArrow: <SampleNextArrow />
+    prevArrow: i18n.dir() === 'rtl' ? <SampleNextArrow /> : <SamplePrevArrow />,
+    nextArrow: i18n.dir() === 'rtl' ? <SamplePrevArrow /> : <SampleNextArrow />
   };
 
   const renderSingleSlide = (item) => {
@@ -121,34 +129,36 @@ const FeaturedProductsSlider = () => {
   const renderSlides = () => {
     if (isLoadingSlides)
       return (
-        <Slider
-          className={`${i18n.dir()} custom-slick-slider`}
-          {...sliderSettings}
-          // nextArrow={<SampleNextArrow />}
-        >
-          <div>
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                minHeight: 332
-              }}
-            >
-              <LoadingOutlined style={{ fontSize: 20 }} />
+        <div className="custom-container">
+          <Slider
+            className={`${i18n.dir()} custom-slick-slider`}
+            {...sliderSettings}
+            // nextArrow={<SampleNextArrow />}
+          >
+            <div>
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  minHeight: 332
+                }}
+              >
+                <LoadingOutlined style={{ fontSize: 20 }} />
+              </div>
             </div>
-          </div>
-        </Slider>
+          </Slider>
+        </div>
       );
-    if (allFetchedSlides?.length > 0)
+    if (allFetchedSlides?.services?.length > 0)
       return (
         <div dir="rtl" className="custom-container">
           <Slider
             className={`${i18n.dir()} custom-slick-slider featured-slider`}
             {...sliderSettings}
           >
-            {allFetchedSlides?.length > 0 &&
-              allFetchedSlides.map((item) => renderSingleSlide(item))}
+            {allFetchedSlides?.services?.length > 0 &&
+              allFetchedSlides.services.map((item) => renderSingleSlide(item))}
           </Slider>
         </div>
       );

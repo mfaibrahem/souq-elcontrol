@@ -1,6 +1,6 @@
 /* eslint-disable eqeqeq */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Form, Button } from 'antd';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -19,6 +19,9 @@ import successOrderImg from '../../assets/imgs/icons/success-order.png';
 import './StartSellingForm.scss';
 import PhoneInput from 'react-phone-number-input';
 import LoadingModal from '../../common/loading-modal/LoadingModal';
+import AntdCheckbox from '../../common/antd-form-components/AntdCheckbox';
+import TermsModal from '../../common/terms-modal/TermsModal';
+import GeneralSettingsContext from '../../contexts/general-settings-context/GeneralSettingsContext';
 
 const StartSellingForm = () => {
   // const [urls, setUrls] = React.useState([]);
@@ -61,6 +64,10 @@ const StartSellingForm = () => {
   // console.log('watch : ', watch());
   // console.log('errors : ', errors);
 
+  const { isLoadingGeneralSettings, fetchedGeneralSettings } = useContext(
+    GeneralSettingsContext
+  );
+  const [termsModalOpened, setTermsModalOpened] = useState(false);
   const [successOrder, setSuccessOrder] = useState(false);
   const [orderRes, setOrderRes] = useState(null);
   const customApiRequest = useCustomApiRequest();
@@ -388,6 +395,26 @@ const StartSellingForm = () => {
             setSelectedAddress={setSelectedAddress}
           />
 
+          <div className="terms-checkbox-wrap">
+            <AntdCheckbox
+              name="terms"
+              control={control}
+              label={t('signup_form.accept')}
+              errorMsg={errors?.remember?.message}
+              validateStatus={errors?.remember ? 'error' : ''}
+            />
+
+            <button
+              className="terms-btn"
+              onClick={(e) => {
+                setTermsModalOpened(true);
+                e.preventDefault();
+              }}
+            >
+              {t('signup_form.terms')}
+            </button>
+          </div>
+
           <Button
             className="submit-btn"
             htmlType="submit"
@@ -405,7 +432,7 @@ const StartSellingForm = () => {
           <div style={{ display: 'grid', placeItems: 'center' }}>
             <img src={successOrderImg} alt="sucess order" />
           </div>
-          <p>تم إنشاء حسابك بنجاح</p>
+          <p>{t('start_selling_form.successAccount')}</p>
 
           <div className="sucess-btns-wrap">
             {orderRes?.dashboardLink && (
@@ -419,7 +446,7 @@ const StartSellingForm = () => {
                 target="_blank"
                 rel="noreferrer"
               >
-                لوحة التحكم
+                {t('start_selling_form.dashboard')}
               </a>
             )}
             <Button
@@ -429,11 +456,21 @@ const StartSellingForm = () => {
                 setSuccessOrder(false);
               }}
             >
-              متابعة
+              {t('start_selling_form.continue')}
             </Button>
           </div>
         </LoadingModal>
       )}
+
+      {
+        <TermsModal
+          modalOpened={termsModalOpened}
+          setModalOpened={setTermsModalOpened}
+          isLoadingData={isLoadingGeneralSettings}
+          modalData={fetchedGeneralSettings?.termsStore}
+          modalTitle={t('signup_form.termsTitleStore')}
+        />
+      }
     </>
   );
 };

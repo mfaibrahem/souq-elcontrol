@@ -13,6 +13,7 @@ const useSlider = () => {
   const [fetchSlidesCount, setFetchSlidesCount] = useState(0);
   const [allFetchedSlides, setAllFetchedSlides] = useState([]);
   const customApiRequest = useCustomApiRequest();
+
   useEffect(() => {
     let isMounted = true;
 

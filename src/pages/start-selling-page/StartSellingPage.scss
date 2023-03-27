@@ -44,4 +44,25 @@
       gap: 14px;
     }
   }
+
+  .terms-checkbox-wrap {
+    margin-top: 10px;
+    display: flex;
+    align-items: flex-start;
+    .ant-form-item-control-input {
+      min-height: auto;
+    }
+    span {
+      font-size: 14px !important;
+    }
+
+    .terms-btn {
+      border: 0;
+      outline: 0;
+      background-color: transparent;
+      cursor: pointer;
+      color: $main-app-color;
+      text-decoration: underline;
+    }
+  }
 }

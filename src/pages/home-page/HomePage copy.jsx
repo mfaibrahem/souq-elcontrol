@@ -77,11 +77,14 @@ const HomePage = () => {
         isMainCat={true}
         isSubCat={false}
       />
+
       <FeaturedSection fetchedData={homeData?.Features} />
+
       <HowItWorksSection
         isLoading={isLoadingHome}
         sectionData={homeData?.howWork}
       />
+
       {renderQuestionsSection()}
       <ContactUsSection />
     </div>
