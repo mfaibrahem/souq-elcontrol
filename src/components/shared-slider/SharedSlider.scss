@@ -38,11 +38,11 @@
               font-size: 48px;
             }
             @include mediaXlg {
-              font-size: 60px;
+              font-size: 52px;
             }
             &:first-of-type {
               @include mediaXXlg {
-                font-size: 72px;
+                font-size: 56px;
               }
             }
           }
@@ -113,7 +113,7 @@
         .content-wrap {
           padding: 8px 0;
           @include mediaLg {
-            padding: 18px 62px;
+            padding: 28px 62px;
           }
           display: grid;
           justify-content: center;
