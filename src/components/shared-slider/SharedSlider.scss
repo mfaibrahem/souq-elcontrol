@@ -20,7 +20,10 @@
 
   &.main-app-slick-slider {
     margin-top: 0;
-    height: 40vh;
+    height: 50vh;
+    @include mediaXXlg {
+      height: 40vh;
+    }
     .slide-wrap {
       border-radius: 0;
 
@@ -83,7 +86,10 @@
       }
 
       .slide-img {
-        height: 40vh;
+        height: 50vh;
+        @include mediaXXlg {
+          height: 40vh;
+        }
         border-radius: 0 !important;
       }
 
@@ -104,7 +110,7 @@
 
       .slide-text {
         position: absolute;
-        z-index: 2;
+        z-index: 3;
         left: 0;
         width: 100%;
         top: 50%;

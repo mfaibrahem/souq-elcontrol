@@ -1,3 +1,54 @@
+@import '../../scss/config';
+
 .home-main-section {
   background-color: #f9f8f8;
+  .slide-wrap {
+    position: relative;
+    &::before {
+      content: '';
+      // background-color: rgba($main-app-color, 0.1);
+      background-color: rgba(#000, 0.5);
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      z-index: 3;
+    }
+  }
+  .card-name {
+    color: $main-app-color;
+    text-transform: capitalize;
+    text-align: center;
+    margin: 10px 8px;
+    font-size: 32px;
+    font-weight: bold;
+  }
+  .product-data {
+    padding: 22px;
+    display: grid;
+    place-content: center;
+    place-items: center;
+    text-align: center;
+    color: #fff;
+    .cat-sub-cat {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .price-p {
+      font-size: 20px;
+      margin-top: 2px;
+    }
+    .product-link {
+      margin-top: 22px;
+      background-color: $main-app-color;
+      color: #fff;
+      padding: 8px 28px 10px 28px;
+      border-radius: 5px;
+      width: fit-content;
+    }
+  }
 }

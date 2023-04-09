@@ -1,6 +1,6 @@
 import { Modal } from 'antd';
-import { useTranslation } from 'react-i18next';
 import { LoadingOutlined } from '@ant-design/icons';
+import parse from 'html-react-parser';
 import './TermsModal.scss';
 const TermsModal = ({
   modalOpened,
@@ -35,8 +35,10 @@ const TermsModal = ({
         >
           <LoadingOutlined />
         </div>
+      ) : modalData ? (
+        parse(modalData)
       ) : (
-        <p>{modalData || ''}</p>
+        ''
       )}
     </Modal>
   );

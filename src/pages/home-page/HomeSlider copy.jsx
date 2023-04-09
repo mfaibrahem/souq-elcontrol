@@ -2,11 +2,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import getHomeSlidesApi from '../../apis/homepage/homeSlidesApi';
 import routerLinks from '../../components/app/routerLinks';
 import SharedSlider from '../../components/shared-slider/SharedSlider';
-import useSlider from '../../custom-hooks/useSlider';
+import useCustomApiRequest from '../../custom-hooks/useCustomApiRequest';
+import checkRes from '../../utils/checkRes';
 import './HomeSlider.scss';
-import servicesRouterLinks from '../../components/app/services-routes/servicesRouterLinks';
 
 const HomeSlider = () => {
   const sliderRef = useRef();
@@ -85,7 +86,32 @@ const HomeSlider = () => {
     nextArrow: i18n.dir() === 'rtl' ? <SamplePrevArrow /> : <SampleNextArrow />
   };
 
-  const { isLoadingSlides, allFetchedSlides } = useSlider();
+  const [isLoading, setIsLoading] = useState(false);
+  const [fetchedSlides, setFetchedSlides] = useState(null);
+  const customApiRequest = useCustomApiRequest();
+
+  useEffect(() => {
+    let isMounted = true;
+    if (isMounted) {
+      setIsLoading(true);
+      customApiRequest(
+        getHomeSlidesApi(i18n.language),
+        (res) => {
+          setIsLoading(false);
+          if (checkRes(res) && res?.data?.data) {
+            setFetchedSlides(res.data.data);
+          } else {
+          }
+        },
+        (error) => {
+          setIsLoading(false);
+        }
+      );
+    }
+    return () => {
+      isMounted = false;
+    };
+  }, [i18n.language]);
 
   const renderSingleSlide = (item) => {
     return (
@@ -95,24 +121,24 @@ const HomeSlider = () => {
           <div className="custom-container">
             <div className={`content-wrap ${i18n.dir()}`}>
               <div className="section-text-wrap">
-                <div
-                  className="product-data"
-                  style={{
-                    position: 'relative',
-                    zIndex: 2
-                  }}
-                >
-                  <div className="card-name">{item?.name}</div>
-                  <div className="cat-sub-cat">
-                    <p className="cat-p">{item?.mainCat?.name} / </p>
-                    <p className="sub-cat-p">{item?.cat?.name}</p>
-                  </div>
-                  {item?.price && (
-                    <p className="price-p">
-                      {item.price} {t('currency.eg')}
-                    </p>
-                  )}
+                <div className="main-title">
+                  <h1
+                    style={{
+                      textTransform: 'uppercase',
+                      fontWeight: 'bold'
+                    }}
+                  >
+                    <span className={i18n.language}>
+                      {t('hero_section.main_title.souq1')}
+                    </span>
+                    <span className={i18n.language}>
+                      {t('hero_section.main_title.souq2')}{' '}
+                    </span>
+                    <span>{t('hero_section.main_title.control')}</span>
+                  </h1>
+                  <h1>{t('hero_section.main_title.h1')}</h1>
                 </div>
+                <p className="sub-title">{t('hero_section.sub_title.h1')}</p>
               </div>
 
               <div className="btns-links">
@@ -133,19 +159,19 @@ const HomeSlider = () => {
     );
   };
 
-  if (allFetchedSlides?.services?.length > 0) {
+  if (fetchedSlides?.backgrounds?.length > 0) {
     return (
       <div dir="rtl" className="home-main-section" ref={sliderRef}>
         <SharedSlider
           className="custom-slick-slider main-app-slick-slider"
           slides={
-            allFetchedSlides?.services?.length > 0
-              ? allFetchedSlides.services
+            fetchedSlides?.backgrounds?.length > 0
+              ? fetchedSlides.backgrounds
               : []
           }
           settings={sliderSettings}
           renderSingleSlide={renderSingleSlide}
-          isLoading={isLoadingSlides}
+          isLoading={isLoading}
         />
       </div>
     );

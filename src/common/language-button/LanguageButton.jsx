@@ -19,7 +19,10 @@ const LanguageButton = () => {
       <span
         key={country_code}
         onClick={() => i18next.changeLanguage(code)}
-        className={`flag-icon flag-icon-${country_code}`}></span>
+        // className={`flag-icon flag-icon-${country_code}`}
+      >
+        {code}
+      </span>
     ));
   };
 

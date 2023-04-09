@@ -41,6 +41,8 @@ const MainAppBarSearchBar = () => {
     }
   }, [query]);
 
+  console.log('fetched : ', fetchedServices);
+
   const renderServicesMenu = () => {
     if (query) {
       if (isSearching) {
@@ -78,11 +80,12 @@ const MainAppBarSearchBar = () => {
       }
       return [];
     }
-    return (
-      <Menu.Item key="placeholder_key">
-        {t('main_app_search.placeholder')}
-      </Menu.Item>
-    );
+    return [
+      {
+        key: 'placeholder_key',
+        label: t('main_app_search.placeholder')
+      }
+    ];
   };
 
   return (

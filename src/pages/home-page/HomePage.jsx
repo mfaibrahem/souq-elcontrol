@@ -10,10 +10,10 @@ import getHomepageDataApi from '../../apis/homepage/getHomepageDataApi';
 import checkRes from '../../utils/checkRes';
 import { useTranslation } from 'react-i18next';
 import './HomePage.scss';
-import FeaturedProductsSlider from './FeaturedProductsSlider';
 import HomeSlider from './HomeSlider';
 import QuestionsSection from './QuestionsSection';
 import { LoadingOutlined } from '@ant-design/icons';
+import AboutUsSection from '../aboutus-page/AboutUsSection';
 
 const HomePage = () => {
   const { i18n } = useTranslation();
@@ -83,13 +83,15 @@ const HomePage = () => {
         isSubCat={false}
       />
 
-      <FeaturedProductsSlider />
+      {/* <FeaturedProductsSlider /> */}
 
       <FeaturedSection fetchedData={homeData?.Features} />
-      <HowItWorksSection
+      {/* <HowItWorksSection
         isLoading={isLoadingHome}
         sectionData={homeData?.howWork}
-      />
+      /> */}
+      <AboutUsSection />
+
       {renderQuestionsSection()}
       <ContactUsSection />
     </div>
