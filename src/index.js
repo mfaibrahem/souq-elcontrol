@@ -14,7 +14,6 @@ import 'react-notifications-component/dist/theme.css';
 import 'animate.css/animate.min.css';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import 'antd/dist/antd.less';
-import 'react-big-calendar/lib/sass/styles.scss';
 import 'aos/dist/aos.css';
 import 'react-phone-number-input/style.css';
 import './scss/index.scss';
