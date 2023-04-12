@@ -1,17 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useContext } from 'react';
-import { useForm } from 'react-hook-form';
-import { Form, Button } from 'antd';
+import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { Button, Form } from 'antd';
+import React, { useContext, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
-import errorNotification from '../../utils/errorNotification';
-import checkRes from '../../utils/checkRes';
-import successNotification from '../../utils/successNotification';
-import AntdTextField from '../../common/antd-form-components/AntdTextField';
-import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
-import ForgetPasswordContext from '../../contexts/forget-password-context/ForgetPasswordContext';
 import { forgetPasswordResetPasswordApi } from '../../apis/auth/forgetPassApis';
+import AntdTextField from '../../common/antd-form-components/AntdTextField';
+import ForgetPasswordContext from '../../contexts/forget-password-context/ForgetPasswordContext';
 import useCustomApiRequest from '../../custom-hooks/useCustomApiRequest';
+import checkRes from '../../utils/checkRes';
+import errorNotification from '../../utils/errorNotification';
+import successNotification from '../../utils/successNotification';
 
 const schema = Yup.object().shape({
   password: Yup.string().required('أدخل كلمة المرور الجديدة'),
@@ -29,7 +29,7 @@ const ForgetPasswordFormResetPassword = () => {
     handleSubmit,
     watch,
     reset,
-    formState: { errors, isSubmitting }
+    formState: { errors }
   } = useForm({
     resolver: yupResolver(schema),
     mode: 'all',

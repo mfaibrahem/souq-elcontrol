@@ -1,11 +1,11 @@
-import { useTranslation } from 'react-i18next';
-import CustomBreadcrubm from '../../common/bread-crumb/Breadcrubm';
-import routerLinks from '../../components/app/routerLinks';
-import calendarImg from '../../assets/imgs/icons/calendar.png';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Empty } from 'antd';
+import { useTranslation } from 'react-i18next';
+import { Link as RouterLink } from 'react-router-dom';
+import calendarImg from '../../assets/imgs/icons/calendar.png';
+import CustomBreadcrubm from '../../common/bread-crumb/Breadcrubm';
 import CustomImage from '../../common/custom-image/CustomImage';
-import { Link as RouterLink, useParams } from 'react-router-dom';
+import routerLinks from '../../components/app/routerLinks';
 import servicesRouterLinks from '../../components/app/services-routes/servicesRouterLinks';
 import useSinglePost from '../../custom-hooks/useSinglePost';
 import './SinglePostPage.scss';
@@ -13,7 +13,6 @@ import './SinglePostPage.scss';
 const SinglePostPage = () => {
   const { t } = useTranslation();
   const { isLoading, fetchedBlog, fetchedRelatedBlogs } = useSinglePost();
-  const params = useParams();
   if (isLoading) {
     return (
       <div

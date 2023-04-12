@@ -1,23 +1,23 @@
 /* eslint-disable eqeqeq */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useContext } from 'react';
-import { useForm } from 'react-hook-form';
-import { Form, Button } from 'antd';
 import { yupResolver } from '@hookform/resolvers/yup';
-import UserContext from '../../contexts/user-context/UserProvider';
-import successNotification from '../../utils/successNotification';
-import errorNotification from '../../utils/errorNotification';
-import checkRes from '../../utils/checkRes';
-import AntdTextField from '../../common/antd-form-components/AntdTextField';
-import CustomMap from '../../components/custom-map/CustomMap';
+import { Button, Form } from 'antd';
+import React, { useContext, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { useHistory, useParams } from 'react-router-dom';
 import makeOrderApi from '../../apis/orders-apis/makeOrderApi';
-import makeOrderSchema from './makeOrderSchema';
-import { useParams, useHistory } from 'react-router-dom';
-import useCustomApiRequest from '../../custom-hooks/useCustomApiRequest';
 import AntdRadioGroup from '../../common/antd-form-components/AntdRadioGroup';
-import './MakeOrderForm.scss';
+import AntdTextField from '../../common/antd-form-components/AntdTextField';
 import routerLinks from '../../components/app/routerLinks';
+import CustomMap from '../../components/custom-map/CustomMap';
+import UserContext from '../../contexts/user-context/UserProvider';
+import useCustomApiRequest from '../../custom-hooks/useCustomApiRequest';
+import checkRes from '../../utils/checkRes';
+import errorNotification from '../../utils/errorNotification';
+import successNotification from '../../utils/successNotification';
+import './MakeOrderForm.scss';
+import makeOrderSchema from './makeOrderSchema';
 
 const MakeOrderForm = () => {
   // const [urls, setUrls] = React.useState([]);
@@ -35,7 +35,6 @@ const MakeOrderForm = () => {
   const {
     control,
     handleSubmit,
-    watch,
     formState: { errors }
   } = useForm({
     resolver: yupResolver(schema),

@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { CloudDownloadOutlined, LoadingOutlined } from '@ant-design/icons';
 import { Dropdown, Menu } from 'antd';
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import getAllSellerMessagesApi from '../../apis/seller-apis/getAllSellerMessagesApi';
 import ChatIcon from '../../common/icons/ChatIcon';
@@ -11,7 +11,7 @@ import useCustomApiRequest from '../../custom-hooks/useCustomApiRequest';
 import checkRes from '../../utils/checkRes';
 const MainAppMessages = ({ isAppbarMd = false }) => {
   const [settingsClicked] = React.useState(false);
-  const notificationsBodyRef = useRef(null);
+  // const notificationsBodyRef = useRef(null);
 
   const { user } = useContext(UserContext);
   const { i18n } = useTranslation();

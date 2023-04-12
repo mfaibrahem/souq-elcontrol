@@ -1,18 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useContext } from 'react';
-import AntdTextField from '../../common/antd-form-components/AntdTextField';
-import { Button, Form } from 'antd';
-import * as Yup from 'yup';
-import { yupResolver } from '@hookform/resolvers/yup';
 import { MailOutlined } from '@ant-design/icons';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { Button, Form } from 'antd';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+import * as Yup from 'yup';
 import { forgetPasswordEnterEmailApi } from '../../apis/auth/forgetPassApis';
-import checkRes from '../../utils/checkRes';
-import successNotification from '../../utils/successNotification';
-import errorNotification from '../../utils/errorNotification';
+import AntdTextField from '../../common/antd-form-components/AntdTextField';
 import ForgetPasswordContext from '../../contexts/forget-password-context/ForgetPasswordContext';
 import useCustomApiRequest from '../../custom-hooks/useCustomApiRequest';
-import { useTranslation } from 'react-i18next';
+import checkRes from '../../utils/checkRes';
+import errorNotification from '../../utils/errorNotification';
+import successNotification from '../../utils/successNotification';
 
 const schema = Yup.object().shape({
   email: Yup.string()
@@ -32,7 +32,7 @@ const ForgetPasswordFormEnterEmail = () => {
     handleSubmit,
     reset,
     // watch,
-    formState: { errors, isSubmitting }
+    formState: { errors }
   } = useForm({
     resolver: yupResolver(schema),
     mode: 'all',

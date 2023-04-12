@@ -1,19 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { LoadingOutlined } from '@ant-design/icons';
 import React, { useEffect } from 'react';
-import HomeHeroSection from './HomeHeroSection';
-import CategoriesSection from '../../components/categories-section/CategoriesSection';
-import FeaturedSection from './FeaturedSection';
-import HowItWorksSection from './HowItWorksSection';
-import ContactUsSection from './ContactUsSection';
-import useCustomApiRequest from '../../custom-hooks/useCustomApiRequest';
-import getHomepageDataApi from '../../apis/homepage/getHomepageDataApi';
-import checkRes from '../../utils/checkRes';
 import { useTranslation } from 'react-i18next';
+import getHomepageDataApi from '../../apis/homepage/getHomepageDataApi';
+import CategoriesSection from '../../components/categories-section/CategoriesSection';
+import useCustomApiRequest from '../../custom-hooks/useCustomApiRequest';
+import checkRes from '../../utils/checkRes';
+import AboutUsSection from '../aboutus-page/AboutUsSection';
+import ContactUsSection from './ContactUsSection';
+import FeaturedSection from './FeaturedSection';
+import HomeHeroSection from './HomeHeroSection';
 import './HomePage.scss';
 import HomeSlider from './HomeSlider';
 import QuestionsSection from './QuestionsSection';
-import { LoadingOutlined } from '@ant-design/icons';
-import AboutUsSection from '../aboutus-page/AboutUsSection';
 
 const HomePage = () => {
   const { i18n } = useTranslation();

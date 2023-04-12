@@ -2,7 +2,6 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams, useLocation } from 'react-router-dom';
-import getAllServicesApi from '../apis/categories-apis/getAllServicesApi';
 import checkRes from '../utils/checkRes';
 import useCustomApiRequest from './useCustomApiRequest';
 import queryString from 'query-string';

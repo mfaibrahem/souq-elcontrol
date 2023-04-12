@@ -1,7 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Empty } from 'antd';
-import useCars from '../../custom-hooks/useCars';
 import CustomBreadcrubm from '../../common/bread-crumb/Breadcrubm';
 import routerLinks from '../../components/app/routerLinks';
 import useSubCats from '../../custom-hooks/useSubCats';

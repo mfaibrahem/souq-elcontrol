@@ -1,15 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Dropdown, Menu } from 'antd';
-import { useState, useEffect, useCallback } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { LoadingOutlined } from '@ant-design/icons';
+import { Dropdown } from 'antd';
 import debounce from 'lodash.debounce';
-import SearchIcon from '../../common/icons/SearchIcon';
+import { useCallback, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Link as RouterLink } from 'react-router-dom';
 import searchServicesApi from '../../apis/categories-apis/searchServicesApi';
+import SearchIcon from '../../common/icons/SearchIcon';
 import useCustomApiRequest from '../../custom-hooks/useCustomApiRequest';
 import checkRes from '../../utils/checkRes';
-import { LoadingOutlined } from '@ant-design/icons';
 import routerLinks from '../app/routerLinks';
-import { useTranslation } from 'react-i18next';
 
 const MainAppBarSearchBar = () => {
   const { i18n, t } = useTranslation();

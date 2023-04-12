@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Dropdown, Menu, Button, Avatar } from 'antd';
+import { Dropdown, Button, Avatar } from 'antd';
 import { Link as RouterLink } from 'react-router-dom';
 import {
   UserOutlined,

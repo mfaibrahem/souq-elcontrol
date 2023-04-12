@@ -334,6 +334,7 @@ const ServiceDetailsPage = () => {
                       params?.carId,
                       params?.serviceId
                     )}`}
+                    title={`${fetchedServiceDetails?.service?.name}\n${fetchedServiceDetails?.service?.desc}`}
                   >
                     <img src={fbImg} alt="fb" />
                   </FacebookShareButton>
@@ -346,6 +347,8 @@ const ServiceDetailsPage = () => {
                       params?.carId,
                       params?.serviceId
                     )}`}
+                    title={`${fetchedServiceDetails?.service?.name}\n${fetchedServiceDetails?.service?.desc}`}
+                    separator={'\n'}
                   >
                     <img src={whatsappImg} alt="whatsapp" />
                   </WhatsappShareButton>
@@ -358,6 +361,7 @@ const ServiceDetailsPage = () => {
                       params?.carId,
                       params?.serviceId
                     )}`}
+                    title={`${fetchedServiceDetails?.service?.name}\n${fetchedServiceDetails?.service?.desc}`}
                   >
                     <img src={twitterImg} alt="twitter" />
                   </TwitterShareButton>
@@ -370,6 +374,7 @@ const ServiceDetailsPage = () => {
                       params?.carId,
                       params?.serviceId
                     )}`}
+                    title={`${fetchedServiceDetails?.service?.name}\n${fetchedServiceDetails?.service?.desc}`}
                   >
                     <img src={telegramImg} alt="telegram" />
                   </TelegramShareButton>

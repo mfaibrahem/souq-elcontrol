@@ -6,7 +6,6 @@ import routerLinks from '../../components/app/routerLinks';
 import SharedSlider from '../../components/shared-slider/SharedSlider';
 import useSlider from '../../custom-hooks/useSlider';
 import './HomeSlider.scss';
-import servicesRouterLinks from '../../components/app/services-routes/servicesRouterLinks';
 
 const HomeSlider = () => {
   const sliderRef = useRef();

@@ -9,7 +9,6 @@ import CustomImage from '../../common/custom-image/CustomImage';
 import routerLinks from '../../components/app/routerLinks';
 import CustomBreadcrubm from '../../common/bread-crumb/Breadcrubm';
 import techSuppImg from '../../assets/imgs/icons/technical-support.png';
-import { Link as RouterLink } from 'react-router-dom';
 import { Descriptions, Tabs } from 'antd';
 import whatsAppImg from '../../assets/imgs/contact/whatsapp-white.png';
 import ContactSellerContext from '../../contexts/contact-seller-context/ContactSellerContext';
@@ -26,7 +25,7 @@ const ServiceCenterDetailsPage = () => {
   const params = useParams();
   const { t, i18n } = useTranslation();
   const { isLoading, fetchedCenter } = useServiceCenter();
-  const { setModalOpened, modalOpened } = useContext(ContactSellerContext);
+  const { modalOpened } = useContext(ContactSellerContext);
 
   const renderGalleryImages = () => {
     return fetchedCenter.service.images.map((img) => {
