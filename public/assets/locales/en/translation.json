@@ -72,9 +72,9 @@
     "new_account": "New Account",
     "forget_pass": "Did you forget password ?",
     "login_key": {
-      "label": "Phone number or Email",
+      "label": "Phone number",
       "errors": {
-        "required": "Enter your phone number or your email"
+        "required": "Enter your phone number"
       }
     },
     "password": {

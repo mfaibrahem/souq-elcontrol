@@ -3,8 +3,11 @@
     "editor.selectionHighlightBackground": "#1f864a92",
     "editor.findMatchHighlightBackground": "#083787",
     "editorIndentGuide.background": "#ffffff16",
+    "editorIndentGuide.activeBackground": "#ff9eef",
     "editor.background": "#1a191a",
-    "editorIndentGuide.activeBackground": "#ff9eef"
+    "activityBar.background": "#59150D",
+    "titleBar.activeBackground": "#7C1D13",
+    "titleBar.activeForeground": "#FFFCFC"
   },
   "marquee.widgets.npm-stats.packageNames": [
     "flowration_dashboard"
