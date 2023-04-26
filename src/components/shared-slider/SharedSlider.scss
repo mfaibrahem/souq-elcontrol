@@ -2,7 +2,7 @@
 
 .custom-slick-slider {
   margin-top: 32px;
-  direction: ltr !important;
+  // direction: ltr !important;
   // .slick-list {
   //   @include heroHeight;
   // }
@@ -180,12 +180,12 @@
             }
           }
 
-          &.rtl {
-            direction: rtl;
-          }
-          &.ltr {
-            direction: ltr;
-          }
+          // &.rtl {
+          //   direction: rtl;
+          // }
+          // &.ltr {
+          //   direction: ltr;
+          // }
         }
       }
     }

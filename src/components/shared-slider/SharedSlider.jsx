@@ -10,12 +10,13 @@ const defaultSettings = {
   arrows: true,
   // rtl: sliderDir === 'rtl' ? true : false,
   // rtl: true,
-  rtl: false,
+  // rtl: false,
+  rtl: true,
   infinite: false,
   speed: 500,
   slidesToShow: 1,
-  slidesToScroll: 1,
-  initialSlide: 0
+  slidesToScroll: 1
+  // initialSlide: 0
 };
 
 const SharedSlider = ({

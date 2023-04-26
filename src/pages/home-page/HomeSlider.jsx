@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import routerLinks from '../../components/app/routerLinks';
@@ -8,9 +8,9 @@ import useSlider from '../../custom-hooks/useSlider';
 import './HomeSlider.scss';
 
 const HomeSlider = () => {
-  const sliderRef = useRef();
   const { i18n, t } = useTranslation();
   const [sliderDir, setSliderDir] = useState(i18n.dir());
+
   useEffect(() => {
     setSliderDir(i18n.dir());
   }, [i18n.dir()]);
@@ -74,12 +74,18 @@ const HomeSlider = () => {
     fade: false,
     dots: false,
     arrows: true,
-    rtl: sliderDir === 'rtl' ? true : false,
+    autoplay: true,
+    // rtl: sliderDir === 'rtl' ? true : false,
     infinite: true,
-    speed: 500,
+    speed: 1000,
+    // autoplaySpeed: 1000,
+    cssEase: 'ease-in-out',
+    // speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    initialSlide: 0,
+    useTransform: false,
+    initialSlide: 2,
+    lazyLoad: true,
     prevArrow: i18n.dir() === 'rtl' ? <SampleNextArrow /> : <SamplePrevArrow />,
     nextArrow: i18n.dir() === 'rtl' ? <SamplePrevArrow /> : <SampleNextArrow />
   };
@@ -89,7 +95,19 @@ const HomeSlider = () => {
   const renderSingleSlide = (item) => {
     return (
       <div className="slide-wrap" key={item.id}>
-        <img className="slide-img" src={item.image} alt="slide" />
+        <div className="custom-container1">
+          <Link
+            to={routerLinks?.serviceDetailsRoute(
+              item?.mainCat?.id,
+              item?.cat?.id,
+              item?.car?.id,
+              item?.id
+            )}
+            className="slide-img-wrap"
+          >
+            <img className="slide-img" src={item.image} alt="slide" />
+          </Link>
+        </div>
         <div className="slide-text">
           <div className="custom-container">
             <div className={`content-wrap ${i18n.dir()}`}>
@@ -134,18 +152,20 @@ const HomeSlider = () => {
 
   if (allFetchedSlides?.services?.length > 0) {
     return (
-      <div dir="rtl" className="home-main-section" ref={sliderRef}>
-        <SharedSlider
-          className="custom-slick-slider main-app-slick-slider"
-          slides={
-            allFetchedSlides?.services?.length > 0
-              ? allFetchedSlides.services
-              : []
-          }
-          settings={sliderSettings}
-          renderSingleSlide={renderSingleSlide}
-          isLoading={isLoadingSlides}
-        />
+      <div className="home-main-section">
+        <div className="custom-container">
+          <SharedSlider
+            className="custom-slick-slider main-app-slick-slider"
+            slides={
+              allFetchedSlides?.services?.length > 0
+                ? allFetchedSlides.services
+                : []
+            }
+            settings={sliderSettings}
+            renderSingleSlide={renderSingleSlide}
+            isLoading={isLoadingSlides}
+          />
+        </div>
       </div>
     );
   }

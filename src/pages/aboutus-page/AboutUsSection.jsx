@@ -1,15 +1,10 @@
-import { useTranslation } from 'react-i18next';
-import EmailIcon from '../../common/icons/EmailIcon';
-import MapIcon from '../../common/icons/MapIcon';
-import PhoneIcon from '../../common/icons/PhoneIcon';
-import GeneralSettingsContext from '../../contexts/general-settings-context/GeneralSettingsContext';
-import { useContext } from 'react';
 import { LoadingOutlined } from '@ant-design/icons';
+import { useContext } from 'react';
 import CustomImage from '../../common/custom-image/CustomImage';
+import GeneralSettingsContext from '../../contexts/general-settings-context/GeneralSettingsContext';
 import './AboutUsSection.scss';
 
 const AboutUsSection = () => {
-  const { i18n } = useTranslation();
   const { isLoadingGeneralSettings, fetchedGeneralSettings } = useContext(
     GeneralSettingsContext
   );
@@ -40,7 +35,7 @@ const AboutUsSection = () => {
               </div>
             </div>
 
-            <div className="contact-boxs-wrap">
+            {/* <div className="contact-boxs-wrap">
               <ul className="boxs-ul">
                 {fetchedGeneralSettings?.address && (
                   <li data-aos="fade-up" data-aos-duration="600">
@@ -107,7 +102,7 @@ const AboutUsSection = () => {
                   </li>
                 )}
               </ul>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>

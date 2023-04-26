@@ -27,13 +27,29 @@
       justify-items: center;
       text-align: center;
       padding: 12px;
+      padding-bottom: 20px;
+      background-color: #fff;
+      border-radius: 12px;
+
       .li-content {
         max-width: 342px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
       .featured-img {
         margin-bottom: 12px;
+        background-color: #f9f8f8;
+        width: 92px;
+        height: 92px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transform: translateY(-46px);
+
         img {
-          width: 46px;
+          width: 28px;
         }
       }
       .featured-name {

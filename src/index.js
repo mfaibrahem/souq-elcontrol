@@ -8,8 +8,7 @@ import { UserProvider } from './contexts/user-context/UserProvider';
 import { MainAppBarProvider } from './contexts/main-app-bar-context/MainAppBarProvider';
 //
 import 'react-circular-progressbar/dist/styles.css';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+// import 'slick-carousel/slick/slick-theme.css';
 import 'react-notifications-component/dist/theme.css';
 import 'animate.css/animate.min.css';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
@@ -17,6 +16,7 @@ import 'antd/dist/antd.less';
 import 'aos/dist/aos.css';
 import 'react-phone-number-input/style.css';
 import './scss/index.scss';
+import 'slick-carousel/slick/slick.css';
 import { GeneralSettingsProvider } from './contexts/general-settings-context/GeneralSettingsContext';
 
 ReactDOM.render(

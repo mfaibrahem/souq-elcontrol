@@ -14,14 +14,12 @@ import checkRes from '../../utils/checkRes';
 import errorNotification from '../../utils/errorNotification';
 import successNotification from '../../utils/successNotification';
 
-const schema = Yup.object().shape({
-  email: Yup.string()
-    .required('من فضلك ادخل البريد الاكترونى')
-    .email('ادخل بريد الكترونى صحيح')
-});
-
 const ForgetPasswordFormEnterEmail = () => {
   const { t } = useTranslation();
+  const schema = Yup.object().shape({
+    phone: Yup.string().required(t('signup_form.phone.errors.required'))
+    // .email('ادخل بريد الكترونى صحيح')
+  });
   const {
     setForgetPasswordFormEnterEmailAppended,
     setForgetPasswordFormEnterCodeAppended,
@@ -37,13 +35,13 @@ const ForgetPasswordFormEnterEmail = () => {
     resolver: yupResolver(schema),
     mode: 'all',
     defaultValues: {
-      email: ''
+      phone: ''
     }
   });
 
   React.useEffect(() => {
     return () => {
-      reset({ email: '' });
+      reset({ phone: '' });
     };
   }, []);
   const [isLoading, setIsLoading] = React.useState(false);
@@ -57,7 +55,7 @@ const ForgetPasswordFormEnterEmail = () => {
         if (checkRes(res)) {
           successNotification({
             title: t('success_title'),
-            message: res?.data?.message || 'تم ارسال ايميل بالكود'
+            message: res?.data?.message || 'تم ارسال الكود'
           });
           setForgetPasswordFormEnterEmailAppended(false);
           setForgetPasswordFormEnterCodeAppended(true);
@@ -89,15 +87,15 @@ const ForgetPasswordFormEnterEmail = () => {
     >
       <div className="form-body">
         <div className="text-field-label-wrap">
-          <p className="label-p">البريد الاكترونى</p>
+          <p className="label-p">{t('signup_form.phone.label')}</p>
           <div className="text-field-wrap">
             <AntdTextField
               className="form-text-field"
-              name="email"
+              name="phone"
               type="text"
-              placeholder="البريد الاكترونى..."
-              errorMsg={errors?.email?.message}
-              validateStatus={errors?.email ? 'error' : ''}
+              placeholder={t('signup_form.phone.label')}
+              errorMsg={errors?.phone?.message}
+              validateStatus={errors?.phone ? 'error' : ''}
               control={control}
               prefix={<MailOutlined />}
             />

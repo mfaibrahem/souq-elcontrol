@@ -1,18 +1,20 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { NavLink, useLocation } from 'react-router-dom';
 import slugify from 'slugify';
-import mainAppBarLinks from '../../components/main-app-bar/mainAppBarLinks';
+import heroImg from '../../assets/imgs/hero-section/hero-img.png';
 import heroBg1 from '../../assets/imgs/hero-section/hero-left-bg.svg';
 import heroBg2 from '../../assets/imgs/hero-section/hero-right-bg.svg';
-import heroImg from '../../assets/imgs/hero-section/hero-img.png';
-import './HomeHeroSections.scss';
+import mainAppBarLinks from '../../components/main-app-bar/mainAppBarLinks';
 import UserContext from '../../contexts/user-context/UserProvider';
+import './HomeHeroSections.scss';
 
 const HomeHeroSection = () => {
   const { pathname } = useLocation();
   const { t, i18n } = useTranslation();
   const { user } = useContext(UserContext);
+
   const renderNavLinks = () => {
     return (
       <ul>

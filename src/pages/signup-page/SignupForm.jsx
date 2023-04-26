@@ -1,27 +1,22 @@
+import { LockOutlined, UserOutlined } from '@ant-design/icons';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { Button, Form } from 'antd';
 import React, { useContext, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as Yup from 'yup';
-import AntdTextField from '../../common/antd-form-components/AntdTextField';
-import { Button, Form } from 'antd';
 import { useTranslation } from 'react-i18next';
-import ForgetPasswordContext from '../../contexts/forget-password-context/ForgetPasswordContext';
-import EyeOpenedIcon from '../../common/icons/EyeOpenedIcon';
-import EyeClosedIcon from '../../common/icons/EyeClosedIcon';
-import { Link as RouterLink } from 'react-router-dom';
 import PhoneInput from 'react-phone-number-input';
-import TermsModal from '../../common/terms-modal/TermsModal';
-import {
-  UserOutlined,
-  LockOutlined,
-  MailOutlined
-  // PhoneOutlined
-} from '@ant-design/icons';
-import './SignupForm.scss';
+import { Link as RouterLink } from 'react-router-dom';
+import * as Yup from 'yup';
 import AntdCheckbox from '../../common/antd-form-components/AntdCheckbox';
+import AntdTextField from '../../common/antd-form-components/AntdTextField';
+import EyeClosedIcon from '../../common/icons/EyeClosedIcon';
+import EyeOpenedIcon from '../../common/icons/EyeOpenedIcon';
+import TermsModal from '../../common/terms-modal/TermsModal';
 import routerLinks from '../../components/app/routerLinks';
-import useSignupEmailPassword from '../../custom-hooks/useSignupEmailPassowrd';
+import ForgetPasswordContext from '../../contexts/forget-password-context/ForgetPasswordContext';
 import GeneralSettingsContext from '../../contexts/general-settings-context/GeneralSettingsContext';
+import useSignupEmailPassword from '../../custom-hooks/useSignupEmailPassowrd';
+import './SignupForm.scss';
 // import useFirebaseDeviceToken from '../../custom-hooks/useFirebaseDeviceToken';
 
 const SignupForm = () => {
@@ -45,16 +40,19 @@ const SignupForm = () => {
       .required(generalRequiredErrStr('phone'))
       // .matches(/^[0-9]+$/, generalTypeErrorStr('phone'))
       .min(10, generalMinErrorStr('phone', 10)),
-    email: Yup.string()
-      .required(generalRequiredErrStr('email'))
-      .email(generalTypeErrorStr('email')),
+    // email: Yup.string()
+    //   .required(generalRequiredErrStr('email'))
+    //   .email(generalTypeErrorStr('email')),
     password: Yup.string().required(generalRequiredErrStr('password')),
     password_confirmation: Yup.string()
       .required(generalRequiredErrStr('password_confirmation'))
       .oneOf(
         [Yup.ref('password')],
         generalTypeErrorStr('password_confirmation')
-      )
+      ),
+    terms: Yup.boolean()
+      .required(t('signup_form.acceptTerms'))
+      .oneOf([true], t('signup_form.acceptTerms'))
   });
   const {
     control,
@@ -118,7 +116,7 @@ const SignupForm = () => {
             prefix={<UserOutlined />}
             control={control}
           />
-          <AntdTextField
+          {/* <AntdTextField
             name="email"
             type="text"
             placeholder={generalLabelStr('email')}
@@ -127,7 +125,7 @@ const SignupForm = () => {
             validateStatus={errors?.email ? 'error' : ''}
             prefix={<MailOutlined />}
             control={control}
-          />
+          /> */}
           {/* <AntdTextField
             name="phone"
             type="text"
@@ -234,8 +232,8 @@ const SignupForm = () => {
               name="terms"
               control={control}
               label={t('signup_form.accept')}
-              errorMsg={errors?.remember?.message}
-              validateStatus={errors?.remember ? 'error' : ''}
+              errorMsg={errors?.terms?.message}
+              validateStatus={errors?.terms ? 'error' : ''}
             />
 
             <button
