@@ -1,39 +1,35 @@
+import { LoadingOutlined } from '@ant-design/icons';
+import { Descriptions, Empty, Tabs } from 'antd';
+import parse from 'html-react-parser';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Empty } from 'antd';
-import { LoadingOutlined } from '@ant-design/icons';
-import { useParams } from 'react-router-dom';
-import parse from 'html-react-parser';
 import ImageGallery from 'react-image-gallery';
-import CustomImage from '../../common/custom-image/CustomImage';
-import routerLinks from '../../components/app/routerLinks';
-import CustomBreadcrubm from '../../common/bread-crumb/Breadcrubm';
-import useServiceDetails from '../../custom-hooks/useServiceDetails';
-import techSuppImg from '../../assets/imgs/icons/technical-support.png';
-import { Link as RouterLink } from 'react-router-dom';
-import { Descriptions, Tabs } from 'antd';
-import whatsAppImg from '../../assets/imgs/contact/whatsapp-white.png';
-import ContactSellerContext from '../../contexts/contact-seller-context/ContactSellerContext';
-import ContactSellerModal from './ContactSellerModal';
-import './ServiceDetailsPage.scss';
-import ReportServiceModal from './ReportServiceModal';
-import UserContext from '../../contexts/user-context/UserProvider';
-import { useHistory } from 'react-router-dom';
-import telegramImg from '../../assets/imgs/icons/share-icons/telegram.svg';
-import twitterImg from '../../assets/imgs/icons/share-icons/twitter.svg';
-import whatsappImg from '../../assets/imgs/icons/share-icons/whatsapp.svg';
-import StoreRateModal from './StoreRateModal';
-import fbImg from '../../assets/imgs/icons/share-icons/fb.svg';
+import { Link as RouterLink, useHistory, useParams } from 'react-router-dom';
 import {
   FacebookShareButton,
   TelegramShareButton,
   TwitterShareButton,
   WhatsappShareButton
 } from 'react-share';
+import whatsAppImg from '../../assets/imgs/contact/whatsapp-white.png';
+import fbImg from '../../assets/imgs/icons/share-icons/fb.svg';
+import telegramImg from '../../assets/imgs/icons/share-icons/telegram.svg';
+import twitterImg from '../../assets/imgs/icons/share-icons/twitter.svg';
+import whatsappImg from '../../assets/imgs/icons/share-icons/whatsapp.svg';
+import techSuppImg from '../../assets/imgs/icons/technical-support.png';
+import CustomBreadcrubm from '../../common/bread-crumb/Breadcrubm';
+import CustomImage from '../../common/custom-image/CustomImage';
+import routerLinks from '../../components/app/routerLinks';
 import servicesRouterLinks from '../../components/app/services-routes/servicesRouterLinks';
+import ContactSellerContext from '../../contexts/contact-seller-context/ContactSellerContext';
+import UserContext from '../../contexts/user-context/UserProvider';
+import useServiceDetails from '../../custom-hooks/useServiceDetails';
+import ContactSellerModal from './ContactSellerModal';
+import ReportServiceModal from './ReportServiceModal';
+import './ServiceDetailsPage.scss';
+import StoreRateModal from './StoreRateModal';
 
 // const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-const { TabPane } = Tabs;
 
 const ServiceDetailsPage = () => {
   const params = useParams();
@@ -206,105 +202,110 @@ const ServiceDetailsPage = () => {
                 </div>
               )}
 
-              <Tabs defaultActiveKey="1">
-                <TabPane
-                  tab={i18n.language === 'ar' ? 'وصف الخدمة' : 'Description'}
-                  key="1"
-                >
-                  <div className="desc-tab-content">
-                    {fetchedServiceDetails?.service?.desc && (
-                      <div className="desc-details">
-                        {parse(fetchedServiceDetails.service.desc)}
-                      </div>
-                    )}
+              <Tabs
+                defaultActiveKey="1"
+                items={[
+                  {
+                    key: '1',
+                    label:
+                      i18n.language === 'ar' ? 'وصف الخدمة' : 'Description',
+                    children: (
+                      <div className="desc-tab-content">
+                        {fetchedServiceDetails?.service?.desc && (
+                          <div className="desc-details">
+                            {parse(fetchedServiceDetails.service.desc)}
+                          </div>
+                        )}
 
-                    <div className="price-q-wrapper">
-                      {fetchedServiceDetails?.service?.price && (
-                        <div className="price-wrap">
-                          <div className="price-itself">
-                            {fetchedServiceDetails?.service?.price}{' '}
-                            {i18n.language === 'ar' ? 'جنيه' : 'LE'}
+                        <div className="price-q-wrapper">
+                          {fetchedServiceDetails?.service?.price && (
+                            <div className="price-wrap">
+                              <div className="price-itself">
+                                {fetchedServiceDetails?.service?.price}{' '}
+                                {i18n.language === 'ar' ? 'جنيه' : 'LE'}
+                              </div>
+                            </div>
+                          )}
+
+                          <div className="quantity-wrap">
+                            <span>
+                              {i18n.language === 'ar'
+                                ? 'الكمية المتبقية'
+                                : 'Lefted Quantity'}
+                            </span>
+                            <span>
+                              {' '}
+                              ( {fetchedServiceDetails?.service?.quantity} )
+                            </span>
                           </div>
                         </div>
-                      )}
 
-                      <div className="quantity-wrap">
-                        <span>
-                          {i18n.language === 'ar'
-                            ? 'الكمية المتبقية'
-                            : 'Lefted Quantity'}
-                        </span>
-                        <span>
-                          {' '}
-                          ( {fetchedServiceDetails?.service?.quantity} )
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="order-message-links-wrap">
-                      {/* <button
-                        className="message-btn"
-                        onClick={() => setModalOpened(true)}
-                      >
-                        <div className="icon-wrap">
-                          <ChatIcon />
-                        </div>
-                        <span className="btn-title">
-                          {i18n.language === 'ar' && 'تحدث إلى البائع'}
-                          {i18n.language === 'en' && 'Contact Store'}
-                        </span>
-                      </button> */}
-
-                      <a
-                        className={`whatsapp-link ${i18n.dir()}`}
-                        href={`https://wa.me/${fetchedServiceDetails.service.store.store_whatsapp}`}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        <img src={whatsAppImg} alt="whats app" />
-                        <span>
-                          {i18n.language === 'ar' && 'تحدث إلى البائع'}
-                          {i18n.language === 'en' && 'Contact Store'}
-                        </span>
-                      </a>
-
-                      {fetchedServiceDetails?.service?.price && (
-                        <RouterLink
-                          className="make-order-link"
-                          to={routerLinks?.serviceMakeOrderRoute(
-                            params?.categoryId,
-                            params?.subCategoryId,
-                            params?.carId,
-                            fetchedServiceDetails?.service?.id
-                          )}
+                        <div className="order-message-links-wrap">
+                          {/* <button
+                          className="message-btn"
+                          onClick={() => setModalOpened(true)}
                         >
-                          {i18n.language === 'ar' ? 'اطلب الان' : 'Order Now'}
-                        </RouterLink>
-                      )}
-                    </div>
-                  </div>
-                </TabPane>
+                          <div className="icon-wrap">
+                            <ChatIcon />
+                          </div>
+                          <span className="btn-title">
+                            {i18n.language === 'ar' && 'تحدث إلى البائع'}
+                            {i18n.language === 'en' && 'Contact Store'}
+                          </span>
+                        </button> */}
 
-                <TabPane
-                  tab={
-                    i18n.language === 'ar'
-                      ? 'تواصل مع البائع'
-                      : 'Contact Seller'
+                          <a
+                            className={`whatsapp-link ${i18n.dir()}`}
+                            href={`https://wa.me/${fetchedServiceDetails.service.store.store_whatsapp}`}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            <img src={whatsAppImg} alt="whats app" />
+                            <span>
+                              {i18n.language === 'ar' && 'تحدث إلى البائع'}
+                              {i18n.language === 'en' && 'Contact Store'}
+                            </span>
+                          </a>
+
+                          {fetchedServiceDetails?.service?.price && (
+                            <RouterLink
+                              className="make-order-link"
+                              to={routerLinks?.serviceMakeOrderRoute(
+                                params?.categoryId,
+                                params?.subCategoryId,
+                                params?.carId,
+                                fetchedServiceDetails?.service?.id
+                              )}
+                            >
+                              {i18n.language === 'ar'
+                                ? 'اطلب الان'
+                                : 'Order Now'}
+                            </RouterLink>
+                          )}
+                        </div>
+                      </div>
+                    )
+                  },
+                  {
+                    key: '2',
+                    label:
+                      i18n.language === 'ar'
+                        ? 'تواصل مع البائع'
+                        : 'Contact Seller',
+                    children:
+                      fetchedServiceDetails?.service?.store &&
+                      renderStoreDetails(fetchedServiceDetails.service.store)
+                  },
+                  {
+                    key: '3',
+                    label:
+                      i18n.language === 'ar' ? 'الإرشـــادات' : 'Instructions',
+                    children:
+                      fetchedServiceDetails?.service &&
+                      renderInstructions(fetchedServiceDetails.service)
                   }
-                  key="2"
-                >
-                  {fetchedServiceDetails?.service?.store &&
-                    renderStoreDetails(fetchedServiceDetails.service.store)}
-                </TabPane>
-
-                <TabPane
-                  tab={i18n.language === 'ar' ? 'الإرشـــادات' : 'Instructions'}
-                  key="3"
-                >
-                  {fetchedServiceDetails?.service &&
-                    renderInstructions(fetchedServiceDetails.service)}
-                </TabPane>
-              </Tabs>
+                ]}
+              />
               <div className="share-report-service-btns">
                 <button
                   className="report-service-btn"
@@ -349,6 +350,12 @@ const ServiceDetailsPage = () => {
                     )}`}
                     title={`${fetchedServiceDetails?.service?.name}\n${fetchedServiceDetails?.service?.desc}`}
                     separator={'\n'}
+                    children={
+                      <img
+                        src={fetchedServiceDetails?.service?.image}
+                        alt="details"
+                      />
+                    }
                   >
                     <img src={whatsappImg} alt="whatsapp" />
                   </WhatsappShareButton>

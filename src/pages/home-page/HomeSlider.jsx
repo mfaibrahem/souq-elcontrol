@@ -92,58 +92,86 @@ const HomeSlider = () => {
 
   const { isLoadingSlides, allFetchedSlides } = useSlider();
 
+  const [sliderArr, setSliderArr] = useState([]);
+  useEffect(() => {
+    if (allFetchedSlides?.services?.length > 0) {
+      if (allFetchedSlides?.backgrounds?.length > 0) {
+        const arr = allFetchedSlides.services.map((obj, index) => {
+          return {
+            ...obj,
+            slideBg: allFetchedSlides.backgrounds[index]?.image || null
+          };
+        });
+        setSliderArr(arr);
+      } else {
+        setSliderArr(allFetchedSlides.services);
+      }
+    }
+  }, [allFetchedSlides]);
+
   const renderSingleSlide = (item) => {
     return (
       <div className="slide-wrap" key={item.id}>
-        <div className="custom-container1">
-          <Link
-            to={routerLinks?.serviceDetailsRoute(
-              item?.mainCat?.id,
-              item?.cat?.id,
-              item?.car?.id,
-              item?.id
-            )}
-            className="slide-img-wrap"
-          >
-            <img className="slide-img" src={item.image} alt="slide" />
-          </Link>
-        </div>
-        <div className="slide-text">
+        <div
+          style={{
+            backgroundImage: item?.slideBg ? `url(${item.slideBg})` : '',
+            backgroundSize: 'cover'
+          }}
+        >
           <div className="custom-container">
-            <div className={`content-wrap ${i18n.dir()}`}>
-              <div className="section-text-wrap">
-                <div
-                  className="product-data"
-                  style={{
-                    position: 'relative',
-                    zIndex: 2
-                  }}
-                >
-                  <div className="card-name">{item?.name}</div>
-                  <div className="cat-sub-cat">
-                    <p className="cat-p">{item?.mainCat?.name} / </p>
-                    <p className="sub-cat-p">{item?.cat?.name}</p>
+            <Link
+              to={routerLinks?.serviceDetailsRoute(
+                item?.mainCat?.id,
+                item?.cat?.id,
+                item?.car?.id,
+                item?.id
+              )}
+              className="slide-img-wrap"
+            >
+              <img className="slide-img" src={item.image} alt="slide" />
+
+              <div className="slide-text">
+                <div className="custom-container">
+                  <div className={`content-wrap ${i18n.dir()}`}>
+                    <div className="section-text-wrap">
+                      <div
+                        className="product-data"
+                        style={{
+                          position: 'relative',
+                          zIndex: 2
+                        }}
+                      >
+                        <div className="card-name">{item?.name}</div>
+                        <div className="cat-sub-cat">
+                          <p className="cat-p">{item?.mainCat?.name} / </p>
+                          <p className="sub-cat-p">{item?.cat?.name}</p>
+                        </div>
+                        {item?.price && (
+                          <p className="price-p">
+                            {item.price} {t('currency.eg')}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+
+                    <div className="btns-links">
+                      <Link
+                        to={routerLinks?.startSellingRoute}
+                        className="shop-link"
+                      >
+                        {t('main_app_bar_links.startSelling')}
+                      </Link>
+                      <Link
+                        to={routerLinks?.serviceCenterSignupRoute}
+                        className="shop-link search-link"
+                      >
+                        {t('main_app_bar_links.serviceCenterSignup')}
+                      </Link>
+                    </div>
                   </div>
-                  {item?.price && (
-                    <p className="price-p">
-                      {item.price} {t('currency.eg')}
-                    </p>
-                  )}
                 </div>
               </div>
-
-              <div className="btns-links">
-                <Link to={routerLinks?.startSellingRoute} className="shop-link">
-                  {t('main_app_bar_links.startSelling')}
-                </Link>
-                <Link
-                  to={routerLinks?.serviceCenterSignupRoute}
-                  className="shop-link search-link"
-                >
-                  {t('main_app_bar_links.serviceCenterSignup')}
-                </Link>
-              </div>
-            </div>
+            </Link>
           </div>
         </div>
       </div>
@@ -153,19 +181,18 @@ const HomeSlider = () => {
   if (allFetchedSlides?.services?.length > 0) {
     return (
       <div className="home-main-section">
-        <div className="custom-container">
-          <SharedSlider
-            className="custom-slick-slider main-app-slick-slider"
-            slides={
-              allFetchedSlides?.services?.length > 0
-                ? allFetchedSlides.services
-                : []
-            }
-            settings={sliderSettings}
-            renderSingleSlide={renderSingleSlide}
-            isLoading={isLoadingSlides}
-          />
-        </div>
+        <SharedSlider
+          className="custom-slick-slider main-app-slick-slider"
+          slides={
+            // allFetchedSlides?.services?.length > 0
+            //   ? allFetchedSlides.services
+            //   : []
+            sliderArr?.length > 0 ? sliderArr : []
+          }
+          settings={sliderSettings}
+          renderSingleSlide={renderSingleSlide}
+          isLoading={isLoadingSlides}
+        />
       </div>
     );
   }

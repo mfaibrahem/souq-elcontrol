@@ -14,7 +14,6 @@ import MakeOrderForm from './MakeOrderForm';
 import './MakeOrderPage.scss';
 
 // const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-const { TabPane } = Tabs;
 
 const MakeOrderPage = () => {
   const params = useParams();
@@ -172,51 +171,54 @@ const MakeOrderPage = () => {
               <div className="brief-overlay"></div>
 
               <div className="brief-content">
-                <Tabs defaultActiveKey="1">
-                  <TabPane
-                    tab={i18n.language === 'ar' ? 'وصف الخدمة' : 'Description'}
-                    key="1"
-                  >
-                    <div className="desc-tab-content">
-                      {fetchedServiceDetails?.service?.desc && (
-                        <div className="desc-details">
-                          {parse(fetchedServiceDetails.service.desc)}
+                <Tabs
+                  defaultActiveKey="1"
+                  items={[
+                    {
+                      label:
+                        i18n.language === 'ar' ? 'وصف الخدمة' : 'Description',
+                      key: 1,
+                      children: (
+                        <div className="desc-tab-content">
+                          {fetchedServiceDetails?.service?.desc && (
+                            <div className="desc-details">
+                              {parse(fetchedServiceDetails.service.desc)}
+                            </div>
+                          )}
+
+                          {fetchedServiceDetails?.service?.price && (
+                            <div className="price-wrap">
+                              <div className="price-itself">
+                                {fetchedServiceDetails?.service?.price}{' '}
+                                {i18n.language === 'ar' ? 'جنيه' : 'LE'}
+                              </div>
+                            </div>
+                          )}
                         </div>
-                      )}
-
-                      {fetchedServiceDetails?.service?.price && (
-                        <div className="price-wrap">
-                          <div className="price-itself">
-                            {fetchedServiceDetails?.service?.price}{' '}
-                            {i18n.language === 'ar' ? 'جنيه' : 'LE'}
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  </TabPane>
-
-                  <TabPane
-                    tab={
-                      i18n.language === 'ar'
-                        ? 'تواصل مع البائع'
-                        : 'Contact Seller'
+                      )
+                    },
+                    {
+                      label:
+                        i18n.language === 'ar'
+                          ? 'تواصل مع البائع'
+                          : 'Contact Seller',
+                      key: 2,
+                      children:
+                        fetchedServiceDetails?.service?.store &&
+                        renderStoreDetails(fetchedServiceDetails.service.store)
+                    },
+                    {
+                      label:
+                        i18n.language === 'ar'
+                          ? 'الإرشـــادات'
+                          : 'Instructions',
+                      key: 3,
+                      children:
+                        fetchedServiceDetails?.service &&
+                        renderInstructions(fetchedServiceDetails.service)
                     }
-                    key="2"
-                  >
-                    {fetchedServiceDetails?.service?.store &&
-                      renderStoreDetails(fetchedServiceDetails.service.store)}
-                  </TabPane>
-
-                  <TabPane
-                    tab={
-                      i18n.language === 'ar' ? 'الإرشـــادات' : 'Instructions'
-                    }
-                    key="3"
-                  >
-                    {fetchedServiceDetails?.service &&
-                      renderInstructions(fetchedServiceDetails.service)}
-                  </TabPane>
-                </Tabs>
+                  ]}
+                />
               </div>
             </div>
           </div>

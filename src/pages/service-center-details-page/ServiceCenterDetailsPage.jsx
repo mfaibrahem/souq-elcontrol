@@ -19,7 +19,6 @@ import fixedMainCats from '../../fixedMainCats';
 import servicesRouterLinks from '../../components/app/services-routes/servicesRouterLinks';
 
 // const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-const { TabPane } = Tabs;
 
 const ServiceCenterDetailsPage = () => {
   const params = useParams();
@@ -155,33 +154,34 @@ const ServiceCenterDetailsPage = () => {
                 </div>
               )}
 
-              <Tabs defaultActiveKey="1">
-                <TabPane
-                  tab={
-                    i18n.language === 'ar'
-                      ? 'الخدمات المقدمة'
-                      : 'Available services'
-                  }
-                  key="1"
-                >
-                  <div className="desc-tab-content">
-                    {fetchedCenter?.desc && (
-                      <div className="desc-details">
-                        {parse(fetchedCenter.service.desc)}
-                      </div>
-                    )}
+              <Tabs
+                defaultActiveKey="1"
+                items={[
+                  {
+                    key: '1',
+                    label:
+                      i18n.language === 'ar'
+                        ? 'الخدمات المقدمة'
+                        : 'Available services',
+                    children: (
+                      <div className="desc-tab-content">
+                        {fetchedCenter?.desc && (
+                          <div className="desc-details">
+                            {parse(fetchedCenter.service.desc)}
+                          </div>
+                        )}
 
-                    {fetchedCenter?.price && (
-                      <div className="price-wrap">
-                        <div className="price-itself">
-                          {fetchedCenter?.price}{' '}
-                          {i18n.language === 'ar' ? 'جنيه' : 'LE'}
-                        </div>
-                      </div>
-                    )}
+                        {fetchedCenter?.price && (
+                          <div className="price-wrap">
+                            <div className="price-itself">
+                              {fetchedCenter?.price}{' '}
+                              {i18n.language === 'ar' ? 'جنيه' : 'LE'}
+                            </div>
+                          </div>
+                        )}
 
-                    <div className="order-message-links-wrap">
-                      {/* <button
+                        <div className="order-message-links-wrap">
+                          {/* <button
                         className="message-btn"
                         onClick={() => setModalOpened(true)}
                       >
@@ -194,35 +194,36 @@ const ServiceCenterDetailsPage = () => {
                         </span>
                       </button> */}
 
-                      <a
-                        className={`whatsapp-link ${i18n.dir()}`}
-                        href={`https://wa.me/${
-                          fetchedCenter?.store_whatsapp || fetchedCenter?.phone
-                        }`}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        <img src={whatsAppImg} alt="whats app" />
-                        <span>
-                          {i18n.language === 'ar' && 'تحدث إلى المركز'}
-                          {i18n.language === 'en' && 'Contact Service Center'}
-                        </span>
-                      </a>
-                    </div>
-                  </div>
-                </TabPane>
-
-                <TabPane
-                  tab={
-                    i18n.language === 'ar'
-                      ? 'العنوان ومواعيد العمل'
-                      : 'Address and work hours'
+                          <a
+                            className={`whatsapp-link ${i18n.dir()}`}
+                            href={`https://wa.me/${
+                              fetchedCenter?.store_whatsapp ||
+                              fetchedCenter?.phone
+                            }`}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            <img src={whatsAppImg} alt="whats app" />
+                            <span>
+                              {i18n.language === 'ar' && 'تحدث إلى المركز'}
+                              {i18n.language === 'en' &&
+                                'Contact Service Center'}
+                            </span>
+                          </a>
+                        </div>
+                      </div>
+                    )
+                  },
+                  {
+                    label:
+                      i18n.language === 'ar'
+                        ? 'العنوان ومواعيد العمل'
+                        : 'Address and work hours',
+                    key: '2',
+                    children: renderStoreDetails(fetchedCenter)
                   }
-                  key="2"
-                >
-                  {renderStoreDetails(fetchedCenter)}
-                </TabPane>
-              </Tabs>
+                ]}
+              />
             </div>
           </div>
         </section>
