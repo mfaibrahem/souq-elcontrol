@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { MailOutlined } from '@ant-design/icons';
+import { PhoneOutlined } from '@ant-design/icons';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Form } from 'antd';
 import React, { useContext } from 'react';
@@ -97,7 +97,7 @@ const ForgetPasswordFormEnterEmail = () => {
               errorMsg={errors?.phone?.message}
               validateStatus={errors?.phone ? 'error' : ''}
               control={control}
-              prefix={<MailOutlined />}
+              prefix={<PhoneOutlined />}
             />
           </div>
         </div>
