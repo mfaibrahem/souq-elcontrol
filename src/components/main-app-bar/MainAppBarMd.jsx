@@ -96,6 +96,7 @@ const MainAppBarMd = ({ className, exceeds0 }) => {
         onClose={onClose}
         open={visible}
         className="header-md-drawer"
+        width={298}
         // anchor="right"
       >
         <div className="logo-links">

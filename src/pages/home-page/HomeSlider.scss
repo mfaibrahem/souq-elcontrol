@@ -13,26 +13,37 @@
     color: #fff;
     text-transform: capitalize;
     text-align: center;
-    margin: 10px 8px;
-    font-size: 32px;
     font-weight: bold;
+    font-size: 18px;
+    @include mediaLg {
+      font-size: 26px;
+      margin: 10px 8px;
+    }
+    @include mediaXlg {
+      font-size: 32px;
+    }
   }
   .product-data {
-    padding: 22px;
+    // padding: 22px;
     display: grid;
     place-content: center;
     place-items: center;
     text-align: center;
     color: #fff;
     .cat-sub-cat {
-      display: flex;
+      display: none;
+      @include mediaLg {
+        display: flex;
+      }
       justify-content: center;
       flex-wrap: wrap;
       gap: 4px;
     }
 
     .price-p {
-      font-size: 20px;
+      @include mediaLg {
+        font-size: 20px;
+      }
       margin-top: 2px;
     }
     .product-link {
@@ -73,6 +84,7 @@
 
     .slick-slide {
       .slide-wrap {
+        display: flex;
         &::after {
           content: '';
           width: 100%;
@@ -89,22 +101,35 @@
           );
         }
         .slide-img-wrap {
-          padding: 22px;
           position: relative;
           z-index: 1;
-          align-items: center;
           display: flex;
-          flex-wrap: wrap;
-
+          align-items: center;
+          align-content: space-evenly;
+          // padding: 22px 14px;
+          overflow: hidden;
+          flex-direction: column;
+          @include mediaLg {
+            flex-direction: row;
+            padding: 22px;
+          }
           .slide-img {
             border-radius: 8px !important;
             max-width: 100%;
-            width: 40%;
+            // width: 40%;
             height: auto;
-            max-height: 84%;
+            max-height: 45%;
+            margin: auto;
+            @include mediaLg {
+              width: 40%;
+              height: auto;
+              max-height: 100%;
+            }
           }
           .slide-text {
-            width: 60%;
+            @include mediaLg {
+              width: 60%;
+            }
           }
         }
       }

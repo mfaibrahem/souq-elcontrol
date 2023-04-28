@@ -74,7 +74,7 @@ const HomeSlider = () => {
     fade: false,
     dots: false,
     arrows: true,
-    autoplay: true,
+    // autoplay: true,
     // rtl: sliderDir === 'rtl' ? true : false,
     infinite: true,
     speed: 1000,
@@ -115,7 +115,8 @@ const HomeSlider = () => {
         <div
           style={{
             backgroundImage: item?.slideBg ? `url(${item.slideBg})` : '',
-            backgroundSize: 'cover'
+            backgroundSize: 'cover',
+            padding: '24px 0'
           }}
         >
           <div className="custom-container">
