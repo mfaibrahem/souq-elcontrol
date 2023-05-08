@@ -17,7 +17,12 @@ const useSignupEmailPassword = () => {
   const signMeUpWithEmailPassword = (data) => {
     setIsLoadingSignup(true);
     customApiRequest(
-      signupApi(data, i18n.language),
+      signupApi(
+        {
+          ...data
+        },
+        i18n.language
+      ),
       (res) => {
         setIsLoadingSignup(false);
         if (res?.data?.status === 1) {

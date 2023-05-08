@@ -41,8 +41,6 @@ const MainAppBarSearchBar = () => {
     }
   }, [query]);
 
-  console.log('fetched : ', fetchedServices);
-
   const renderServicesMenu = () => {
     if (query) {
       if (isSearching) {

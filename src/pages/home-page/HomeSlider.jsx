@@ -5,11 +5,13 @@ import { Link } from 'react-router-dom';
 import routerLinks from '../../components/app/routerLinks';
 import SharedSlider from '../../components/shared-slider/SharedSlider';
 import useSlider from '../../custom-hooks/useSlider';
+import { useHistory } from 'react-router-dom';
 import './HomeSlider.scss';
 
 const HomeSlider = () => {
   const { i18n, t } = useTranslation();
   const [sliderDir, setSliderDir] = useState(i18n.dir());
+  const history = useHistory();
 
   useEffect(() => {
     setSliderDir(i18n.dir());
@@ -156,18 +158,24 @@ const HomeSlider = () => {
                     </div>
 
                     <div className="btns-links">
-                      <Link
-                        to={routerLinks?.startSellingRoute}
+                      <button
                         className="shop-link"
+                        onClick={() => {
+                          history.push(routerLinks?.startSellingRoute);
+                        }}
+                        type="button"
                       >
                         {t('main_app_bar_links.startSelling')}
-                      </Link>
-                      <Link
-                        to={routerLinks?.serviceCenterSignupRoute}
+                      </button>
+                      <button
+                        onClick={() =>
+                          history.push(routerLinks?.serviceCenterSignupRoute)
+                        }
                         className="shop-link search-link"
+                        type="button"
                       >
                         {t('main_app_bar_links.serviceCenterSignup')}
-                      </Link>
+                      </button>
                     </div>
                   </div>
                 </div>
