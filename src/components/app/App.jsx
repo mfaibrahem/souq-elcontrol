@@ -11,13 +11,14 @@ import axios from 'axios';
 import { ConfigProvider } from 'antd';
 import NotFoundPage from '../../pages/not-found-page/NotFoundPage';
 import { ReactNotifications } from 'react-notifications-component';
-import DocTitleScrollTop from '../../utils/DocTitleScrollTop';
+// import DocTitleScrollTop from '../../utils/DocTitleScrollTop';
 import '../../i18n';
 import UserContext from '../../contexts/user-context/UserProvider';
 import myInfoApi from '../../apis/auth/myInfoApi';
 import checkRes from '../../utils/checkRes';
 import routerLinks from './routerLinks';
 import useCustomApiRequest from '../../custom-hooks/useCustomApiRequest';
+import { HelmetProvider } from 'react-helmet-async';
 
 // axios.defaults.baseURL = 'http://compound.emir.life/api';
 axios.defaults.baseURL = 'https://ecusouq.com/backend/api';
@@ -35,7 +36,7 @@ function App() {
       duration: 1500
     });
   }, []);
-  DocTitleScrollTop('');
+  // DocTitleScrollTop('');
 
   const customApiRequest = useCustomApiRequest();
 
@@ -67,14 +68,16 @@ function App() {
     <div className={`app app-${i18n.dir()}`}>
       <Suspense fallback={<Loading />}>
         <ConfigProvider direction={i18n.dir()}>
-          <ReactNotifications className={i18n.dir()} />
-          <Switch>
-            <AppLayout>
-              <Routes />
-            </AppLayout>
+          <HelmetProvider>
+            <ReactNotifications className={i18n.dir()} />
+            <Switch>
+              <AppLayout>
+                <Routes />
+              </AppLayout>
 
-            <Route path="*" component={NotFoundPage} />
-          </Switch>
+              <Route path="*" component={NotFoundPage} />
+            </Switch>
+          </HelmetProvider>
         </ConfigProvider>
       </Suspense>
     </div>

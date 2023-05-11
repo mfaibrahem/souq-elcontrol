@@ -20,7 +20,7 @@ const ForgetPasswordModal = () => {
       width="90%"
       style={{ maxWidth: '642px' }}
       title="هل نسيت كلمة المرور؟"
-      visible={forgetPasswordModalOpened}
+      open={forgetPasswordModalOpened}
       onOk={() => {
         setForgetPasswordModalOpened(false);
       }}

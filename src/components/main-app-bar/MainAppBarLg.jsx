@@ -88,7 +88,7 @@ const MainAppBarLg = ({ className, exceeds0 }) => {
                       style={{
                         display: 'flex',
                         gap: 22,
-                        alignItems: 'cener'
+                        alignItems: 'center'
                       }}
                     >
                       <MainAppProfileMenu />

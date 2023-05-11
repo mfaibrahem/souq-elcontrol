@@ -1,7 +1,7 @@
 import { LoadingOutlined } from '@ant-design/icons';
-import { Descriptions, Empty, Tabs } from 'antd';
+import { Descriptions, Empty, notification, Tabs } from 'antd';
 import parse from 'html-react-parser';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import ImageGallery from 'react-image-gallery';
 import { Link as RouterLink, useHistory, useParams } from 'react-router-dom';
@@ -28,10 +28,16 @@ import ContactSellerModal from './ContactSellerModal';
 import ReportServiceModal from './ReportServiceModal';
 import './ServiceDetailsPage.scss';
 import StoreRateModal from './StoreRateModal';
+import { Helmet } from 'react-helmet-async';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import copy from 'copy-to-clipboard';
+import useCopyToClipboard from '../../custom-hooks/useCopyToClipboard';
 
 // const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const ServiceDetailsPage = () => {
+  const [copyToClipboard, copyResult] = useCopyToClipboard();
+
   const params = useParams();
   const history = useHistory();
   const { t, i18n } = useTranslation();
@@ -41,6 +47,38 @@ const ServiceDetailsPage = () => {
   const { modalOpened } = useContext(ContactSellerContext);
   const [reportModalOpened, setReportModalOpened] = useState(false);
   const [rateModalOpened, setRateModalOpened] = useState(false);
+
+  const [copyCount, setCopyCount] = useState(0);
+  useEffect(() => {
+    if (copyCount) {
+      notification.success({
+        message: 'Copied to Clipboard',
+        duration: 1.5,
+        onClick: () => {
+          // console.log('Notification Clicked!');
+        }
+      });
+    }
+  }, [copyCount]);
+
+  //AsyncShareLoader.jsx
+  const AsyncShareLoader = ({ url, children }) => {
+    const loading = !url;
+    return (
+      <div style={{ filter: `grayscale(${loading ? '100%' : '0%'}` }}>
+        {React.Children.map(children, (child) =>
+          React.cloneElement(child, {
+            disabled: loading,
+            url: loading ? 'none' : url,
+            title: `${fetchedServiceDetails?.service?.name}\n${fetchedServiceDetails?.service?.desc}`,
+            quote: `${fetchedServiceDetails?.service?.name}\n${fetchedServiceDetails?.service?.desc}`,
+            openShareDialogOnClick: !loading,
+            separator: '\n'
+          })
+        )}
+      </div>
+    );
+  };
 
   const renderGalleryImages = () => {
     return fetchedServiceDetails.service.images.map((img) => {
@@ -129,119 +167,178 @@ const ServiceDetailsPage = () => {
   if (!fetchedServiceDetails) return <Empty description="No service found" />;
 
   return (
-    <div className="shared-custom-page service-details-page">
-      <CustomBreadcrubm
-        arr={[
-          {
-            title: t('breadcrumb_section.home'),
-            isLink: true,
-            to: routerLinks.homePage
-          },
-          {
-            title: t('breadcrumb_section.categories'),
-            isLink: true,
-            to: routerLinks?.categoriesRoute
-          },
-          {
-            title: fetchedServiceDetails?.service?.mainCat?.name,
-            isLink: true,
-            to: routerLinks?.subCategoriesRoute(params?.categoryId)
-          },
-          {
-            title: fetchedServiceDetails?.service?.car?.name,
-            isLink: true,
-            to: routerLinks?.carsRoute(
-              params?.categoryId,
-              params?.subCategoryId
-            )
-          },
-          {
-            title: t('breadcrumb_section.services'),
-            isLink: true,
-            to: routerLinks?.servicesRoute(
-              params?.categoryId,
-              params?.subCategoryId,
-              params?.carId
-            )
-          },
-          {
-            title: fetchedServiceDetails?.service?.name,
-            isLink: false
-          }
-        ]}
-      />
+    <>
+      <Helmet prioritizeSeoTags>
+        <title>{fetchedServiceDetails?.service?.car?.name}</title>
+        <meta
+          data-react-helmet="true"
+          name="description"
+          content="Beginner friendly page for learning React Helmet."
+        />
 
-      <div className="custom-container">
-        <section className="service-details-section">
-          <div className="gallery-details-wrap">
-            <div className="gallery-wrap">
-              {fetchedServiceDetails?.service?.images?.length > 0 ? (
-                <ImageGallery
-                  items={
-                    fetchedServiceDetails?.service?.images?.length > 0
-                      ? renderGalleryImages()
-                      : []
-                  }
-                />
-              ) : (
-                <CustomImage
-                  className="service-details-fallback-img"
-                  src={fetchedServiceDetails?.service?.image}
-                />
-              )}
-            </div>
-            <div className="details-parent-wrap">
-              {fetchedServiceDetails?.service?.name && (
-                <div className="service-name">
-                  <div className="icon-wrap">
-                    <CustomImage src={techSuppImg} />
+        <meta data-react-helmet="true" property="og:title" content="The Rock" />
+        <meta
+          data-react-helmet="true"
+          property="og:type"
+          content="video.movie"
+        />
+        <link
+          rel="canonical"
+          href={`${
+            process.env.REACT_APP_WEBSITE_URL
+          }${servicesRouterLinks?.serviceDetailsRoute(
+            params?.categoryId,
+            params?.subCategoryId,
+            params?.carId,
+            params?.serviceId
+          )}`}
+        />
+
+        <meta
+          data-react-helmet="true"
+          property="og:url"
+          content={`${
+            process.env.REACT_APP_WEBSITE_URL
+          }${servicesRouterLinks?.serviceDetailsRoute(
+            params?.categoryId,
+            params?.subCategoryId,
+            params?.carId,
+            params?.serviceId
+          )}`}
+          data-rh="true"
+        />
+        <meta
+          data-react-helmet="true"
+          property="og:image"
+          content={fetchedServiceDetails?.service?.image}
+          data-rh="true"
+        />
+
+        <meta
+          data-react-helmet="true"
+          name="description"
+          content="Beginner friendly page for learning React Helmet."
+        />
+        <meta data-react-helmet="true" property="og:title" content="The Rock" />
+        <meta
+          data-react-helmet="true"
+          property="og:type"
+          content="video.movie"
+        />
+      </Helmet>
+      <div className="shared-custom-page service-details-page">
+        <CustomBreadcrubm
+          arr={[
+            {
+              title: t('breadcrumb_section.home'),
+              isLink: true,
+              to: routerLinks.homePage
+            },
+            {
+              title: t('breadcrumb_section.categories'),
+              isLink: true,
+              to: routerLinks?.categoriesRoute
+            },
+            {
+              title: fetchedServiceDetails?.service?.mainCat?.name,
+              isLink: true,
+              to: routerLinks?.subCategoriesRoute(params?.categoryId)
+            },
+            {
+              title: fetchedServiceDetails?.service?.car?.name,
+              isLink: true,
+              to: routerLinks?.carsRoute(
+                params?.categoryId,
+                params?.subCategoryId
+              )
+            },
+            {
+              title: t('breadcrumb_section.services'),
+              isLink: true,
+              to: routerLinks?.servicesRoute(
+                params?.categoryId,
+                params?.subCategoryId,
+                params?.carId
+              )
+            },
+            {
+              title: fetchedServiceDetails?.service?.name,
+              isLink: false
+            }
+          ]}
+        />
+
+        <div className="custom-container">
+          <section className="service-details-section">
+            <div className="gallery-details-wrap">
+              <div className="gallery-wrap">
+                {fetchedServiceDetails?.service?.images?.length > 0 ? (
+                  <ImageGallery
+                    items={
+                      fetchedServiceDetails?.service?.images?.length > 0
+                        ? renderGalleryImages()
+                        : []
+                    }
+                  />
+                ) : (
+                  <CustomImage
+                    className="service-details-fallback-img"
+                    src={fetchedServiceDetails?.service?.image}
+                  />
+                )}
+              </div>
+              <div className="details-parent-wrap">
+                {fetchedServiceDetails?.service?.name && (
+                  <div className="service-name">
+                    <div className="icon-wrap">
+                      <CustomImage src={techSuppImg} />
+                    </div>
+                    <span className="name-span">
+                      {fetchedServiceDetails?.service?.name}
+                    </span>
                   </div>
-                  <span className="name-span">
-                    {fetchedServiceDetails?.service?.name}
-                  </span>
-                </div>
-              )}
+                )}
 
-              <Tabs
-                defaultActiveKey="1"
-                items={[
-                  {
-                    key: '1',
-                    label:
-                      i18n.language === 'ar' ? 'وصف الخدمة' : 'Description',
-                    children: (
-                      <div className="desc-tab-content">
-                        {fetchedServiceDetails?.service?.desc && (
-                          <div className="desc-details">
-                            {parse(fetchedServiceDetails.service.desc)}
-                          </div>
-                        )}
-
-                        <div className="price-q-wrapper">
-                          {fetchedServiceDetails?.service?.price && (
-                            <div className="price-wrap">
-                              <div className="price-itself">
-                                {fetchedServiceDetails?.service?.price}{' '}
-                                {i18n.language === 'ar' ? 'جنيه' : 'LE'}
-                              </div>
+                <Tabs
+                  defaultActiveKey="1"
+                  items={[
+                    {
+                      key: '1',
+                      label:
+                        i18n.language === 'ar' ? 'وصف الخدمة' : 'Description',
+                      children: (
+                        <div className="desc-tab-content">
+                          {fetchedServiceDetails?.service?.desc && (
+                            <div className="desc-details">
+                              {parse(fetchedServiceDetails.service.desc)}
                             </div>
                           )}
 
-                          <div className="quantity-wrap">
-                            <span>
-                              {i18n.language === 'ar'
-                                ? 'الكمية المتبقية'
-                                : 'Lefted Quantity'}
-                            </span>
-                            <span>
-                              {' '}
-                              ( {fetchedServiceDetails?.service?.quantity} )
-                            </span>
-                          </div>
-                        </div>
+                          <div className="price-q-wrapper">
+                            {fetchedServiceDetails?.service?.price && (
+                              <div className="price-wrap">
+                                <div className="price-itself">
+                                  {fetchedServiceDetails?.service?.price}{' '}
+                                  {i18n.language === 'ar' ? 'جنيه' : 'LE'}
+                                </div>
+                              </div>
+                            )}
 
-                        <div className="order-message-links-wrap">
-                          {/* <button
+                            <div className="quantity-wrap">
+                              <span>
+                                {i18n.language === 'ar'
+                                  ? 'الكمية المتبقية'
+                                  : 'Lefted Quantity'}
+                              </span>
+                              <span>
+                                {' '}
+                                ( {fetchedServiceDetails?.service?.quantity} )
+                              </span>
+                            </div>
+                          </div>
+
+                          <div className="order-message-links-wrap">
+                            {/* <button
                           className="message-btn"
                           onClick={() => setModalOpened(true)}
                         >
@@ -254,161 +351,176 @@ const ServiceDetailsPage = () => {
                           </span>
                         </button> */}
 
-                          <a
-                            className={`whatsapp-link ${i18n.dir()}`}
-                            href={`https://wa.me/${fetchedServiceDetails.service.store.store_whatsapp}`}
-                            target="_blank"
-                            rel="noreferrer"
-                          >
-                            <img src={whatsAppImg} alt="whats app" />
-                            <span>
-                              {i18n.language === 'ar' && 'تحدث إلى البائع'}
-                              {i18n.language === 'en' && 'Contact Store'}
-                            </span>
-                          </a>
-
-                          {fetchedServiceDetails?.service?.price && (
-                            <RouterLink
-                              className="make-order-link"
-                              to={routerLinks?.serviceMakeOrderRoute(
-                                params?.categoryId,
-                                params?.subCategoryId,
-                                params?.carId,
-                                fetchedServiceDetails?.service?.id
-                              )}
+                            <a
+                              className={`whatsapp-link ${i18n.dir()}`}
+                              href={`https://wa.me/${fetchedServiceDetails.service.store.store_whatsapp}`}
+                              target="_blank"
+                              rel="noreferrer"
                             >
-                              {i18n.language === 'ar'
-                                ? 'اطلب الان'
-                                : 'Order Now'}
-                            </RouterLink>
-                          )}
-                        </div>
-                      </div>
-                    )
-                  },
-                  {
-                    key: '2',
-                    label:
-                      i18n.language === 'ar'
-                        ? 'تواصل مع البائع'
-                        : 'Contact Seller',
-                    children:
-                      fetchedServiceDetails?.service?.store &&
-                      renderStoreDetails(fetchedServiceDetails.service.store)
-                  },
-                  {
-                    key: '3',
-                    label:
-                      i18n.language === 'ar' ? 'الإرشـــادات' : 'Instructions',
-                    children:
-                      fetchedServiceDetails?.service &&
-                      renderInstructions(fetchedServiceDetails.service)
-                  }
-                ]}
-              />
-              <div className="share-report-service-btns">
-                <button
-                  className="report-service-btn"
-                  onClick={() => {
-                    if (user) {
-                      setReportModalOpened(true);
-                    } else {
-                      history.push(routerLinks?.signinPage);
-                    }
-                  }}
-                >
-                  {i18n.language === 'ar'
-                    ? 'الابلاغ عن شكوى'
-                    : 'Report Service'}
-                </button>
+                              <img src={whatsAppImg} alt="whats app" />
+                              <span>
+                                {i18n.language === 'ar' && 'تحدث إلى البائع'}
+                                {i18n.language === 'en' && 'Contact Store'}
+                              </span>
+                            </a>
 
-                <div className="links-wrap">
-                  <span>
-                    {i18n.language === 'ar' ? 'شارك الخدمة' : 'Share service'}
-                  </span>
-                  <FacebookShareButton
-                    url={`${
-                      process.env.REACT_APP_WEBSITE_URL
-                    }${servicesRouterLinks?.serviceDetailsRoute(
-                      params?.categoryId,
-                      params?.subCategoryId,
-                      params?.carId,
-                      params?.serviceId
-                    )}`}
-                    title={`${fetchedServiceDetails?.service?.name}\n${fetchedServiceDetails?.service?.desc}`}
-                  >
-                    <img src={fbImg} alt="fb" />
-                  </FacebookShareButton>
-                  <WhatsappShareButton
-                    url={`${
-                      process.env.REACT_APP_WEBSITE_URL
-                    }${servicesRouterLinks?.serviceDetailsRoute(
-                      params?.categoryId,
-                      params?.subCategoryId,
-                      params?.carId,
-                      params?.serviceId
-                    )}`}
-                    title={`${fetchedServiceDetails?.service?.name}\n${fetchedServiceDetails?.service?.desc}`}
-                    separator={'\n'}
-                    children={
-                      <img
-                        src={fetchedServiceDetails?.service?.image}
-                        alt="details"
-                      />
+                            {fetchedServiceDetails?.service?.price && (
+                              <RouterLink
+                                className="make-order-link"
+                                to={routerLinks?.serviceMakeOrderRoute(
+                                  params?.categoryId,
+                                  params?.subCategoryId,
+                                  params?.carId,
+                                  fetchedServiceDetails?.service?.id
+                                )}
+                              >
+                                {i18n.language === 'ar'
+                                  ? 'اطلب الان'
+                                  : 'Order Now'}
+                              </RouterLink>
+                            )}
+                          </div>
+                        </div>
+                      )
+                    },
+                    {
+                      key: '2',
+                      label:
+                        i18n.language === 'ar'
+                          ? 'تواصل مع البائع'
+                          : 'Contact Seller',
+                      children:
+                        fetchedServiceDetails?.service?.store &&
+                        renderStoreDetails(fetchedServiceDetails.service.store)
+                    },
+                    {
+                      key: '3',
+                      label:
+                        i18n.language === 'ar'
+                          ? 'الإرشـــادات'
+                          : 'Instructions',
+                      children:
+                        fetchedServiceDetails?.service &&
+                        renderInstructions(fetchedServiceDetails.service)
                     }
+                  ]}
+                />
+                <div className="share-report-service-btns">
+                  <button
+                    className="report-service-btn"
+                    onClick={() => {
+                      if (user) {
+                        setReportModalOpened(true);
+                      } else {
+                        history.push(routerLinks?.signinPage);
+                      }
+                    }}
                   >
-                    <img src={whatsappImg} alt="whatsapp" />
-                  </WhatsappShareButton>
-                  <TwitterShareButton
-                    url={`${
-                      process.env.REACT_APP_WEBSITE_URL
-                    }${servicesRouterLinks?.serviceDetailsRoute(
-                      params?.categoryId,
-                      params?.subCategoryId,
-                      params?.carId,
-                      params?.serviceId
-                    )}`}
-                    title={`${fetchedServiceDetails?.service?.name}\n${fetchedServiceDetails?.service?.desc}`}
-                  >
-                    <img src={twitterImg} alt="twitter" />
-                  </TwitterShareButton>
-                  <TelegramShareButton
-                    url={`${
-                      process.env.REACT_APP_WEBSITE_URL
-                    }${servicesRouterLinks?.serviceDetailsRoute(
-                      params?.categoryId,
-                      params?.subCategoryId,
-                      params?.carId,
-                      params?.serviceId
-                    )}`}
-                    title={`${fetchedServiceDetails?.service?.name}\n${fetchedServiceDetails?.service?.desc}`}
-                  >
-                    <img src={telegramImg} alt="telegram" />
-                  </TelegramShareButton>
+                    {i18n.language === 'ar'
+                      ? 'الابلاغ عن شكوى'
+                      : 'Report Service'}
+                  </button>
+
+                  <div className="links-wrap">
+                    <span>
+                      {i18n.language === 'ar' ? 'شارك الخدمة' : 'Share service'}
+                    </span>
+
+                    <AsyncShareLoader
+                      url={fetchedServiceDetails?.service?.image}
+                    >
+                      <FacebookShareButton
+                        onClick={(e) => {
+                          copyToClipboard(
+                            `${fetchedServiceDetails?.service?.name}\n${
+                              fetchedServiceDetails?.service?.desc
+                            }\n${
+                              process.env.REACT_APP_WEBSITE_URL
+                            }${servicesRouterLinks?.serviceDetailsRoute(
+                              params?.categoryId,
+                              params?.subCategoryId,
+                              params?.carId,
+                              params?.serviceId
+                            )}`
+                          );
+                          setCopyCount((prev) => prev + 1);
+                        }}
+                      >
+                        <img src={fbImg} alt="fb" />
+                      </FacebookShareButton>
+                    </AsyncShareLoader>
+
+                    <AsyncShareLoader
+                      url={`${
+                        process.env.REACT_APP_WEBSITE_URL
+                      }${servicesRouterLinks?.serviceDetailsRoute(
+                        params?.categoryId,
+                        params?.subCategoryId,
+                        params?.carId,
+                        params?.serviceId
+                      )}`}
+                      // url="https://github.com/mfaibrahem"
+                    >
+                      <WhatsappShareButton
+                        onClick={() => {
+                          copyToClipboard('');
+                        }}
+                      >
+                        <img src={whatsappImg} alt="whatsapp" />
+                      </WhatsappShareButton>
+                    </AsyncShareLoader>
+
+                    <TwitterShareButton
+                      url={`${
+                        process.env.REACT_APP_WEBSITE_URL
+                      }${servicesRouterLinks?.serviceDetailsRoute(
+                        params?.categoryId,
+                        params?.subCategoryId,
+                        params?.carId,
+                        params?.serviceId
+                      )}`}
+                      title={`${fetchedServiceDetails?.service?.name}\n${fetchedServiceDetails?.service?.desc}`}
+                    >
+                      <img src={twitterImg} alt="twitter" />
+                    </TwitterShareButton>
+                    <TelegramShareButton
+                      url={`${
+                        process.env.REACT_APP_WEBSITE_URL
+                      }${servicesRouterLinks?.serviceDetailsRoute(
+                        params?.categoryId,
+                        params?.subCategoryId,
+                        params?.carId,
+                        params?.serviceId
+                      )}`}
+                      title={`${fetchedServiceDetails?.service?.name}\n${fetchedServiceDetails?.service?.desc}`}
+                    >
+                      <img src={telegramImg} alt="telegram" />
+                    </TelegramShareButton>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </div>
+        {modalOpened && (
+          <ContactSellerModal store={fetchedServiceDetails?.service?.store} />
+        )}
+        {reportModalOpened && (
+          <ReportServiceModal
+            modalOpened={reportModalOpened}
+            setModalOpened={setReportModalOpened}
+            serviceId={fetchedServiceDetails?.service?.id}
+          />
+        )}
+        {rateModalOpened && (
+          <StoreRateModal
+            modalOpened={rateModalOpened}
+            setModalOpened={setRateModalOpened}
+            storeId={fetchedServiceDetails?.service?.store?.id}
+          />
+        )}
       </div>
-      {modalOpened && (
-        <ContactSellerModal store={fetchedServiceDetails?.service?.store} />
-      )}
-      {reportModalOpened && (
-        <ReportServiceModal
-          modalOpened={reportModalOpened}
-          setModalOpened={setReportModalOpened}
-          serviceId={fetchedServiceDetails?.service?.id}
-        />
-      )}
-      {rateModalOpened && (
-        <StoreRateModal
-          modalOpened={rateModalOpened}
-          setModalOpened={setRateModalOpened}
-          storeId={fetchedServiceDetails?.service?.store?.id}
-        />
-      )}
-    </div>
+    </>
   );
 };
 

@@ -77,7 +77,7 @@ const ProfilePageForm = () => {
         }
       } catch (error) {
         // setIsLoading(false);
-        console.log(error);
+        // console.log(error);
       }
     };
 

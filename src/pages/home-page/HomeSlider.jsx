@@ -10,12 +10,12 @@ import './HomeSlider.scss';
 
 const HomeSlider = () => {
   const { i18n, t } = useTranslation();
-  const [sliderDir, setSliderDir] = useState(i18n.dir());
+  // const [sliderDir, setSliderDir] = useState(i18n.dir());
   const history = useHistory();
 
-  useEffect(() => {
-    setSliderDir(i18n.dir());
-  }, [i18n.dir()]);
+  // useEffect(() => {
+  //   setSliderDir(i18n.dir());
+  // }, [i18n.dir()]);
 
   function SamplePrevArrow(props) {
     const { className, style, onClick } = props;

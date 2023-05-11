@@ -189,8 +189,7 @@
     width: 44px;
     height: 44px;
     background-color: #f9f8f8;
-    // border-radius: 20px 5px 20px 5px;
-    border-radius: 50%;
+    border-radius: 50% !important;
     display: grid;
     place-items: center;
     .notification-btn-wrap {
@@ -220,9 +219,9 @@
 
 .notifications-dropdown-ul {
   // background-color: $main-app-color !important;
-  min-width: 232px;
+  // min-width: 232px;
+  // overflow: auto;
   max-width: 322px;
-  overflow: auto;
   @include mediaLg {
     max-width: 732px;
   }
@@ -276,4 +275,7 @@
       }
     }
   }
+}
+.ant-dropdown-menu {
+  min-width: 232px;
 }

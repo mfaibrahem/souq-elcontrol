@@ -271,6 +271,7 @@
   .share-report-service-btns {
     margin-top: 22px;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 22px;
     justify-content: space-between;

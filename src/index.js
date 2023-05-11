@@ -19,7 +19,7 @@ import './scss/index.scss';
 import 'slick-carousel/slick/slick.css';
 import { GeneralSettingsProvider } from './contexts/general-settings-context/GeneralSettingsContext';
 
-ReactDOM.render(
+ReactDOM.hydrate(
   <Suspense fallback={<Loading />}>
     <GeneralSettingsProvider>
       <UserProvider>

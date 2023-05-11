@@ -25,7 +25,7 @@ const convertPathToFile = async (filePath) => {
 
     return myFile;
   } catch (e) {
-    console.log(e);
+    // console.log(e);
   }
 };
 

@@ -85,11 +85,8 @@ const ServiceCenterSignupForm = () => {
     name: 'workTimes'
   });
 
-  console.log('watch : ', watch());
-  console.log('errors : ', errors);
-
   const [successOrder, setSuccessOrder] = useState(false);
-  const [orderRes, setOrderRes] = useState(null);
+  // const [orderRes, setOrderRes] = useState(null);
   const { allFetchedCities } = useCities();
   const customApiRequest = useCustomApiRequest();
   const onSubmit = async (data) => {
@@ -125,9 +122,6 @@ const ServiceCenterSignupForm = () => {
         formData.append('workTimes[]', i);
       }
     }
-    for (var pair of formData.entries()) {
-      console.log(pair[0] + ', ' + pair[1]);
-    }
     setIsSubmittingForm(true);
     customApiRequest(
       createStoreApi(formData, i18n.language),
@@ -153,7 +147,7 @@ const ServiceCenterSignupForm = () => {
             services: ''
           });
           setSuccessOrder(true);
-          setOrderRes(res.data.data);
+          // setOrderRes(res.data.data);
           successNotification({
             title: 'Operation done successfully',
             message: 'Order placed successfully'
@@ -679,7 +673,7 @@ const ServiceCenterSignupForm = () => {
           <Button
             className="link"
             onClick={() => {
-              setOrderRes(null);
+              // setOrderRes(null);
               setSuccessOrder(false);
             }}
           >

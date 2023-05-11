@@ -117,7 +117,6 @@ const CustomMap = (props) => {
     setSelectedAddress('');
   }, []);
   const handleMarkerDragEnd = useCallback((e) => {
-    console.log(e);
     setSelecectedLocation({
       lat: e.latLng.lat(),
       lng: e.latLng.lng()
@@ -125,7 +124,7 @@ const CustomMap = (props) => {
   }, []);
 
   const onLoadInfoBox = useCallback((info) => {
-    console.log('infoBox: ', info);
+    // console.log('infoBox: ', info);
   }, []);
 
   if (loadError) return 'Error loading maps';

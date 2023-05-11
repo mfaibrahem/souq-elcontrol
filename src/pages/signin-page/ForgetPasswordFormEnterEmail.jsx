@@ -3,7 +3,7 @@ import { PhoneOutlined } from '@ant-design/icons';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Form } from 'antd';
 import React, { useContext } from 'react';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import * as Yup from 'yup';
 import { forgetPasswordEnterEmailApi } from '../../apis/auth/forgetPassApis';
@@ -13,9 +13,10 @@ import useCustomApiRequest from '../../custom-hooks/useCustomApiRequest';
 import checkRes from '../../utils/checkRes';
 import errorNotification from '../../utils/errorNotification';
 import successNotification from '../../utils/successNotification';
+import PhoneInput from 'react-phone-number-input';
 
 const ForgetPasswordFormEnterEmail = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const schema = Yup.object().shape({
     phone: Yup.string().required(t('signup_form.phone.errors.required'))
     // .email('ادخل بريد الكترونى صحيح')
@@ -86,11 +87,44 @@ const ForgetPasswordFormEnterEmail = () => {
       onFinish={handleSubmit(onSubmit)}
     >
       <div className="form-body">
-        <div className="text-field-label-wrap">
+        <div
+          className="country-code-phone-wrap"
+          style={{
+            marginBottom: 28
+          }}
+        >
+          <p
+            style={{
+              paddingBottom: 8
+            }}
+          >
+            {t('signin_form.login_key.label')}
+          </p>
+          <Controller
+            name="phone"
+            control={control}
+            // render={({ field: { onChange, onBlur, value, name, ref } }) => {
+            render={({ field }) => {
+              return (
+                <PhoneInput
+                  {...field}
+                  placeholder={t('signin_form.login_key.label')}
+                  // value={phoneValue}
+                  // onChange={setPhoneValue}
+                  defaultCountry="EG"
+                  className={`custom-phone-input ${i18n.dir()}`}
+                />
+              );
+            }}
+          />
+          <p className="error-p">{errors?.phone?.message}</p>
+        </div>
+
+        {/* <div className="text-field-label-wrap">
           <p className="label-p">{t('signup_form.phone.label')}</p>
           <div className="text-field-wrap">
             <AntdTextField
-              className="form-text-field"
+              className="form-text-field forget-input-field"
               name="phone"
               type="text"
               placeholder={t('signup_form.phone.label')}
@@ -100,7 +134,7 @@ const ForgetPasswordFormEnterEmail = () => {
               prefix={<PhoneOutlined />}
             />
           </div>
-        </div>
+        </div> */}
 
         {/* <AntdCheckbox name="remember" label="تذكرنى" control={control} /> */}
         <Button

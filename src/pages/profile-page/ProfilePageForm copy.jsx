@@ -73,7 +73,7 @@ const ProfilePageForm = () => {
         }
       } catch (error) {
         // setIsLoading(false);
-        console.log(error);
+        // console.log(error);
       }
     };
 
@@ -83,8 +83,6 @@ const ProfilePageForm = () => {
       isMounted = false;
     };
   }, [fetchCount]);
-
-  console.log('user : ', user);
 
   const [systemFilesToUpload, setSystemFilesToUpload] = useState(
     watch('image') ? watch('image') : null
@@ -196,7 +194,7 @@ const ProfilePageForm = () => {
         });
       }
     } catch (error) {
-      console.log('error');
+      // console.log('error');
       errorNotification({
         title: 'حدث خطأ',
         message: 'حاول فى وقت لاحق'

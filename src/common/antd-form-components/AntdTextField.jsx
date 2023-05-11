@@ -16,7 +16,8 @@ const AntdTextField = ({
   defaultValue,
   errorMsg,
   className,
-  onChange
+  onChange,
+  style
   // value
 }) => {
   const {
