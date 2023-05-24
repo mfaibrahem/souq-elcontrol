@@ -162,12 +162,13 @@ const MakeOrderPage = () => {
                 </span>
               </div>
             )}
-            <div
-              className="brief-wrap"
-              style={{
-                backgroundImage: `url(${fetchedServiceDetails?.service?.image})`
-              }}
-            >
+            <div className="brief-wrap">
+              <div
+                style={{
+                  backgroundImage: `url(${fetchedServiceDetails?.service?.image})`
+                }}
+                className="bg-wrap"
+              ></div>
               <div className="brief-overlay"></div>
 
               <div className="brief-content">

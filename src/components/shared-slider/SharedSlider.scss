@@ -22,18 +22,18 @@
     margin-top: 0;
 
     .slick-slide {
-      min-height: 50vh;
+      min-height: 48vh;
 
       @include mediaXXlg {
-        min-height: 40vh;
+        min-height: 38vh;
       }
     }
 
     .slide-wrap {
       border-radius: 0;
-      min-height: 50vh;
+      min-height: 48vh;
       @include mediaXXlg {
-        min-height: 40vh;
+        min-height: 38vh;
       }
       .section-text-wrap {
         color: #fff;

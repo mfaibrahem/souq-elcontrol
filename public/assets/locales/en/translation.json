@@ -115,7 +115,7 @@
       }
     },
     "cash": "Cash",
-    "visa": "Visa",
+    "visa": "Visa, master card, or credit card",
     "submit_btn": {
       "label": "Confirm Order"
     }

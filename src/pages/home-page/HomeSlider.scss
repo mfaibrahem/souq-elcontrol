@@ -121,7 +121,7 @@
             max-height: 45%;
             margin: auto;
             @include mediaLg {
-              width: 40%;
+              // width: 40%;
               height: auto;
               max-height: 100%;
             }
