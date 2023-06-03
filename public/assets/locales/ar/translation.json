@@ -519,6 +519,7 @@
   "currency": {
     "eg": "جنيه"
   },
+  "userProfile": "بروفايل المستخدم",
   "success_title": "العملية تمت بنجاح",
   "error_title": "حدث خطأ"
 }

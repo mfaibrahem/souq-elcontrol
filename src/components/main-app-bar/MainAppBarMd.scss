@@ -20,7 +20,7 @@
     // grid-template-columns: auto 1fr auto;
     grid-auto-flow: column;
     justify-content: space-between;
-    gap: 14px;
+    gap: 5px;
     align-items: center;
 
     .main-app-bar-logo {
@@ -48,8 +48,8 @@
     }
 
     .main-app-search-form {
-      position: absolute;
-      top: 62px;
+      // position: absolute;
+      top: 8px;
       left: 6%;
       right: 6%;
 

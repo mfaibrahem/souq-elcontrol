@@ -1,9 +1,9 @@
 import React from 'react';
-import ProfilePageForm from './ProfilePageForm';
-import './ProfilePage.scss';
-import routerLinks from '../../components/app/routerLinks';
 import { useTranslation } from 'react-i18next';
 import CustomBreadcrubm from '../../common/bread-crumb/Breadcrubm';
+import routerLinks from '../../components/app/routerLinks';
+import './ProfilePage.scss';
+import ProfilePageForm from './ProfilePageForm';
 
 const ProfilePage = () => {
   const { t } = useTranslation();
@@ -25,7 +25,7 @@ const ProfilePage = () => {
       <div className="custom-container">
         <div className="page-head-wrap">
           <div className="page-title">
-            <h2 className="bold-font">بروفايل المستخدم</h2>
+            <h2 className="bold-font">{t('userProfile')}</h2>
           </div>
         </div>
 

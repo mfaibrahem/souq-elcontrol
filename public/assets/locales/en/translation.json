@@ -519,6 +519,7 @@
   "currency": {
     "eg": "LE"
   },
+  "userProfile": "User Profile",
   "success_title": "Operation done successfully",
   "error_title": "Something went wrong"
 }

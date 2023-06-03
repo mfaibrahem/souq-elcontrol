@@ -79,6 +79,10 @@
     }
   }
   .service-details-fallback-img {
+    img,
+    svg {
+      max-width: 100%;
+    }
     svg {
       max-height: 500px !important;
     }

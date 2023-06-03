@@ -22,10 +22,10 @@ const schema = Yup.object().shape({
   phone: Yup.string()
     .required('ادخل رقم الهاتف')
     // .matches(/^[0-9]+$/, 'لا يسمح الا بكتابة الارقام')
-    .min(10, 'اقل حد 10 ارقام'),
-  email: Yup.string()
-    .required('ادخل البريد الاكترونى')
-    .email('ادخل بريد الكترونى صحيح')
+    .min(10, 'اقل حد 10 ارقام')
+  // email: Yup.string()
+  //   .required('ادخل البريد الاكترونى')
+  //   .email('ادخل بريد الكترونى صحيح')
 });
 
 const ProfilePageForm = () => {
@@ -44,13 +44,13 @@ const ProfilePageForm = () => {
     defaultValues: {
       name: '',
       phone: '',
-      email: '',
+      // email: '',
       password: '',
       image: null
     }
   });
 
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
   const { user, setCurrentUser } = useContext(UserContext);
   const [passwrodVisible, setPasswordVisible] = React.useState(false);
   const [fetchCount, setFetchCount] = useState(0);
@@ -97,9 +97,9 @@ const ProfilePageForm = () => {
       if (user?.phone) {
         setValue('phone', user.phone);
       }
-      if (user?.email) {
-        setValue('email', user.email);
-      }
+      // if (user?.email) {
+      //   setValue('email', user.email);
+      // }
     }
   }, [user]);
 
@@ -115,7 +115,7 @@ const ProfilePageForm = () => {
       const mappedData = new FormData();
       if (data.name) mappedData.append('name', data.name);
       if (data.phone) mappedData.append('phone', data.phone);
-      if (data.email) mappedData.append('email', data.email);
+      // if (data.email) mappedData.append('email', data.email);
       if (data.image) mappedData.append('image', data.image[0]);
       const res = await updateProfileApi(user?.token, mappedData);
       if (checkRes(res)) {
@@ -148,13 +148,13 @@ const ProfilePageForm = () => {
     >
       <div className="form-body">
         <div className="text-field-label-wrap">
-          <p className="label-p">الاســــم</p>
+          <p className="label-p">{t('signup_form.name.label')}</p>
           <div className="text-field-wrap">
             <AntdTextField
               className="form-text-field"
               name="name"
               type="text"
-              placeholder="الاســــم..."
+              placeholder={t('signup_form.name.label')}
               errorMsg={errors?.name?.message}
               validateStatus={errors?.name ? 'error' : ''}
               control={control}
@@ -183,7 +183,7 @@ const ProfilePageForm = () => {
               return (
                 <PhoneInput
                   {...field}
-                  placeholder="رقم الهاتف"
+                  placeholder={t('signup_form.phone.label')}
                   // value={phoneValue}
                   // onChange={setPhoneValue}
                   defaultCountry="EG"
@@ -209,7 +209,7 @@ const ProfilePageForm = () => {
             />
           </div>
         </div> */}
-        <div className="text-field-label-wrap">
+        {/* <div className="text-field-label-wrap">
           <p className="label-p">البريد الاكترونى</p>
           <div className="text-field-wrap">
             <AntdTextField
@@ -222,7 +222,7 @@ const ProfilePageForm = () => {
               control={control}
             />
           </div>
-        </div>
+        </div> */}
         <div className="login-password-field-wrap">
           <AntdTextField
             className="form-text-field"
@@ -253,7 +253,7 @@ const ProfilePageForm = () => {
 
         <FileInput
           name="image"
-          label="صورة المستخدم"
+          label={i18n?.language === 'ar' ? 'صوره المستخدم' : 'Profile image'}
           // accept="image/png, image/jpg, image/jpeg, image/gif"
           accept="image/*"
           multiple={false}
@@ -280,7 +280,7 @@ const ProfilePageForm = () => {
           // icon={<LoginOutlined />}
           loading={isSubmitting}
         >
-          حفظ
+          {i18n.language === 'ar' ? 'حفظ' : 'Save'}
         </Button>
       </div>
     </Form>

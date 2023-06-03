@@ -29,10 +29,15 @@ import ReportServiceModal from './ReportServiceModal';
 import './ServiceDetailsPage.scss';
 import StoreRateModal from './StoreRateModal';
 import { Helmet } from 'react-helmet-async';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import copy from 'copy-to-clipboard';
+import useCopyToClipboard from '../../custom-hooks/useCopyToClipboard';
 
-const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+// const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const ServiceDetailsPage = () => {
+  const [copyToClipboard, copyResult] = useCopyToClipboard();
+
   const params = useParams();
   const history = useHistory();
   const { t, i18n } = useTranslation();
@@ -55,6 +60,25 @@ const ServiceDetailsPage = () => {
       });
     }
   }, [copyCount]);
+
+  //AsyncShareLoader.jsx
+  const AsyncShareLoader = ({ url, children }) => {
+    const loading = !url;
+    return (
+      <div style={{ filter: `grayscale(${loading ? '100%' : '0%'}` }}>
+        {React.Children.map(children, (child) =>
+          React.cloneElement(child, {
+            disabled: loading,
+            url: loading ? 'none' : url,
+            title: `${fetchedServiceDetails?.service?.name}\n${fetchedServiceDetails?.service?.desc}`,
+            quote: `${fetchedServiceDetails?.service?.name}\n${fetchedServiceDetails?.service?.desc}`,
+            openShareDialogOnClick: !loading,
+            separator: '\n'
+          })
+        )}
+      </div>
+    );
+  };
 
   const renderGalleryImages = () => {
     return fetchedServiceDetails.service.images.map((img) => {
@@ -149,30 +173,14 @@ const ServiceDetailsPage = () => {
         <meta
           data-react-helmet="true"
           name="description"
-          content={`${fetchedServiceDetails?.service?.name}\n${fetchedServiceDetails?.service?.desc}`}
+          content="Beginner friendly page for learning React Helmet."
         />
 
-        <meta
-          data-react-helmet="true"
-          property="og:title"
-          content={fetchedServiceDetails?.service?.car?.name}
-        />
+        <meta data-react-helmet="true" property="og:title" content="The Rock" />
         <meta
           data-react-helmet="true"
           property="og:type"
           content="video.movie"
-        />
-        <meta
-          data-react-helmet="true"
-          property="og:url"
-          content={`${
-            process.env.REACT_APP_WEBSITE_URL
-          }${servicesRouterLinks?.serviceDetailsRoute(
-            fetchedServiceDetails?.service?.mainCat?.id,
-            fetchedServiceDetails?.service?.cat?.id,
-            fetchedServiceDetails?.service?.car?.id,
-            fetchedServiceDetails?.service?.id
-          )}`}
         />
         <link
           rel="canonical"
@@ -418,35 +426,49 @@ const ServiceDetailsPage = () => {
                       {i18n.language === 'ar' ? 'شارك الخدمة' : 'Share service'}
                     </span>
 
-                    <FacebookShareButton
-                      url={`${
-                        process.env.REACT_APP_WEBSITE_URL
-                      }${servicesRouterLinks?.serviceDetailsRoute(
-                        fetchedServiceDetails?.service?.mainCat?.id,
-                        fetchedServiceDetails?.service?.cat?.id,
-                        fetchedServiceDetails?.service?.car?.id,
-                        fetchedServiceDetails?.service?.id
-                      )}`}
-                      title={`${fetchedServiceDetails?.service?.name}\n${fetchedServiceDetails?.service?.desc}`}
-                      separator="\n"
+                    <AsyncShareLoader
+                      url={fetchedServiceDetails?.service?.image}
                     >
-                      <img src={fbImg} alt="fb" />
-                    </FacebookShareButton>
+                      <FacebookShareButton
+                        onClick={(e) => {
+                          copyToClipboard(
+                            `${fetchedServiceDetails?.service?.name}\n${
+                              fetchedServiceDetails?.service?.desc
+                            }\n${
+                              process.env.REACT_APP_WEBSITE_URL
+                            }${servicesRouterLinks?.serviceDetailsRoute(
+                              params?.categoryId,
+                              params?.subCategoryId,
+                              params?.carId,
+                              params?.serviceId
+                            )}`
+                          );
+                          setCopyCount((prev) => prev + 1);
+                        }}
+                      >
+                        <img src={fbImg} alt="fb" />
+                      </FacebookShareButton>
+                    </AsyncShareLoader>
 
-                    <WhatsappShareButton
+                    <AsyncShareLoader
                       url={`${
                         process.env.REACT_APP_WEBSITE_URL
                       }${servicesRouterLinks?.serviceDetailsRoute(
-                        fetchedServiceDetails?.service?.mainCat?.id,
-                        fetchedServiceDetails?.service?.cat?.id,
-                        fetchedServiceDetails?.service?.car?.id,
-                        fetchedServiceDetails?.service?.id
+                        params?.categoryId,
+                        params?.subCategoryId,
+                        params?.carId,
+                        params?.serviceId
                       )}`}
-                      title={`${fetchedServiceDetails?.service?.name}\n${fetchedServiceDetails?.service?.desc}`}
-                      separator="\n"
+                      // url="https://github.com/mfaibrahem"
                     >
-                      <img src={whatsappImg} alt="whatsapp" />
-                    </WhatsappShareButton>
+                      <WhatsappShareButton
+                        onClick={() => {
+                          copyToClipboard('');
+                        }}
+                      >
+                        <img src={whatsappImg} alt="whatsapp" />
+                      </WhatsappShareButton>
+                    </AsyncShareLoader>
 
                     <TwitterShareButton
                       url={`${
@@ -461,7 +483,6 @@ const ServiceDetailsPage = () => {
                     >
                       <img src={twitterImg} alt="twitter" />
                     </TwitterShareButton>
-
                     <TelegramShareButton
                       url={`${
                         process.env.REACT_APP_WEBSITE_URL

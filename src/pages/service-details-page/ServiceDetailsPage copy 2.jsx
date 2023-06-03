@@ -149,7 +149,7 @@ const ServiceDetailsPage = () => {
         <meta
           data-react-helmet="true"
           name="description"
-          content={`${fetchedServiceDetails?.service?.name}\n${fetchedServiceDetails?.service?.desc}`}
+          content="Beginner friendly page for learning React Helmet."
         />
 
         <meta
@@ -161,18 +161,6 @@ const ServiceDetailsPage = () => {
           data-react-helmet="true"
           property="og:type"
           content="video.movie"
-        />
-        <meta
-          data-react-helmet="true"
-          property="og:url"
-          content={`${
-            process.env.REACT_APP_WEBSITE_URL
-          }${servicesRouterLinks?.serviceDetailsRoute(
-            fetchedServiceDetails?.service?.mainCat?.id,
-            fetchedServiceDetails?.service?.cat?.id,
-            fetchedServiceDetails?.service?.car?.id,
-            fetchedServiceDetails?.service?.id
-          )}`}
         />
         <link
           rel="canonical"
@@ -419,21 +407,35 @@ const ServiceDetailsPage = () => {
                     </span>
 
                     <FacebookShareButton
-                      url={`${
-                        process.env.REACT_APP_WEBSITE_URL
-                      }${servicesRouterLinks?.serviceDetailsRoute(
-                        fetchedServiceDetails?.service?.mainCat?.id,
-                        fetchedServiceDetails?.service?.cat?.id,
-                        fetchedServiceDetails?.service?.car?.id,
-                        fetchedServiceDetails?.service?.id
-                      )}`}
+                      // url={`https://gogole.com`}
+                      // url={`${
+                      //   process.env.REACT_APP_WEBSITE_URL
+                      // }${servicesRouterLinks?.serviceDetailsRoute(
+                      //   fetchedServiceDetails?.service?.mainCat?.id,
+                      //   fetchedServiceDetails?.service?.cat?.id,
+                      //   fetchedServiceDetails?.service?.car?.id,
+                      //   fetchedServiceDetails?.service?.id
+                      // )}`}
+                      url="https://ecusouq.com/categories/1/sub-categories/20/cars/15/services/2/details"
                       title={`${fetchedServiceDetails?.service?.name}\n${fetchedServiceDetails?.service?.desc}`}
+                      beforeOnClick={async () => {
+                        await sleep(3000);
+                      }}
+                      hashtag="laksjdf "
                       separator="\n"
                     >
                       <img src={fbImg} alt="fb" />
                     </FacebookShareButton>
 
                     <WhatsappShareButton
+                      // url={`${
+                      //   process.env.REACT_APP_WEBSITE_URL
+                      // }${servicesRouterLinks?.serviceDetailsRoute(
+                      //   params?.categoryId,
+                      //   params?.subCategoryId,
+                      //   params?.carId,
+                      //   params?.serviceId
+                      // )}`}
                       url={`${
                         process.env.REACT_APP_WEBSITE_URL
                       }${servicesRouterLinks?.serviceDetailsRoute(
@@ -461,7 +463,6 @@ const ServiceDetailsPage = () => {
                     >
                       <img src={twitterImg} alt="twitter" />
                     </TwitterShareButton>
-
                     <TelegramShareButton
                       url={`${
                         process.env.REACT_APP_WEBSITE_URL

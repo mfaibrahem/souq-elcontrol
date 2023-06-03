@@ -4,7 +4,7 @@
   overflow: hidden;
   background-color: $main-app-color;
   @include heroHeight;
-  padding-top: 8px;
+  padding-top: 5px;
   display: grid;
   grid-template-rows: auto 1fr;
   ul {
@@ -47,10 +47,9 @@
   }
   .section-data {
     display: grid;
-    margin-top: 58px;
+    // margin-top: 3px;
     gap: 12px;
     @include mediaLg {
-      margin-top: 92px;
       margin-top: 32px;
       grid-template-columns: 1fr 1fr;
       gap: 32px;
@@ -68,7 +67,7 @@
         h1 {
           color: #fff;
           font-weight: bold;
-          font-size: 23px;
+          font-size: 21px;
           @include mediaLg {
             font-size: 38px;
           }
@@ -92,7 +91,7 @@
             color: $secondary-app-color;
           }
           &:nth-of-type(2) {
-            font-size: 22px;
+            font-size: 18px;
             @include mediaLg {
               font-size: 34px;
             }
@@ -107,7 +106,7 @@
       }
       .sub-title {
         font-weight: bold;
-        font-size: 26px;
+        font-size: 17px;
         @include mediaLg {
           font-size: 36px;
         }
@@ -118,13 +117,16 @@
     }
     .section-img-wrap {
       img {
-        width: 80%;
+        max-width: 70%;
+        max-height: 164px;
         display: block;
         margin: auto;
         @include mediaLg {
+          max-height: 100%;
           width: 100%;
+          max-width: 100%;
         }
-        max-width: 472px;
+        // max-width: 472px;
         @include mediaXXlg {
           max-width: 900px;
         }
