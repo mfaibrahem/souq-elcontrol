@@ -124,11 +124,12 @@
         @include mediaLg {
           max-height: 100%;
           width: 100%;
-          max-width: 100%;
+          // max-width: 100%;
+          max-width: 432px;
         }
         // max-width: 472px;
         @include mediaXXlg {
-          max-width: 900px;
+          max-width: 532px;
         }
         animation: bounceMe 10s linear infinite forwards;
         @keyframes bounceMe {

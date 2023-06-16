@@ -149,7 +149,8 @@ const ServiceDetailsPage = () => {
         <meta
           data-react-helmet="true"
           name="description"
-          content={`${fetchedServiceDetails?.service?.name}\n${fetchedServiceDetails?.service?.desc}`}
+          content={`${fetchedServiceDetails?.service?.name}
+${fetchedServiceDetails?.service?.desc}`}
         />
 
         <meta
@@ -427,8 +428,8 @@ const ServiceDetailsPage = () => {
                         fetchedServiceDetails?.service?.car?.id,
                         fetchedServiceDetails?.service?.id
                       )}`}
-                      title={`${fetchedServiceDetails?.service?.name}\n${fetchedServiceDetails?.service?.desc}`}
-                      separator="\n"
+                      title={`${fetchedServiceDetails?.service?.name}
+${fetchedServiceDetails?.service?.desc}`}
                     >
                       <img src={fbImg} alt="fb" />
                     </FacebookShareButton>
@@ -442,8 +443,9 @@ const ServiceDetailsPage = () => {
                         fetchedServiceDetails?.service?.car?.id,
                         fetchedServiceDetails?.service?.id
                       )}`}
-                      title={`${fetchedServiceDetails?.service?.name}\n${fetchedServiceDetails?.service?.desc}`}
-                      separator="\n"
+                      title={`${fetchedServiceDetails?.service?.name}
+${fetchedServiceDetails?.service?.desc}
+`}
                     >
                       <img src={whatsappImg} alt="whatsapp" />
                     </WhatsappShareButton>
@@ -457,7 +459,8 @@ const ServiceDetailsPage = () => {
                         params?.carId,
                         params?.serviceId
                       )}`}
-                      title={`${fetchedServiceDetails?.service?.name}\n${fetchedServiceDetails?.service?.desc}`}
+                      title={`${fetchedServiceDetails?.service?.name}
+${fetchedServiceDetails?.service?.desc}`}
                     >
                       <img src={twitterImg} alt="twitter" />
                     </TwitterShareButton>
@@ -471,7 +474,8 @@ const ServiceDetailsPage = () => {
                         params?.carId,
                         params?.serviceId
                       )}`}
-                      title={`${fetchedServiceDetails?.service?.name}\n${fetchedServiceDetails?.service?.desc}`}
+                      title={`${fetchedServiceDetails?.service?.name}\n
+                      ${fetchedServiceDetails?.service?.desc}`}
                     >
                       <img src={telegramImg} alt="telegram" />
                     </TelegramShareButton>
