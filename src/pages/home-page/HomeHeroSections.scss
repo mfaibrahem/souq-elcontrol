@@ -67,7 +67,7 @@
         h1 {
           color: #fff;
           font-weight: bold;
-          font-size: 21px;
+          font-size: 38px;
           @include mediaLg {
             font-size: 38px;
           }
@@ -91,7 +91,7 @@
             color: $secondary-app-color;
           }
           &:nth-of-type(2) {
-            font-size: 18px;
+            font-size: 22px;
             @include mediaLg {
               font-size: 34px;
             }
@@ -106,7 +106,7 @@
       }
       .sub-title {
         font-weight: bold;
-        font-size: 17px;
+        font-size: 22px;
         @include mediaLg {
           font-size: 36px;
         }
@@ -117,8 +117,8 @@
     }
     .section-img-wrap {
       img {
-        max-width: 70%;
-        max-height: 164px;
+        max-width: 90%;
+        max-height: 222px;
         display: block;
         margin: auto;
         @include mediaLg {
