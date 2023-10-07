@@ -36,7 +36,10 @@ const Routes = () => {
       </Route>
 
       <Route exact path={routerLinks.signupPage}>
-        {!loggedIn ? <SignupPage /> : <Redirect to={routerLinks.notFound} />}
+        {!loggedIn ?
+          <ForgetPasswordProvider>
+          <SignupPage />
+          </ForgetPasswordProvider> : <Redirect to={routerLinks.notFound} />}
       </Route>
       <Route exact path={routerLinks.signinPage}>
         {!loggedIn ? (

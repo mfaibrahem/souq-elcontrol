@@ -1,22 +1,27 @@
-import React, { useState, useContext } from 'react';
-import { Button } from 'antd';
-import useDigitInput from 'react-digit-input';
-import {
-  forgetPasswordEnterCodeApi,
-  forgetPasswordResendCodeApi
-} from '../../apis/auth/forgetPassApis';
+import React, { useContext, useState } from 'react';
+import { Button, Modal } from 'antd';
+import UserContext from '../../contexts/user-context/UserProvider';
+import useCustomApiRequest from '../../custom-hooks/useCustomApiRequest';
 import checkRes from '../../utils/checkRes';
 import successNotification from '../../utils/successNotification';
-import ForgetPasswordContext from '../../contexts/forget-password-context/ForgetPasswordContext';
 import errorNotification from '../../utils/errorNotification';
-import './ForgetPassword.scss';
-import useCustomApiRequest from '../../custom-hooks/useCustomApiRequest';
+import useDigitInput from 'react-digit-input';
+import ForgetPasswordContext from '../../contexts/forget-password-context/ForgetPasswordContext';
+import routerLinks from '../../components/app/routerLinks';
+import { useHistory } from 'react-router-dom';
+import { registerCheckActiveCode } from '../../apis/auth/signupApi';
+import { forgetPasswordResendCodeApi } from '../../apis/auth/forgetPassApis';
+
+
 
 const btnTypes = {
   confirmCode: 1,
   resendCode: 2
 };
-const ForgetPasswordFormEnterCode = () => {
+const RegisterOtpModal = () => {
+  const history = useHistory();
+  const { setUser, user } = useContext(ForgetPasswordContext);
+  const { setCurrentUser } = useContext(UserContext);
   const [submitCodeCount, setSubmitCodeCount] = React.useState(0);
   const [value, onChange] = React.useState('');
   const [err, setErr] = useState('');
@@ -28,11 +33,10 @@ const ForgetPasswordFormEnterCode = () => {
   });
 
   const {
-    setForgetPasswordFormEnterEmailAppended,
-    setForgetPasswordFormEnterCodeAppended,
-    setForgetPasswordFormResetPasswordAppended,
-    user
-  } = useContext(ForgetPasswordContext);
+    otpModalOpened,
+    setOtpModalOpened
+  } = useContext(UserContext);
+
   React.useEffect(() => {
     return () => {
       onChange('');
@@ -42,6 +46,7 @@ const ForgetPasswordFormEnterCode = () => {
     type: '',
     isLoading: false
   });
+
 
   const customApiRequest = useCustomApiRequest();
   const onSubmit = (e) => {
@@ -53,7 +58,7 @@ const ForgetPasswordFormEnterCode = () => {
         isLoading: true
       });
       customApiRequest(
-        forgetPasswordEnterCodeApi(user?.token, {
+        registerCheckActiveCode(user?.token, {
           code: value
         }),
         (res) => {
@@ -64,11 +69,11 @@ const ForgetPasswordFormEnterCode = () => {
           if (checkRes(res)) {
             successNotification({
               title: 'العملية تمت بنجاح',
-              message: res?.data?.message || 'الكود المرسل صحيح'
+              message: res?.data?.message || 'الكود صحيح'
             });
-            setForgetPasswordFormEnterEmailAppended(false);
-            setForgetPasswordFormEnterCodeAppended(false);
-            setForgetPasswordFormResetPasswordAppended(true);
+            setCurrentUser(user)
+            setUser(null)
+            history.push(routerLinks?.homePage);
           } else {
             setSubmitCodeCount((prev) => prev + 1);
             errorNotification({
@@ -101,7 +106,7 @@ const ForgetPasswordFormEnterCode = () => {
     });
     customApiRequest(
       forgetPasswordResendCodeApi(user?.token, {
-        check: 2 // 1 => in active user registeration resend code, 2 => in foreget password resend code
+        check: 1 // 1 => in active user registeration resend code, 2 => in foreget password resend code
       }),
       (res) => {
         setIsLoadingState({
@@ -134,55 +139,71 @@ const ForgetPasswordFormEnterCode = () => {
   };
 
   return (
-    <form onSubmit={onSubmit} className="forget-pass-digits-form">
-      <div className="digits-wrap">
-        <input inputMode="decimal" autoFocus {...digits[0]} />
-        <input inputMode="decimal" {...digits[1]} />
-        <input inputMode="decimal" {...digits[2]} />
-        <input inputMode="decimal" {...digits[3]} />
-      </div>
-      {err && (
-        <p style={{ color: 'red', textAlign: 'center', marginTop: 8 }}>{err}</p>
-      )}
+    <Modal
+      className="otp-modal shared-custom-modal"
+      width="90%"
+      style={{ maxWidth: '442px' }}
+      title="ادخل كــود التأكــيد"
+      open={otpModalOpened}
+      onOk={() => {
+        setOtpModalOpened(false);
+      }}
+      onCancel={() => {
+        setOtpModalOpened(false);
+      }}
+      footer={false}
+    >
+      <form onSubmit={onSubmit} className="forget-pass-digits-form">
+        <div className="digits-wrap">
+          <input inputMode="decimal" autoFocus {...digits[0]} />
+          <input inputMode="decimal" {...digits[1]} />
+          <input inputMode="decimal" {...digits[2]} />
+          <input inputMode="decimal" {...digits[3]} />
+        </div>
+        {err && (
+          <p style={{ color: 'red', textAlign: 'center', marginTop: 8 }}>{err}</p>
+        )}
 
-      <div
-        style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'center',
-          gap: 22
-        }}
-      >
-        <Button
-          className="submit-btn"
-          htmlType="submit"
-          type="primary"
-          // icon={<LoginOutlined />}
-          loading={
-            isLoadingState?.type === btnTypes.confirmCode &&
-            isLoadingState?.isLoading
-          }
+        <div
+          style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+            gap: 22
+          }}
         >
-          تأكيد الكود
-        </Button>
-        {submitCodeCount > 0 && (
           <Button
             className="submit-btn"
-            htmlType="button"
+            htmlType="submit"
             type="primary"
             // icon={<LoginOutlined />}
             loading={
-              isLoadingState?.type === btnTypes.resendCode &&
+              isLoadingState?.type === btnTypes.confirmCode &&
               isLoadingState?.isLoading
             }
-            onClick={onResendCode}
           >
-            إعادة الإرســال
+            تأكيد الكود
           </Button>
-        )}
-      </div>
-    </form>
+          {submitCodeCount > 0 && (
+            <Button
+              className="submit-btn"
+              htmlType="button"
+              type="primary"
+              // icon={<LoginOutlined />}
+              loading={
+                isLoadingState?.type === btnTypes.resendCode &&
+                isLoadingState?.isLoading
+              }
+              onClick={onResendCode}
+            >
+              إعادة الإرســال
+            </Button>
+          )}
+        </div>
+      </form>
+
+    </Modal>
   );
 };
 
-export default ForgetPasswordFormEnterCode;
+export default RegisterOtpModal;

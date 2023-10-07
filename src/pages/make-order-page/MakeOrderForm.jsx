@@ -90,7 +90,8 @@ const MakeOrderForm = () => {
             message: 'Order placed successfully'
           });
           if (res?.data?.data?.paymentMethod == 2) {
-            window.location.href = `https://ecusouq.com/backend/api/Fawry/payFawry?order_id=${res.data.data.id}`;
+            // window.location.href = `https://ecusouq.com/backend/api/Fawry/payFawry?order_id=${res.data.data.id}`;
+            window.location.href = `https://ecusouq.com/backend/api/kashier/makePay?order_id=${res?.data && res?.data?.data ? res.data.data.id : ''}`;
           } else {
             history.push(routerLinks?.myOrdersRoute);
           }

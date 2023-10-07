@@ -13,10 +13,11 @@ import EyeClosedIcon from '../../common/icons/EyeClosedIcon';
 import EyeOpenedIcon from '../../common/icons/EyeOpenedIcon';
 import TermsModal from '../../common/terms-modal/TermsModal';
 import routerLinks from '../../components/app/routerLinks';
-import ForgetPasswordContext from '../../contexts/forget-password-context/ForgetPasswordContext';
 import GeneralSettingsContext from '../../contexts/general-settings-context/GeneralSettingsContext';
 import useSignupEmailPassword from '../../custom-hooks/useSignupEmailPassowrd';
 import './SignupForm.scss';
+import UserContext from '../../contexts/user-context/UserProvider';
+import RegisterOtpModal from './RegisterOtpModal';
 // import useFirebaseDeviceToken from '../../custom-hooks/useFirebaseDeviceToken';
 
 const SignupForm = () => {
@@ -26,7 +27,7 @@ const SignupForm = () => {
   );
   const [termsModalOpened, setTermsModalOpened] = useState(false);
   const [passwrodVisible, setPasswordVisible] = React.useState(false);
-  useContext(ForgetPasswordContext);
+  const {setOtpModalOpened, otpModalOpened} = useContext(UserContext);
   const generalLabelStr = (v) => t(`signup_form.${v}.label`);
   const generalRequiredErrStr = (v) => t(`signup_form.${v}.errors.required`);
   const generalTypeErrorStr = (v) => t(`signup_form.${v}.errors.type_error`);
@@ -278,6 +279,8 @@ const SignupForm = () => {
           modalTitle={t('signup_form.termsTitle')}
         />
       }
+
+      <RegisterOtpModal/>
     </>
   );
 };

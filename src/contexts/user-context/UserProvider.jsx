@@ -1,4 +1,4 @@
-import React, { createContext, useReducer } from 'react';
+import React, { createContext, useReducer, useState } from 'react';
 import { setUser, removeUser, setUserToStateAction } from './user.actions';
 import userReducer from './user.reducer';
 import Cookies from 'js-cookie';
@@ -24,12 +24,15 @@ const contextInitialState = {
   ...INITIAL_STATE,
   setUserToState: (user) => {},
   setCurrentUser: (user) => {},
-  removeCurrentUser: () => {}
+  removeCurrentUser: () => {},
+  otpModalOpened: false,
+  setOtpModalOpened: v => {}
 };
 
 const UserContext = createContext(contextInitialState);
 
 export const UserProvider = ({ children }) => {
+  const [otpModalOpened, setOtpModalOpened] = useState(false)
   const [reducerState, dispatch] = useReducer(userReducer, INITIAL_STATE);
   const { user, loggedIn } = reducerState;
   const setCurrentUser = (cUser) => dispatch(setUser(cUser));
@@ -43,7 +46,9 @@ export const UserProvider = ({ children }) => {
         user,
         setUserToState,
         setCurrentUser,
-        removeCurrentUser
+        removeCurrentUser,
+        otpModalOpened,
+        setOtpModalOpened
       }}
     >
       {children}

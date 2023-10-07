@@ -18,7 +18,7 @@ const ForgetPasswordModal = () => {
     <Modal
       className="forget-password-modal shared-custom-modal"
       width="90%"
-      style={{ maxWidth: '642px' }}
+      style={{ maxWidth: '442px' }}
       title="هل نسيت كلمة المرور؟"
       open={forgetPasswordModalOpened}
       onOk={() => {
