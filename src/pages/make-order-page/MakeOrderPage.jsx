@@ -163,14 +163,6 @@ const MakeOrderPage = () => {
               </div>
             )}
             <div className="brief-wrap">
-              <div
-                style={{
-                  backgroundImage: `url(${fetchedServiceDetails?.service?.image})`
-                }}
-                className="bg-wrap"
-              ></div>
-              <div className="brief-overlay"></div>
-
               <div className="brief-content">
                 <Tabs
                   defaultActiveKey="1"
@@ -195,6 +187,11 @@ const MakeOrderPage = () => {
                               </div>
                             </div>
                           )}
+
+                          <CustomImage
+                            src={fetchedServiceDetails?.service?.image}
+                            className="service-img"
+                          />
                         </div>
                       )
                     },

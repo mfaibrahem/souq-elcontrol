@@ -35,14 +35,11 @@
       }
     }
     .brief-wrap {
-      background-size: cover;
-      background-position: center center;
-      background-repeat: no-repeat;
-      position: relative;
+      background-color: #fff;
       padding: 28px 32px;
       border-radius: 12px;
       overflow: hidden;
-      min-height: 432px;
+      min-height: 332px;
       align-self: start;
       .bg-wrap {
         position: absolute;
@@ -56,15 +53,6 @@
         right: 0;
         border-radius: 4px;
         overflow: hidden;
-      }
-      .brief-overlay {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        z-index: 2;
-        background-color: rgba(#f2f2f2, 0.8);
       }
       .brief-content {
         z-index: 3;
@@ -88,6 +76,17 @@
             font-weight: bold;
             color: $main-app-color;
             margin-right: 12px;
+          }
+        }
+
+        .service-img {
+          margin-top: 12px;
+          background-color: transparent;
+          svg {
+            width: 82px;
+          }
+          img {
+            max-width: 100%;
           }
         }
       }
