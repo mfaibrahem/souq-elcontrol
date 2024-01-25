@@ -254,22 +254,22 @@
         "required": "Please enter your services"
       }
     },
-    "managerName": {
-      "label": "Manager name",
+    "mangerName": {
+      "label": "manger name",
       "errors": {
-        "required": "Please enter manager name"
+        "required": "Please enter manger name"
       }
     },
-    "managerPhone": {
-      "label": "Manager phone number",
+    "mangerPhone": {
+      "label": "manger phone number",
       "errors": {
         "required": "Please enter phone",
         "type_error": "Only numbers allowed",
         "min": "Minimum of {{min}} characters"
       }
     },
-    "managerWhatsapp": {
-      "label": "Manager whatsapp number",
+    "mangerWhatsapp": {
+      "label": "manger whatsapp number",
       "errors": {
         "required": "Please enter whatsapp number",
         "type_error": "Only numbers allowed",
@@ -519,6 +519,9 @@
   "currency": {
     "eg": "LE"
   },
+  "confirm_order": "Confirm order",
+  "submit": "Submit",
+  "cancel": "Cancel",
   "userProfile": "User Profile",
   "success_title": "Operation done successfully",
   "error_title": "Something went wrong"

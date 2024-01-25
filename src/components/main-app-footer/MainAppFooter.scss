@@ -2,10 +2,12 @@
 
 .main-app-footer {
   background-color: $main-app-color;
-  padding: 4px 0;
+  // background-color: #f1f1f1;
+  background-color: #fff;
+  padding: 14px 0;
   text-align: center;
   font-size: 18px;
-  color: #fff;
+  border-top: 1px solid rgba(#000, 0.06);
 
   .footer-content {
     display: grid;
@@ -20,6 +22,24 @@
         max-width: 182px;
       }
     }
+
+    .footer-middle {
+      .partners-list {
+        margin-top: 18px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        justify-content: center;
+        align-items: center;
+        .p-img {
+          padding: 2px;
+          img {
+            width: 82px;
+            height: auto;
+          }
+        }
+      }
+    }
   }
   .footer-social-links {
     display: flex;
@@ -31,7 +51,8 @@
       place-items: center;
       width: 42px;
       height: 42px;
-      background-color: #fff;
+      background-color: #f1f1f1;
+      border: 1px solid rgba(#000, 0.03);
       border-radius: 50%;
     }
     img {

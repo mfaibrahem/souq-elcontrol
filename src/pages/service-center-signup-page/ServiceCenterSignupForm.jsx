@@ -91,6 +91,7 @@ const ServiceCenterSignupForm = () => {
   const customApiRequest = useCustomApiRequest();
   const onSubmit = async (data) => {
     const formData = new FormData();
+    formData.append('type', '2');
     if (data.name) formData.append('name', data.name);
     if (data.phone) formData.append('phone', data.phone);
     if (data.store_whatsapp)
@@ -105,8 +106,8 @@ const ServiceCenterSignupForm = () => {
     formData.append('lng', selectedLocation?.lng ? selectedLocation.lng : '');
     if (data.mangerName) formData.append('mangerName', data.mangerName);
     if (data.mangerPhone) formData.append('mangerPhone', data.mangerPhone);
-    if (data.managerWhatsapp)
-      formData.append('managerWhatsapp', `${data.managerWhatsapp}`);
+    if (data.mangerWhatsapp)
+      formData.append('mangerWhatsapp', `${data.mangerWhatsapp}`);
     if (data.services) formData.append('services', data.services);
     if (data.emergencyStatus)
       formData.append('emergencyStatus', data.emergencyStatus);
@@ -389,22 +390,22 @@ const ServiceCenterSignupForm = () => {
             </div>
           </div>
 
-          <div className="manager-data-wrap">
+          <div className="manger-data-wrap">
             <div className="text-field-label-wrap">
-              <p className="label-p">{sharedLabelTrans('managerName')}</p>
+              <p className="label-p">{sharedLabelTrans('mangerName')}</p>
               <div className="text-field-wrap">
                 <AntdTextField
                   className="form-text-field"
                   name="mangerName"
                   type="text"
-                  placeholder={sharedLabelTrans('managerName')}
+                  placeholder={sharedLabelTrans('mangerName')}
                   errorMsg={errors?.mangerName?.message}
                   validateStatus={errors?.mangerName ? 'error' : ''}
                   control={control}
                 />
               </div>
             </div>
-            <div className="manager-phones-wrapper">
+            <div className="manger-phones-wrapper">
               <div
                 className="country-code-phone-wrap"
                 style={{
@@ -426,7 +427,7 @@ const ServiceCenterSignupForm = () => {
                     return (
                       <PhoneInput
                         {...field}
-                        placeholder={sharedLabelTrans('managerPhone')}
+                        placeholder={sharedLabelTrans('mangerPhone')}
                         // value={phoneValue}
                         // onChange={setPhoneValue}
                         defaultCountry="EG"
@@ -449,7 +450,7 @@ const ServiceCenterSignupForm = () => {
                     paddingBottom: 8
                   }}
                 >
-                  {sharedLabelTrans('managerWhatsapp')}
+                  {sharedLabelTrans('mangerWhatsapp')}
                 </p>
                 <Controller
                   name="mangerWhatsapp"
@@ -459,7 +460,7 @@ const ServiceCenterSignupForm = () => {
                     return (
                       <PhoneInput
                         {...field}
-                        placeholder={sharedLabelTrans('managerWhatsapp')}
+                        placeholder={sharedLabelTrans('mangerWhatsapp')}
                         // value={phoneValue}
                         // onChange={setPhoneValue}
                         defaultCountry="EG"
@@ -482,8 +483,8 @@ const ServiceCenterSignupForm = () => {
                 name="services"
                 type="text"
                 placeholder={sharedLabelTrans('services')}
-                errorMsg={errors?.message?.message}
-                validateStatus={errors?.message ? 'error' : ''}
+                errorMsg={errors?.services?.message}
+                validateStatus={errors?.services ? 'error' : ''}
                 control={control}
               />
             </div>

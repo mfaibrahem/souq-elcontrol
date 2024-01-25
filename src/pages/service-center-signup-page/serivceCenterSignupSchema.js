@@ -49,30 +49,30 @@ const schema = (t) =>
     address: Yup.string().required(
       t('service_center_form.address.errors.required')
     ),
-    managerName: Yup.string().required(
-      t('service_center_form.managerName.errors.required')
+    mangerName: Yup.string().required(
+      t('service_center_form.mangerName.errors.required')
     ),
-    managerPhone: Yup.string()
-      .required(sharedRequiredErrTrans(t, 'managerPhone'))
+    mangerPhone: Yup.string()
+      .required(sharedRequiredErrTrans(t, 'mangerPhone'))
       // .matches(
       //   /^[0-9]+$/,
-      //   t('service_center_form.managerPhone.errors.type_error')
+      //   t('service_center_form.mangerPhone.errors.type_error')
       // )
       .min(
         10,
-        t('service_center_form.managerPhone.errors.min', {
+        t('service_center_form.mangerPhone.errors.min', {
           min: 10
         })
       ),
-    managerWhatsapp: Yup.string()
-      .required(sharedRequiredErrTrans(t, 'managerWhatsapp'))
+    mangerWhatsapp: Yup.string()
+      .required(sharedRequiredErrTrans(t, 'mangerWhatsapp'))
       // .matches(
       //   /^[0-9]+$/,
-      //   t('service_center_form.managerWhatsapp.errors.type_error')
+      //   t('service_center_form.mangerWhatsapp.errors.type_error')
       // )
       .min(
         10,
-        t('service_center_form.managerWhatsapp.errors.min', {
+        t('service_center_form.mangerWhatsapp.errors.min', {
           min: 10
         })
       ),

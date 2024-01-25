@@ -254,13 +254,13 @@
         "required": "من فضلك أدخل خدمات المركز"
       }
     },
-    "managerName": {
+    "mangerName": {
       "label": "إسم المدير",
       "errors": {
         "required": "من فضلك ادخل الاســـم"
       }
     },
-    "managerPhone": {
+    "mangerPhone": {
       "label": "رقم هاتف المدير",
       "errors": {
         "required": "من فضلك ادخل رقم الهاتف",
@@ -268,7 +268,7 @@
         "min": "أقل حد {{min}} حروف"
       }
     },
-    "managerWhatsapp": {
+    "mangerWhatsapp": {
       "label": "رقم واتس اب المدير",
       "errors": {
         "required": "من فضلك ادخل رقم الواتس أب",
@@ -519,6 +519,11 @@
   "currency": {
     "eg": "جنيه"
   },
+  "confirm_order": "تأكيد الطللب",
+  "cash_confirm": "سوف يتم تطبيق رسوم اضافية نظير خدمة الدفع عند الاستلام",
+  "online_confirm": "سوف يتم تطبيق رسوم اضافية نظير خدمة الدفع الالكتروني",
+  "submit": "تأكيــد",
+  "cancel": "الغــاء",
   "userProfile": "بروفايل المستخدم",
   "success_title": "العملية تمت بنجاح",
   "error_title": "حدث خطأ"

@@ -39,7 +39,7 @@ const CustomMap = (props) => {
 
   const [autoComplete, setAutoComplete] = useState(null);
   const [center, setCenter] = useState({ lat: '', lng: '' });
-  console.log('location : ', location);
+  // console.log('location : ', location);
   useEffect(() => {
     if (
       location?.loaded &&

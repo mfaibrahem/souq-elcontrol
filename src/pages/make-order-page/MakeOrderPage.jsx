@@ -221,7 +221,7 @@ const MakeOrderPage = () => {
             </div>
           </div>
           <div className="make-order-form-wrap">
-            <MakeOrderForm />
+            <MakeOrderForm price={fetchedServiceDetails?.service?.price ?? 0} />
           </div>
         </section>
       </div>

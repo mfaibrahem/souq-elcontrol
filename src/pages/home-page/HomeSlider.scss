@@ -63,6 +63,7 @@
 
     .content-wrap {
       .btns-links {
+        z-index: 3;
         a {
           pointer-events: all;
         }

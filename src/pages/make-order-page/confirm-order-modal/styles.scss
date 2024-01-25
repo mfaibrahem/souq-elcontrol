@@ -1,0 +1,26 @@
+.confirm-order-modal {
+  .confirm-text {
+    font-size: 22px;
+    text-align: center;
+    margin: 22px auto;
+  }
+  .modal-action-btns {
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+    margin-top: 32px;
+    border-top: 1px dashed rgba(#000, 0.1);
+    padding-top: 32px;
+
+    button {
+      height: auto;
+      cursor: pointer;
+      padding: 10px 22px;
+      border-radius: 8px;
+
+      &.cancel-btn {
+        background-color: rgba(#000, 0.15);
+      }
+    }
+  }
+}

@@ -170,6 +170,7 @@
             justify-content: center;
           }
           .shop-link {
+            pointer-events: all;
             justify-self: start;
             display: flex;
             background-color: $main-app-color;

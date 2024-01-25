@@ -73,6 +73,7 @@ const StartSellingForm = () => {
   const customApiRequest = useCustomApiRequest();
   const onSubmit = async (data) => {
     const formData = new FormData();
+    formData.append('type', '1');
     if (data.name) formData.append('name', data.name);
     if (data.nameOfStore) formData.append('nameOfStore', data.nameOfStore);
     if (data.phone) formData.append('phone', data.phone);

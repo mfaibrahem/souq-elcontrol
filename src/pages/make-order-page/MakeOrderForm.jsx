@@ -5,26 +5,59 @@ import { Button, Form } from 'antd';
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { useHistory, useParams } from 'react-router-dom';
-import makeOrderApi from '../../apis/orders-apis/makeOrderApi';
 import AntdRadioGroup from '../../common/antd-form-components/AntdRadioGroup';
 import AntdTextField from '../../common/antd-form-components/AntdTextField';
-import routerLinks from '../../components/app/routerLinks';
 import CustomMap from '../../components/custom-map/CustomMap';
-import UserContext from '../../contexts/user-context/UserProvider';
-import useCustomApiRequest from '../../custom-hooks/useCustomApiRequest';
-import checkRes from '../../utils/checkRes';
-import errorNotification from '../../utils/errorNotification';
-import successNotification from '../../utils/successNotification';
 import './MakeOrderForm.scss';
+import ConfirmOrderModal from './confirm-order-modal';
 import makeOrderSchema from './makeOrderSchema';
+import LoadingModal from '../../common/loading-modal/LoadingModal';
+import useCustomApiRequest from '../../custom-hooks/useCustomApiRequest';
+import { useHistory, useParams } from 'react-router-dom';
+import UserContext from '../../contexts/user-context/UserProvider';
+import makeOrderApi from '../../apis/orders-apis/makeOrderApi';
+import checkRes from '../../utils/checkRes';
+import successNotification from '../../utils/successNotification';
+import errorNotification from '../../utils/errorNotification';
+import routerLinks from '../../components/app/routerLinks';
 
-const MakeOrderForm = () => {
+export const makeOrderFormData = (data, selectedLocation, service_id) => {
+  const formData = new FormData();
+  if (data.address) formData.append('address', data.address);
+  if (data.city) formData.append('city', data.city);
+  if (data.area) formData.append('area', data.area);
+  if (data.paymentMethod) formData.append('paymentMethod', data.paymentMethod);
+  formData.append(
+    'lat',
+    selectedLocation?.lat ? selectedLocation.lat : '23.8859'
+  );
+  formData.append(
+    'lng',
+    selectedLocation?.lng ? selectedLocation.lng : '45.0792'
+  );
+  formData.append('service_id', service_id);
+
+  const mappedData = {};
+  if (data.address) mappedData.address = data.address;
+  if (data.city) mappedData.city = data.city;
+  if (data.area) mappedData.area = data.area;
+  if (data.paymentMethod) mappedData.paymentMethod = data.paymentMethod;
+  mappedData.service_id = service_id;
+  mappedData.lat = selectedLocation?.lat ? selectedLocation.lat : '23.8859';
+  mappedData.lng = selectedLocation?.lng ? selectedLocation.lng : '45.0792';
+
+  return mappedData;
+};
+
+const MakeOrderForm = ({ price }) => {
   // const [urls, setUrls] = React.useState([]);
+
+  const { i18n, t } = useTranslation();
+  const customApiRequest = useCustomApiRequest();
   const params = useParams();
   const history = useHistory();
   const { user } = useContext(UserContext);
-  const { i18n, t } = useTranslation();
+
   const [isSubmittingForm, setIsSubmittingForm] = useState(false);
   const [selectedLocation, setSelecectedLocation] = React.useState({
     lat: '',
@@ -34,6 +67,7 @@ const MakeOrderForm = () => {
   const schema = makeOrderSchema(t);
   const {
     control,
+    getValues,
     handleSubmit,
     formState: { errors }
   } = useForm({
@@ -52,32 +86,13 @@ const MakeOrderForm = () => {
   // console.log('watch : ', watch());
   // console.log('errors : ', errors);
 
-  const customApiRequest = useCustomApiRequest();
-  const onSubmit = async (data) => {
-    const formData = new FormData();
-    if (data.address) formData.append('address', data.address);
-    if (data.city) formData.append('city', data.city);
-    if (data.area) formData.append('area', data.area);
-    if (data.paymentMethod)
-      formData.append('paymentMethod', data.paymentMethod);
-    formData.append(
-      'lat',
-      selectedLocation?.lat ? selectedLocation.lat : '23.8859'
+  const handleMakeOrder = (data) => {
+    console.log(params);
+    const mappedData = makeOrderFormData(
+      data,
+      selectedLocation,
+      params?.serviceId
     );
-    formData.append(
-      'lng',
-      selectedLocation?.lng ? selectedLocation.lng : '45.0792'
-    );
-    formData.append('service_id', params?.serviceId);
-
-    const mappedData = {};
-    if (data.address) mappedData.address = data.address;
-    if (data.city) mappedData.city = data.city;
-    if (data.area) mappedData.area = data.area;
-    if (data.paymentMethod) mappedData.paymentMethod = data.paymentMethod;
-    mappedData.service_id = params?.serviceId;
-    mappedData.lat = selectedLocation?.lat ? selectedLocation.lat : '23.8859';
-    mappedData.lng = selectedLocation?.lng ? selectedLocation.lng : '45.0792';
 
     setIsSubmittingForm(true);
     customApiRequest(
@@ -91,7 +106,9 @@ const MakeOrderForm = () => {
           });
           if (res?.data?.data?.paymentMethod == 2) {
             // window.location.href = `https://ecusouq.com/backend/api/Fawry/payFawry?order_id=${res.data.data.id}`;
-            window.location.href = `https://ecusouq.com/backend/api/kashier/makePay?order_id=${res?.data && res?.data?.data ? res.data.data.id : ''}`;
+            window.location.href = `https://ecusouq.com/backend/api/kashier/makePay?order_id=${
+              res?.data && res?.data?.data ? res.data.data.id : ''
+            }`;
           } else {
             history.push(routerLinks?.myOrdersRoute);
           }
@@ -111,6 +128,17 @@ const MakeOrderForm = () => {
         });
       }
     );
+  };
+  const [confirmModalOpened, setConfirmModalOpened] = useState(false);
+
+  const onSubmit = async (data) => {
+    if (data.paymentMethod === '1') {
+      // * Cash
+      setConfirmModalOpened(true);
+    } else if (data.paymentMethod === '2') {
+      // * Visa
+      handleMakeOrder(data);
+    }
   };
 
   const [form] = Form.useForm();
@@ -171,8 +199,8 @@ const MakeOrderForm = () => {
           className="form-radio-group"
           control={control}
           label={t('make_order_form.payment_method.label')}
-          validateStatus={errors?.details_type ? 'error' : ''}
-          errorMsg={errors?.details_type?.message}
+          validateStatus={errors?.paymentMethod ? 'error' : ''}
+          errorMsg={errors?.paymentMethod?.message}
           radios={[
             {
               title: t('make_order_form.cash'),
@@ -210,6 +238,17 @@ const MakeOrderForm = () => {
           {t('make_order_form.submit_btn.label')}
         </Button>
       </div>
+
+      <ConfirmOrderModal
+        modalOpened={confirmModalOpened}
+        setModalOpened={setConfirmModalOpened}
+        data={getValues()}
+        price={price}
+        selectedLocation={selectedLocation}
+        setIsSubmittingForm={setIsSubmittingForm}
+      />
+
+      {isSubmittingForm && <LoadingModal />}
     </Form>
   );
 };

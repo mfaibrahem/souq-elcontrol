@@ -3,6 +3,7 @@
 .make-order-page {
   .make-order-section {
     margin-top: 32px;
+    padding-bottom: 42px;
     display: grid;
     @include mediaLg {
       grid-template-columns: 1.2fr 1fr;

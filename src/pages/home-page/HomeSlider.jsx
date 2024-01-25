@@ -122,15 +122,7 @@ const HomeSlider = () => {
           }}
         >
           <div className="custom-container">
-            <Link
-              to={routerLinks?.serviceDetailsRoute(
-                item?.mainCat?.id,
-                item?.cat?.id,
-                item?.car?.id,
-                item?.id
-              )}
-              className="slide-img-wrap"
-            >
+            <div className="slide-img-wrap">
               <img className="slide-img" src={item.image} alt="slide" />
 
               <div className="slide-text">
@@ -144,7 +136,17 @@ const HomeSlider = () => {
                           zIndex: 2
                         }}
                       >
-                        <div className="card-name">{item?.name}</div>
+                        <Link
+                          to={routerLinks?.serviceDetailsRoute(
+                            item?.mainCat?.id,
+                            item?.cat?.id,
+                            item?.car?.id,
+                            item?.id
+                          )}
+                          className="card-name"
+                        >
+                          {item?.name}
+                        </Link>
                         <div className="cat-sub-cat">
                           <p className="cat-p">{item?.mainCat?.name} / </p>
                           <p className="sub-cat-p">{item?.cat?.name}</p>
@@ -180,7 +182,7 @@ const HomeSlider = () => {
                   </div>
                 </div>
               </div>
-            </Link>
+            </div>
           </div>
         </div>
       </div>
