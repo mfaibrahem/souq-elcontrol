@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext } from 'react';
 import facebookImg from '../../assets/imgs/icons/facebook.png';
 import instagramImg from '../../assets/imgs/icons/instagram.png';

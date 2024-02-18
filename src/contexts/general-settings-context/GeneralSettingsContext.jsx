@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { createContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import getAboutUsApi from '../../apis/homepage/aboutUsApi';

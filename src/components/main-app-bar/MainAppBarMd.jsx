@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useContext } from 'react';
 import { Button, Drawer } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';

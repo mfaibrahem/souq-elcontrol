@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, Suspense } from 'react';
 import { Route, Switch, useHistory } from 'react-router-dom';
 import AOS from 'aos';

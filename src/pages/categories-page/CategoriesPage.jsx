@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import './CategoriesPage.scss';
 
 import React from 'react';

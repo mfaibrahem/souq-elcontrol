@@ -2,11 +2,14 @@
   "workbench.colorCustomizations": {
     "editor.selectionHighlightBackground": "#1f864a92",
     "editor.findMatchHighlightBackground": "#083787",
-    "editorIndentGuide.activeBackground": "#ff9eef",
     "editorIndentGuide.background": "#ffffff16",
+    "editorIndentGuide.activeBackground": "#ff9eef",
     "editor.selectionBackground": "#3b59533d"
   },
   "marquee.widgets.npm-stats.packageNames": [
     "ecusouq"
+  ],
+  "i18n-ally.localesPaths": [
+    "public/assets/locales"
   ]
 }

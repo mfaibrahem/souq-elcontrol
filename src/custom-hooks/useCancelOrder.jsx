@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import cancelOrderApi from '../apis/orders-apis/cancelOrder';

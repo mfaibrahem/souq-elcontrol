@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import getAllCarsApi from '../apis/categories-apis/getAllCarsApi';

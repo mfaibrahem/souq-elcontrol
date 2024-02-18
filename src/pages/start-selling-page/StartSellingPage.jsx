@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
 import routerLinks from '../../components/app/routerLinks';
 import { useTranslation } from 'react-i18next';

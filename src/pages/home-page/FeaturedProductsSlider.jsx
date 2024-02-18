@@ -1,5 +1,5 @@
 /* eslint-disable eqeqeq */
-/* eslint-disable react-hooks/exhaustive-deps */
+
 import { useTranslation } from 'react-i18next';
 import { LoadingOutlined } from '@ant-design/icons';
 import useSlider from '../../custom-hooks/useSlider';

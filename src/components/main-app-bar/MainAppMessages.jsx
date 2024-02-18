@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { CloudDownloadOutlined, LoadingOutlined } from '@ant-design/icons';
 import { Dropdown, Menu } from 'antd';
 import React, { useContext, useEffect } from 'react';

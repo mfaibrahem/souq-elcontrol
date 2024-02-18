@@ -1,5 +1,5 @@
 /* eslint-disable eqeqeq */
-/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useContext, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Form, Button } from 'antd';

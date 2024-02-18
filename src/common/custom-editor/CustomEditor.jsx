@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import { EditOutlined } from '@ant-design/icons';
 import { Editor } from 'react-draft-wysiwyg';

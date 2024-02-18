@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import HomeHeroSection from './HomeHeroSection';
 import CategoriesSection from '../../components/categories-section/CategoriesSection';

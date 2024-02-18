@@ -1,5 +1,5 @@
 /* eslint-disable eqeqeq */
-/* eslint-disable react-hooks/exhaustive-deps */
+
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Form } from 'antd';
 import React, { useContext, useState } from 'react';

@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, memo, useEffect } from 'react';
 import Geocode from 'react-geocode';
 import {

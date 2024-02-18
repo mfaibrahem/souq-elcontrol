@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
 import { useController } from 'react-hook-form';
 import { Form, Input } from 'antd';

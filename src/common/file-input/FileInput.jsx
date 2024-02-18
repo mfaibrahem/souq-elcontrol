@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useCallback, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
 import DeleteIcon from '../icons/DeleteIcon';

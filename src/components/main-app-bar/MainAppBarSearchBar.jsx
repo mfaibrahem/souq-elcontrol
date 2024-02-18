@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { LoadingOutlined } from '@ant-design/icons';
 import { Dropdown } from 'antd';
 import debounce from 'lodash.debounce';
