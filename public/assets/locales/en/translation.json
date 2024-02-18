@@ -524,5 +524,7 @@
   "cancel": "Cancel",
   "userProfile": "User Profile",
   "success_title": "Operation done successfully",
-  "error_title": "Something went wrong"
+  "error_title": "Something went wrong",
+  "support_emergency": "Support emergency status",
+  "dont_support_emergency": "Does not support emergency status"
 }

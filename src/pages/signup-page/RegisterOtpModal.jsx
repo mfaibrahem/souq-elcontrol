@@ -12,8 +12,6 @@ import { useHistory } from 'react-router-dom';
 import { registerCheckActiveCode } from '../../apis/auth/signupApi';
 import { forgetPasswordResendCodeApi } from '../../apis/auth/forgetPassApis';
 
-
-
 const btnTypes = {
   confirmCode: 1,
   resendCode: 2
@@ -32,10 +30,7 @@ const RegisterOtpModal = () => {
     onChange
   });
 
-  const {
-    otpModalOpened,
-    setOtpModalOpened
-  } = useContext(UserContext);
+  const { otpModalOpened, setOtpModalOpened } = useContext(UserContext);
 
   React.useEffect(() => {
     return () => {
@@ -46,7 +41,6 @@ const RegisterOtpModal = () => {
     type: '',
     isLoading: false
   });
-
 
   const customApiRequest = useCustomApiRequest();
   const onSubmit = (e) => {
@@ -71,8 +65,8 @@ const RegisterOtpModal = () => {
               title: 'العملية تمت بنجاح',
               message: res?.data?.message || 'الكود صحيح'
             });
-            setCurrentUser(user)
-            setUser(null)
+            setCurrentUser(user);
+            setUser(null);
             history.push(routerLinks?.homePage);
           } else {
             setSubmitCodeCount((prev) => prev + 1);
@@ -161,7 +155,9 @@ const RegisterOtpModal = () => {
           <input inputMode="decimal" {...digits[3]} />
         </div>
         {err && (
-          <p style={{ color: 'red', textAlign: 'center', marginTop: 8 }}>{err}</p>
+          <p style={{ color: 'red', textAlign: 'center', marginTop: 8 }}>
+            {err}
+          </p>
         )}
 
         <div
@@ -201,7 +197,6 @@ const RegisterOtpModal = () => {
           )}
         </div>
       </form>
-
     </Modal>
   );
 };

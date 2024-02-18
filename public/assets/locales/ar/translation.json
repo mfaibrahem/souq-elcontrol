@@ -526,5 +526,7 @@
   "cancel": "الغــاء",
   "userProfile": "بروفايل المستخدم",
   "success_title": "العملية تمت بنجاح",
-  "error_title": "حدث خطأ"
+  "error_title": "حدث خطأ",
+  "support_emergency": "يدعمم مكالمات الطوارئ",
+  "dont_support_emergency": "لا يدعم مكالمات الطوارئ"
 }

@@ -1,7 +1,12 @@
 {
-  "plugins": ["jest", "react", "react-hooks"],
-  "extends": [
+  "plugins": [
+    "jest",
+    "react",
     "react-hooks"
+  ],
+  "extends": [
+    "react-hooks",
+    "react-app"
   ],
   "rules": {
     "react-hooks/exhaustive-deps": "warn",

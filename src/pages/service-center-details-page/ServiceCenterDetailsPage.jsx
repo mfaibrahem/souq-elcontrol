@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Empty } from 'antd';
+import { Empty, Tag } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 import { useParams } from 'react-router-dom';
 import parse from 'html-react-parser';
@@ -27,7 +27,7 @@ const ServiceCenterDetailsPage = () => {
   const { modalOpened } = useContext(ContactSellerContext);
 
   const renderGalleryImages = () => {
-    return fetchedCenter.service.images.map((img) => {
+    return fetchedCenter?.service?.images.map((img) => {
       return {
         original: img?.image,
         thumbnail: img?.image
@@ -35,38 +35,71 @@ const ServiceCenterDetailsPage = () => {
     });
   };
 
-  const renderStoreDetails = (obj) => {
+  const renderStoreDetails = () => {
     return (
       <div className="store-details-wrap">
-        <Descriptions column={1} title={obj?.name ? obj.name : ''} bordered>
-          {obj?.nameOfStore && (
+        <Descriptions
+          column={1}
+          title={fetchedCenter?.name ? fetchedCenter.name : ''}
+          bordered
+        >
+          {fetchedCenter?.nameOfStore && (
             <Descriptions.Item
               label={i18n.language === 'ar' ? 'إسم المركز : ' : 'Store : '}
             >
-              {obj.nameOfStore}
+              {fetchedCenter.nameOfStore}
             </Descriptions.Item>
           )}
-          {obj?.address && (
+          {fetchedCenter?.address && (
             <Descriptions.Item
               label={i18n.language === 'ar' ? 'العنوان : ' : 'Address : '}
             >
-              {obj.address}
+              {fetchedCenter.address}
             </Descriptions.Item>
           )}
-          {obj?.email && (
+          {fetchedCenter?.cityForServiceCenter && (
+            <Descriptions.Item
+              label={i18n.language === 'ar' ? 'المدينه : ' : 'City : '}
+            >
+              {fetchedCenter?.cityForServiceCenter?.name ?? '---'}
+            </Descriptions.Item>
+          )}
+          {fetchedCenter?.email && (
             <Descriptions.Item
               label={
                 i18n.language === 'ar' ? 'البريد الاكترونى : ' : 'Email : '
               }
             >
-              {obj.email}
+              {fetchedCenter.email}
             </Descriptions.Item>
           )}
-          {obj?.phone && (
+          {fetchedCenter?.phone && (
             <Descriptions.Item
               label={i18n.language === 'ar' ? 'رقم الهاتف : ' : 'phone : '}
             >
-              {obj.phone}
+              {fetchedCenter.phone}
+            </Descriptions.Item>
+          )}
+          {fetchedCenter?.workTimes && fetchedCenter?.workTimes?.length > 0 && (
+            <Descriptions.Item
+              label={
+                i18n.language === 'ar' ? 'أوقات العمل : ' : 'Work times : '
+              }
+              style={{
+                whiteSpace: 'nowrap'
+              }}
+            >
+              <div
+                style={{
+                  display: 'flex',
+                  gap: 8,
+                  flexWrap: 'wrap'
+                }}
+              >
+                {fetchedCenter.workTimes.map((w) => (
+                  <Tag key={w.id}>{w.workTime ?? ''}</Tag>
+                ))}
+              </div>
             </Descriptions.Item>
           )}
         </Descriptions>
@@ -165,9 +198,74 @@ const ServiceCenterDetailsPage = () => {
                         : 'Available services',
                     children: (
                       <div className="desc-tab-content">
-                        {fetchedCenter?.desc && (
+                        <div className="store-details-wrap">
+                          <Descriptions
+                            column={1}
+                            title={
+                              <div>
+                                <p>
+                                  {fetchedCenter?.name
+                                    ? fetchedCenter.name
+                                    : ''}
+                                </p>
+                                <p style={{ marginBottom: 8 }}>
+                                  {fetchedCenter?.emergencyStatus === 1 ? (
+                                    <Tag color="green">
+                                      {t('support_emergency')}
+                                    </Tag>
+                                  ) : (
+                                    <Tag color="red">
+                                      {t('dont_support_emergency')}
+                                    </Tag>
+                                  )}
+                                </p>
+                              </div>
+                            }
+                            bordered
+                          >
+                            {!!fetchedCenter?.mangerName && (
+                              <Descriptions.Item
+                                label={
+                                  i18n.language === 'ar'
+                                    ? 'مدير المركز : '
+                                    : 'Store manager : '
+                                }
+                              >
+                                {fetchedCenter.mangerName}
+                              </Descriptions.Item>
+                            )}
+                            {!!fetchedCenter?.mangerPhone && (
+                              <Descriptions.Item
+                                label={
+                                  i18n.language === 'ar'
+                                    ? 'رقم هاتف المدير : '
+                                    : 'Manger phone : '
+                                }
+                              >
+                                {fetchedCenter.mangerPhone}
+                              </Descriptions.Item>
+                            )}
+                            {!!fetchedCenter?.mangerWhatsapp && (
+                              <Descriptions.Item
+                                label={
+                                  i18n.language === 'ar'
+                                    ? 'رقم واتس اب المدير : '
+                                    : 'Manager whatsapp phone : '
+                                }
+                              >
+                                {fetchedCenter.mangerWhatsapp}
+                              </Descriptions.Item>
+                            )}
+                          </Descriptions>
+                        </div>
+
+                        {(fetchedCenter?.desc || fetchedCenter?.services) && (
                           <div className="desc-details">
-                            {parse(fetchedCenter.service.desc)}
+                            {parse(
+                              fetchedCenter?.service?.desc ??
+                                fetchedCenter?.services ??
+                                ''
+                            )}
                           </div>
                         )}
 
