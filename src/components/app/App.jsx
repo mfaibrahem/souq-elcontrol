@@ -1,5 +1,5 @@
 import React, { useContext, Suspense } from 'react';
-import { Route, Switch, useHistory } from 'react-router-dom';
+import { Route, Switch, useHistory, useLocation } from 'react-router-dom';
 import AOS from 'aos';
 import { useTranslation } from 'react-i18next';
 import Loading from '../../common/loading/Loading';
@@ -18,6 +18,7 @@ import checkRes from '../../utils/checkRes';
 import routerLinks from './routerLinks';
 import useCustomApiRequest from '../../custom-hooks/useCustomApiRequest';
 import { HelmetProvider } from 'react-helmet-async';
+import DocTitleScrollTop from '../../utils/DocTitleScrollTop';
 
 // axios.defaults.baseURL = 'http://compound.emir.life/api';
 axios.defaults.baseURL = 'https://ecusouq.com/backend/api';
@@ -25,6 +26,7 @@ axios.defaults.baseURL = 'https://ecusouq.com/backend/api';
 function App() {
   const { i18n } = useTranslation();
   const history = useHistory();
+  const pathname = useLocation();
   const { user, removeCurrentUser, setCurrentUser } = useContext(UserContext);
   useEffect(() => {
     document.body.dir = i18n.dir();
@@ -35,7 +37,8 @@ function App() {
       duration: 1500
     });
   }, []);
-  // DocTitleScrollTop('');
+
+  DocTitleScrollTop('');
 
   const customApiRequest = useCustomApiRequest();
 

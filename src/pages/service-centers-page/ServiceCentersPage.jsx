@@ -109,11 +109,11 @@ const ServiceCentersPage = () => {
             title: 'قسم مراكز الصيانة',
             isLink: true,
             to: routerLinks?.cities(fixedMainCats?.maintenanceService)
-          },
-          {
-            title: allFetchedCenters?.length > 0 && allFetchedCenters[0]?.city,
-            isLink: false
           }
+          // {
+          //   title: allFetchedCenters?.length > 0 && allFetchedCenters[0]?.city,
+          //   isLink: false
+          // }
         ]}
       />
       <section className="service-centers-section">

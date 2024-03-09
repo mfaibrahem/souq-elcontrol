@@ -60,7 +60,9 @@
     position: relative;
     z-index: 2;
     pointer-events: none;
-
+    a {
+      pointer-events: all;
+    }
     .content-wrap {
       .btns-links {
         z-index: 3;
@@ -103,7 +105,8 @@
         }
         .slide-img-wrap {
           position: relative;
-          z-index: 1;
+          pointer-events: all;
+          z-index: 2;
           display: flex;
           justify-content: center;
           align-items: center;

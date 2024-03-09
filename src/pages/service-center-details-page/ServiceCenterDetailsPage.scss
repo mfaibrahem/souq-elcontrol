@@ -205,15 +205,15 @@
       border-radius: 5px;
     }
     .ant-descriptions-item-content {
-      font-size: 16px;
       color: #9a9a9a;
       padding: 8px 14px;
+      font-size: 0.825rem !important;
     }
     .ant-descriptions-item-label {
       font-weight: bold;
       color: $main-app-color;
-      font-size: 16px;
       padding: 8px 14px;
+      font-size: 0.825rem !important;
     }
   }
 
